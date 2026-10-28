@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="theme-color" content="#1a3a5c">
+    <title>เงินไม่ใช่ทุกสิ่ง — ข้อเสนอเพื่อการอภิปราย</title>
+    <style>
+        :root {
+            --primary: #1a3a5c;
+            --secondary: #2c5f8a;
+            --accent: #b8860b;
+            --bg: #f9f7f4;
+            --card: #ffffff;
+            --text: #2d2d2d;
+            --muted: #6b6b6b;
+            --light-gray: #f0ece6;
+            --border: #ddd6cc;
+            --header-h: 56px;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+        html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+        body {
+            font-family: 'Sarabun', 'Noto Sans Thai', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            font-size: 17px;
+            line-height: 1.9;
+            padding-top: var(--header-h);
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+
+        /* ====== Sticky Header ====== */
+        .topbar {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            height: var(--header-h);
+            background: var(--primary);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 14px;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+        }
+        .topbar .title-mini {
+            font-size: 0.92rem;
+            font-weight: 600;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            flex: 1;
+            margin-right: 10px;
+        }
+        .menu-btn {
+            background: rgba(255,255,255,0.15);
+            color: #fff;
+            border: none;
+            padding: 8px 14px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-family: inherit;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            min-height: 40px;
+        }
+        .menu-btn:active { background: rgba(255,255,255,0.3); }
+
+        /* ====== Slide-in TOC Drawer ====== */
+        .drawer-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.5);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.25s, visibility 0.25s;
+            z-index: 1500;
+        }
+        .drawer-overlay.open { opacity: 1; visibility: visible; }
+        .drawer {
+            position: fixed;
+            top: 0; right: 0;
+            width: min(85%, 340px);
+            height: 100vh;
+            background: #fff;
+            z-index: 1600;
+            transform: translateX(100%);
+            transition: transform 0.3s cubic-bezier(0.4,0,0.2,1);
+            display: flex;
+            flex-direction: column;
+            box-shadow: -4px 0 20px rgba(0,0,0,0.2);
+        }
+        .drawer.open { transform: translateX(0); }
+        .drawer-head {
+            padding: 16px 18px;
+            background: var(--primary);
+            color: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .drawer-head h2 { font-size: 1.05rem; font-weight: 700; }
+        .close-btn {
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 1.6rem;
+            line-height: 1;
+            padding: 4px 10px;
+            cursor: pointer;
+        }
+        .drawer nav { overflow-y: auto; flex: 1; padding: 8px 0 24px; }
+        .drawer nav a {
+            display: block;
+            padding: 14px 20px;
+            color: var(--text);
+            text-decoration: none;
+            font-size: 0.98rem;
+            border-bottom: 1px solid var(--light-gray);
+            line-height: 1.5;
+        }
+        .drawer nav a:active { background: var(--light-gray); }
+        .drawer nav a .num {
+            display: inline-block;
+            min-width: 26px;
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        /* ====== Content ====== */
+        .container {
+            max-width: 780px;
+            margin: 0 auto;
+            padding: 20px 16px 90px;
+        }
+        header.hero {
+            text-align: center;
+            padding: 12px 0 22px;
+            border-bottom: 2px solid var(--border);
+            margin-bottom: 24px;
+        }
+        header.hero h1 {
+            font-size: 1.45rem;
+            color: var(--primary);
+            line-height: 1.35;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        header.hero .subtitle {
+            font-size: 0.95rem;
+            color: var(--secondary);
+            line-height: 1.5;
+            margin-bottom: 10px;
+        }
+        header.hero .badge {
+            display: inline-block;
+            background: var(--accent);
+            color: #fff;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.78rem;
+            font-weight: 600;
+        }
+        header.hero .meta {
+            display: block;
+            margin-top: 10px;
+            font-size: 0.82rem;
+            color: var(--muted);
+            font-style: italic;
+        }
+
+        /* ====== Accordion Sections ====== */
+        details.section {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            margin-bottom: 14px;
+            overflow: hidden;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+        }
+        details.section[open] {
+            box-shadow: 0 3px 14px rgba(0,0,0,0.08);
+        }
+        details.section > summary {
+            list-style: none;
+            cursor: pointer;
+            padding: 16px 18px;
+            background: linear-gradient(180deg, #ffffff, #fbf9f6);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 1.02rem;
+            line-height: 1.4;
+            min-height: 60px;
+            user-select: none;
+        }
+        details.section > summary::-webkit-details-marker { display: none; }
+        details.section > summary::before {
+            content: "";
+            display: inline-block;
+            width: 0;
+            height: 0;
+            border-left: 6px solid var(--accent);
+            border-top: 5px solid transparent;
+            border-bottom: 5px solid transparent;
+            transition: transform 0.2s;
+            flex-shrink: 0;
+        }
+        details.section[open] > summary::before {
+            transform: rotate(90deg);
+        }
+        details.section > summary .num-badge {
+            background: var(--primary);
+            color: #fff;
+            font-size: 0.72rem;
+            padding: 3px 8px;
+            border-radius: 6px;
+            flex-shrink: 0;
+            font-weight: 700;
+        }
+        .section-body {
+            padding: 4px 18px 20px;
+            border-top: 1px solid var(--light-gray);
+        }
+
+        /* ====== Typography inside ====== */
+        .section-body h3 {
+            font-size: 1.1rem;
+            color: var(--secondary);
+            margin: 22px 0 10px;
+            font-weight: 700;
+            line-height: 1.4;
+        }
+        .section-body h4 {
+            font-size: 1rem;
+            color: var(--primary);
+            margin: 16px 0 8px;
+            font-weight: 700;
+        }
+        .section-body p {
+            margin-bottom: 14px;
+            text-align: left;
+        }
+        .section-body ul,
+        .section-body ol {
+            margin: 0 0 16px;
+            padding-left: 22px;
+        }
+        .section-body li {
+            margin-bottom: 10px;
+            padding-left: 2px;
+        }
+        .section-body li > strong { color: var(--primary); }
+
+        blockquote {
+            background: var(--light-gray);
+            border-left: 4px solid var(--accent);
+            padding: 12px 16px;
+            margin: 16px 0;
+            font-style: italic;
+            font-size: 0.97rem;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .highlight-box {
+            background: #eaf2f8;
+            border: 1px solid #b8d0e4;
+            border-radius: 10px;
+            padding: 14px 16px;
+            margin: 18px 0;
+        }
+        .highlight-box h4 {
+            margin-top: 0;
+            color: var(--primary);
+            font-size: 0.98rem;
+        }
+        .highlight-box ul { padding-left: 18px; }
+
+        /* ====== Table (horizontal scroll on mobile) ====== */
+        .table-wrap {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin: 18px 0;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+        }
+        table {
+            width: 100%;
+            min-width: 560px;
+            border-collapse: collapse;
+            font-size: 0.88rem;
+        }
+        th, td {
+            border: 1px solid var(--border);
+            padding: 9px 11px;
+            text-align: left;
+            vertical-align: top;
+        }
+        th {
+            background: var(--primary);
+            color: #fff;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+        tr:nth-child(even) td { background: #faf8f5; }
+
+        /* ====== Back to top ====== */
+        .back-top {
+            position: fixed;
+            bottom: 20px; right: 18px;
+            width: 52px; height: 52px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: #fff;
+            border: none;
+            font-size: 1.35rem;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.25);
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: opacity 0.25s, visibility 0.25s, transform 0.25s;
+            z-index: 900;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .back-top.show { opacity: 1; visibility: visible; transform: translateY(0); }
+        .back-top:active { background: var(--secondary); }
+
+        .footer-note {
+            margin-top: 30px;
+            padding: 20px 16px;
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--muted);
+            background: var(--card);
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            line-height: 1.7;
+        }
+        .footer-note strong { color: var(--primary); display: block; margin-bottom: 6px; }
+
+        /* ====== Larger screens ====== */
+        @media (min-width: 640px) {
+            .container { padding: 30px 24px 100px; }
+            header.hero h1 { font-size: 1.85rem; }
+            header.hero .subtitle { font-size: 1.02rem; }
+            details.section > summary { font-size: 1.08rem; padding: 18px 22px; }
+            .section-body { padding: 4px 24px 24px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ===== Sticky Topbar ===== -->
+<div class="topbar">
+    <div class="title-mini">เงินไม่ใช่ทุกสิ่ง — ข้อเสนอเพื่อการอภิปราย</div>
+    <button class="menu-btn" id="menuBtn" aria-label="เปิดสารบัญ">
+        <span style="font-size:1.1rem;">☰</span> สารบัญ
+    </button>
+</div>
+
+<!-- ===== Drawer TOC ===== -->
+<div class="drawer-overlay" id="overlay"></div>
+<aside class="drawer" id="drawer" aria-label="สารบัญ">
+    <div class="drawer-head">
+        <h2>สารบัญ</h2>
+        <button class="close-btn" id="closeBtn" aria-label="ปิด">×</button>
+    </div>
+    <nav>
+        <a href="#exec"><span class="num">0</span> บทสรุปผู้บริหาร (10 ข้อ)</a>
+        <a href="#p1"><span class="num">1</span> ทำไมเราถึงเชื่อว่าเงินคือสิ่งจำเป็น?</a>
+        <a href="#p2"><span class="num">2</span> ข้อสังเกต 3 ข้อ</a>
+        <a href="#p3"><span class="num">3</span> สถาปัตยกรรมสองชั้น</a>
+        <a href="#p4"><span class="num">4</span> Firewall Against Digital Dollarization</a>
+        <a href="#p5"><span class="num">5</span> Sandbox — การทดลองนำร่อง</a>
+        <a href="#p6"><span class="num">6</span> กรณีศึกษาจีน</a>
+        <a href="#p7"><span class="num">7</span> เงื่อนไข 5 ข้อที่ต้องเกิด</a>
+        <a href="#p8"><span class="num">8</span> ความเสี่ยง 4 ข้อที่ต้องแก้</a>
+        <a href="#p9"><span class="num">9</span> คำถามเพื่อการอภิปราย 7 ข้อ</a>
+        <a href="#app"><span class="num">+</span> ภาคผนวก</a>
+    </nav>
+</aside>
+
+<!-- ===== Main Content ===== -->
+<main class="container">
+
+    <header class="hero">
+        <h1>เงินไม่ใช่ทุกสิ่ง — สถาปัตยกรรมสังคมหลังยุคเงินเป็นตัวกลางหลัก</h1>
+        <div class="subtitle">ข้อเสนอเพื่อการอภิปราย ว่าด้วยเศรษฐศาสตร์การเมือง เทคโนโลยี AI และประชาคมความพอเพียง</div>
+        <span class="badge">Discussion Paper · 2026</span>
+        <span class="meta">เวอร์ชัน 0.1 — เพื่อการอภิปราย ไม่ใช่ข้อเสนอนโยบาย</span>
+    </header>
+
+    <!-- 0. Executive Summary -->
+    <details class="section" id="exec" open>
+        <summary><span class="num-badge">0</span> บทสรุปผู้บริหาร (10 ข้อ)</summary>
+        <div class="section-body">
+            <ol>
+                <li><strong>"จัดหาได้" ไม่เท่ากับ "ผลิตได้"</strong> — รัฐสวัสดิการยุโรปจัดหาปัจจัย 4 ให้ประชาชนได้不是因为ผลิตต้นน้ำได้ทั้งหมด แต่เพราะใช้<strong>อำนาจทางการเงิน (Financial Hegemony)</strong> และ<strong>มูลค่าเพิ่มจากแบรนด์</strong> ดึงส่วนเกินจาก real sector ของประเทศกำลังพัฒนา ผ่านกลไก <strong>unequal exchange</strong> ที่ซ่อนอยู่ในระบบการเงินโลก</li>
+                <li><strong>เงินคือ "สิทธิ์เรียกร้องบนทรัพยากร" (claim on resources) ไม่ใช่ทรัพยากรเอง</strong> — และถ้ารัฐสามารถจัดสรรทรัพยากรได้โดยตรง สิทธิ์เรียกร้องก็ไม่จำเป็นต้องอยู่ในรูปเงินเสมอไป นี่คือรากทางทฤษฎีของข้อเสนอทั้งหมด</li>
+                <li><strong>คุณภาพชีวิตไม่เท่ากับ GDP</strong> — ประเทศที่ค่าแรงต่ำแต่ของถูกและโครงสร้างกระจายดี สามารถมีคุณภาพชีวิตจริงสูงกว่าประเทศที่ GDP สูงแต่ค่าครองชีพสูงและหนี้ท่วม "รวยปลอม เงินแพง" คือกลไกที่ต้องตั้งคำถาม</li>
+                <li><strong>สถาปัตยกรรมสองชั้น:</strong> ภายในประเทศใช้<strong>การจัดสรร</strong> (ไม่ใช่เงินเป็นตัวกลางหลัก) ภายนอกประเทศใช้<strong>การแลกเปลี่ยน</strong> (ด้วยสินค้าจริง + เงินเท่าที่จำเป็น) — พร้อมกลไกเชื่อมที่ควบคุมได้</li>
+                <li><strong>Dream/Real Firewall:</strong> แยกวงจรเศรษฐกิจ "ของจริง" (อาหาร ที่อยู่ สุขภาพ) ออกจากวงจร "ของฝัน" (เกม บันเทิง social, การเก็งกำไร) — เพื่อตัดไม่ให้เงินที่สร้างจากความเฟ้อฝันไหลมาซื้อของจริง</li>
+                <li><strong>Sandbox นำร่อง:</strong> ใช้ Physical AI Embodied ทดแทนแรงงานซ้ำซาก เริ่มจาก<strong>การดูแลผู้สูงอายุ</strong> ในพื้นที่ที่มีระบบนิเวศพร้อม วัดผลด้วย<strong>คุณภาพชีวิต + เวลาที่ได้คืนมาเพื่อพัฒนา</strong></li>
+                <li><strong>สวัสดิการสองชั้น:</strong> ชั้นพื้นฐานใหม่ (รัฐจัดหาปัจจัย 4 ผ่าน economy of scale ไม่ใช่เงินสด) + ชั้นศักยภาพ (ตลาดเดิมยังอยู่) — ผู้คนเลือกได้ และมีตาข่ายรองรับ</li>
+                <li><strong>รางวัลที่ไม่แปลงเป็นอำนาจ (Non-convertible Rewards):</strong> เมื่อการสะสมวัตถุถึงขอบเขต เปลี่ยนเป็น<strong>คุณค่านามธรรม</strong> (hall of fame, การยอมรับ) — เพื่อตัดวงจร wealth → power → rule-setting</li>
+                <li><strong>รูปสังคมแบบ "แจกัน" ไม่ใช่ "ปิรามิด":</strong> ฐานแคบลง (ไม่มีคนจนดิ้นรน) กลางโค้งหนา (โอกาสกระจาย) ยอดบาน (คนเก่งหลายแวดวง ไม่กระจุกที่การเงิน)</li>
+                <li><strong>ข้อเสนอนี้ยังไม่สมบูรณ์</strong> — มี 4 ความเสี่ยงที่ต้องแก้ และ 5 เงื่อนไขที่ต้องเกิดก่อนจะ work เอกสารนี้จึงเป็น<strong>การเชิญชวนให้ร่วมคิด</strong> ไม่ใช่การ declare คำตอบ</li>
+            </ol>
+        </div>
+    </details>
+
+    <!-- 1 -->
+    <details class="section" id="p1">
+        <summary><span class="num-badge">1</span> ทำไมเราถึงเชื่อว่าเงินคือสิ่งจำเป็น?</summary>
+        <div class="section-body">
+            <p>ทุกวันนี้ เราใช้เงินโดยไม่ตั้งคำถามว่า "ทำไมต้องเป็นเงิน" — เหมือนปลาไม่รู้ว่าตัวเองอยู่ในน้ำ แต่เมื่อค่าครองชีพสูงขึ้น หนี้ครัวเรือนพุ่ง ประชากรสูงวัย และ AI เริ่มทำงานแทนมนุษย์ คำถามที่ว่า "เงินคืออะไร และจำเป็นจริงหรือ" ก็กลับมาเป็นคำถามที่หลีกเลี่ยงไม่ได้</p>
+            <p>ข้อเสนอในเอกสารนี้เริ่มจากข้อสังเกตง่ายๆ ว่า <strong>เงินคือ "สิทธิ์เรียกร้องบนทรัพยากร" (claim on resources)</strong> ไม่ใช่ทรัพยากรเอง — ธนบัตรใบหนึ่งไม่มีค่าอะไรในตัวเอง มันมีค่าเพราะ<strong>มีคนยอมรับว่ามันแลกของได้</strong> และการยอมรับนั้นก็ขึ้นอยู่กับสถาบัน (รัฐ, ธนาคารกลาง, ตลาด) ที่รับรองมัน</p>
+            <p>ถ้าเราเข้าใจว่าเงินเป็นเพียง "รูปแบบหนึ่งของสิทธิ์เรียกร้อง" คำถามต่อไปก็คือ: <strong>ถ้ารัฐสามารถจัดสรรทรัพยากรได้โดยตรง สิทธิ์เรียกร้องนั้นจำเป็นต้องอยู่ในรูปเงินเสมอไปหรือไม่?</strong></p>
+            <p>นี่คือคำถามที่เอกสารนี้อยากชวนคิด — ไม่ใช่เพื่อล้มล้างเงิน แต่เพื่อ<strong>เปิดพื้นที่ให้เห็นว่าเงินเป็นเพียงหนึ่งในหลายทางเลือก</strong> และการเลือกใช้เงินเป็นตัวกลางหลักทุกอย่างอาจไม่ใช่ทางเลือกที่ดีที่สุดสำหรับทุกส่วนของชีวิต</p>
+        </div>
+    </details>
+
+    <!-- 2 -->
+    <details class="section" id="p2">
+        <summary><span class="num-badge">2</span> ข้อสังเกต 3 ข้อ</summary>
+        <div class="section-body">
+            <h3>2.1 "จัดหาได้" ไม่เท่ากับ "ผลิตได้"</h3>
+            <p>รัฐสวัสดิการในยุโรปตะวันตกสามารถจัดหาปัจจัย 4 ให้ประชาชนได้ในระดับที่น่าอิจฉา — สาธารณสุขถ้วนหน้า การศึกษาฟรี ที่อยู่อาศัย subsidized อาหารปลอดภัย และผลลัพธ์คือประชากรมีคุณภาพชีวิตสูงกว่าสหรัฐฯ ในหลายมิติ (Gini หลังภาษีของเดนมาร์ก ~0.28 เทียบกับสหรัฐฯ ~0.39)</p>
+            <p>แต่คำถามคือ: <strong>ยุโรปผลิตปัจจัยเหล่านี้จากต้นน้ำเองได้ทั้งหมดหรือไม่?</strong> คำตอบคือไม่ ยุโรปนำเข้าวัตถุดิบ พลังงาน และสินค้าอุตสาหกรรมพื้นฐานจากประเทศ real sector แล้วใช้<strong>ความได้เปรียบเชิงการเงิน + อำนาจต่อรองเชิงสถาบัน</strong> ในการกำหนด terms of trade ที่เอื้อตัวเอง</p>
+            <p>นี่คือกลไก <strong>unequal exchange</strong> ที่ Arghiri Emmanuel และ Samir Amin อธิบายไว้ตั้งแต่ทศวรรษ 1960s–70s และมันยังทำงานอยู่:</p>
+            <ul>
+                <li><strong>Terms of trade ที่เอียง:</strong> ยุโรปส่งออกสินค้าที่มี markup สูง และนำเข้าสินค้าที่มี markup ต่ำ — ผลต่างนี้คือ<strong>ส่วนเกินที่โอนจาก real sector ไปยัง financial/core sector</strong></li>
+                <li><strong>Brand premium / institutional moat:</strong> การสร้างมาตรฐาน, certification, IP regime ทำให้คู่แข่งจาก real sector ไม่สามารถเข้าถึง premium segment ได้</li>
+                <li><strong>Seigniorage และ financial services:</strong> ลอนดอนเป็นศูนย์กลาง financial services ที่สร้างรายได้จากทั้งโลก และยูโร/ดอลลาร์ทำให้ยุโรป/สหรัฐฯ กู้ในสกุลตัวเองได้ถูกกว่าประเทศ real sector มาก</li>
+            </ul>
+            <p><strong>ดังนั้นข้อสรุปคือ:</strong> รัฐสวัสดิการยุโรป<strong>ยั่งยืนได้เพราะมันวางอยู่บนโครงสร้างที่เอาเปรียบ real sector</strong> ไม่ใช่เพราะมันผลิตเองได้</p>
+            <p><strong>นัยเชิงนโยบาย:</strong> ทางออกไม่ใช่เพียงการเปลี่ยนท่อการเงิน แต่ต้องสร้าง <strong>อธิปไตยทางการผลิต (Production Sovereignty)</strong> ในปัจจัยพื้นฐานควบคู่กันไป</p>
+
+            <h3>2.2 คุณภาพชีวิตไม่เท่ากับ GDP</h3>
+            <p>GDP วัดมูลค่าการแลกเปลี่ยนในตลาด แต่ไม่วัด: เวลาว่าง, คุณภาพความสัมพันธ์ทางสังคม, ความมั่นคงทางอาหาร, สุขภาพจิต, ความเท่าเทียม, สิ่งแวดล้อม</p>
+            <p>ประเทศที่ค่าแรงต่ำแต่ของถูกและโครงสร้างกระจายดี<strong>สามารถมีคุณภาพชีวิตจริงสูงกว่าประเทศที่ GDP สูงแต่ค่าครองชีพสูงและหนี้ท่วม</strong> — นี่ไม่ใช่ rhetoric แต่มีงานวิจัยรองรับ (Sen, Stiglitz-Sen-Fitoussi, OECD Better Life Index)</p>
+            <p>คำว่า <strong>"รวยปลอม เงินแพง"</strong> หมายถึงสถานการณ์ที่ตัวเลข GDP สูง但因为ค่าครองชีพและหนี้สินสูง ประชาชนจึงไม่ได้รู้สึก "รวย" ตามตัวเลข</p>
+
+            <h3>2.3 เงินคือ claim on resources ไม่ใช่ resource เอง</h3>
+            <p>ข้อสังเกตนี้ฟังดูเรียบง่าย แต่มีนัยลึก:</p>
+            <ul>
+                <li><strong>ถ้าเงินเป็นเพียง claim:</strong> การที่คนส่วนใหญ่ไม่มีเงินก็ไม่ได้หมายความว่าทรัพยากรขาด — มันหมายความว่า<strong>สิทธิ์ในการเข้าถึงทรัพยากรถูกกระจายไม่เท่าเทียม</strong></li>
+                <li><strong>ถ้าเงินเป็นเพียง claim:</strong> รัฐสามารถออกแบบกลไกการจัดสรรทรัพยากรที่ไม่ต้องผ่านเงินได้</li>
+                <li><strong>ถ้าเงินเป็นเพียง claim:</strong> ปัญหาของระบบปัจจุบันไม่ใช่ "เงินไม่พอ" แต่คือ "การอ้างสิทธิ์ถูกผูกขาด"</li>
+            </ul>
+            <p>นี่คือรากทางทฤษฎีของข้อเสนอทั้งหมดในเอกสารนี้ และมันเชื่อมกับ <strong>chartalism</strong> (Knapp, Innes) ที่บอกว่าเงินคือสิ่งที่รัฐประกาศให้เป็น</p>
+        </div>
+    </details>
+
+    <!-- 3 -->
+    <details class="section" id="p3">
+        <summary><span class="num-badge">3</span> สถาปัตยกรรมสองชั้น — ภายในใช้การจัดสรร ภายนอกใช้การแลกเปลี่ยน</summary>
+        <div class="section-body">
+            <h3>3.1 หลักการ</h3>
+            <p>ข้อเสนอหลักของเอกสารนี้คือการแยก <strong>"ภายใน"</strong> ออกจาก <strong>"ภายนอก"</strong> อย่างชัดเจน:</p>
+            <ul>
+                <li><strong>ภายในประเทศ:</strong> ใช้<strong>การจัดสรร</strong> เป็นกลไกหลัก — รัฐจัดหาปัจจัย 4 โดยตรงผ่านระบบที่ไม่ต้องใช้เงินเป็นตัวกลาง เงินทำหน้าที่เป็นเพียง "คูปองเสริม"</li>
+                <li><strong>ภายนอกประเทศ:</strong> ใช้<strong>การแลกเปลี่ยน</strong> เป็นกลไกหลัก — ประเทศยังต้องค้ากับโลก และยังต้องมี "สิ่งที่แลกเปลี่ยนได้"</li>
+            </ul>
+            <p><strong>ทำไมต้องแยก?</strong> เพราะปัญหาของระบบปัจจุบันคือมัน<strong>ปนกัน</strong> — เงินที่ใช้ภายในถูกผูกกับเงินที่ใช้ภายนอก (ซึ่งผูกกับอำนาจของสกุลเงิน reserve) ทำให้แรงกดดันจากภายนอกไหลเข้าสู่ภายในโดยที่ประชาชนไม่ได้เลือก</p>
+
+            <h3>3.2 กลไกเชื่อม: เพดานการแลกเปลี่ยน + วัตถุประสงค์ที่อนุญาต</h3>
+            <ul>
+                <li><strong>เพดานการแลกเปลี่ยน:</strong> กำหนดวงเงินต่อปีสำหรับการแลก "คูปองภายใน" เป็น "เงินภายนอก" — แยกตามวัตถุประสงค์ (ท่องเที่ยว, รักษาพยาบาล, ศึกษา, นำเข้าที่จำเป็น)</li>
+                <li><strong>วัตถุประสงค์ที่อนุญาต:</strong> การแลกเพื่อวัตถุประสงค์ที่สมเหตุสมผล ได้รับอนุญาตมากกว่าการแลกเพื่อเก็งกำไรหรือถ่ายเทความมั่งคั่ง</li>
+                <li><strong>การตรวจสอบ:</strong> ใช้ zero-knowledge proof เพื่อพิสูจน์ว่าธุรกรรมอยู่ในวัตถุประสงค์ที่อนุญาต โดยไม่ต้องเปิดเผยข้อมูลส่วนตัวทั้งหมด</li>
+            </ul>
+            <p><strong>และต้องยอมรับตรงๆ ว่า:</strong> ระบบ dual currency เคยล้มเหลวหลายครั้ง — คิวบา (CUC/CUP), โซเวียต (Beryozka shops), จีนก่อน 1994 — และปัญหาหลักของทุกระบบคือ <strong>"ใครได้สิทธิ์แลก"</strong></p>
+
+            <h3>3.3 ระดับของการลดการพึ่งพา (Selective Decoupling)</h3>
+            <ul>
+                <li><strong>ระดับภายใน:</strong> สร้างระบบชำระเงินภายในที่พึ่งพาตนเองได้ (PromptPay, UPI, Pix)</li>
+                <li><strong>ระดับภูมิภาค:</strong> สร้างท่อการค้าด้วยสกุลเงินท้องถิ่น (Local Currency Settlement) — mBridge, PAPSS, bilateral swaps</li>
+                <li><strong>ระดับสากล:</strong> รักษาการเชื่อมต่อไว้เฉพาะที่จำเป็น แต่ลดการถือครอง Fiat Reserve หันไปสำรองด้วยสินทรัพย์จริง</li>
+            </ul>
+            <p><strong>และต้องมีเงื่อนไขวัดได้:</strong> "ใช้ดอลลาร์เท่าที่จำเป็น" เป็นคำที่ขยายได้เรื่อยๆ ถ้าไม่มีเส้นตายและเงื่อนไข — ต้องระบุ<strong>สัดส่วนเป้าหมาย</strong> ในแต่ละช่วงเวลา</p>
+        </div>
+    </details>
+
+    <!-- 4 -->
+    <details class="section" id="p4">
+        <summary><span class="num-badge">4</span> The Firewall Against Digital Dollarization</summary>
+        <div class="section-body">
+            <h3>4.1 ปัญหาที่แท้จริงไม่ใช่แค่ "มีเงินมาก"</h3>
+            <p>ระบบตะวันตกสร้างความมั่งคั่งจาก <strong>Financialization + Narrative</strong> โดยขาดแคลนฐานการผลิตจริง พวกเขาใช้เงินที่สร้างขึ้นนี้ไปซื้อทรัพยากรจากประเทศอื่น — นี่คือ <strong>"ความมั่งคั่งที่เปราะบาง"</strong></p>
+            <p>แต่ในปี 2026 กลไกนี้ถูก <strong>อัปเกรดเป็น "Digital Dollarization"</strong> ผ่าน stablecoin ที่ผูกกับดอลลาร์ และถูกออกแบบให้ <strong>"เงินที่สร้างจากจินตนาการ" สามารถไหลมาซื้อ "ของจริง" ได้อย่างไร้ขีดจำกัด</strong></p>
+
+            <div class="highlight-box">
+                <h4>หลักฐานเชิงประจักษ์ที่ต้องเข้าใจ</h4>
+                <ul>
+                    <li><strong>Stablecoin คือช่องทางใหม่ของ Digital Dollarization:</strong> ประมาณ <strong>98–99% ของมูลค่า stablecoin ทั้งโลกผูกกับดอลลาร์</strong> และ BIS เตือนว่าในประเทศที่เงินเฟ้อสูง ประชาชนจะหันไปถือ stablecoin แทนเงิน local เอง — นี่คือ <strong>"การ-dollarize โดยสมัครใจ"</strong></li>
+                    <li><strong>Stablecoin เป็น "เครื่องมือดูดซับหนี้" ของสหรัฐฯ:</strong> รัฐมนตรีคลังสหรัฐฯ Scott Bessent ระบุว่า stablecoin จะเป็น <strong>"แหล่งระดมทุนที่สำคัญของรัฐบาลกลาง"</strong> และ Tether เป็น<strong>ผู้ถือพันธบัตรรัฐบาลสหรัฐฯ รายใหญ่เป็นอันดับ 19 ของโลก</strong></li>
+                    <li><strong>"On-chain Debt Monetization" คือกลไกที่แนบเนียนกว่า QE:</strong> การที่ stablecoin ต้องมี <strong>100% reserve เป็น T-bills</strong> หมายความว่าทุกครั้งที่คนทั่วโลกซื้อ USDT/USDC พวกเขากำลัง<strong>ให้เงินกู้แก่รัฐบาลสหรัฐฯ โดยไม่รู้ตัว</strong></li>
+                </ul>
+            </div>
+
+            <h3>4.2 หลักการ: แยกวงจร "ของจริง" ออกจาก "ของฝัน" อย่างเด็ดขาด</h3>
+            <ul>
+                <li><strong>วงจรความจริง (Real Circuit):</strong> อาหาร, ที่อยู่อาศัย, พลังงาน, สาธารณสุข — ต้องถูกปกป้องด้วย <strong>การจัดสรรโดยตรง (Provisioning)</strong> หรือระบบคูปองที่จำกัดวงเงิน <strong>ห้ามไม่ให้ "เงินเก็งกำไร" จากตลาดหุ้น, คริปโต ไหลเข้ามาซื้อทรัพยากรพื้นฐาน</strong></li>
+                <li><strong>วงจรความฝัน (Dream Circuit):</strong> เกม, Social Media, ความบันเทิง, สินทรัพย์เสมือนจริง — สามารถสร้างมูลค่าและแลกเปลี่ยนกันได้ <strong>ภายในวงจรของตัวเอง</strong> แต่ <strong>ต้องไม่สามารถแปลงกลับมาซื้อ "ของจริง" ได้อย่างไร้ขีดจำกัด</strong></li>
+            </ul>
+
+            <h3>4.3 กลไกปฏิบัติการ 3 ชั้น</h3>
+            <h4>(ก) Proof of Reserves (PoR) สำหรับ "คูปองภายใน"</h4>
+            <p>ระบบคูปองภายในควรมี <strong>PoR ที่ตรวจสอบได้แบบ Real-time</strong> เพื่อให้ประชาชนมั่นใจว่าคูปองที่ถืออยู่มี "ของจริง" รองรับ และ <strong>ไม่สามารถพิมพ์เพิ่มได้โดยพลการ</strong></p>
+
+            <h4>(ข) Non-Convertible Bridge — แทน "กำแพงที่แข็งเกินไป"</h4>
+            <p>คำว่า <strong>"อย่างไร้ขีดจำกัด"</strong> เป็นจุดที่ฉลาดมาก เพราะมันเปิดช่องให้มี <strong>"สะพานที่ควบคุมได้"</strong> — ให้รางวัลเป็น <strong>สิทธิ์เข้าถึงของจริงบางประเภท</strong> (การศึกษา, การรักษาพยาบาล, การท่องเที่ยว) สำหรับผู้ที่สร้างคุณค่าสูงใน Dream Circuit แต่ <strong>ไม่ให้แลกเป็นเงินจริงหรือที่ดิน/อาหารแบบ unlimited</strong></p>
+
+            <h4>(ค) Regional Settlement — ลดแรงกดดันจาก USD</h4>
+            <p>ในขณะที่ภายในสร้าง Firewall ภายนอกก็ต้องสร้าง <strong>"ท่อภูมิภาค" (Regional Rail)</strong> สำหรับการค้าสินค้าจริงด้วยสกุลเงินท้องถิ่น (LCS, mBridge, bilateral swaps) เพื่อให้ "ของจริง" ที่ไหลเวียนระหว่างประเทศไม่ต้องผ่านดอลลาร์</p>
+
+            <h3>4.4 จุดที่ต้องระวัง</h3>
+            <ul>
+                <li><strong>ปัญหา "ของคาบเกี่ยว":</strong> ของบางอย่างเป็นทั้งของจริงและของฝัน — ทางออกคือนิยามตาม <strong>ผลกระทบต่อ real sector</strong> ไม่ใช่ตาม "physical vs. digital"</li>
+                <li><strong>ปัญหา cross-border arbitrage:</strong> ต้องมี<strong>มาตรการควบคุม capital flow และการตรวจสอบธุรกรรมข้ามพรมแดน</strong> ที่แข็งแรง</li>
+                <li><strong>ปัญหา "แรงจูงใจให้สร้างของฝัน":</strong> ต้องมี <strong>"สะพานที่ควบคุมได้"</strong> — ซึ่งก็คือ <strong>non-convertible rewards</strong> นั่นเอง</li>
+            </ul>
+
+            <h3>4.5 เชื่อมกับ USD Hegemony</h3>
+            <p>USD hegemony ทำงานผ่านความสามารถในการแลกเปลี่ยนทุกอย่าง (universal convertibility) — ดอลลาร์สามารถซื้อได้ทั้งของจริงและของฝัน</p>
+            <p><strong>ถ้าแยกวงจร dream/real ได้สำเร็จ:</strong> เงินที่สร้างจาก "ความเฟ้อฝัน" จะไม่สามารถไหลมาซื้อของจริงได้ — ลดแรงกดดันเงินเฟ้อและลดการดูดทรัพยากรจริงออกไปเลี้ยงวงจรฝัน</p>
+
+            <h3>4.6 Positioning: Sandbox คือ "Anti-Stack"</h3>
+            <p>สหรัฐฯ กำลังผลักดัน <strong>"American Stack"</strong> ผ่าน 3 ชั้น: (1) AI Infrastructure (2) Stablecoin/T-bill Rail (3) Tokenized RWA เพื่อทำให้ทุกสินทรัพย์ในโลกถูก tokenize บนแพลตฟอร์มที่สหรัฐฯ ควบคุม</p>
+            <p><strong>Sandbox ของคุณคือ "Anti-Stack" ที่ตรงข้าม:</strong></p>
+            <ul>
+                <li>แทนที่จะให้ AI สร้างมูลค่าใน Dream Circuit ที่ไหลกลับเข้าตลาดทุนสหรัฐฯ — คุณใช้ AI เพื่อ<strong>ปลดปล่อยมนุษย์</strong>และสร้าง<strong>"ของจริง"</strong></li>
+                <li>แทนที่จะให้ stablecoin เป็นท่อดูดเงินเข้าสู่ T-bills — คุณใช้คูปองภายในที่มี PoR และ Firewall เพื่อ<strong>กักเก็บสภาพคล่องไว้ใน real sector</strong></li>
+                <li>แทนที่จะให้ "แจกัน" ถูกออกแบบโดยตลาดทุน — คุณออกแบบ "แจกัน" ที่<strong>จำกัดขอบบน</strong></li>
+            </ul>
+        </div>
+    </details>
+
+    <!-- 5 -->
+    <details class="section" id="p5">
+        <summary><span class="num-badge">5</span> Sandbox — การทดลองนำร่อง</summary>
+        <div class="section-body">
+            <h3>5.1 หลักการ</h3>
+            <p>Sandbox คือ <strong>"ห้องทดลองทางสังคม"</strong> ที่ใช้ Physical AI Embodied ทดแทนแรงงานซ้ำซาก เพื่อทดสอบสมมติฐานว่า <strong>"เสรีภาพ + ความมั่นคงพื้นฐาน จะปลดปล่อยศักยภาพที่ซ่อนอยู่ได้จริงหรือไม่"</strong> — ไม่ใช่การทดสอบเทคโนโลยี แต่คือ<strong>การทดสอบเสรีภาพ</strong></p>
+
+            <h3>5.2 จุดเริ่มต้น: การดูแลผู้สูงอายุ</h3>
+            <ul>
+                <li>เป็นงานที่ขาดแคลนคนจริง (caregiver shortage) ทั่วโลก</li>
+                <li>เป็นงานที่ใช้พลังงานและเวลามนุษย์สูง แต่ให้ผลตอบแทนทางเศรษฐกิจต่ำ</li>
+                <li>เป็นงานที่ physical AI ทำได้ดี แต่ยังต้องมีมนุษย์ "ดูแลจิตใจ"</li>
+                <li><strong>วัดผลได้ครบวงจร:</strong> ตั้งแต่การทำงานของหุ่นยนต์ → คุณภาพชีวิตผู้สูงอายุ → เวลาที่ caregivers ได้คืนมา → การพัฒนาทักษะใหม่</li>
+            </ul>
+
+            <h3>5.3 การเลือกพื้นที่</h3>
+            <p>เลือกพื้นที่ที่มี <strong>ระบบนิเวศพร้อม</strong>: แหล่งผลิตหุ่นยนต์, สถาบันเทคนิค/มหาวิทยาลัย, ภาคเกษตร/ท่าเรือ</p>
+            <p><strong>ไม่ใช้เกณฑ์การศึกษาขั้นต่ำแบบเดิม</strong> เพราะ sandbox นี้จะทดสอบ<strong>คุณภาพประชากรที่จะเพิ่มขึ้น</strong> — ไม่ใช่คัดคนที่พร้อมแล้ว แต่สร้างคนให้พร้อมขึ้น</p>
+
+            <h3>5.4 กลไกการทำงาน</h3>
+            <ul>
+                <li><strong>ปิดในระยะแรก</strong> (เฉพาะสถาบันที่ได้รับอนุญาต) เพื่อป้องกันการปั่นข้อมูล</li>
+                <li><strong>KPI:</strong> คุณภาพชีวิตผู้สูงอายุ + เวลาที่ผู้ดูแลได้คืนมาเพื่อพัฒนา</li>
+                <li><strong>AI วิเคราะห์ → ทีมวิจัยเสนอ → รัฐบาลกลางประกาศ</strong></li>
+                <li><strong>ข้อขัดแย้ง → คณะกรรมการถาวร + ผู้เชี่ยวชาญตามจำเป็น</strong></li>
+                <li><strong>บทเรียนเผยแพร่ข้ามพื้นที่</strong> (ทั้งสำเร็จและล้มเหลว)</li>
+                <li><strong>พี่เลี้ยง:</strong> คนท้องถิ่นที่ผ่านการฝึก + ผู้เชี่ยวชาญภายนอกเมื่อขาด</li>
+                <li><strong>AI เป็นผู้แนะนำหลัก</strong> มนุษย์เป็นผู้ประสาน</li>
+            </ul>
+
+            <h3>5.5 ระบบรางวัล</h3>
+            <ul>
+                <li><strong>Non-cash rewards</strong> ผ่าน economy of scale ของรัฐ</li>
+                <li><strong>Social credit</strong> หลายมิติ (ความรู้ลึก/กว้าง, ทักษะการสอน, ศิลปะ, กีฬา, การพัฒนาสังคม)</li>
+                <li><strong>Hall of fame</strong> สำหรับคุณค่านามธรรมเมื่อการสะสมวัตถุถึงขอบเขต</li>
+                <li><strong>การแลกเปลี่ยนการเรียนรู้แบบ barter</strong> ในชุมชน</li>
+            </ul>
+
+            <h3>5.6 ปรัชญา</h3>
+            <ul>
+                <li><strong>ไม่ใช่ยูโทเปีย</strong> — ยอมรับว่ามี "ม้าที่ขุนไม่ขึ้น" และคนที่ใช้เวลาเปล่า</li>
+                <li><strong>ทดสอบว่า "ช้างเผือก" จะเกิดได้มากแค่ไหน</strong> เมื่อให้เสรีภาพ + ความมั่นคงพื้นฐาน</li>
+                <li><strong>รูปสังคมแบบ "แจกัน"</strong> ไม่ใช่ปิรามิด</li>
+            </ul>
+        </div>
+    </details>
+
+    <!-- 6 -->
+    <details class="section" id="p6">
+        <summary><span class="num-badge">6</span> กรณีศึกษาจีน — จุดแข็ง ข้อจำกัด และสิ่งที่ต้องระวัง</summary>
+        <div class="section-body">
+            <h3>6.1 จุดแข็งที่ควรเรียนรู้</h3>
+            <ul>
+                <li><strong>ฐานการผลิตที่แข็งแรง + สินค้าจริงแลกเปลี่ยน</strong> — จีนมีอำนาจต่อรองเชิงโครงสร้างที่ประเทศที่พึ่งเงินอย่างเดียวไม่มี</li>
+                <li><strong>ความสามารถในการจัดหาภายใน</strong> — จีนผลิตข้าว/ข้าวสาลีได้พอเลี้ยงประชากร และมีระบบ logistics ที่แข็งแรง</li>
+                <li><strong>การทดลองแนวทางใหม่</strong> — common prosperity, dual circulation, การควบคุม capital account, e-CNY</li>
+            </ul>
+
+            <h3>6.2 ข้อจำกัดที่ต้องยอมรับ</h3>
+            <ul>
+                <li><strong>จีนยังนำเข้าพลังงาน ~70% และถั่วเหลือง ~80%</strong> — ดังนั้น "การจัดหาภายใน" ของจีน<strong>ยังต้องพึ่งการส่งออก</strong></li>
+                <li><strong>ความไม่เท่าเทียม urban-rural และ coastal-inland</strong> ที่ยังสูง</li>
+                <li><strong>วิกฤตอสังหาริมทรัพย์ + หนี้地方政府 + การว่างงานของคนหนุ่มสาว</strong></li>
+            </ul>
+
+            <h3>6.3 สิ่งที่ต้องระวังในการนำเสนอ</h3>
+            <ul>
+                <li><strong>อย่า romanticize จีน</strong> — จีนกำลังทดลองแนวทางนี้อยู่ และมี<strong>องค์ประกอบ</strong>ที่น่าสนใจ แต่ยังไม่ใช่ต้นแบบที่สมบูรณ์</li>
+                <li><strong>อย่าพูดว่า "จีนไม่ต้องพูดถึงเงิน"</strong> — จีนมีความสามารถในการจัดหาปัจจัย 4 ภายในได้ในระดับที่สูงกว่าหลายประเทศ แต่ไม่ใช่ autarky</li>
+                <li><strong>อย่าพูดว่า "ค่านิยมตะวันตก" เป็นสาเหตุของปัญหาจีน</strong> — ควรพูดให้แม่นว่า <strong>"ระบบเงินและแรงจูงใจแบบ financialization ที่นำเข้ามา"</strong></li>
+            </ul>
+        </div>
+    </details>
+
+    <!-- 7 -->
+    <details class="section" id="p7">
+        <summary><span class="num-badge">7</span> เงื่อนไข 5 ข้อที่ต้องเกิดก่อนข้อเสนอนี้จะ work</summary>
+        <div class="section-body">
+            <ol>
+                <li><strong>เงื่อนไขทางการคลัง:</strong> รัฐต้องมีกลไกจัดสรรผลผลิตจาก AI/capital ไปสู่รัฐ (ภาษีทุน, sovereign wealth fund, public equity ใน AI)</li>
+                <li><strong>เงื่อนไขทางการผลิต:</strong> ประเทศต้องมี<strong>อธิปไตยทางการผลิต</strong>ในปัจจัยพื้นฐาน — ไม่ใช่ autarky แต่เป็น strategic redundancy</li>
+                <li><strong>เงื่อนไขทางการเมือง:</strong> ต้องมี <strong>coalition ระหว่าง real sector + รัฐ + ชุมชน</strong></li>
+                <li><strong>เงื่อนไขทาง governance:</strong> ต้องมี <strong>accountability + rotation + contestability + transparency</strong> ที่แข็งแรงพอ</li>
+                <li><strong>เงื่อนไขทางจิตวิทยา/วัฒนธรรม:</strong> ต้องมี <strong>soft power ภายใน</strong> ที่ทำให้คนเห็นตัวอย่างจริงจากคนรอบข้าง</li>
+            </ol>
+        </div>
+    </details>
+
+    <!-- 8 -->
+    <details class="section" id="p8">
+        <summary><span class="num-badge">8</span> ความเสี่ยง 4 ข้อที่ต้องแก้</summary>
+        <div class="section-body">
+            <h3>8.1 ความเสี่ยงจาก dual currency ที่ล้มเหลวมาก่อน</h3>
+            <p><strong>บทเรียนจากประวัติศาสตร์:</strong></p>
+            <ul>
+                <li><strong>คิวบา (CUC/CUP):</strong> ระบบสองสกุลเงินสร้างความไม่เท่าเทียม เพราะคนที่เข้าถึง CUC ได้เปรียบมหาศาล</li>
+                <li><strong>สหภาพโซเวียต (Beryozka shops):</strong> ร้านค้าที่รับแต่เงินตราต่างประเทศสร้าง elite</li>
+                <li><strong>จีนก่อนปี 1994:</strong> สร้างการเก็งกำไรและการทุจริต จนต้องรวมอัตราแลกเปลี่ยน</li>
+            </ul>
+            <p><strong>ปัญหาหลักของทุกระบบ:</strong> ใครได้สิทธิ์แลกคูปองเป็นเงินนอก? และการจัดสรรสิทธิ์นี้เองที่กลายเป็นแหล่งอำนาจและ rent-seeking ใหม่</p>
+
+            <h3>8.2 ปัญหาการจัดสรร (Allocation Problem)</h3>
+            <p>AI ช่วยได้มาก (demand forecasting, supply chain optimization) แต่ AI ไม่ได้แก้ปัญหา<strong>การจัดลำดับความสำคัญ (priority setting)</strong> ซึ่งเป็นการเมือง ไม่ใช่เทคนิค</p>
+
+            <h3>8.3 ปัญหาแรงจูงใจ (Incentive Problem)</h3>
+            <p>ถ้าปัจจัย 4 ไม่ต้องซื้อด้วยเงิน และรางวัลเป็น non-convertible แล้ว อะไรจะทำให้คนทำงานที่จำเป็นแต่ไม่น่าดึงดูด? ประสบการณ์จากทุกสังคมบอกว่า<strong>ต้องมีแรงจูงใจบางอย่าง</strong></p>
+
+            <h3>8.4 ปัญหาการ capture (Governance Problem)</h3>
+            <p>ระบบที่รัฐจัดสรรทรัพยากรโดยตรง<strong>มีแนวโน้มสูงที่จะถูก capture</strong> (บทเรียนของทุก planned economy) — ต้องมีกลไกป้องกันที่แข็งแรงพอ</p>
+        </div>
+    </details>
+
+    <!-- 9 -->
+    <details class="section" id="p9">
+        <summary><span class="num-badge">9</span> คำถามเพื่อการอภิปราย 7 ข้อ</summary>
+        <div class="section-body">
+            <p>เอกสารนี้<strong>ไม่ตอบ</strong>คำถามเหล่านี้ — เพราะมันเป็นคำถามที่ต้องอภิปรายร่วมกัน:</p>
+            <ol>
+                <li><strong>กลไกการจัดสรรสิทธิ์แลกเปลี่ยน:</strong> ใครได้สิทธิ์แลก "คูปองภายใน" เป็น "เงินภายนอก" มากแค่ไหน? ตามความจำเป็น? ตามโควต้า? หรือตามตลาด?</li>
+                <li><strong>การนิยาม "ของจริง" vs "ของฝัน":</strong> ใครกำหนด? รัฐ? ชุมชน? หรือตลาด?</li>
+                <li><strong>การออกแบบเพดานการแลกเปลี่ยน:</strong> ควรยืดหยุ่นตามรายได้/ความจำเป็นแค่ไหน?</li>
+                <li><strong>การป้องกันการ capture ใน sandbox:</strong> จะป้องกันการเมืองแทรกแซงได้อย่างไร?</li>
+                <li><strong>ความสัมพันธ์ระหว่าง sandbox กับระบบเศรษฐกิจใหญ่:</strong> ถ้า sandbox สำเร็จ จะขยายผลอย่างไร?</li>
+                <li><strong>การเปลี่ยนสถานะจากวัตถุเป็นนามธรรม:</strong> hall of fame ควรเป็น "สมัครใจ" หรือ "ถูกกำหนด"?</li>
+                <li><strong>การเชื่อมโยงกับโลกภายนอก:</strong> ถ้าประเทศหนึ่งทำสำเร็จ แต่ประเทศอื่นไม่ทำ — จะเกิดอะไรขึ้น?</li>
+            </ol>
+        </div>
+    </details>
+
+    <!-- Appendix -->
+    <details class="section" id="app">
+        <summary><span class="num-badge">+</span> ภาคผนวก — Glossary, กรณีศึกษา, References</summary>
+        <div class="section-body">
+            <h3>ก. Glossary</h3>
+            <ul>
+                <li><strong>Provisioning:</strong> การจัดหา/การเข้าถึงปัจจัยที่จำเป็น (ไม่ใช่การผลิต)</li>
+                <li><strong>Production Sovereignty:</strong> อธิปไตยทางการผลิต</li>
+                <li><strong>Unequal Exchange:</strong> การแลกเปลี่ยนที่ไม่เท่าเทียม</li>
+                <li><strong>Selective Decoupling:</strong> การลดการพึ่งพาแบบเลือกชั้น</li>
+                <li><strong>Dream/Real Firewall:</strong> กำแพงกั้นระหว่างวงจรเศรษฐกิจ "ของจริง" และ "ของฝัน"</li>
+                <li><strong>Non-convertible Rewards:</strong> รางวัลที่ไม่สามารถแปลงเป็นอำนาจเหนือผู้อื่นได้</li>
+                <li><strong>Commons Ownership:</strong> ความเป็นเจ้าของร่วม</li>
+                <li><strong>Sandbox:</strong> ห้องทดลองทางสังคม</li>
+            </ul>
+
+            <h3>ข. กรณีศึกษาเปรียบเทียบ</h3>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>กรณี</th>
+                            <th>กลไก</th>
+                            <th>ผลลัพธ์</th>
+                            <th>บทเรียน</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>คิวบา (CUC/CUP)</td><td>dual currency</td><td>ล้มเหลว — สร้างชนชั้นใหม่</td><td>ปัญหาคือ "ใครได้สิทธิ์แลก"</td></tr>
+                        <tr><td>โซเวียต (Beryozka)</td><td>ร้านค้าที่รับแต่เงินตราต่างประเทศ</td><td>ล้มเหลว — สร้าง elite</td><td>การเข้าถึงสินค้าดีๆ กลายเป็นสัญลักษณ์ความไม่เท่าเทียม</td></tr>
+                        <tr><td>จีนก่อน 1994</td><td>dual exchange rate</td><td>ล้มเหลว — เก็งกำไร/ทุจริต</td><td>ต้องรวมอัตราแลกเปลี่ยนในปี 1994</td></tr>
+                        <tr><td>UPI (อินเดีย)</td><td>ระบบชำระเงินภายใน</td><td>สำเร็จ</td><td>การปิดท่อชั้นในทำได้จริง</td></tr>
+                        <tr><td>Pix (บราซิล)</td><td>ระบบชำระเงินภายใน</td><td>สำเร็จ — รัฐควบคุม 100%</td><td>เช่นกัน</td></tr>
+                        <tr><td>mBridge</td><td>CBDC ข้ามพรมแดน</td><td>นำร่อง — ยังเล็ก</td><td>ต้องขยาย scale และ liquidity depth</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>ค. References (เบื้องต้น)</h3>
+            <ul>
+                <li>Emmanuel, A. (1972). <em>Unequal Exchange</em>.</li>
+                <li>Amin, S. (1976). <em>Unequal Development</em>.</li>
+                <li>Ostrom, E. (1990). <em>Governing the Commons</em>.</li>
+                <li>Rawls, J. (1971). <em>A Theory of Justice</em>.</li>
+                <li>Schumacher, E.F. (1973). <em>Small Is Beautiful</em>.</li>
+                <li>Hudson, M. (2015). <em>Killing the Host</em>.</li>
+                <li>Knapp, G.F. (1924). <em>The State Theory of Money</em>.</li>
+                <li>Innes, A.M. (1913). "What is Money?"</li>
+                <li>Sen, A. (1999). <em>Development as Freedom</em>.</li>
+                <li>Stiglitz, Sen, &amp; Fitoussi (2009). <em>Report by the Commission on the Measurement of Economic Performance and Social Progress</em>.</li>
+                <li>ECB (2015). <em>Virtual currency schemes — a further analysis</em>.</li>
+                <li>Banca d'Italia (2015). <em>Virtual currencies: a systemic perspective</em>.</li>
+                <li>FATF (2025–2026). Reports on crypto-enabled crime and stablecoins.</li>
+                <li>FinCEN (2026). Reports on scam center transactions.</li>
+            </ul>
+        </div>
+    </details>
+
+    <div class="footer-note">
+        <strong>เวอร์ชัน 0.1 — เพื่อการอภิปราย ไม่ใช่ข้อเสนอนโยบาย</strong>
+        ผู้อ่านที่สนใจร่วมอภิปรายหรือพัฒนาข้อเสนอนี้ต่อ สามารถติดต่อผ่านช่องทางที่ผู้เขียนจะระบุในเวอร์ชันถัดไป
+        <br><br>
+        <span style="font-size:0.78rem; color:#999;">© 2026 | เพื่อการแลกเปลี่ยนเรียนรู้และสร้างสรรค์สังคมที่ยั่งยืน</span>
+    </div>
+
+</main>
+
+<!-- ===== Back to top ===== -->
+<button class="back-top" id="backTop" aria-label="กลับด้านบน">↑</button>
+
+<script>
+(function() {
+    'use strict';
+    const drawer = document.getElementById('drawer');
+    const overlay = document.getElementById('overlay');
+    const menuBtn = document.getElementById('menuBtn');
+    const closeBtn = document.getElementById('closeBtn');
+    const backTop = document.getElementById('backTop');
+    const links = drawer.querySelectorAll('nav a');
+
+    function openDrawer() {
+        drawer.classList.add('open');
+        overlay.classList.add('open');
+        document.body.style.overflow = 'hidden';
+    }
+    function closeDrawer() {
+        drawer.classList.remove('open');
+        overlay.classList.remove('open');
+        document.body.style.overflow = '';
+    }
+
+    menuBtn.addEventListener('click', openDrawer);
+    closeBtn.addEventListener('click', closeDrawer);
+    overlay.addEventListener('click', closeDrawer);
+
+    // Close drawer & open target section when clicking a TOC link
+    links.forEach(function(a) {
+        a.addEventListener('click', function() {
+            closeDrawer();
+            const targetId = a.getAttribute('href').slice(1);
+            const target = document.getElementById(targetId);
+            if (target && target.tagName === 'DETAILS') {
+                // Small delay to let drawer close animation start
+                setTimeout(function() {
+                    target.open = true;
+                    const yOffset = -70;
+                    const rect = target.getBoundingClientRect();
+                    const y = rect.top + window.pageYOffset + yOffset;
+                    window.scrollTo({ top: y, behavior: 'smooth' });
+                }, 120);
+            }
+        });
+    });
+
+    // Back-to-top visibility
+    let ticking = false;
+    window.addEventListener('scroll', function() {
+        if (!ticking) {
+            window.requestAnimationFrame(function() {
+                if (window.pageYOffset > 600) {
+                    backTop.classList.add('show');
+                } else {
+                    backTop.classList.remove('show');
+                }
+                ticking = false;
+            });
+            ticking = true;
+        }
+    }, { passive: true });
+
+    backTop.addEventListener('click', function() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // ESC key closes drawer
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') closeDrawer();
+    });
+})();
+</script>
+</body>
+</html>
