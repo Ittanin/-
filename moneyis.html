@@ -2,12 +2,16 @@
 <html lang="th">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <meta name="theme-color" content="#1A4A4A">
+    <meta name="description" content="ข้อเสนอเพื่อการอภิปราย: สถาปัตยกรรมสังคมแห่งความพอเพียง หลังยุคเงินเป็นตัวกลางหลัก">
     <title>เงินไม่ใช่ทุกสิ่ง: สถาปัตยกรรมสังคมแห่งความพอเพียง</title>
+    
+    <!-- Fallback font ถ้าโหลด Google Font ไม่ได้ -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
     <style>
         :root {
             --primary: #1A4A4A;
@@ -27,7 +31,7 @@
         * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
         html { scroll-behavior: smooth; }
         body {
-            font-family: 'Sarabun', sans-serif;
+            font-family: 'Sarabun', 'Noto Sans Thai', sans-serif;
             background-color: var(--bg);
             color: var(--text);
             font-size: 17px;
@@ -36,106 +40,64 @@
         }
 
         /* Progress Bar */
-        .progress-container {
-            position: fixed; top: 0; left: 0; width: 100%; height: 4px;
-            background: transparent; z-index: 2000;
-        }
-        .progress-bar {
-            height: 100%; background: var(--accent); width: 0%;
-            transition: width 0.1s;
-        }
+        .progress-container { position: fixed; top: 0; left: 0; width: 100%; height: 4px; background: transparent; z-index: 2000; }
+        .progress-bar { height: 100%; background: var(--accent); width: 0%; transition: width 0.1s; }
 
         /* Navigation */
         .nav-bar {
-            position: fixed; top: 4px; left: 0; right: 0;
-            height: 60px; background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
+            position: fixed; top: 4px; left: 0; right: 0; height: 60px;
+            background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px);
             display: flex; align-items: center; justify-content: space-between;
-            padding: 0 20px; z-index: 1000;
-            border-bottom: 1px solid rgba(0,0,0,0.05);
+            padding: 0 20px; z-index: 1000; border-bottom: 1px solid rgba(0,0,0,0.05);
         }
         .nav-title { font-weight: 700; color: var(--primary); font-size: 1rem; }
-        .menu-btn {
-            background: none; border: none; font-size: 1.5rem;
-            color: var(--primary); cursor: pointer; padding: 8px;
-        }
+        .menu-btn { background: none; border: none; font-size: 1.5rem; color: var(--primary); cursor: pointer; padding: 8px; }
 
         /* Side Drawer */
-        .drawer-overlay {
-            position: fixed; inset: 0; background: rgba(0,0,0,0.5);
-            opacity: 0; visibility: hidden; transition: 0.3s; z-index: 1500;
-        }
+        .drawer-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.5); opacity: 0; visibility: hidden; transition: 0.3s; z-index: 1500; }
         .drawer-overlay.active { opacity: 1; visibility: visible; }
         .drawer {
-            position: fixed; top: 0; right: 0; width: 80%; max-width: 320px;
-            height: 100vh; background: var(--card-bg); z-index: 1600;
-            transform: translateX(100%); transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            display: flex; flex-direction: column;
+            position: fixed; top: 0; right: 0; width: 85%; max-width: 340px; height: 100vh;
+            background: var(--card-bg); z-index: 1600; transform: translateX(100%);
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1); display: flex; flex-direction: column;
         }
         .drawer.active { transform: translateX(0); }
-        .drawer-header {
-            padding: 24px; background: var(--primary); color: white;
-            display: flex; justify-content: space-between; align-items: center;
-        }
+        .drawer-header { padding: 24px; background: var(--primary); color: white; display: flex; justify-content: space-between; align-items: center; }
         .drawer-close { background: none; border: none; color: white; font-size: 1.8rem; cursor: pointer; }
         .drawer-links { padding: 20px 0; overflow-y: auto; flex: 1; }
         .drawer-links a {
-            display: block; padding: 14px 24px; color: var(--text);
-            text-decoration: none; font-size: 0.95rem; border-left: 3px solid transparent;
-            transition: 0.2s;
+            display: block; padding: 14px 24px; color: var(--text); text-decoration: none;
+            font-size: 0.95rem; border-left: 3px solid transparent; transition: 0.2s;
         }
-        .drawer-links a:hover, .drawer-links a:active {
-            background: rgba(200, 159, 101, 0.1); border-left-color: var(--accent); color: var(--primary);
-        }
-        .drawer-links .num { color: var(--accent); font-weight: 700; margin-right: 8px; }
+        .drawer-links a:hover, .drawer-links a:active { background: rgba(200, 159, 101, 0.1); border-left-color: var(--accent); color: var(--primary); }
+        .drawer-links .num { color: var(--accent); font-weight: 700; margin-right: 8px; display: inline-block; width: 20px; }
 
         /* Hero */
         .hero {
-            min-height: 90vh; display: flex; flex-direction: column;
-            justify-content: center; align-items: center; text-align: center;
-            padding: 100px 24px 60px;
-            background: linear-gradient(180deg, var(--bg) 0%, #E8F0F0 100%);
+            min-height: 90vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;
+            padding: 100px 24px 60px; background: linear-gradient(180deg, var(--bg) 0%, #E8F0F0 100%);
         }
         .hero-badge {
-            display: inline-block; background: rgba(200, 159, 101, 0.2);
-            color: #8A6A35; padding: 6px 16px; border-radius: 20px;
-            font-size: 0.8rem; font-weight: 600; margin-bottom: 20px;
-            letter-spacing: 1px;
+            display: inline-block; background: rgba(200, 159, 101, 0.2); color: #8A6A35;
+            padding: 6px 16px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; margin-bottom: 20px; letter-spacing: 1px;
         }
-        .hero h1 {
-            font-size: 2.2rem; font-weight: 700; color: var(--primary);
-            line-height: 1.3; margin-bottom: 20px;
-        }
-        .hero p {
-            font-size: 1.1rem; color: var(--text-light); max-width: 600px;
-            margin-bottom: 40px; font-weight: 300;
-        }
-        .scroll-hint {
-            margin-top: 20px; animation: bounce 2s infinite;
-            color: var(--accent); font-size: 1.5rem;
-        }
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
-            40% {transform: translateY(-10px);}
-            60% {transform: translateY(-5px);}
-        }
+        .hero h1 { font-size: 2.2rem; font-weight: 700; color: var(--primary); line-height: 1.3; margin-bottom: 20px; }
+        .hero p { font-size: 1.1rem; color: var(--text-light); max-width: 600px; margin-bottom: 40px; font-weight: 300; }
+        .scroll-hint { margin-top: 20px; animation: bounce 2s infinite; color: var(--accent); font-size: 1.5rem; }
+        @keyframes bounce { 0%, 20%, 50%, 80%, 100% {transform: translateY(0);} 40% {transform: translateY(-10px);} 60% {transform: translateY(-5px);} }
 
         /* Content */
         .container { max-width: 720px; margin: 0 auto; padding: 0 20px 80px; }
         .section { margin-bottom: 40px; }
         .section-title {
-            font-size: 1.5rem; font-weight: 700; color: var(--primary);
-            margin-bottom: 20px; padding-bottom: 10px;
-            border-bottom: 2px solid var(--accent);
-            display: flex; align-items: center; gap: 10px;
+            font-size: 1.5rem; font-weight: 700; color: var(--primary); margin-bottom: 20px; padding-bottom: 10px;
+            border-bottom: 2px solid var(--accent); display: flex; align-items: center; gap: 10px;
         }
         .section-title .icon { font-size: 1.3rem; }
 
         .card {
-            background: var(--card-bg); border-radius: var(--radius);
-            padding: 24px; margin-bottom: 20px;
-            box-shadow: var(--shadow);
-            border-left: 4px solid var(--primary);
+            background: var(--card-bg); border-radius: var(--radius); padding: 24px; margin-bottom: 20px;
+            box-shadow: var(--shadow); border-left: 4px solid var(--primary);
         }
         .card.accent { border-left-color: var(--accent); }
         .card.danger { border-left-color: var(--danger); }
@@ -146,138 +108,110 @@
         p { margin-bottom: 16px; color: var(--text); }
         ul, ol { margin-left: 20px; margin-bottom: 16px; }
         li { margin-bottom: 10px; }
-        .highlight {
-            background: rgba(200, 159, 101, 0.2);
-            padding: 2px 6px; border-radius: 4px;
-            font-weight: 600; color: #8A6A35;
-        }
+        .highlight { background: rgba(200, 159, 101, 0.2); padding: 2px 6px; border-radius: 4px; font-weight: 600; color: #8A6A35; }
 
         blockquote {
-            background: #F0F4F4; border-left: 4px solid var(--accent);
-            padding: 20px; margin: 24px 0; border-radius: 0 12px 12px 0;
-            font-style: italic; color: var(--primary); font-size: 1.05rem;
+            background: #F0F4F4; border-left: 4px solid var(--accent); padding: 20px; margin: 24px 0;
+            border-radius: 0 12px 12px 0; font-style: italic; color: var(--primary); font-size: 1.05rem;
         }
 
-        /* Deep Dive Toggle (Hybrid Feature) */
-        .deep-dive {
-            margin-top: 16px;
-            border-top: 1px dashed rgba(26, 74, 74, 0.2);
-            padding-top: 12px;
+        /* Executive Summary List */
+        .exec-list { list-style: none; margin-left: 0; counter-reset: exec-counter; }
+        .exec-list li { 
+            position: relative; padding-left: 35px; margin-bottom: 12px; counter-increment: exec-counter; font-size: 0.95rem;
         }
+        .exec-list li::before {
+            content: counter(exec-counter); position: absolute; left: 0; top: 2px;
+            background: var(--primary); color: white; width: 24px; height: 24px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: bold;
+        }
+
+        /* Deep Dive Toggle */
+        .deep-dive { margin-top: 16px; border-top: 1px dashed rgba(26, 74, 74, 0.2); padding-top: 12px; }
         .deep-dive summary {
-            list-style: none; cursor: pointer;
-            display: flex; align-items: center; justify-content: center; gap: 8px;
-            padding: 12px 16px;
-            background: linear-gradient(135deg, rgba(26, 74, 74, 0.05) 0%, rgba(200, 159, 101, 0.08) 100%);
-            border-radius: 10px;
-            color: var(--primary); font-weight: 600; font-size: 0.95rem;
-            transition: all 0.2s;
-            user-select: none;
+            list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;
+            padding: 12px 16px; background: linear-gradient(135deg, rgba(26, 74, 74, 0.05) 0%, rgba(200, 159, 101, 0.08) 100%);
+            border-radius: 10px; color: var(--primary); font-weight: 600; font-size: 0.95rem; transition: all 0.2s; user-select: none;
         }
         .deep-dive summary::-webkit-details-marker { display: none; }
-        .deep-dive summary:hover {
-            background: linear-gradient(135deg, rgba(26, 74, 74, 0.1) 0%, rgba(200, 159, 101, 0.15) 100%);
-            transform: translateY(-1px);
-        }
-        .deep-dive summary::before {
-            content: '🔍'; font-size: 1rem;
-        }
+        .deep-dive summary:hover { background: linear-gradient(135deg, rgba(26, 74, 74, 0.1) 0%, rgba(200, 159, 101, 0.15) 100%); transform: translateY(-1px); }
+        .deep-dive summary::before { content: '🔍'; font-size: 1rem; }
         .deep-dive[open] summary::before { content: '🔽'; }
         .deep-dive-content {
-            padding: 20px; margin-top: 12px;
-            background: #FDFCFB; border-radius: 10px;
-            border: 1px solid rgba(26, 74, 74, 0.1);
-            animation: fadeIn 0.3s ease;
+            padding: 20px; margin-top: 12px; background: #FDFCFB; border-radius: 10px;
+            border: 1px solid rgba(26, 74, 74, 0.1); animation: fadeIn 0.3s ease;
         }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-8px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .deep-dive-content h4 {
-            font-size: 0.95rem; color: var(--accent);
-            margin-top: 16px; margin-bottom: 8px;
-        }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: translateY(0); } }
+        .deep-dive-content h4 { font-size: 0.95rem; color: var(--accent); margin-top: 16px; margin-bottom: 8px; }
         .deep-dive-content h4:first-child { margin-top: 0; }
-        .deep-dive-content p, .deep-dive-content li {
-            font-size: 0.95rem; line-height: 1.7;
-        }
+        .deep-dive-content p, .deep-dive-content li { font-size: 0.95rem; line-height: 1.7; }
 
-        /* Infographics */
-        .shape-compare {
-            display: flex; justify-content: space-around; align-items: flex-end;
-            height: 220px; margin: 30px 0; gap: 20px;
-        }
-        .shape-col { text-align: center; flex: 1; }
-        .shape-label { font-weight: 700; margin-bottom: 12px; color: var(--text); font-size: 0.95rem; }
+        /* Infographics: Human Vase Shape */
+        .shape-compare { display: flex; justify-content: space-around; align-items: flex-end; min-height: 280px; margin: 30px 0; gap: 20px; }
+        .shape-col { text-align: center; flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; height: 100%; }
+        .shape-label { font-weight: 700; margin-bottom: 16px; color: var(--text); font-size: 0.95rem; }
+        
+        /* Pyramid */
         .pyramid { display: flex; flex-direction: column; align-items: center; width: 100%; }
-        .p-layer { width: 100%; color: white; font-size: 0.7rem; font-weight: 600; padding: 6px 4px; text-align: center; }
+        .p-layer { width: 100%; color: white; font-size: 0.7rem; font-weight: 600; padding: 8px 4px; text-align: center; }
         .p-top { width: 30%; background: var(--danger); border-radius: 4px 4px 0 0; }
         .p-mid { width: 60%; background: #F39C12; }
         .p-bot { width: 100%; background: var(--primary); border-radius: 0 0 8px 8px; }
-        .vase { display: flex; flex-direction: column; align-items: center; width: 100%; }
-        .v-layer { width: 100%; color: white; font-size: 0.7rem; font-weight: 600; padding: 6px 4px; text-align: center; }
-        .v-top { width: 85%; background: var(--accent); border-radius: 30px 30px 0 0; }
-        .v-mid { width: 65%; background: var(--primary-light); }
-        .v-bot { width: 45%; background: var(--primary); border-radius: 0 0 20px 20px; }
-        .shape-desc { font-size: 0.8rem; color: var(--text-light); margin-top: 12px; line-height: 1.4; }
 
-        .firewall-viz {
-            border-radius: 12px; overflow: hidden; margin: 20px 0;
-            border: 1px solid rgba(0,0,0,0.1);
-        }
+        /* Human-Centric Vase Shape (Organic) */
+        .vase { display: flex; flex-direction: column; align-items: center; width: 100%; position: relative; }
+        .v-layer { width: 100%; color: white; font-size: 0.75rem; font-weight: 600; text-align: center; line-height: 1.3; display: flex; align-items: center; justify-content: center; }
+        
+        .v-top { width: 45%; background: var(--accent); height: 45px; border-radius: 25px 25px 0 0; padding: 0 10px; }
+        .v-neck { width: 30%; background: var(--accent); height: 10px; } /* คอขวด */
+        .v-mid { width: 95%; background: var(--primary-light); height: 70px; border-radius: 40% 40% 10% 10% / 20% 20% 10% 10%; padding: 0 10px; }
+        .v-bot { width: 70%; background: var(--primary); height: 50px; border-radius: 0 0 30px 30px; padding: 0 10px; }
+        
+        .shape-desc { font-size: 0.8rem; color: var(--text-light); margin-top: 16px; line-height: 1.4; }
+
+        /* Firewall */
+        .firewall-viz { border-radius: 12px; overflow: hidden; margin: 20px 0; border: 1px solid rgba(0,0,0,0.1); }
         .fw-zone { padding: 16px; text-align: center; }
         .fw-real { background: rgba(39, 174, 96, 0.1); color: var(--real); }
         .fw-dream { background: rgba(142, 68, 173, 0.1); color: var(--dream); }
-        .fw-bar {
-            background: var(--danger); color: white; text-align: center;
-            padding: 8px; font-size: 0.8rem; font-weight: 700; letter-spacing: 1px;
-        }
+        .fw-bar { background: var(--danger); color: white; text-align: center; padding: 8px; font-size: 0.8rem; font-weight: 700; letter-spacing: 1px; }
         .fw-title { font-weight: 700; font-size: 1rem; margin-bottom: 4px; }
         .fw-desc { font-size: 0.85rem; opacity: 0.9; }
 
+        /* Thermodynamics */
         .thermo-flow { display: flex; flex-direction: column; gap: 12px; margin: 20px 0; }
-        .thermo-item {
-            display: flex; align-items: center; gap: 12px;
-            padding: 14px; border-radius: 10px; font-size: 0.9rem;
-        }
+        .thermo-item { display: flex; align-items: center; gap: 12px; padding: 14px; border-radius: 10px; font-size: 0.9rem; }
         .thermo-good { background: rgba(39, 174, 96, 0.1); border-left: 4px solid var(--real); }
         .thermo-bad { background: rgba(231, 76, 60, 0.1); border-left: 4px solid var(--danger); }
-        .thermo-icon { font-size: 1.4rem; }
+        .thermo-icon { font-size: 1.6rem; }
 
         /* Table */
-        .table-wrap {
-            overflow-x: auto; -webkit-overflow-scrolling: touch;
-            margin: 16px 0; border-radius: 8px; border: 1px solid rgba(0,0,0,0.1);
-        }
+        .table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; margin: 16px 0; border-radius: 8px; border: 1px solid rgba(0,0,0,0.1); }
         table { width: 100%; min-width: 500px; border-collapse: collapse; font-size: 0.88rem; }
         th, td { border: 1px solid rgba(0,0,0,0.1); padding: 10px 12px; text-align: left; vertical-align: top; }
-        th { background: var(--primary); color: #fff; font-weight: 700; }
+        th { background: var(--primary); color: #fff; font-weight: 700; white-space: nowrap; }
         tr:nth-child(even) td { background: #faf8f5; }
 
         /* Footer */
-        .footer {
-            text-align: center; padding: 40px 20px;
-            background: var(--primary); color: rgba(255,255,255,0.8);
-            font-size: 0.9rem; margin-top: 40px;
-        }
+        .footer { text-align: center; padding: 40px 20px; background: var(--primary); color: rgba(255,255,255,0.8); font-size: 0.9rem; margin-top: 40px; }
         .footer strong { color: var(--accent); display: block; margin-bottom: 8px; font-size: 1rem; }
 
         /* Back to Top */
         .btt {
-            position: fixed; bottom: 24px; right: 24px;
-            width: 50px; height: 50px; border-radius: 50%;
-            background: var(--accent); color: white; border: none;
-            font-size: 1.2rem; box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-            cursor: pointer; opacity: 0; visibility: hidden;
-            transition: 0.3s; z-index: 900;
-            display: flex; align-items: center; justify-content: center;
+            position: fixed; bottom: 24px; right: 24px; width: 50px; height: 50px; border-radius: 50%;
+            background: var(--accent); color: white; border: none; font-size: 1.2rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2); cursor: pointer; opacity: 0; visibility: hidden;
+            transition: 0.3s; z-index: 900; display: flex; align-items: center; justify-content: center;
         }
-        .btt.show { opacity: 1; visibility: visible; }
+        .btt.show { opacity: 1; visibility: visible; transform: translateY(0); }
 
         @media (min-width: 768px) {
             .hero h1 { font-size: 3rem; }
-            .shape-compare { height: 260px; }
-            .p-layer, .v-layer { font-size: 0.8rem; padding: 8px; }
+            .shape-compare { height: 320px; }
+            .p-layer, .v-layer { font-size: 0.85rem; }
+            .v-top { height: 60px; }
+            .v-mid { height: 90px; }
+            .v-bot { height: 70px; }
         }
     </style>
 </head>
@@ -287,24 +221,25 @@
 
     <nav class="nav-bar">
         <div class="nav-title">Money is Not Everything</div>
-        <button class="menu-btn" id="menuBtn">☰</button>
+        <button class="menu-btn" id="menuBtn" aria-label="เปิดเมนู">☰</button>
     </nav>
 
     <div class="drawer-overlay" id="overlay"></div>
     <aside class="drawer" id="drawer">
         <div class="drawer-header">
             <span style="font-weight:700; font-size:1.1rem;">สารบัญ</span>
-            <button class="drawer-close" id="closeBtn">×</button>
+            <button class="drawer-close" id="closeBtn" aria-label="ปิดเมนู">×</button>
         </div>
         <div class="drawer-links">
-            <a href="#philosophy"><span class="num">0.</span> ปรัชญา: กรงขังแห่งการอนุญาต</a>
-            <a href="#diagnosis"><span class="num">1.</span> วินิจฉัย: กับดักอุณหพลศาสตร์</a>
-            <a href="#paradigm"><span class="num">2.</span> จุดเปลี่ยน: จากปิรามิดสู่แจกัน</a>
-            <a href="#architecture"><span class="num">3.</span> สถาปัตยกรรม: ทางออก 3 เสาหลัก</a>
-            <a href="#sandbox"><span class="num">4.</span> Sandbox: ห้องทดลองอิสรภาพ</a>
-            <a href="#thai"><span class="num">5.</span> บริบทไทย</a>
-            <a href="#transition"><span class="num">6.</span> การเปลี่ยนผ่านและความเสี่ยง</a>
-            <a href="#questions"><span class="num">7.</span> คำถามเปิด 7 ข้อ</a>
+            <a href="#summary"><span class="num">0.</span> บทสรุปผู้บริหาร</a>
+            <a href="#philosophy"><span class="num">1.</span> ปรัชญา: กรงขังแห่งการอนุญาต</a>
+            <a href="#diagnosis"><span class="num">2.</span> วินิจฉัย: กับดักอุณหพลศาสตร์</a>
+            <a href="#paradigm"><span class="num">3.</span> จุดเปลี่ยน: จากปิรามิดสู่ทรงมนุษย์</a>
+            <a href="#architecture"><span class="num">4.</span> สถาปัตยกรรม: ทางออก 3 เสาหลัก</a>
+            <a href="#sandbox"><span class="num">5.</span> Sandbox & บทเรียนจากจีน</a>
+            <a href="#thai"><span class="num">6.</span> บริบทไทย</a>
+            <a href="#transition"><span class="num">7.</span> การเปลี่ยนผ่านและความเสี่ยง</a>
+            <a href="#questions"><span class="num">8.</span> คำถามเปิด 7 ข้อ</a>
             <a href="#appendix"><span class="num">+</span> ภาคผนวก</a>
         </div>
     </aside>
@@ -318,39 +253,57 @@
 
     <main class="container">
 
-        <!-- 0. Philosophy -->
+        <!-- 0. Executive Summary -->
+        <section id="summary" class="section">
+            <div class="section-title"><span class="icon">📌</span> บทสรุปผู้บริหาร (10 ข้อ)</div>
+            <div class="card accent">
+                <ol class="exec-list">
+                    <li><strong>"จัดหาได้" ≠ "ผลิตได้":</strong> รัฐสวัสดิการยุโรปใช้ <em>Financial Hegemony</em> ดึงส่วนเกินจาก Real Sector ผ่าน <em>Unequal Exchange</em></li>
+                    <li><strong>เงินคือ Claim on Resources:</strong> เงินเป็นเพียงสิทธิ์เรียกร้อง ไม่ใช่ทรัพยากรจริง</li>
+                    <li><strong>คุณภาพชีวิต ≠ GDP:</strong> "รวยปลอม เงินแพง" ที่ GDP สูงแต่หนี้ท่วม ไม่เท่ากับคุณภาพชีวิตจริง</li>
+                    <li><strong>สถาปัตยกรรมสองชั้น:</strong> ภายในใช้ <em>Provisioning</em> ภายนอกใช้ <em>Exchange</em> พร้อมเพดานควบคุม</li>
+                    <li><strong>Dream/Real Firewall:</strong> แยกวงจร "ของจริง" ออกจาก "ของฝัน" (Crypto, Game) ไม่ให้ปั่นราคาปัจจัย 4</li>
+                    <li><strong>Sandbox นำร่อง:</strong> ใช้ Physical AI ดูแลผู้สูงอายุ วัดผลด้วย <em>คุณภาพชีวิต + เวลาที่ได้คืน</em></li>
+                    <li><strong>สวัสดิการสองชั้น:</strong> ชั้นพื้นฐาน (รัฐจัดหา) + ชั้นศักยภาพ (ตลาดเสรี) เป็นตาข่ายรองรับ</li>
+                    <li><strong>Non-convertible Rewards:</strong> จำกัดการสะสม เปลี่ยนเป็น <em>Hall of Fame</em> ตัดวงจร Wealth → Power</li>
+                    <li><strong>สังคมแบบ "ทรงมนุษย์":</strong> ฐานแคบ-มั่นคง กลางหนา-เป็นหัวใจ ยอดบาน-ปัญญานำทาง</li>
+                    <li><strong> Thermodynamics & ธรรมะ:</strong> ระบบที่ฝ่าฝืนกฎฟิสิกส์และตัณหาย่อมพังทลาย</li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- 1. Philosophy -->
         <section id="philosophy" class="section">
             <div class="section-title"><span class="icon">🔓</span> ปรัชญาพื้นฐาน: กรงขังแห่งการอนุญาต</div>
             <div class="card accent">
-                <p>มนุษย์เป็นเพียงสิ่งมีชีวิตที่ต้องการดำรงอยู่ แต่มีความซับซ้อนทางความคิด จึงจำเป็นต้องมีการจัดระเบียบที่สมดุล ทว่าอดีตจนถึงปัจจุบัน การจัดระเบียบถูกครอบงำโดยผู้มีอำนาจที่ต้องการควบคุม</p>
+                <p>มนุษย์เป็นสิ่งมีชีวิตที่ต้องการดำรงอยู่ แต่ด้วยความซับซ้อนทางความคิด จึงต้องจัดระเบียบสังคม ทว่าการจัดระเบียบกลับถูกครอบงำโดยผู้มีอำนาจที่ต้องการควบคุม</p>
                 <blockquote>
                     "เงินจึงถูกเปลี่ยนบทบาทจาก 'สื่อกลาง' ให้กลายเป็น <strong>'กลไกการอนุญาต' (Mechanism of Permission)</strong> โดยมีเงินคือ 'การอนุญาต' และไม่มีเงินคือ 'การไม่อนุญาต'"
                 </blockquote>
-                <p>โครงสร้างนี้ดึงสภาพคล่องมาค้ำจุนความมั่งคั่งของกลุ่มเล็กๆ และล็อกศักยภาพของสังคมด้วยวงจร "เงินสร้างงาน งานสร้างเงิน" ที่ถูกออกแบบมาเพื่อควบคุม <strong>ไม่ใช่เพื่อปลดปล่อยศักยภาพสูงสุด</strong> ที่มนุษย์ควรได้รับ</p>
+                <p>โครงสร้างนี้ล็อกศักยภาพของสังคมด้วยวงจร "เงินสร้างงาน งานสร้างเงิน" ที่ออกแบบมาเพื่อควบคุม <strong>ไม่ใช่เพื่อปลดปล่อยศักยภาพสูงสุด</strong> ของมนุษย์</p>
 
                 <details class="deep-dive">
-                    <summary>อ่านบทวิเคราะห์เชิงลึก: กลไกการควบคุม 4 ชั้น</summary>
+                    <summary>อ่านบทวิเคราะห์: กลไกการควบคุม 4 ชั้น</summary>
                     <div class="deep-dive-content">
                         <h4>1. การดึงสภาพคล่อง (Liquidity Capture)</h4>
                         <p>ผู้มีอำนาจดึงสภาพคล่องทั้งหมดมาค้ำจุนความมั่งคั่งที่ตนเองออกแบบไว้ สภาพคล่องจึงมีจำกัดและถูกตีกรอบอย่างจงใจ</p>
                         <h4>2. การถ่ายเทความมั่งคั่ง (Wealth Transfer)</h4>
-                        <p>กระบวนการแลกเปลี่ยนถูกออกแบบให้ถ่ายเทผลประโยชน์ไปสะสมไว้กับผู้มีอำนาจควบคุมและตั้งกฎเท่านั้น</p>
+                        <p>กระบวนการแลกเปลี่ยนถูกออกแบบให้ถ่ายเทผลประโยชน์ไปสะสมไว้กับผู้มีอำนาจเท่านั้น</p>
                         <h4>3. การล็อกศักยภาพ (Potential Lock-in)</h4>
-                        <p>ส่วนอื่นของสังคมถูกล็อกการสร้างงานด้วย "การไม่อนุญาต" (การไม่มีเงิน) เพื่อให้ทั้งระบบอยู่ในวิถีที่ควบคุมได้</p>
+                        <p>ส่วนอื่นของสังคมถูกล็อกการสร้างงานด้วย "การไม่อนุญาต" (การไม่มีเงิน)</p>
                         <h4>4. วงจรอุบาทว์ (Vicious Cycle)</h4>
-                        <p>"เงินสร้างงาน งานสร้างเงิน" ถูกจำกัดไว้เพื่อควบคุม ไม่ใช่เพื่อปลดล็อกศักยภาพสูงสุดที่มนุษย์ทำได้</p>
-                        <p style="margin-top:16px;"><strong>บทสรุป:</strong> กฎระเบียบที่ผู้นำโลกปัจจุบันมีไว้ มักถูกออกแบบมาเพื่อ <span class="highlight">"ควบคุมและกดขี่"</span> เท่านั้น ไม่ใช่เพื่อปลดล็อกศักยภาพและความเจริญก้าวหน้าอย่างทั่วถึง</p>
+                        <p>ระบบถูกจำกัดเพื่อควบคุม ไม่ใช่เพื่อปลดล็อกศักยภาพสูงสุดที่มนุษย์ทำได้</p>
                     </div>
                 </details>
             </div>
         </section>
 
-        <!-- 1. Diagnosis -->
+        <!-- 2. Diagnosis -->
         <section id="diagnosis" class="section">
             <div class="section-title"><span class="icon">⚠️</span> วินิจฉัย: กับดักอุณหพลศาสตร์</div>
             <div class="card danger">
                 <h3>เศรษฐกิจคือระบบย่อยของระบบนิเวศ</h3>
-                <p>ระบบการเงินปัจจุบันกำลังฝ่าฝืนกฎพื้นฐานของจักรวาล (Thermodynamics) อย่างร้ายแรง:</p>
+                <p>ระบบการเงินปัจจุบันกำลังฝ่าฝืนกฎ Thermodynamics:</p>
                 <div class="thermo-flow">
                     <div class="thermo-item thermo-good">
                         <div class="thermo-icon">🌱</div>
@@ -358,33 +311,31 @@
                     </div>
                     <div class="thermo-item thermo-bad">
                         <div class="thermo-icon">🔥</div>
-                        <div><strong>High Entropy (พังทลาย):</strong> พลังงานจริง (ไฟฟ้า/แร่) → ขุดคริปโต/ปั่นตัวเลข → ความไร้ระเบียบดิจิทัล (Heat Death)</div>
+                        <div><strong>High Entropy (พังทลาย):</strong> พลังงานจริง → ขุดคริปโต/ปั่นตัวเลข → ความไร้ระเบียบ (Heat Death)</div>
                     </div>
                 </div>
-                <p style="margin-top:16px; font-size:0.95rem;">เศรษฐกิจแห่งความฝัน (Digital/Financial) เป็นเพียง <span class="highlight">"กาฝาก"</span> ที่ดูดพลังงานจากภาคจริง หากภาคจริงล่มสลาย ความฝันก็จะตายตามไปด้วย</p>
+                <p style="margin-top:16px; font-size:0.95rem;">เศรษฐกิจแห่งความฝัน (Digital/Financial) เป็นเพียง <span class="highlight">"กาฝาก"</span> ที่ดูดพลังงานจากภาคจริง หากภาคจริงล่มสลาย ความฝันก็จะตายตาม</p>
 
                 <details class="deep-dive">
-                    <summary>อ่านหลักฐานเชิงประจักษ์: Digital Dollarization 2026</summary>
+                    <summary>อ่านหลักฐาน: Digital Dollarization 2026</summary>
                     <div class="deep-dive-content">
-                        <h4>Stablecoin คือช่องทางใหม่ของ Digital Dollarization</h4>
-                        <p>ประมาณ <strong>98-99% ของมูลค่า stablecoin ทั้งโลกผูกกับดอลลาร์</strong> (USDT, USDC) และ BIS เตือนว่าในประเทศที่เงินเฟ้อสูง ประชาชนจะหันไปถือ stablecoin แทนเงิน local เอง — นี่คือ <strong>"การ-dollarize โดยสมัครใจ"</strong> ที่กัดกร่อนอธิปไตยทางการเงิน</p>
-                        <h4>Stablecoin เป็น "เครื่องมือดูดซับหนี้" ของสหรัฐฯ</h4>
-                        <p>รัฐมนตรีคลังสหรัฐฯ Scott Bessent ระบุชัดเจนว่า stablecoin จะเป็น <strong>"แหล่งระดมทุนที่สำคัญของรัฐบาลกลาง"</strong> และ Tether เป็น <strong>ผู้ถือพันธบัตรรัฐบาลสหรัฐฯ รายใหญ่เป็นอันดับ 19 ของโลก</strong> (ซื้อ T-bills 331 พันล้านดอลลาร์ในปี 2024)</p>
-                        <h4>"On-chain Debt Monetization" คือกลไกที่แนบเนียนกว่า QE</h4>
-                        <p>การที่ stablecoin ต้องมี 100% reserve เป็น T-bills หมายความว่าทุกครั้งที่คนทั่วโลกซื้อ USDT/USDC พวกเขากำลัง <strong>ให้เงินกู้แก่รัฐบาลสหรัฐฯ โดยไม่รู้ตัว</strong> — กลไกนี้ทำให้สหรัฐฯ สามารถ Roll over หนี้มหาศาลได้โดยไม่ต้องพึ่งธนาคารกลาง</p>
-                        <p style="margin-top:16px;"><strong>ดังนั้น "Dream/Real Firewall" จึงไม่ใช่แค่การปกป้อง "ของจริง" จาก "เงินฝัน" ทั่วไป — แต่เป็นการตัดช่องทางที่สำคัญที่สุดช่องทางหนึ่งที่ระบบดอลลาร์ใช้ดูดซับสภาพคล่องจากทั่วโลกเข้าสู่ตลาดหนี้ของตน</strong></p>
+                        <h4>Stablecoin = Digital Dollarization</h4>
+                        <p>98-99% ของ stablecoin ผูกกับดอลลาร์ BIS เตือนว่าเกิด "การ-dollarize โดยสมัครใจ" กัดกร่อนอธิปไตยทางการเงิน</p>
+                        <h4>เครื่องมือดูดซับหนี้สหรัฐฯ</h4>
+                        <p>Tether เป็นผู้ถือพันธบัตรรัฐบาลสหรัฐฯ อันดับ 19 ของโลก (ซื้อ T-bills 3.31 แสนล้านดอลลาร์ในปี 2024) ผ่านกลไก 100% Reserve เป็น T-bills ทำให้คนทั่วโลกให้กู้สหรัฐฯ โดยไม่รู้ตัว</p>
                     </div>
                 </details>
             </div>
         </section>
 
-        <!-- 2. Paradigm -->
+        <!-- 3. Paradigm -->
         <section id="paradigm" class="section">
-            <div class="section-title"><span class="icon">⚖️</span> จุดเปลี่ยน: จาก "ปิรามิด" สู่ "แจกัน"</div>
+            <div class="section-title"><span class="icon">⚖️</span> จุดเปลี่ยน: จาก "ปิรามิด" สู่ "ทรงมนุษย์"</div>
             <div class="card">
-                <p>เราต้องเปลี่ยนโครงสร้างสังคมที่กดทับ ให้กลายเป็นโครงสร้างที่รองรับการงอกงาม:</p>
+                <p>我们从โครงสร้างที่กดทับ สู่โครงสร้างที่รองรับการงอกงาม:</p>
                 
                 <div class="shape-compare">
+                    <!-- Pyramid -->
                     <div class="shape-col">
                         <div class="shape-label">ระบบเดิม: ปิรามิด</div>
                         <div class="pyramid">
@@ -392,16 +343,18 @@
                             <div class="p-layer p-mid">ชนชั้นกลาง<br>(เปราะบาง)</div>
                             <div class="p-layer p-bot">คนส่วนใหญ่<br>(ดิ้นรน/ถูกควบคุม)</div>
                         </div>
-                        <div class="shape-desc">ฐานกว้างรับน้ำหนักมาก ระบบเปราะบาง</div>
+                        <div class="shape-desc">ฐานกว้างรับน้ำหนัก<br>ระบบเปราะบาง</div>
                     </div>
+                    <!-- Vase / Human -->
                     <div class="shape-col">
-                        <div class="shape-label">ระบบใหม่: แจกัน</div>
+                        <div class="shape-label">ระบบใหม่: ทรงมนุษย์</div>
                         <div class="vase">
-                            <div class="v-layer v-top">ผู้สร้างสรรค์<br>(Hall of Fame)</div>
-                            <div class="v-layer v-mid">คนส่วนใหญ่<br>(มีเวลา/โอกาสพัฒนา)</div>
-                            <div class="v-layer v-bot">ฐานราก<br>(รัฐจัดหาปัจจัย 4)</div>
+                            <div class="v-layer v-top">ผู้นำทางปัญญา<br>(Hall of Fame)</div>
+                            <div class="v-neck"></div>
+                            <div class="v-layer v-mid">ประชาชนส่วนใหญ่<br>(หัวใจของสังคม มีเวลา/โอกาส)</div>
+                            <div class="v-layer v-bot">รากฐานที่มั่นคง<br>(รัฐจัดหาปัจจัย 4 ให้)</div>
                         </div>
-                        <div class="shape-desc">ฐานแคบ (ไม่มีคนจน) ยอดบานรับความสร้างสรรค์</div>
+                        <div class="shape-desc">ฐานมั่นคง กลางหนาแน่น<br>ผู้นำใช้ปัญญานำทาง</div>
                     </div>
                 </div>
 
@@ -411,40 +364,38 @@
                         <h4>1. ฟิสิกส์ (Thermodynamics)</h4>
                         <p>Georgescu-Roegen (1971) ชี้ว่าเศรษฐกิจคือระบบย่อยของระบบนิเวศ ระบบปิดที่ไม่มีขอบเขตการบริโภคพลังงานจะตาย (Heat Death)</p>
                         <h4>2. เศรษฐกิจพอเพียง</h4>
-                        <p>3 ห่วง 2 เงื่อนไข: ความพอประมาณ (ไม่เบียดเบียนระบบนิเวศ), ความมีเหตุผล (ใช้ AI เพื่อจัดสรรไม่ใช่เก็งกำไร), ภูมิคุ้มกัน (ไม่พึ่ง USD Hegemony) + เงื่อนไขความรู้ + เงื่อนไขคุณธรรม</p>
+                        <p>3 ห่วง 2 เงื่อนไข: ความพอประมาณ, ความมีเหตุผล, ภูมิคุ้มกัน + เงื่อนไขความรู้ + เงื่อนไขคุณธรรม</p>
                         <h4>3. ธรรมะ</h4>
-                        <p>ตัณหา (ความอยากไร้ขอบเขต) คือต้นเหตุแห่งทุกข์ สันตุฏฐี (ความพอใจในสิ่งที่ตนมี) และ อัปปิจฉตา (ความมักน้อย) คือทางออก</p>
-                        <p style="margin-top:16px;"><strong>Sandbox และระบบ "แจกัน" คือการออกแบบสังคมที่ประนีประนอมกับกฎทั้ง 3 ข้อนี้</strong> โดยปล่อยให้มนุษย์มีเสรีภาพในการสร้างสรรค์ (ฝัน) แต่กำหนดขอบเขตทางกายภาพ (ของจริง) และขอบเขตทางจิตใจ (ไม่สะสมเกินขีด)</p>
+                        <p>ตัณหา (ความอยากไร้ขอบเขต) คือต้นเหตุแห่งทุกข์ สันตุฏฐี (ความพอใจ) และ อัปปิจฉตา (ความมักน้อย) คือทางออก</p>
                     </div>
                 </details>
             </div>
         </section>
 
-        <!-- 3. Architecture -->
+        <!-- 4. Architecture -->
         <section id="architecture" class="section">
             <div class="section-title"><span class="icon">🏛️</span> สถาปัตยกรรม: ทางออก 3 เสาหลัก</div>
             
             <div class="card">
                 <h3>1. อธิปไตยทางการผลิต (Production Sovereignty)</h3>
-                <p>"จัดหาได้" ไม่เท่ากับ "ผลิตได้" รัฐต้องมั่นใจว่าสามารถผลิตปัจจัย 4 จากฐานทรัพยากรภายในได้จริง ไม่ใช่พึ่งพาการพิมพ์เงินหรือการนำเข้าผ่าน Unequal Exchange</p>
+                <p>"จัดหาได้" ไม่เท่ากับ "ผลิตได้" รัฐต้องมั่นใจว่าผลิตปัจจัย 4 จากฐานทรัพยากรภายในได้จริง ไม่ใช่พึ่งพาการพิมพ์เงินหรือ Unequal Exchange</p>
 
                 <details class="deep-dive">
                     <summary>อ่านเชิงลึก: Unequal Exchange และบทเรียนยุโรป</summary>
                     <div class="deep-dive-content">
-                        <p>รัฐสวัสดิการยุโรปจัดหาปัจจัย 4 ได้ดี เพราะใช้ <strong>Financial Hegemony</strong> ดึงส่วนเกินจาก real sector ของประเทศกำลังพัฒนา ผ่านกลไก <strong>Unequal Exchange</strong> (Emmanuel, 1972; Amin, 1976):</p>
+                        <p>รัฐสวัสดิการยุโรปใช้ Financial Hegemony ดึงส่วนเกินจาก real sector ของประเทศกำลังพัฒนา ผ่าน:</p>
                         <ul>
-                            <li><strong>Terms of Trade ที่เอียง:</strong> ส่งออกสินค้า markup สูง (เครื่องจักร, ยา, luxury) นำเข้าสินค้า markup ต่ำ (วัตถุดิบ, พลังงาน)</li>
-                            <li><strong>Brand Premium / Institutional Moat:</strong> สร้างมาตรฐาน, certification, IP regime ทำให้คู่แข่งจาก real sector เข้าถึง premium segment ไม่ได้</li>
-                            <li><strong>Seigniorage:</strong> ลอนดอนเป็นศูนย์กลาง financial services ยูโร/ดอลลาร์ทำให้กู้ในสกุลตัวเองได้ถูกกว่าประเทศ real sector มาก ("exorbitant privilege" ที่ de Gaulle เคยบ่น)</li>
+                            <li><strong>Terms of Trade ที่เอียง:</strong> ส่งออกของ markup สูง นำเข้าของถูก</li>
+                            <li><strong>Brand Premium:</strong> สร้างมาตรฐานและ IP กีดกันคู่แข่ง</li>
+                            <li><strong>Seigniorage:</strong> กู้เงินในสกุลตัวเองได้ถูกกว่ามาก</li>
                         </ul>
-                        <p><strong>นัยเชิงนโยบาย:</strong> ทางออกไม่ใช่เพียงการเปลี่ยนท่อการเงิน แต่ต้องสร้าง <strong>อธิปไตยทางการผลิต</strong> ในปัจจัยพื้นฐานควบคู่กันไป — และต้องทำทั้งการผลิตและการเงินพร้อมกัน</p>
                     </div>
                 </details>
             </div>
 
             <div class="card">
                 <h3>2. Dream/Real Firewall</h3>
-                <p>แยกวงจรเศรษฐกิจอย่างเด็ดขาด เพื่อป้องกันไม่ให้เงินเก็งกำไรไหลมาปั่นราคาทรัพยากรพื้นฐาน:</p>
+                <p>แยกวงจรเศรษฐกิจอย่างเด็ดขาด:</p>
                 <div class="firewall-viz">
                     <div class="fw-zone fw-real">
                         <div class="fw-title">🌍 Real Circuit (ของจริง)</div>
@@ -460,143 +411,102 @@
                 <details class="deep-dive">
                     <summary>อ่านเชิงลึก: กลไกปฏิบัติการ 3 ชั้น</summary>
                     <div class="deep-dive-content">
-                        <h4>(ก) Proof of Reserves (PoR) สำหรับ "คูปองภายใน"</h4>
-                        <p>ระบบคูปองภายในต้องมี PoR ที่ตรวจสอบได้แบบ Real-time เพื่อให้ประชาชนมั่นใจว่าคูปองที่ถืออยู่มี "ของจริง" รองรับ และไม่สามารถพิมพ์เพิ่มได้โดยพลการ — ป้องกันทั้งเงินเฟ้อภายในและป้องกันการที่กลุ่มอำนาจสะสมคูปองเพื่อแลกเป็นสินทรัพย์จริง</p>
+                        <h4>(ก) Proof of Reserves (PoR)</h4>
+                        <p>คูปองภายในต้องมี PoR ตรวจสอบได้ Real-time ป้องกันการพิมพ์เพิ่ม</p>
                         <h4>(ข) Non-Convertible Bridge</h4>
-                        <p>ให้รางวัลเป็นสิทธิ์เข้าถึงของจริงบางประเภท (การศึกษา, การรักษาพยาบาล, การท่องเที่ยว) สำหรับผู้ที่สร้างคุณค่าสูงใน Dream Circuit — แต่ไม่ให้แลกเป็นเงินจริงหรือที่ดิน/อาหารแบบ unlimited ซึ่งจะทำให้ระบบยังคงมีแรงจูงใจสำหรับ creative industries โดยไม่รั่วไหลเข้าสู่ real sector</p>
+                        <p>ให้สิทธิ์เข้าถึงของจริงบางประเภท แต่ไม่ให้แลกเป็นเงิน/ที่ดินแบบ unlimited</p>
                         <h4>(ค) Regional Settlement</h4>
-                        <p>ในขณะที่ภายในสร้าง Firewall ภายนอกก็ต้องสร้าง <strong>"ท่อภูมิภาค" (Regional Rail)</strong> สำหรับการค้าสินค้าจริงด้วยสกุลเงินท้องถิ่น (LCS, mBridge, bilateral swaps) เพื่อให้ "ของจริง" ที่ไหลเวียนระหว่างประเทศไม่ต้องผ่านดอลลาร์ — มิฉะนั้น Firewall ภายในจะถูกกดดันจากภายนอกจนแตกได้</p>
-                        <h4>ปัญหา "ของคาบเกี่ยว" (Boundary Problem)</h4>
-                        <p>ของบางอย่างเป็นทั้งของจริงและของฝัน — เช่น เกมที่ใช้ทักษะจริงเพื่อสร้างรายได้จริง, การศึกษาออนไลน์, ซอฟต์แวร์ที่ใช้ในการผลิต ทางออกคือนิยาม "ของจริง" ตาม <strong>ผลกระทบต่อ real sector</strong> ไม่ใช่ตาม "physical vs. digital"</p>
+                        <p>สร้างท่อภูมิภาค (LCS, mBridge) ให้การค้าของจริงไม่ต้องผ่านดอลลาร์</p>
                     </div>
                 </details>
             </div>
 
             <div class="card">
                 <h3>3. Non-convertible Rewards</h3>
-                <p>ตัดวงจร Wealth → Power โดยเปลี่ยนรางวัลจากการสะสมวัตถุ เป็น <span class="highlight">"คุณค่านามธรรม"</span> เช่น การยอมรับ, Hall of Fame, หรือสิทธิ์เข้าถึงประสบการณ์พิเศษ ที่ไม่สามารถแปลงกลับไปเป็นอำนาจในการครอบงำผู้อื่นได้</p>
-
-                <details class="deep-dive">
-                    <summary>อ่านเชิงลึก: การออกแบบรางวัลที่ทนทาน</summary>
-                    <div class="deep-dive-content">
-                        <h4>Polycentric Evaluation</h4>
-                        <p>ให้หลายชุมชน/หลายสถาบันมีเกณฑ์ต่างกัน และประชาชนเลือกได้ว่าจะอยู่กับชุมชนไหน (exit) หรือเสนอเกณฑ์ใหม่ (voice) — ลดอำนาจของคนที่กำหนดเกณฑ์ส่วนกลาง (Ostrom + Hirschman)</p>
-                        <h4>Non-convertible Rewards</h4>
-                        <p>รางวัลควรเป็นสิ่งที่ไม่สามารถแปลงเป็นอำนาจเหนือผู้อื่นได้ — เช่น การยอมรับ (recognition), การเข้าถึงประสบการณ์พิเศษ, เวลาว่าง, การศึกษา — แต่ไม่ใช่สิทธิ์ในการกำหนดชีวิตผู้อื่น หรือการควบคุมทรัพยากรที่ผู้อื่นต้องพึ่งพา</p>
-                        <h4>Capped Advantage Duration</h4>
-                        <p>ความได้เปรียบจากรางวัลควรมีวันหมดอายุ หรือไม่สืบทอด (เช่น รางวัลเฉพาะรุ่น ไม่ส่งต่อลูกหลาน) เพื่อป้องกันการสะสมข้ามรุ่น</p>
-                    </div>
-                </details>
+                <p>ตัดวงจร Wealth → Power โดยเปลี่ยนรางวัลจากการสะสมวัตถุ เป็น <span class="highlight">"คุณค่านามธรรม"</span> (Hall of Fame, การยอมรับ) ที่ไม่สามารถแปลงเป็นอำนาจครอบงำผู้อื่นได้</p>
             </div>
         </section>
 
-        <!-- 4. Sandbox -->
+        <!-- 5. Sandbox & China -->
         <section id="sandbox" class="section">
-            <div class="section-title"><span class="icon">🧪</span> Sandbox: ห้องทดลองอิสรภาพ</div>
+            <div class="section-title"><span class="icon">🧪</span> Sandbox & บทเรียนจากจีน</div>
             <div class="card accent">
-                <p>ใช้ Physical AI ทดแทนแรงงานซ้ำซาก (เช่น การดูแลผู้สูงอายุ) เพื่อทดสอบสมมติฐานว่า: <strong>"เสรีภาพ + ความมั่นคงพื้นฐาน จะปลดปล่อยศักยภาพที่ซ่อนอยู่ได้จริงหรือไม่?"</strong></p>
+                <p>ใช้ Physical AI ทดแทนแรงงานซ้ำซาก (เช่น ดูแลผู้สูงอายุ) เพื่อทดสอบว่า: <strong>"เสรีภาพ + ความมั่นคงพื้นฐาน ปลดปล่อยศักยภาพที่ซ่อนอยู่ได้จริงหรือไม่?"</strong></p>
                 
                 <details class="deep-dive">
-                    <summary>อ่านเชิงลึก: กลไก Sandbox และบทเรียน Work-Based Learning</summary>
+                    <summary>อ่านเชิงลึก: กลไก Sandbox และมหภาคจีน (2025-2026)</summary>
                     <div class="deep-dive-content">
                         <h4>จุดเริ่มต้น: การดูแลผู้สูงอายุ</h4>
-                        <ul>
-                            <li>เป็นงานที่ขาดแคลนคนจริง (caregiver shortage) ทั่วโลก</li>
-                            <li>เป็นงานที่ใช้พลังงานและเวลามนุษย์สูง แต่ให้ผลตอบแทนทางเศรษฐกิจต่ำ</li>
-                            <li>Physical AI ทำได้ดี (ยกผู้ป่วย, เตือนยา, วัดสัญญาณชีพ, ช่วยเดิน) แต่ยังต้องมีมนุษย์ "ดูแลจิตใจ"</li>
-                            <li><strong>KPI:</strong> คุณภาพชีวิตผู้สูงอายุ + เวลาที่ผู้ดูแลได้คืนมาเพื่อพัฒนา</li>
-                        </ul>
-                        <h4>การเลือกพื้นที่</h4>
-                        <p>เลือกพื้นที่ที่มีระบบนิเวศพร้อม: แหล่งผลิตหุ่นยนต์, สถาบันเทคนิค/มหาวิทยาลัย, ภาคเกษตร/ท่าเรือ — <strong>ไม่ใช้เกณฑ์การศึกษาขั้นต่ำแบบเดิม</strong> แต่ทดสอบคุณภาพประชากรที่จะเพิ่มขึ้น</p>
-                        <h4>ระบบรางวัล</h4>
-                        <ul>
-                            <li><strong>Non-cash rewards:</strong> ผ่าน economy of scale ของรัฐ (ที่อยู่อาศัยดีขึ้น, การศึกษาเสริม)</li>
-                            <li><strong>Social credit หลายมิติ:</strong> ความรู้ลึก/กว้าง, ทักษะการสอน, ศิลปะ, กีฬา, การพัฒนาสังคม</li>
-                            <li><strong>Hall of fame:</strong> สำหรับคุณค่านามธรรมเมื่อการสะสมวัตถุถึงขอบเขต</li>
-                            <li><strong>Barter + Reputational score:</strong> ในชุมชน</li>
-                        </ul>
+                        <p>Physical AI ทำได้ดี (ยกผู้ป่วย, เตือนยา) แต่ยังต้องมีมนุษย์ดูแลจิตใจ KPI คือ <strong>คุณภาพชีวิต + เวลาที่ผู้ดูแลได้คืนมา</strong></p>
                         <h4>บทเรียนจากจีน: Work-Based Learning</h4>
-                        <p>จีนกำลังปฏิรูประบบผ่านนโยบาย <strong>"การเรียนรู้จากการทำงานจริง"</strong> ตั้งแต่ระดับมัธยมศึกษา โดยร่วมมือกับภาคอุตสาหกรรม (校企合作) — นี่คือการรื้อ "กลไกการอนุญาต" โดยตรง:</p>
-                        <ul>
-                            <li>ทลาย "ใบอนุญาต" แบบเดิม: เข้าสู่ตลาดแรงงานด้วย <strong>"ทักษะที่พิสูจน์ได้จริง"</strong> ไม่ใช่กระดาษ</li>
-                            <li>สร้าง "Real Circuit" ตั้งแต่ต้นทาง: ผลิตคนที่เชื่อมโยงกับห่วงโซ่การผลิตจริง</li>
-                            <li>ลดเอนโทรปีของระบบ: เปลี่ยนพลังงาน (เวลา/เงิน) ให้เป็น "ทักษะและผลผลิตจริง" (Low Entropy) ทันที</li>
-                        </ul>
-                        <p><strong>ปรัชญา:</strong> ทดสอบว่า "ช้างเผือก" จะเกิดได้มากแค่ไหนเมื่อมีเสรีภาพ + ความมั่นคงพื้นฐาน โดยยอมรับว่าไม่ใช่ยูโทเปีย (อาจมีคนที่ใช้เวลาเปล่า)</p>
+                        <p>จีนร่วมมือกับภาคอุตสาหกรรม (校企合作) ปฏิรูปการศึกษาตั้งแต่ ม.ปลาย โดยให้ความสำคัญกับ "ทักษะจริง" มากกว่า "ใบปริญญา" นี่คือการทลายกรงขังการศึกษา</p>
+                        <h4>ข้อมูลชี้ชัด: จีนกับ "สกุลเงินแห่งห่วงโซ่อุปทาน"</h4>
+                        <p><strong>1. M2 ที่ถูกยึดเหนี่ยวด้วยของจริง:</strong> จีนมี M2 ~50-52 ล้านล้านดอลลาร์ (>240% GDP) แต่ไม่เกิดเงินเฟ้อ เพราะดูดซับด้วย Real Sector (Supply-Side Deflation)</p>
+                        <p><strong>2. พลังการผลิตคุณภาพใหม่:</strong> แผนพัฒนาฯ ฉบับที่ 15 ใช้ AI และ Dark Factories เพื่อสร้างคุณค่าจริง (Low Entropy) ไม่ใช่ฟองสบู่การเงิน</p>
+                        <p><strong>3. Supply Chain Currency:</strong> จีนบังคับคู่ค้าชำระค่าชิ้นส่วนเป็น "หยวน" ควบคุมเงินทุนให้ 95% หมุนเวียนในประเทศ นี่คือ Dream/Real Firewall ในระดับมหภาค</p>
                     </div>
                 </details>
             </div>
         </section>
 
-        <!-- 5. Thai Context -->
+        <!-- 6. Thai Context -->
         <section id="thai" class="section">
             <div class="section-title"><span class="icon">🇹🇭</span> บริบทไทย: โอกาสและความท้าทาย</div>
             <div class="card thai">
-                <p>ประเทศไทยมี <strong>จุดแข็ง</strong> ที่สำคัญ:</p>
-                <ul>
-                    <li>ฐานการผลิตอาหารที่แข็งแรง (เป็น "ครัวของโลก")</li>
-                    <li>ระบบชำระเงินภายในที่ก้าวหน้า (PromptPay)</li>
-                    <li>วัฒนธรรมความพอเพียงที่ฝังรากลึก</li>
-                </ul>
-                <p>แต่ก็มี <strong>ความท้าทาย</strong>:</p>
-                <ul>
-                    <li>พึ่งพาการนำเข้าพลังงานสูง (~60%)</li>
-                    <li>ความเหลื่อมล้ำสูง (Gini ~0.43)</li>
-                    <li>หนี้ครัวเรือนสูง (~90% ของ GDP)</li>
-                </ul>
-                <p>ทางออกสำหรับไทยอาจเริ่มจาก <span class="highlight">"Sandbox ระดับจังหวัด"</span> ในพื้นที่ที่มีฐานการผลิตแข็งแรง (เช่น เชียงใหม่, ขอนแก่น) โดยเชื่อมโยงกับวัฒนธรรมท้องถิ่นและหลักปรัชญาเศรษฐกิจพอเพียง</p>
+                <p><strong>จุดแข็ง:</strong> ฐานการผลิตอาหาร (ครัวของโลก), PromptPay ที่ก้าวหน้า, วัฒนธรรมความพอเพียง</p>
+                <p><strong>ความท้าทาย:</strong> พึ่งพาการนำเข้าพลังงาน (~60%), หนี้ครัวเรือน (~90% GDP), ความเหลื่อมล้ำสูง</p>
+                <p><strong>ทางออก:</strong> เริ่มจาก <span class="highlight">"Sandbox ระดับจังหวัด"</span> ที่มีฐานการผลิตแข็งแรง (เช่น เชียงใหม่, ขอนแก่น) ผสานกับหลักเศรษฐกิจพอเพียง</p>
             </div>
         </section>
 
-        <!-- 6. Transition -->
+        <!-- 7. Transition -->
         <section id="transition" class="section">
             <div class="section-title"><span class="icon">🗺️</span> การเปลี่ยนผ่านและความเสี่ยง</div>
             <div class="card">
-                <p>การเปลี่ยนผ่านไม่ใช่เรื่องง่าย และต้องยอมรับความเสี่ยงเพื่อออกแบบกลไกป้องกัน:</p>
+                <p>ต้องยอมรับความเสี่ยงเพื่อออกแบบกลไกป้องกัน:</p>
 
                 <details class="deep-dive">
-                    <summary>อ่านเชิงลึก: เงื่อนไข 5 ข้อ + ความเสี่ยง 4 ข้อ + แผน Phasing</summary>
+                    <summary>อ่านเชิงลึก: เงื่อนไข 5 ข้อ + ความเสี่ยง 4 ข้อ + Phasing</summary>
                     <div class="deep-dive-content">
-                        <h4>เงื่อนไข 5 ข้อที่ต้องเกิดก่อน</h4>
+                        <h4>เงื่อนไข 5 ข้อ</h4>
                         <ol>
-                            <li><strong>การคลัง:</strong> กลไกจัดสรรผลผลิตจาก AI/Capital ไปสู่รัฐ (ภาษีทุน, Sovereign Wealth Fund, public equity ใน AI)</li>
-                            <li><strong>การผลิต:</strong> อธิปไตยทางการผลิตในปัจจัยพื้นฐาน (Strategic Redundancy)</li>
+                            <li><strong>การคลัง:</strong> ภาษีทุน/SWF เพื่อนำผลผลิตจาก AI มาจัดสรร</li>
+                            <li><strong>การผลิต:</strong> Production Sovereignty</li>
                             <li><strong>การเมือง:</strong> Coalition ระหว่าง real sector + รัฐ + ชุมชน</li>
-                            <li><strong>Governance:</strong> Accountability + Rotation + Contestability + Transparency</li>
-                            <li><strong>จิตวิทยา:</strong> Soft power ภายในที่ทำให้คนเห็นตัวอย่างจริงจากคนรอบข้าง</li>
+                            <li><strong>Governance:</strong> Accountability + Rotation + Transparency</li>
+                            <li><strong>จิตวิทยา:</strong> Soft power ภายใน</li>
                         </ol>
                         <h4>ความเสี่ยง 4 ข้อ</h4>
                         <ol>
-                            <li><strong>Dual Currency ล้มเหลว:</strong> บทเรียนจากคิวบา (CUC/CUP), โซเวียต (Beryozka), จีนก่อน 1994 — ปัญหาคือ "ใครได้สิทธิ์แลก" กลายเป็นแหล่งอำนาจใหม่</li>
-                            <li><strong>Allocation Problem:</strong> AI ช่วย demand forecasting ได้ แต่ไม่ได้แก้ปัญหา priority setting ซึ่งเป็นการเมือง</li>
-                            <li><strong>Incentive Problem:</strong> งานที่จำเป็นแต่ไม่น่าดึงดูด (เก็บขยะ, ดูแลผู้ป่วย) ต้องมีแรงจูงใจบางอย่าง</li>
-                            <li><strong>Capture Problem:</strong> ระบบที่รัฐจัดสรรโดยตรงมีแนวโน้มสูงที่จะถูก capture — ต้องมีกลไกป้องกัน (rotation, sortition, transparency)</li>
+                            <li><strong>Dual Currency ล้มเหลว:</strong> ปัญหาสิทธิ์แลก (คิวบา, โซเวียต)</li>
+                            <li><strong>Allocation Problem:</strong> AI จัดลำดับความสำคัญทางการเมืองไม่ได้</li>
+                            <li><strong>Incentive Problem:</strong> งานสกปรกต้องมีแรงจูงใจ</li>
+                            <li><strong>Capture Problem:</strong> รัฐอาจผูกขาดการจัดสรร</li>
                         </ol>
-                        <h4>แผนการเปลี่ยนผ่าน (Phasing)</h4>
+                        <h4>Phasing</h4>
                         <ol>
-                            <li><strong>ระยะที่ 1 (1-3 ปี):</strong> สร้าง Sandbox นำร่อง 2-3 พื้นที่ + พัฒนาระบบ PoR + สร้าง Coalition ระหว่าง Real Sector</li>
-                            <li><strong>ระยะที่ 2 (3-7 ปี):</strong> ขยายผล Sandbox ที่สำเร็จ + สร้าง Regional Settlement กับเพื่อนบ้าน (ASEAN) + พัฒนาระบบคูปองภายใน</li>
-                            <li><strong>ระยะที่ 3 (7-15 ปี):</strong> สร้าง Production Sovereignty ในปัจจัยพื้นฐาน + ใช้ Dream/Real Firewall แบบเต็มรูปแบบ + เปลี่ยนผ่านสู่สังคมแบบ "แจกัน"</li>
+                            <li><strong>1-3 ปี:</strong> Sandbox นำร่อง + PoR + Coalition</li>
+                            <li><strong>3-7 ปี:</strong> ขยายผล + Regional Settlement (ASEAN)</li>
+                            <li><strong>7-15 ปี:</strong> Production Sovereignty + Dream/Real Firewall เต็มรูปแบบ</li>
                         </ol>
-                        <p style="font-size:0.85rem; color:var(--text-light); margin-top:12px;"><em>*หมายเหตุ: Timeline ยืดหยุ่นได้ตามบริบทของแต่ละประเทศ</em></p>
                     </div>
                 </details>
             </div>
         </section>
 
-        <!-- 7. Questions -->
+        <!-- 8. Questions -->
         <section id="questions" class="section">
             <div class="section-title"><span class="icon">❓</span> คำถามเปิดเพื่อการอภิปราย (7 ข้อ)</div>
             <div class="card">
-                <p>เอกสารนี้ <strong>ไม่ตอบ</strong> คำถามเหล่านี้ — เพราะมันเป็นคำถามที่ต้องอภิปรายร่วมกัน:</p>
+                <p>เอกสารนี้ <strong>ไม่ตอบ</strong> คำถามเหล่านี้ — เพราะต้องอภิปรายร่วมกัน:</p>
                 <ol>
-                    <li>กลไกการจัดสรรสิทธิ์แลกเปลี่ยน "คูปองภายใน" เป็น "เงินภายนอก" จะเป็นอย่างไร? (ความจำเป็น/โควต้า/ตลาด?)</li>
-                    <li>ใครเป็นผู้กำหนดนิยาม "ของจริง" vs "ของฝัน"? และจะป้องกันการเลือกปฏิบัติอย่างไร?</li>
-                    <li>เพดานการแลกเปลี่ยนควรยืดหยุ่นแค่ไหน? และมีกลไกอุทธรณ์อย่างไร?</li>
-                    <li>จะป้องกันการเมืองแทรกแซงใน Sandbox ได้อย่างไร โดยยังคงความโปร่งใส?</li>
-                    <li>ถ้า Sandbox สำเร็จ จะขยายผล (Scale) อย่างไรโดยไม่กลายเป็น "เกาะสวรรค์" ที่แยกจากสังคม?</li>
-                    <li>Hall of Fame ควรเป็น "สมัครใจ" หรือ "ถูกกำหนด"? และจะวัดคุณค่านามธรรมอย่างไรไม่ให้กลายเป็น Popularity Contest?</li>
-                    <li>หากประเทศหนึ่งทำสำเร็จแต่ประเทศอื่นไม่ทำ จะป้องกันการถูกกดดันจากระบบเดิมได้อย่างไร?</li>
+                    <li>กลไกจัดสรรสิทธิ์แลกเปลี่ยน "คูปอง" เป็น "เงินนอก" จะเป็นอย่างไร?</li>
+                    <li>ใครกำหนดนิยาม "ของจริง" vs "ของฝัน"?</li>
+                    <li>เพดานการแลกเปลี่ยนควรยืดหยุ่นแค่ไหน?</li>
+                    <li>จะป้องกันการเมืองแทรกแซง Sandbox อย่างไร?</li>
+                    <li>ถ้า Sandbox สำเร็จ จะ Scale อย่างไรไม่ให้เป็น "เกาะสวรรค์"?</li>
+                    <li>Hall of Fame ควรวัดคุณค่านามธรรมอย่างไร?</li>
+                    <li>ถ้าประเทศหนึ่งทำสำเร็จ ประเทศอื่นไม่ทำ จะเกิดอะไรขึ้น?</li>
                 </ol>
             </div>
         </section>
@@ -607,32 +517,22 @@
             <div class="card">
                 <h3>ก. Glossary</h3>
                 <ul>
-                    <li><strong>Provisioning:</strong> การจัดหา/การเข้าถึงปัจจัยที่จำเป็น (ไม่ใช่การผลิต)</li>
+                    <li><strong>Provisioning:</strong> การจัดหา/การเข้าถึงปัจจัยที่จำเป็น</li>
                     <li><strong>Production Sovereignty:</strong> อธิปไตยทางการผลิต</li>
-                    <li><strong>Unequal Exchange:</strong> การแลกเปลี่ยนที่ไม่เท่าเทียม (Emmanuel, Amin)</li>
+                    <li><strong>Unequal Exchange:</strong> การแลกเปลี่ยนที่ไม่เท่าเทียม</li>
                     <li><strong>Dream/Real Firewall:</strong> กำแพงกั้นระหว่างวงจรจริงและฝัน</li>
                     <li><strong>Non-convertible Rewards:</strong> รางวัลที่ไม่แปลงเป็นอำนาจ</li>
                     <li><strong>Anti-Stack:</strong> สถาปัตยกรรมทางเลือกที่ตรงข้ามกับ "American Stack"</li>
-                    <li><strong>Entropy:</strong> ความไร้ระเบียบในระบบ (กฎฟิสิกส์)</li>
                 </ul>
 
                 <h3>ข. กรณีศึกษาเปรียบเทียบ</h3>
                 <div class="table-wrap">
                     <table>
-                        <thead>
-                            <tr>
-                                <th>กรณี</th>
-                                <th>กลไก</th>
-                                <th>ผลลัพธ์</th>
-                                <th>บทเรียน</th>
-                            </tr>
-                        </thead>
+                        <thead><tr><th>กรณี</th><th>กลไก</th><th>ผลลัพธ์</th><th>บทเรียน</th></tr></thead>
                         <tbody>
                             <tr><td>คิวบา (CUC/CUP)</td><td>Dual currency</td><td>ล้มเหลว</td><td>สร้างชนชั้นใหม่จากสิทธิ์แลก</td></tr>
                             <tr><td>โซเวียต (Beryozka)</td><td>ร้านค้าเงินตราต่างประเทศ</td><td>ล้มเหลว</td><td>สร้าง Elite</td></tr>
-                            <tr><td>จีนก่อน 1994</td><td>Dual exchange rate</td><td>ล้มเหลว</td><td>ต้องรวมอัตราแลกเปลี่ยน</td></tr>
                             <tr><td>UPI (อินเดีย)</td><td>ระบบชำระเงินภายใน</td><td>สำเร็จ</td><td>ปิดท่อชั้นในได้จริง</td></tr>
-                            <tr><td>Pix (บราซิล)</td><td>ระบบชำระเงินภายใน</td><td>สำเร็จ</td><td>รัฐควบคุม 100%</td></tr>
                             <tr><td>mBridge</td><td>CBDC ข้ามพรมแดน</td><td>นำร่อง</td><td>ต้องขยาย scale</td></tr>
                         </tbody>
                     </table>
@@ -641,16 +541,10 @@
                 <h3>ค. References</h3>
                 <ul style="font-size:0.9rem; color:var(--text-light);">
                     <li>Emmanuel, A. (1972). <em>Unequal Exchange</em>.</li>
-                    <li>Amin, S. (1976). <em>Unequal Development</em>.</li>
                     <li>Georgescu-Roegen, N. (1971). <em>The Entropy Law and the Economic Process</em>.</li>
                     <li>Ostrom, E. (1990). <em>Governing the Commons</em>.</li>
-                    <li>Rawls, J. (1971). <em>A Theory of Justice</em>.</li>
                     <li>Schumacher, E.F. (1973). <em>Small Is Beautiful</em>.</li>
-                    <li>Hudson, M. (2015). <em>Killing the Host</em>.</li>
-                    <li>Sen, A. (1999). <em>Development as Freedom</em>.</li>
-                    <li>ECB (2015). <em>Virtual currency schemes</em>.</li>
                     <li>BIS (2025-2026). <em>Reports on stablecoins and Digital Dollarization</em>.</li>
-                    <li>FATF (2025-2026). <em>Reports on crypto-enabled crime</em>.</li>
                 </ul>
             </div>
         </section>
@@ -662,10 +556,10 @@
         เอกสารฉบับนี้จัดทำขึ้นเพื่อการอภิปรายและจุดประกายความคิด<br>
         สู่การออกแบบสังคมที่ยั่งยืนและเป็นธรรมสำหรับทุกคน
         <br><br>
-        <span style="font-size:0.8rem; opacity:0.7;">© 2026 | Hybrid Design Synthesis</span>
+        <span style="font-size:0.8rem; opacity:0.7;">© 2026 | DeepSeek Masterpiece Edition</span>
     </footer>
 
-    <button class="btt" id="bttBtn">↑</button>
+    <button class="btt" id="bttBtn" aria-label="กลับด้านบน">↑</button>
 
     <script>
         const menuBtn = document.getElementById('menuBtn');
@@ -675,15 +569,8 @@
         const links = document.querySelectorAll('.drawer-links a');
 
         function toggleDrawer(show) {
-            if (show) {
-                drawer.classList.add('active');
-                overlay.classList.add('active');
-                document.body.style.overflow = 'hidden';
-            } else {
-                drawer.classList.remove('active');
-                overlay.classList.remove('active');
-                document.body.style.overflow = '';
-            }
+            if (show) { drawer.classList.add('active'); overlay.classList.add('active'); document.body.style.overflow = 'hidden'; } 
+            else { drawer.classList.remove('active'); overlay.classList.remove('active'); document.body.style.overflow = ''; }
         }
 
         menuBtn.addEventListener('click', () => toggleDrawer(true));
@@ -699,17 +586,10 @@
             const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
             const scrolled = (winScroll / height) * 100;
             progressBar.style.width = scrolled + "%";
-
-            if (winScroll > 500) {
-                bttBtn.classList.add('show');
-            } else {
-                bttBtn.classList.remove('show');
-            }
+            if (winScroll > 500) { bttBtn.classList.add('show'); } else { bttBtn.classList.remove('show'); }
         });
 
-        bttBtn.addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
+        bttBtn.addEventListener('click', () => { window.scrollTo({ top: 0, behavior: 'smooth' }); });
     </script>
 </body>
 </html>
