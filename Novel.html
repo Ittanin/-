@@ -19,7 +19,6 @@
                 url('https://images.unsplash.com/photo-1518013431117-eb1465fa5752?q=80&w=1920&auto=format&fit=crop');
   }
 
-  /* ===== Dark Mode Variables ===== */
   body.dark-mode {
     --red-chinese: #A52A2A;
     --gold: #D4AF37;
@@ -46,13 +45,8 @@
     transition: background-color 0.4s ease, color 0.4s ease;
   }
   
-  .container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-  }
+  .container { max-width: 800px; margin: 0 auto; padding: 20px; }
   
-  /* ===== หน้าปก ===== */
   .cover {
     min-height: 100vh;
     background: var(--cover-bg);
@@ -143,11 +137,7 @@
     letter-spacing: 3px;
   }
   
-  /* ===== สารบัญ ===== */
-  .toc {
-    padding: 40px 20px;
-    page-break-after: always;
-  }
+  .toc { padding: 40px 20px; page-break-after: always; }
   
   .toc h2 {
     font-family: 'Noto Serif Thai', serif;
@@ -171,11 +161,7 @@
     font-size: 1.5rem;
   }
   
-  .toc-list {
-    list-style: none;
-    max-width: 500px;
-    margin: 0 auto;
-  }
+  .toc-list { list-style: none; max-width: 500px; margin: 0 auto; }
   
   .toc-list li {
     padding: 15px 0;
@@ -189,11 +175,7 @@
   .toc-list li:last-child { border-bottom: none; }
   .toc-chapter { color: var(--red-chinese); font-weight: 600; }
   
-  /* ===== บทต่างๆ ===== */
-  .chapter {
-    padding: 30px 20px;
-    page-break-before: always;
-  }
+  .chapter { padding: 30px 20px; page-break-before: always; }
   .chapter:first-of-type { page-break-before: avoid; }
   
   .chapter-header {
@@ -237,12 +219,7 @@
     font-weight: bold;
   }
   
-  /* ===== เนื้อหา ===== */
-  .content {
-    font-size: 1.05rem;
-    text-align: justify;
-    hyphens: auto;
-  }
+  .content { font-size: 1.05rem; text-align: justify; hyphens: auto; }
   .content p { margin-bottom: 1.2em; text-indent: 2em; }
   
   .content p:first-of-type::first-letter {
@@ -275,7 +252,6 @@
     font-style: italic;
   }
   
-  /* ===== Pull Quote ===== */
   .pull-quote {
     background: linear-gradient(135deg, var(--dark-parchment), var(--parchment));
     border-left: 5px solid var(--red-chinese);
@@ -309,7 +285,6 @@
     font-style: normal;
   }
   
-  /* ===== Image / Emblem ===== */
   .emblem {
     text-align: center;
     font-size: 4rem;
@@ -318,7 +293,6 @@
     opacity: 0.8;
   }
   
-  /* ===== Character Card ===== */
   .character-card {
     background: linear-gradient(135deg, #2C1810, #5C2E1F);
     color: var(--parchment);
@@ -347,7 +321,6 @@
   }
   .character-card p { font-size: 0.95rem; line-height: 1.7; }
   
-  /* ===== Art Table ===== */
   .art-table {
     width: 100%;
     border-collapse: collapse;
@@ -372,7 +345,6 @@
   .art-table tr:last-child td { border-bottom: none; }
   .art-table tr:nth-child(even) { background: rgba(201, 169, 97, 0.1); }
   
-  /* ===== Dialog ===== */
   .dialog {
     margin: 15px 0;
     padding-left: 15px;
@@ -381,27 +353,6 @@
     color: var(--light-ink);
   }
   
-  /* ===== Section Divider ===== */
-  .section-divider {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 40px 0;
-  }
-  .section-divider::before, .section-divider::after {
-    content: '';
-    flex: 1;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--gold), transparent);
-    max-width: 100px;
-  }
-  .section-divider span {
-    padding: 0 15px;
-    color: var(--red-chinese);
-    font-size: 1.5rem;
-  }
-  
-  /* ===== Ending ===== */
   .ending {
     text-align: center;
     padding: 60px 20px;
@@ -431,7 +382,6 @@
     border-top: 1px solid var(--gold);
   }
 
-  /* ===== Dark Mode Toggle Button ===== */
   #theme-toggle {
     position: fixed;
     bottom: 25px;
@@ -456,7 +406,6 @@
     box-shadow: 0 6px 20px rgba(0,0,0,0.5);
   }
 
-  /* ===== Mobile Responsive ===== */
   @media (max-width: 600px) {
     .container { padding: 15px; }
     .cover h1 { font-size: 1.8rem; }
@@ -471,7 +420,6 @@
     #theme-toggle { width: 50px; height: 50px; font-size: 1.4rem; bottom: 20px; right: 20px; }
   }
   
-  /* ===== Print Styles ===== */
   @media print {
     body {
       background: white !important;
@@ -500,7 +448,6 @@
 </head>
 <body>
 
-<!-- ปุ่มสลับโหมดกลางคืน -->
 <button id="theme-toggle" aria-label="Toggle Dark Mode">🌙</button>
 
 <div class="container">
@@ -514,7 +461,7 @@
   <p class="cover-subtitle">นวนิยายกำลังภายในร่วมสมัย</p>
   <p class="cover-subtitle">ที่ผสาน geopolitics · เศรษฐกิจ · ปรัชญา · และความพอเพียง</p>
   <div class="cover-divider"></div>
-  <p class="cover-author">โดย ลิ้มเซียงย้ง & Qwen</p>
+  <p class="cover-author">โดย ท่านลิ้ม & Qwen</p>
   <p class="cover-subtitle" style="margin-top: 30px; font-size: 0.9rem;">พฤศจิกายน ๒๕๖๙</p>
 </section>
 
@@ -717,17 +664,17 @@
     <p>เขาพับจดหมาย ส่งให้คนรับใช้ แล้วลุกขึ้นเดินออกจากโรงเตี๊ยม ข้างนอก ฝนเริ่มตก — แต่เขารู้ว่า พายุที่แท้จริงกำลังจะมาถึง</p>
     <div class="scene-break">❖ ❖ ❖</div>
     <div class="scene-title">๓. ณ สำนักไทย — บ้านไม้ไผ่กลางดง</div>
-    <p>ท่านลิ้มเซียงย้งนั่งจิบชาอูหลงอยู่หน้าบ้าน บนโต๊ะมีทองคำแท่งเล็กๆ วางอยู่หนึ่งก้อน และแผนที่ยุทธภพที่ขีดเส้นด้วยหมึกแดง</p>
-    <p>น้องลิ้มแชเล๊งนั่งอยู่ตรงข้าม กำลังเขียนโค้ด AI บนคอมพิวเตอร์พกพา แต่สายตาของเธอจับจ้องไปที่ทองคำแท่งนั้น</p>
+    <p>ท่านลึมนั่งจิบชาอูหลงอยู่หน้าบ้าน บนโต๊ะมีทองคำแท่งเล็กๆ วางอยู่หนึ่งก้อน และแผนที่ยุทธภพที่ขีดเส้นด้วยหมึกแดง</p>
+    <p>น้องเล็งนั่งอยู่ตรงข้าม กำลังเขียนโค้ด AI บนคอมพิวเตอร์พกพา แต่สายตาของเธอจับจ้องไปที่ทองคำแท่งนั้น</p>
     <div class="dialog">"พ่อครับ" เธอพูดขึ้น "หนูเห็นข่าวว่าจอมมารกำลังพยายามเคลื่อนย้ายลมปราณสู่เหรียญตราลวง หนูคิดว่ามันจะสำเร็จไหมครับ"</div>
-    <p>ท่านลิ้มเซียงย้งยิ้มบางๆ แล้วหยิบทองคำแท่งขึ้นมา</p>
+    <p>ท่านลึมนยิ้มบางๆ แล้วหยิบทองคำแท่งขึ้นมา</p>
     <div class="dialog">"เจ้าเคยเห็นเหรียญตราลวงที่สร้างจากลมปราณเทียมไหม"</div>
     <div class="dialog">"ไม่เคยครับ"</div>
     <div class="dialog">"เพราะมันไม่มีอยู่จริง — สิ่งที่จอมมารทำ คือการพยายามขาย 'คำสัญญา' แทน 'ของจริง' แต่เมื่อธาตุไฟเข้าแทรก คำสัญญาก็ไร้ค่า"</div>
     <p>เขาวางทองคำลง แล้วชี้ไปที่แผนที่</p>
     <div class="dialog">"ดูสิ — มังกรตะวันออกกำลังเร่งสร้างเส้นทางสายไหมใหม่ ตะวันออกกลางเริ่มขายน้ำมันเป็นเงินหยวน ยูเรเซียทนทานต่อพิษสง และแม้แต่ศิษย์ของจอมมารอย่างเจดี แวนซ์ ก็เริ่มติดต่อเรามาอย่างลับๆ"</div>
-    <div class="dialog">น้องลิ้มแชเล๊งเงยหน้าขึ้น "แล้วเราควรทำอย่างไรครับ"</div>
-    <p>ท่านลิ้มเซียงย้งตอบช้าๆ:</p>
+    <div class="dialog">น้องเล็งเงยหน้าขึ้น "แล้วเราควรทำอย่างไรครับ"</div>
+    <p>ท่านลึมนตอบช้าๆ:</p>
     <div class="pull-quote">เราไม่ต้องทำอะไรที่ซับซ้อน —<br>เพียงแค่ยึดมั่นในสิ่งที่จับต้องได้</div>
     <p>เขาหยิบสมุดบันทึกขึ้นมา เขียนคำสั่งสามบรรทัด:</p>
     <div class="dialog" style="font-style: normal; font-weight: 600;">
@@ -819,9 +766,9 @@
     <div class="scene-break">❖ ❖ ❖</div>
     <div class="scene-title">๕. ปฏิกิริยาของศิษย์และผู้สังเกตการณ์</div>
     <p><strong>ณ สำนักไทย:</strong></p>
-    <p>น้องลิ้มแชเล๊งมองดูท้องฟ้าที่สว่างวาบ แล้วหันไปถามพ่อ</p>
+    <p>น้องเล็งมองดูท้องฟ้าที่สว่างวาบ แล้วหันไปถามพ่อ</p>
     <div class="dialog">"พ่อครับ นั่นคืออะไร"</div>
-    <p>ท่านลิ้มเซียงย้งยิ้ม</p>
+    <p>ท่านลึมนยิ้ม</p>
     <div class="dialog">"นั่นคือจอมมารที่กำลังพยายามระเบิดทุกอย่าง — แต่ถูกย้อนศรด้วยพลังของคนที่ร่วมมือกัน"</div>
     <div class="dialog">"แล้วเราปลอดภัยไหมครับ"</div>
     <div class="pull-quote">เราปลอดภัย เพราะเราไม่ได้เป็นส่วนหนึ่งของเกมนี้ —<br>เราแค่ <strong>'อยู่อย่างมีสติ'</strong></div>
@@ -883,12 +830,12 @@
     <p>เริ่มตั้งคำถาม แสวงหาทางออก ไม่ต้องการเป็นวีรบุรุษ แค่ไม่ต้องการจมไปกับเรือที่กำลังจะจม</p>
   </div>
   <div class="character-card">
-    <h3>🎋 ลิ้มเซียงย้ง</h3>
+    <h3>🎋 ท่านลิ้ม</h3>
     <p class="alias">ผู้เฝ้าสมดุลแห่งไม้ไผ่</p>
     <p>ผู้นำสำนักไทย ผู้ยึดมั่นในของจริงและสติ มองทะลุทุกเกมด้วยวิชาความพอเพียง</p>
   </div>
   <div class="character-card">
-    <h3>🤖 ลิ้มแชเล๊ง</h3>
+    <h3>🤖 น้องเล็ง</h3>
     <p class="alias">ยอดยุทธ์รุ่นใหม่</p>
     <p>ลูกสาวผู้เก่ง AI และยึดหลักพุทธ ผสานเทคโนโลยีกับธรรมะได้อย่างลงตัว</p>
   </div>
@@ -958,7 +905,7 @@
   <div class="emblem">☯</div>
   <h2>จบตอนปัจจุบัน</h2>
   <div class="cover-divider" style="margin: 20px auto;"></div>
-  <p>นิยายเรื่องนี้แต่งขึ้นจากบทสนทนาอันลึกซึ้ง<br>ระหว่าง ลิ้มเซียงย้ง และ Qwen</p>
+  <p>นิยายเรื่องนี้แต่งขึ้นจากบทสนทนาอันลึกซึ้ง<br>ระหว่าง ท่านลิ้ม และ Qwen</p>
   <p>โดยผสมผสาน geopolitics เศรษฐกิจ ปรัชญา<br>และประวัติศาสตร์เข้าด้วยกันอย่างแนบเนียน</p>
   <div class="cover-divider" style="margin: 20px auto;"></div>
   <p style="font-style: italic; color: var(--gold); font-size: 1.1rem;">🍵 น้อมคารวะจอมยุทธ์ผู้รู้เท่าทันยุคสมัย 🍵</p>
@@ -971,12 +918,10 @@
 </div>
 
 <script>
-  // ===== Dark Mode Toggle Logic =====
   document.addEventListener('DOMContentLoaded', () => {
     const toggleBtn = document.getElementById('theme-toggle');
     const body = document.body;
     
-    // ตรวจสอบว่าเคยตั้งค่าโหมดมืดไว้ใน LocalStorage หรือไม่
     if (localStorage.getItem('theme') === 'dark') {
       body.classList.add('dark-mode');
       toggleBtn.textContent = '☀️';
