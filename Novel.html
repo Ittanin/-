@@ -1,0 +1,1251 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>มังกรฟ้า vs จอมมาร : ศึกยุทธภพเปลี่ยนโลก</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Thai:wght@400;600;700;900&family=Sarabun:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --red-chinese: #8B0000;
+    --gold: #C9A961;
+    --dark-gold: #8B6914;
+    --parchment: #F5E6D3;
+    --dark-parchment: #E8D5B7;
+    --ink: #2C1810;
+    --light-ink: #5C4033;
+  }
+  
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  
+  body {
+    font-family: 'Sarabun', 'Noto Serif Thai', serif;
+    background: var(--parchment);
+    background-image: 
+      radial-gradient(circle at 20% 30%, rgba(201, 169, 97, 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 80% 70%, rgba(139, 0, 0, 0.05) 0%, transparent 50%);
+    color: var(--ink);
+    line-height: 1.8;
+    padding: 0;
+  }
+  
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  /* ===== หน้าปก ===== */
+  .cover {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #2C1810 0%, #8B0000 50%, #2C1810 100%);
+    color: var(--gold);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 40px 20px;
+    position: relative;
+    overflow: hidden;
+    page-break-after: always;
+  }
+  
+  .cover::before {
+    content: '';
+    position: absolute;
+    top: 20px; left: 20px; right: 20px; bottom: 20px;
+    border: 2px solid var(--gold);
+    border-radius: 10px;
+    pointer-events: none;
+  }
+  
+  .cover::after {
+    content: '';
+    position: absolute;
+    top: 30px; left: 30px; right: 30px; bottom: 30px;
+    border: 1px solid var(--gold);
+    border-radius: 8px;
+    opacity: 0.5;
+    pointer-events: none;
+  }
+  
+  .cover-emblem {
+    font-size: 80px;
+    margin-bottom: 20px;
+    filter: drop-shadow(0 0 20px rgba(201, 169, 97, 0.5));
+  }
+  
+  .cover h1 {
+    font-family: 'Noto Serif Thai', serif;
+    font-size: 2.5rem;
+    font-weight: 900;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+    letter-spacing: 2px;
+  }
+  
+  .cover h2 {
+    font-family: 'Noto Serif Thai', serif;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--parchment);
+    margin-bottom: 30px;
+    font-style: italic;
+  }
+  
+  .cover-divider {
+    width: 200px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 20px 0;
+  }
+  
+  .cover-subtitle {
+    font-size: 1rem;
+    color: var(--parchment);
+    margin: 10px 0;
+    opacity: 0.9;
+  }
+  
+  .cover-author {
+    margin-top: 40px;
+    font-size: 1.1rem;
+    color: var(--gold);
+    letter-spacing: 3px;
+  }
+  
+  /* ===== สารบัญ ===== */
+  .toc {
+    padding: 40px 20px;
+    page-break-after: always;
+  }
+  
+  .toc h2 {
+    font-family: 'Noto Serif Thai', serif;
+    color: var(--red-chinese);
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 30px;
+    position: relative;
+    padding-bottom: 15px;
+  }
+  
+  .toc h2::after {
+    content: '☯';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--parchment);
+    padding: 0 15px;
+    color: var(--gold);
+    font-size: 1.5rem;
+  }
+  
+  .toc-list {
+    list-style: none;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+  
+  .toc-list li {
+    padding: 15px 0;
+    border-bottom: 1px dashed var(--gold);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.05rem;
+  }
+  
+  .toc-list li:last-child { border-bottom: none; }
+  
+  .toc-chapter {
+    color: var(--red-chinese);
+    font-weight: 600;
+  }
+  
+  /* ===== บทต่างๆ ===== */
+  .chapter {
+    padding: 30px 20px;
+    page-break-before: always;
+  }
+  
+  .chapter:first-of-type {
+    page-break-before: avoid;
+  }
+  
+  .chapter-header {
+    text-align: center;
+    margin-bottom: 40px;
+    padding: 30px 0;
+    border-top: 3px double var(--red-chinese);
+    border-bottom: 3px double var(--red-chinese);
+    position: relative;
+  }
+  
+  .chapter-number {
+    font-family: 'Noto Serif Thai', serif;
+    color: var(--gold);
+    font-size: 1.2rem;
+    letter-spacing: 5px;
+    margin-bottom: 10px;
+  }
+  
+  .chapter-title {
+    font-family: 'Noto Serif Thai', serif;
+    color: var(--red-chinese);
+    font-size: 1.8rem;
+    font-weight: 700;
+    line-height: 1.4;
+    margin: 15px 0;
+  }
+  
+  .chapter-epigraph {
+    font-style: italic;
+    color: var(--light-ink);
+    font-size: 1rem;
+    margin-top: 15px;
+    padding: 0 20px;
+  }
+  
+  .chapter-epigraph::before,
+  .chapter-epigraph::after {
+    content: '"';
+    color: var(--gold);
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  
+  /* ===== เนื้อหา ===== */
+  .content {
+    font-size: 1.05rem;
+    text-align: justify;
+    hyphens: auto;
+  }
+  
+  .content p {
+    margin-bottom: 1.2em;
+    text-indent: 2em;
+  }
+  
+  .content p:first-of-type::first-letter {
+    font-family: 'Noto Serif Thai', serif;
+    font-size: 3.5rem;
+    font-weight: 900;
+    color: var(--red-chinese);
+    float: left;
+    line-height: 0.9;
+    margin: 0.1em 0.1em 0 0;
+    text-shadow: 1px 1px 0 var(--gold);
+  }
+  
+  .scene-break {
+    text-align: center;
+    margin: 30px 0;
+    color: var(--gold);
+    font-size: 1.5rem;
+    letter-spacing: 10px;
+  }
+  
+  .scene-title {
+    font-family: 'Noto Serif Thai', serif;
+    color: var(--red-chinese);
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin: 25px 0 15px 0;
+    padding-left: 15px;
+    border-left: 4px solid var(--gold);
+    font-style: italic;
+  }
+  
+  /* ===== Pull Quote ===== */
+  .pull-quote {
+    background: linear-gradient(135deg, var(--dark-parchment), var(--parchment));
+    border-left: 5px solid var(--red-chinese);
+    border-right: 5px solid var(--red-chinese);
+    padding: 20px 25px;
+    margin: 25px 10px;
+    font-family: 'Noto Serif Thai', serif;
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--red-chinese);
+    text-align: center;
+    font-style: italic;
+    position: relative;
+    line-height: 1.6;
+  }
+  
+  .pull-quote::before {
+    content: '❝';
+    position: absolute;
+    top: -15px;
+    left: 15px;
+    font-size: 2.5rem;
+    color: var(--gold);
+    font-style: normal;
+  }
+  
+  .pull-quote::after {
+    content: '❞';
+    position: absolute;
+    bottom: -30px;
+    right: 15px;
+    font-size: 2.5rem;
+    color: var(--gold);
+    font-style: normal;
+  }
+  
+  /* ===== Image / Emblem ===== */
+  .emblem {
+    text-align: center;
+    font-size: 4rem;
+    margin: 30px 0;
+    filter: drop-shadow(0 2px 8px rgba(139, 0, 0, 0.3));
+  }
+  
+  .emblem-small {
+    text-align: center;
+    font-size: 2.5rem;
+    margin: 20px 0;
+  }
+  
+  /* ===== Character Card ===== */
+  .character-card {
+    background: linear-gradient(135deg, #2C1810, #5C2E1F);
+    color: var(--parchment);
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px 0;
+    border: 2px solid var(--gold);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  }
+  
+  .character-card h3 {
+    font-family: 'Noto Serif Thai', serif;
+    color: var(--gold);
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+  
+  .character-card .alias {
+    text-align: center;
+    color: var(--gold);
+    font-style: italic;
+    margin-bottom: 15px;
+    opacity: 0.9;
+  }
+  
+  .character-card p {
+    font-size: 0.95rem;
+    line-height: 1.7;
+  }
+  
+  /* ===== Art Table (วิชา) ===== */
+  .art-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 0.95rem;
+    background: var(--parchment);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  }
+  
+  .art-table th {
+    background: var(--red-chinese);
+    color: var(--gold);
+    padding: 12px 10px;
+    text-align: left;
+    font-family: 'Noto Serif Thai', serif;
+    font-weight: 600;
+  }
+  
+  .art-table td {
+    padding: 10px;
+    border-bottom: 1px solid var(--gold);
+    vertical-align: top;
+  }
+  
+  .art-table tr:last-child td { border-bottom: none; }
+  
+  .art-table tr:nth-child(even) { background: rgba(201, 169, 97, 0.1); }
+  
+  /* ===== Dialog ===== */
+  .dialog {
+    margin: 15px 0;
+    padding-left: 15px;
+    border-left: 3px solid var(--gold);
+    font-style: italic;
+    color: var(--light-ink);
+  }
+  
+  /* ===== Section Divider ===== */
+  .section-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 40px 0;
+  }
+  
+  .section-divider::before,
+  .section-divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    max-width: 100px;
+  }
+  
+  .section-divider span {
+    padding: 0 15px;
+    color: var(--red-chinese);
+    font-size: 1.5rem;
+  }
+  
+  /* ===== Ending ===== */
+  .ending {
+    text-align: center;
+    padding: 60px 20px;
+    margin-top: 40px;
+    border-top: 3px double var(--red-chinese);
+    page-break-before: always;
+  }
+  
+  .ending h2 {
+    font-family: 'Noto Serif Thai', serif;
+    color: var(--red-chinese);
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+  }
+  
+  .ending .emblem {
+    font-size: 5rem;
+    margin: 30px 0;
+  }
+  
+  .ending p {
+    font-style: italic;
+    color: var(--light-ink);
+    max-width: 500px;
+    margin: 15px auto;
+  }
+  
+  .credits {
+    margin-top: 40px;
+    font-size: 0.9rem;
+    color: var(--light-ink);
+    text-align: center;
+    padding: 20px;
+    border-top: 1px solid var(--gold);
+  }
+  
+  /* ===== Mobile Responsive ===== */
+  @media (max-width: 600px) {
+    .container { padding: 15px; }
+    .cover h1 { font-size: 1.8rem; }
+    .cover h2 { font-size: 1rem; }
+    .cover-emblem { font-size: 60px; }
+    .chapter-title { font-size: 1.4rem; }
+    .content { font-size: 1rem; }
+    .pull-quote { font-size: 1.05rem; padding: 15px; margin: 20px 5px; }
+    .art-table { font-size: 0.85rem; }
+    .art-table th, .art-table td { padding: 8px 6px; }
+    .content p:first-of-type::first-letter { font-size: 2.8rem; }
+  }
+  
+  /* ===== Print Styles ===== */
+  @media print {
+    body {
+      background: white;
+      font-size: 11pt;
+    }
+    
+    .container {
+      max-width: 100%;
+      padding: 0;
+    }
+    
+    .cover {
+      min-height: 100vh;
+      page-break-after: always;
+    }
+    
+    .chapter {
+      page-break-before: always;
+    }
+    
+    .chapter:first-of-type {
+      page-break-before: avoid;
+    }
+    
+    .pull-quote {
+      page-break-inside: avoid;
+    }
+    
+    .character-card {
+      page-break-inside: avoid;
+    }
+    
+    .art-table {
+      page-break-inside: avoid;
+    }
+    
+    .emblem {
+      page-break-inside: avoid;
+    }
+    
+    h1, h2, h3 {
+      page-break-after: avoid;
+    }
+    
+    a { color: var(--ink); text-decoration: none; }
+    
+    @page {
+      margin: 2cm;
+      size: A5;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<!-- ===== หน้าปก ===== -->
+<section class="cover">
+  <div class="cover-emblem">🐉⚔️🦅</div>
+  <h1>มังกรฟ้า vs จอมมาร</h1>
+  <h2>ศึกยุทธภพเปลี่ยนโลก</h2>
+  <div class="cover-divider"></div>
+  <p class="cover-subtitle">นวนิยายกำลังภายในร่วมสมัย</p>
+  <p class="cover-subtitle">ที่ผสาน geopolitics · เศรษฐกิจ · ปรัชญา · และความพอเพียง</p>
+  <div class="cover-divider"></div>
+  <p class="cover-author">โดย ลิ้มเซียงย้ง & Qwen</p>
+  <p class="cover-subtitle" style="margin-top: 30px; font-size: 0.9rem;">พฤศจิกายน ๒๕๖๙</p>
+</section>
+
+<!-- ===== คำนำ ===== -->
+<section class="chapter">
+  <div class="chapter-header">
+    <div class="chapter-number">☯ คำนำ ☯</div>
+    <h2 class="chapter-title">เมื่อลมปราณแห่งยุคสมัยเปลี่ยนทิศ</h2>
+  </div>
+  
+  <div class="content">
+    <p>ในยุทธภพที่ซับซ้อนกว่ายุคใด ๆ ลมปราณไม่ได้ไหลเวียนผ่านเส้นลมปราณของมนุษย์เท่านั้น — แต่ไหลผ่านเส้นเลือดฝอยของการค้า เงินตรา และเทคโนโลยี</p>
+    
+    <p>เมื่อจอมมารแห่งเหม่ยกั๋วประกาศศักดาด้วย "บารมีดอลลาร์" และ "ฝ่ามือกำแพงภาษี" ยุทธภพทั้งหมดต้องสั่นคลอน</p>
+    
+    <p>แต่มีชายผู้หนึ่ง — ผู้เฝ้าสมดุลแห่งไม้ไผ่ — ที่มองเห็นความจริงว่า <strong>"ของจริงชนะเงินกระดาษ"</strong> และ <strong>"สติชนะความบ้าคลั่ง"</strong></p>
+    
+    <div class="pull-quote">
+      นี่คือเรื่องราวของการต่อสู้ที่ไม่ได้วัดกันด้วยกำลัง<br>
+      แต่ด้วย <strong>ปัญญา ความพอเพียง และความร่วมมือ</strong>
+    </div>
+  </div>
+</section>
+
+<!-- ===== สารบัญ ===== -->
+<section class="toc">
+  <h2>สารบัญ</h2>
+  <ul class="toc-list">
+    <li><span class="toc-chapter">บทที่ ๑</span><span>จอมมารแห่งเหม่ยกั๋วประกาศศึก</span></li>
+    <li><span class="toc-chapter">บทที่ ๒</span><span>ศิษย์ผู้ถูกทำให้อายข้ามทวีป</span></li>
+    <li><span class="toc-chapter">บทที่ ๓</span><span>ธาตุไฟแทรกซ่าน จอมมารสูญเสียครึ่งพลัง</span></li>
+    <li><span class="toc-chapter">บทที่ ๔</span><span>รอยร้าวแห่งจอมมาร ไม้ไผ่เตรียมรับพายุ</span></li>
+    <li><span class="toc-chapter">บทที่ ๕</span><span>จอมมารตัดพ้อฟ้าดิน ระเบิดนิวเคลียร์ถูกย้อนศร</span></li>
+    <li><span class="toc-chapter">ภาคผนวก</span><span>ทำเนียบตัวละครและวิชา</span></li>
+  </ul>
+</section>
+
+<!-- ===== บทที่ ๑ ===== -->
+<section class="chapter">
+  <div class="chapter-header">
+    <div class="chapter-number">⚔ บทที่ ๑ ⚔</div>
+    <h2 class="chapter-title">จอมมารแห่งเหม่ยกั๋วประกาศศึก</h2>
+    <p class="chapter-epigraph">เมื่อจอมมารประกาศศึก ยุทธภพมิได้เงียบงัน — แต่เสียงกระซิบใต้ต้นชา กลับดังกว่าเสียงกลองรบ</p>
+  </div>
+  
+  <div class="emblem">🎋🍵</div>
+  
+  <div class="content">
+    <p>ณ โรงน้ำชาเหลียงซาน เมืองท่าทางใต้ ชายชราร่างเล็กในชุดจีนสีครามนั่งจิบชาอูหลง บนโต๊ะมีแผนที่ยุทธภพที่ขีดเส้นด้วยหมึกแดงสามเส้นตัดกันเป็นรูปสามเหลี่ยม</p>
+    
+    <p>ตรงข้ามเขา คือชายหนุ่มผิวเข้มในชุดสูทที่ดูไม่เข้าพวกกับโรงน้ำชาโบราณ — ผู้ถือคัมภีร์ AI จากเหม่ยกั๋ว</p>
+    
+    <div class="dialog">"ท่านลิ้ม" ชายหนุ่มเอ่ย "จอมมารส่งข้ามาถามว่า สำนักไทยจะเลือกข้างไหน"</div>
+    
+    <p>ชายชราไม่เงยหน้า เพียงรินชาเพิ่มอีกถ้วย</p>
+    
+    <div class="dialog">"ข้าถามเจ้าบ้าง" เขาพูดช้า ๆ "คัมภีร์ที่เจ้าถืออยู่ — มันบอกเจ้าหรือไม่ว่า วันที่เจ้าไม่มีชาจืด จะเอา AI มากินแทนได้ไหม"</div>
+    
+    <p>ชายหนุ่มชะงัก</p>
+    
+    <div class="dialog">"จอมมารให้คำมั่นว่า..."</div>
+    
+    <div class="dialog">"คำมั่นของจอมมาร" ชายชราวางถ้วยชาลงดังกริ๊ก "เหมือนฝ่ามือกำแพงภาษี — หนักตอนโดน เบาตอนจ่าย"</div>
+    
+    <p>เขาลุกขึ้นยืน เดินไปที่หน้าต่าง มองออกไปยังท่าเรือที่เรือสินค้าจอดเรียงราย</p>
+    
+    <div class="pull-quote">กลับไปบอกจอมมารว่า <strong>สำนักไทยไม่เลือกข้าง</strong><br>เพราะข้าไม่เคยเห็นสำนักใดในยุทธภพ ที่เลือกข้างแล้วรอดทั้งตัวและศีลธรรม</div>
+    
+    <div class="dialog">"แล้วท่านจะรอดได้อย่างไร ในเมื่อจอมมารปิดเส้นทางตะวันตก?"</div>
+    
+    <p>ชายชราเหลือบมองเขาแวบหนึ่ง แล้วยิ้มบาง ๆ</p>
+    
+    <div class="pull-quote">เจ้าเคยเห็นไม้ไผ่ในพายุไหม —<br>มันไม่เคยหัก เพราะมันไม่เคยยืนตรง</div>
+    
+    <div class="scene-break">❖ ❖ ❖</div>
+    
+    <div class="scene-title">ณ ด้านในสุดของโรงน้ำชา — ห้องลับ</div>
+    
+    <p>ชายชราวางถ้วยชาลง แล้วหยิบ <strong>ทองคำแท่งเล็ก ๆ</strong> ออกมาวางบนโต๊ะ</p>
+    
+    <div class="dialog">"นี่คือลมปราณของข้า" เขาบอกกับลูกศิษย์สาวที่ยืนอยู่ข้าง ๆ "ไม่ใช่เงินกระดาษ ไม่ใช่คำทำนายของใคร — ของจริงที่ไม่มีวันโกหก"</div>
+    
+    <div class="dialog">"อาจารย์ครับ แล้วเราจะสู้กับจอมมารได้อย่างไร ในเมื่อเราไม่มีทั้งแร่หายาก ทั้งกองทัพเรือ"</div>
+    
+    <p>ชายชรายิ้ม</p>
+    
+    <div class="dialog">"เจ้าเคยเห็นน้ำไหลผ่านหินไหม — น้ำไม่ได้ชนะด้วยแรง แต่มันชนะด้วยการไม่หยุด"</div>
+    
+    <p>เขาหยิบแผนที่ขึ้นมา ชี้ไปที่จุดสามจุด</p>
+    
+    <div class="dialog">"ตะวันออกมีของจริง ตะวันออกกลางมีทุน ยูเรเซียมีพลังงาน — ส่วนเรามี <strong>'จุดกลาง'</strong> ที่ทุกฝ่ายต้องผ่าน"</div>
+    
+    <div class="dialog">"และถ้าเราปฏิเสธที่จะเป็นทางผ่านของใคร?"</div>
+    
+    <div class="pull-quote">แล้วเราจะกลายเป็นทางผ่านของ <strong>ทุกคน</strong><br>เพราะไม่มีใครอยากทำลายสะพานที่ตัวเองต้องใช้</div>
+    
+    <div class="scene-break">❖ ❖ ❖</div>
+    
+    <p>ที่มุมหนึ่งของห้อง มีเสียงวิทยุเก่าดังแผ่ว ๆ — ข่าวการเมืองไทยเรื่องเงินกู้ 2 แสนล้าน ชายชราฟังแล้วถอนหายใจ</p>
+    
+    <div class="dialog">"ศัตรูที่แท้จริงของสำนักเรา ไม่ใช่จอมมารแห่งเหม่ยกั๋ว — แต่เป็น <strong>'ผีอำ'</strong> ในบ้านเราเอง"</div>
+    
+    <p>เขาหยิบลูกประคำขึ้นมา</p>
+    
+    <p><em>"แต่ถึงอย่างนั้น... ไม้ไผ่ก็ยังไม่หัก"</em></p>
+  </div>
+</section>
+
+<!-- ===== บทที่ ๒ ===== -->
+<section class="chapter">
+  <div class="chapter-header">
+    <div class="chapter-number">⚔ บทที่ ๒ ⚔</div>
+    <h2 class="chapter-title">ศิษย์ผู้ถูกทำให้อายข้ามทวีป</h2>
+    <p class="chapter-epigraph">จอมมารที่แท้จริง ไม่ได้ทำให้ศัตรูกลัว — แต่ทำให้ลูกศิษย์ตัวเองต้องอับอายข้ามทวีป</p>
+  </div>
+  
+  <div class="emblem">🦅💔</div>
+  
+  <div class="content">
+    <div class="scene-title">ณ ห้องโถงกลางสำนักเหม่ยกั๋ว — นครหลวงวอชิงตันยุทธภพ</div>
+    
+    <p>เจดี แวนซ์ ยืนอยู่ปลายโต๊ะยาว เขาเพิ่งกลับมาจากการเจรจาลับกับ <strong>สำนักตะวันออกกลาง</strong> ที่เมืองทรายทองคำ — เจรจามาสามวันสามคืน ตกลงกันได้เกือบทุกข้อ</p>
+    
+    <div class="dialog">"อาจารย์ครับ" เขาเอ่ยด้วยน้ำเสียงมั่นใจ "ข้าคุมสถานการณ์ได้แล้ว ตะวันออกกลางพร้อมลงนาม"</div>
+    
+    <p>จอมมารทรัมป์นั่งอยู่ปลายอีกด้านของโต๊ะ ไม่เงยหน้า ไม่พูดอะไร เพียงพลิกกระดาษแผ่นหนึ่ง</p>
+    
+    <p>แล้วจู่ ๆ ลมปราณทั้งห้องก็เปลี่ยน</p>
+    
+    <div class="scene-break">❖ ❖ ❖</div>
+    
+    <div class="scene-title">ครึ่งลมหายใจต่อมา — ณ เมืองทรายทองคำ ห่างออกไปหลายพันลี้</div>
+    
+    <p>ทูตตะวันออกกลางกำลังจะลงนามในสัญญา แต่แล้ว <strong>"ฝ่ามือกำแพงภาษี"</strong> ก็ฟาดลงมาจากฟากฟ้า — ไม่ใช่การเจรจา แต่คือคำขู่ที่ส่งตรงข้ามทวีป</p>
+    
+    <div class="dialog">"ถ้าเจ้าลงนามกับศัตรูของข้า — ข้าจะปิดทุกเส้นทางค้าขายของเจ้า"</div>
+    
+    <p>เจ้าสำนักตะวันออกกลางวางปากกาลง ชายตามองทูตเหม่ยกั๋ว แล้วพูดเพียงประโยคเดียว:</p>
+    
+    <div class="pull-quote">"การเจรจายกเลิก"</div>
+    
+    <p>แล้วเดินออกจากห้องไปโดยไม่หันกลับมา</p>
+    
+    <div class="scene-break">❖ ❖ ❖</div>
+    
+    <div class="scene-title">กลับมาที่ห้องโถงกลางสำนักเหม่ยกั๋ว</div>
+    
+    <p>เจดี แวนซ์ ยังยืนอยู่ที่เดิม</p>
+    
+    <p>แต่มือของเขาเริ่มสั่น</p>
+    
+    <p>เขาเพิ่งใช้สามวันสามคืนสร้างสะพานไมตรี — และอาจารย์ของเขาทุบสะพานนั้นทิ้งด้วยฝ่ามือเดียว ต่อหน้าทูตทุกสำนัก โดยไม่บอกเขาล่วงหน้าสักคำ</p>
+    
+    <p><strong>หนึ่ง... สอง... สาม...</strong></p>
+    
+    <p>เขายืนนิ่ง ตาค้าง สมองว่างเปล่า</p>
+    
+    <p><strong>...สิบ... ยี่สิบ... สามสิบ</strong></p>
+    
+    <p>ครบสามสิบวินาทีพอดี</p>
+    
+    <p>เขากลืนน้ำลาย กำมือแน่น แล้วเอ่ยเสียงเบา:</p>
+    
+    <div class="dialog">"อาจารย์ครับ... ข้าเพิ่งเจรจาเสร็จ"</div>
+    
+    <p>จอมมารไม่เงยหน้า</p>
+    
+    <div class="dialog">"เจ้าทำได้ดี แวนซ์ — แต่ข้าไม่ต้องการสะพาน ข้าต้องการให้พวกเขากลัว"</div>
+    
+    <div class="dialog">"แล้วการเจรจาที่ข้าทำมาสามวันสามคืน..."</div>
+    
+    <div class="dialog">"มันคือ <strong>ฉาก</strong>" จอมมารพูดเรียบ ๆ "ให้โลกเห็นว่าเจ้าอ่อนโยน — แล้วข้าจะได้แข็งกร้าวได้เต็มที่"</div>
+    
+    <p>แวนซ์ไม่พูดอะไรอีก เขาเพิ่งเข้าใจบางอย่าง: <strong>เขาไม่ได้เป็นศิษย์โปรด — เขาเป็นหมากที่ถูกใช้เป็นฉาก</strong></p>
+    
+    <div class="scene-break">❖ ❖ ❖</div>
+    
+    <div class="scene-title">มุมหนึ่งของห้องโถง — เหล่าศิษย์รุ่นเยาว์กำลังกระซิบกัน</div>
+    
+    <div class="dialog">"เจ้าเห็นหรือไม่ — ค่ายกล <strong>'Make เหม่ยกั๋ว Great Again'</strong> ที่อาจารย์ตั้งไว้"</div>
+    
+    <div class="dialog">"เห็นสิ... แต่ข้าสงสัยอยู่อย่าง"</div>
+    
+    <div class="dialog">"สงสัยอะไร"</div>
+    
+    <div class="dialog">"ค่ายกลนี้ทำให้ <strong>เหม่ยกั๋ว</strong> เกรียงไกร — หรือทำให้ <strong>กระเป๋าของอาจารย์</strong> เกรียงไกรกันแน่"</div>
+    
+    <p>เสียงกระซิบเงียบลง</p>
+    
+    <p>ศิษย์อีกคนพูดขึ้นเบา ๆ:</p>
+    
+    <div class="dialog">"ข้าเห็นอาจารย์เก็บค่าธรรมเนียมค่ายกลจากทุกสำนักในเหม่ยกั๋ว — แต่ถนนหนทางในสำนักเรายังเป็นหลุมเป็นบ่อเลย"</div>
+    
+    <div class="dialog">"แล้วเจ้าคิดว่า..."</div>
+    
+    <div class="pull-quote">ข้าคิดว่า ค่ายกลนี้ไม่ได้ทำให้เหม่ยกั๋ว great —<br>แต่มันทำให้ <strong>อาจารย์</strong> great คนเดียว</div>
+    
+    <div class="scene-break">❖ ❖ ❖</div>
+    
+    <p>เจดี แวนซ์ เดินออกจากห้องโถงช้า ๆ</p>
+    
+    <p>เขาหยุดที่หน้าประตู หันกลับมามองจอมมารเป็นครั้งสุดท้าย</p>
+    
+    <p>แล้วพูดกับตัวเองเบา ๆ ประโยคหนึ่ง — ประโยคที่ไม่มีใครได้ยิน:</p>
+    
+    <div class="pull-quote">ศิษย์ที่ถูกทำให้อายข้ามทวีป...<br>จะยังภักดีได้อีกนานแค่ไหนกัน</div>
+  </div>
+</section>
+
+<!-- ===== บทที่ ๓ ===== -->
+<section class="chapter">
+  <div class="chapter-header">
+    <div class="chapter-number">⚔ บทที่ ๓ ⚔</div>
+    <h2 class="chapter-title">ธาตุไฟแทรกซ่าน จอมมารสูญเสียครึ่งพลัง</h2>
+    <p class="chapter-epigraph">เมื่อจอมมารพยายามควบคุมทุกสิ่ง เขากลับควบคุมแม้แต่ลมปราณของตัวเองไม่ได้</p>
+  </div>
+  
+  <div class="emblem">🔥💫</div>
+  
+  <div class="content">
+    <div class="scene-title">ณ ห้องลับใต้ดินแห่งสำนักเหม่ยกั๋ว</div>
+    
+    <p>จอมมารทรัมป์นั่งสมาธิอยู่ท่ามกลางกองเอกสารและหน้าจอที่กะพริบแสง เขาไม่พอใจที่ "บารมีดอลลาร์" เริ่มถูกสำนักมังกรตะวันออกและตะวันออกกลางลดทอนลง</p>
+    
+    <p>เขาจึงตัดสินใจร่าย <strong>"วิชาเคลื่อนย้ายจักรวาล: แปรธาตุลมปราณสู่เหรียญตราลวง"</strong></p>
+    
+    <div class="dialog">"หากข้าไม่สามารถควบคุมแม่น้ำสายหลักได้ ข้าก็จะสร้างลำธารใต้ดินที่ไม่มีใครตรวจสอบได้" จอมมารพึมพำ</div>
+    
+    <p>เขาเริ่มถ่ายเทพลังลมปราณแท้ของสำนักออกไปซ่อนไว้ใน "เหรียญตราลวงตา" (Stablecoins/Crypto) ที่อยู่นอกเหนือกฎเกณฑ์ของสภาเฒ่า โดยหวังว่าจะใช้มันซื้อใจเหล่าพ่อค้าเร่และนักเก็งกำไรให้กลับมาภักดี</p>
+    
+    <p>แต่เขาลืมกฎเหล็กข้อหนึ่งของวิชาลมปราณ:</p>
+    
+    <div class="pull-quote">สิ่งที่สร้างโดยไม่อาศัยรากฐานที่แท้จริง<br>ย่อมพังทลายเมื่อเจอแรงสั่นสะเทือน</div>
+    
+    <div class="scene-break">❖ ❖ ❖</div>
+    
+    <div class="scene-title">ความผิดพลาดครั้งที่สอง: กระบวนท่ากองเรือไร้ทิศทาง</div>
+    
+    <p>ด้วยความหวาดระแวงว่าสำนักตะวันออกกลางและยูเรเซียจะรวมตัวกันแน่นแฟ้นเกินไป จอมมารจึงสั่งการอย่างหุนหันพลันแล่น</p>
+    
+    <div class="dialog">"ส่งกองเรืออัคคีพิฆาตไปข่มขวัญทุกทิศ! อย่าให้พวกมันได้หายใจสะดวก!"</div>
+    
+    <p>แต่แทนที่จะวางค่ายกลอย่างเป็นระบบ กองเรือกลับถูกสั่งให้ <strong>"เคลื่อนย้ายจุดแบบสุ่ม"</strong> ไร้ซึ่งยุทธศาสตร์ที่ชัดเจน บางลำไปขวางเส้นทางค้าขายของตัวเอง บางลำไปกระตุ้นความโกรธแค้นของพันธมิตรเก่า</p>
+    
+    <p>ผลที่ตามมาคือ <strong>"ธาตุไฟเข้าแทรก"</strong></p>
+    
+    <p>ลมปราณที่ควรจะไหลเวียนอย่างราบรื่น กลับตีกลับเข้าสู่หัวใจของสำนักเอง งบประมาณบานปลาย ศิษย์ในสำนักเริ่มบ่นพึมพำ และพันธมิตรเริ่มถอยห่าง เพราะไม่มีใครอยากอยู่บนเรือที่กัปตันบังคับแบบสุ่มสี่สุ่มห้า</p>
+    
+    <div class="scene-break">❖ ❖ ❖</div>
+    
+    <div class="scene-title">จุดแตกหัก: การประชุมใหญ่คัดเลือกแกนนำกลางเทอม</div>
+    
+    <p>เมื่อธาตุไฟเข้าแทรก ความอ่อนล้าก็ปรากฏชัด</p>
+    
+    <p>ในการประชุมใหญ่เพื่อคัดเลือกแกนนำสภา ซึ่งควรจะเป็นเวทีที่จอมมารใช้บารมีข่มให้ศิษย์ในสังกัดชนะอย่างถล่มทลาย กลับเกิดสิ่งที่ไม่คาดฝัน</p>
+    
+    <div class="pull-quote">"เส้นลมปราณหลักของสำนักถูกตัดขาด!"</div>
+    
+    <p>ศิษย์จำนวนมากในสำนักเหม่ยกั๋วเอง ที่ทนไม่ไหวกับค่าครองชีพที่สูงลิ่วและความวุ่นวายจากกองเรือที่เคลื่อนย้ายมั่วซั่ว ได้เทคะแนนให้กับฝ่ายตรงข้าม</p>
+    
+    <p>เมื่อผลการนับคะแนนออกมา จอมมารทรัมป์ถึงกับไอออกมาเป็นเลือด</p>
+    
+    <div class="dialog"><strong>"พลังยุทธ์ของข้า... หดหายไปกว่าครึ่ง!"</strong> เขากระซิบด้วยเสียงสั่นเครือ</div>
+    
+    <p>การแพ้เลือกตั้งกลางเทอมไม่ใช่แค่การเสียที่นั่งในสภา แต่หมายถึง <strong>"การสูญเสียอาณัติแห่งสวรรค์"</strong> อำนาจในการสั่งการถูกลิดรอน ค่ายกล "Make เหม่ยกั๋ว Great Again" เริ่มปรากฏรอยร้าวให้เห็นอย่างชัดเจน</p>
+    
+    <div class="scene-break">❖ ❖ ❖</div>
+    
+    <div class="scene-title">ณ มุมห้องโถงเดิม</div>
+    
+    <p>เจดี แวนซ์ ที่ยังจำความอับอายข้ามทวีปจากบทก่อนได้เป็นอย่างดี มองดูสภาพของอาจารย์ตัวเอง</p>
+    
+    <p>เขาเห็นจอมมารพยายามร่ายวิชาเคลื่อนย้ายลมปราณสู่เหรียญตราลวงอีกครั้ง เพื่อชดเชยพลังที่สูญเสียไป แต่ท่าทางนั้นดูสั่นเครือและขาดความมั่นใจ</p>
+    
+    <p>แวนซ์หันไปมองศิษย์รุ่นเยาว์ที่ยืนอยู่ข้างๆ</p>
+    
+    <div class="dialog">"เจ้าเห็นแล้วใช่ไหม" แวนซ์พูดเสียงเรียบ "เมื่อจอมมารพยายามจะเป็นเทพที่ควบคุมทุกสิ่ง เขากลับควบคุมแม้แต่ลมปราณของตัวเองไม่ได้"</div>
+    
+    <p>ศิษย์รุ่นเยาว์พยักหน้า "และเมื่อธาตุไฟเข้าแทรก... ผู้ที่จะถูกเผาไหม้ก่อน ไม่ใช่ศัตรู แต่เป็นสำนักของเราเอง"</p>
+  </div>
+</section>
+
+<!-- ===== บทที่ ๔ ===== -->
+<section class="chapter">
+  <div class="chapter-header">
+    <div class="chapter-number">⚔ บทที่ ๔ ⚔</div>
+    <h2 class="chapter-title">รอยร้าวแห่งจอมมาร ไม้ไผ่เตรียมรับพายุ</h2>
+    <p class="chapter-epigraph">เมื่อจอมมารไอเป็นเลือดทั้งสามสำนัก — มังกรยิ้มบาง ไม้ไผ่ลู่ลม และศิษย์ผู้ทรยศเริ่มก้าวขาออกจากเงามืด</p>
+  </div>
+  
+  <div class="emblem">🐉🎋🦅</div>
+  
+  <div class="content">
+    <div class="scene-title">๑. ณ หอคอยมังกรตะวันออก — นครหลวงปักกิ่งยุทธภพ</div>
+    
+    <p>เจ้าสำนักมังกรตะวันออกนั่งจิบชาหลงจิ่งอยู่หน้าหน้าต่างที่มองออกไปเห็นท่าเรือที่เรือสินค้าจอดเรียงรายไม่ขาดสาย</p>
+    
+    <p>บนโต๊ะมีจดหมายลับจากสายลับในสำนักเหม่ยกั๋ว เขียนไว้เพียงประโยคเดียว:</p>
+    
+    <div class="pull-quote">"จอมมารไอเป็นเลือด พลังยุทธ์หดหายเกินครึ่ง ธาตุไฟเข้าแทรกทั้งสำนัก"</div>
+    
+    <p>เจ้าสำนักวางจดหมายลง แล้วหัวเราะเบาๆ</p>
+    
+    <div class="dialog">"ข้าไม่ต้องออกท่าไม้ตายแม้แต่ท่าเดียว — เพียงแค่ยืนนิ่งๆ รอให้จอมมารเผาตัวเอง"</div>
+    
+    <p>เขาหยิบพู่กันขึ้นมา เขียนคำสั่งเพียงสามบรรทัดลงบนผ้าไหม:</p>
+    
+    <div class="dialog" style="font-style: normal; font-weight: 600;">
+      "เร่งสร้างเส้นทางสายไหมใหม่<br>
+      ดึงพันธมิตรเก่าของเหม่ยกั๋วที่เริ่มสั่นคลอน<br>
+      เสนอการค้าด้วยเงินหยวนและทองคำ — ไม่ใช่คำสัญญา"
+    </div>
+    
+    <p>จากนั้นเขาหันไปบอกศิษย์คนสนิทว่า:</p>
+    
+    <div class="pull-quote">อย่าโจมตี อย่าข่มขวัญ<br>เพียงแค่ <strong>'เสนอทางเลือกที่ดีกว่า'</strong><br>แล้วพวกเขาจะเดินมาหาเราเอง</div>
+    
+    <div class="scene-break">❖ ❖ ❖</div>
+    
+    <div class="scene-title">๒. ณ โรงเตี๊ยมลับในนครซานฟรานซิสโก — เจดี แวนซ์</div>
+    
+    <p>เจดี แวนซ์ นั่งอยู่คนเดียวในมุมมืดของโรงเตี๊ยม เขาถือถ้วยชาที่เย็นชืดไปแล้ว แต่ไม่ได้จิบ</p>
+    
+    <p>ในมืออีกข้างคือจดหมายลับที่ส่งมาจาก "สำนักไทย" — ไม่มีลายเซ็น มีเพียงประโยคเดียว:</p>
+    
+    <div class="pull-quote">ไม้ไผ่ไม่เคยหัก เพราะมันไม่เคยยืนตรง —<br>ท่านอยากยืนตรงต่อไปอีกนานแค่ไหน?</div>
+    
+    <p>แวนซ์นึกถึงวันที่เขาถูกทำให้อายข้ามทวีป นึกถึงวันที่จอมมารใช้เขาเป็น "ฉาก" นึกถึงค่ายกล "Make เหม่ยกั๋ว Great Again" ที่ไม่ได้ great ให้สำนัก แต่ great ให้กระเป๋าอาจารย์คนเดียว</p>
+    
+    <p>เขาวางถ้วยชาลง แล้วหยิบพู่กันขึ้นมา เขียนตอบกลับ:</p>
+    
+    <div class="dialog" style="font-style: normal; font-weight: 600;">
+      "ข้าไม่ต้องการเป็นวีรบุรุษ — ข้าแค่ไม่ต้องการจมไปกับเรือที่กำลังจะจม<br>
+      หากสำนักไทยมีทางออก ข้าขอพบท่านลิ้ม — อย่างลับๆ"
+    </div>
+    
+    <p>เขาพับจดหมาย ส่งให้คนรับใช้ แล้วลุกขึ้นเดินออกจากโรงเตี๊ยม</p>
+    
+    <p>ข้างนอก ฝนเริ่มตก — แต่เขารู้ว่า พายุที่แท้จริงกำลังจะมาถึง</p>
+    
+    <div class="scene-break">❖ ❖ ❖</div>
+    
+    <div class="scene-title">๓. ณ สำนักไทย — บ้านไม้ไผ่กลางดง</div>
+    
+    <p>ท่านลิ้มเซียงย้งนั่งจิบชาอูหลงอยู่หน้าบ้าน บนโต๊ะมีทองคำแท่งเล็กๆ วางอยู่หนึ่งก้อน และแผนที่ยุทธภพที่ขีดเส้นด้วยหมึกแดง</p>
+    
+    <p>น้องลิ้มแชเล๊งนั่งอยู่ตรงข้าม กำลังเขียนโค้ด AI บนคอมพิวเตอร์พกพา แต่สายตาของเธอจับจ้องไปที่ทองคำแท่งนั้น</p>
+    
+    <div class="dialog">"พ่อครับ" เธอพูดขึ้น "หนูเห็นข่าวว่าจอมมารกำลังพยายามเคลื่อนย้ายลมปราณสู่เหรียญตราลวง หนูคิดว่ามันจะสำเร็จไหมครับ"</div>
+    
+    <p>ท่านลิ้มเซียงย้งยิ้มบางๆ แล้วหยิบทองคำแท่งขึ้นมา</p>
+    
+    <div class="dialog">"เจ้าเคยเห็นเหรียญตราลวงที่สร้างจากลมปราณเทียมไหม"</div>
+    
+    <div class="dialog">"ไม่เคยครับ"</div>
+    
+    <div class="dialog">"เพราะมันไม่มีอยู่จริง — สิ่งที่จอมมารทำ คือการพยายามขาย 'คำสัญญา' แทน 'ของจริง' แต่เมื่อธาตุไฟเข้าแทรก คำสัญญาก็ไร้ค่า"</div>
+    
+    <p>เขาวางทองคำลง แล้วชี้ไปที่แผนที่</p>
+    
+    <div class="dialog">"ดูสิ — มังกรตะวันออกกำลังเร่งสร้างเส้นทางสายไหมใหม่ ตะวันออกกลางเริ่มขายน้ำมันเป็นเงินหยวน ยูเรเซียทนทานต่อพิษสง และแม้แต่ศิษย์ของจอมมารอย่างเจดี แวนซ์ ก็เริ่มติดต่อเรามาอย่างลับๆ"</div>
+    
+    <div class="dialog">น้องลิ้มแชเล๊งเงยหน้าขึ้น "แล้วเราควรทำอย่างไรครับ"</div>
+    
+    <p>ท่านลิ้มเซียงย้งตอบช้าๆ:</p>
+    
+    <div class="pull-quote">เราไม่ต้องทำอะไรที่ซับซ้อน —<br>เพียงแค่ยึดมั่นในสิ่งที่จับต้องได้</div>
+    
+    <p>เขาหยิบสมุดบันทึกขึ้นมา เขียนคำสั่งสามบรรทัด:</p>
+    
+    <div class="dialog" style="font-style: normal; font-weight: 600;">
+      "เร่งถือครองทองคำกายภาพให้มากขึ้น<br>
+      สอนให้ศิษย์ในสำนักเข้าใจ AI อย่างแท้จริง — ไม่ใช่แค่ซื้อคัมภีร์สำเร็จรูป<br>
+      เตรียมรับคลื่นเศรษฐกิจที่อาจพังทลายจากเหรียญตราลวง"
+    </div>
+    
+    <p>จากนั้นเขาหันไปมองลูกสาว:</p>
+    
+    <div class="dialog">"เจ้ารู้ไหม ทำไมไม้ไผ่ถึงไม่หักในพายุ"</div>
+    
+    <div class="dialog">"เพราะมันยืดหยุ่นครับ"</div>
+    
+    <div class="pull-quote">ไม่ใช่ — เพราะมัน <strong>'รู้ว่ารากของตัวเองอยู่ที่ไหน'</strong></div>
+    
+    <div class="scene-break">❖ ❖ ❖</div>
+    
+    <div class="scene-title">๔. ปิดท้าย: เสียงกระซิบใต้ต้นชา</div>
+    
+    <p>ณ โรงน้ำชาเหลียงซาน ชายชราร่างเล็กในชุดจีนสีครามนั่งจิบชาอูหลง บนโต๊ะมีแผนที่ยุทธภพที่ขีดเส้นด้วยหมึกแดงสามเส้นตัดกันเป็นรูปสามเหลี่ยม</p>
+    
+    <p>ตรงข้ามเขา คือชายหนุ่มผิวเข้มในชุดสูท — เจดี แวนซ์</p>
+    
+    <div class="dialog">"ท่านลิ้ม" แวนซ์เอ่ย "ข้าขอทางออก"</div>
+    
+    <p>ชายชราไม่เงยหน้า เพียงรินชาเพิ่มอีกถ้วย</p>
+    
+    <div class="dialog">"เจ้าเคยเห็นไม้ไผ่ในพายุไหม"</div>
+    
+    <div class="dialog">"เห็นครับ"</div>
+    
+    <div class="dialog">"มันไม่เคยหัก เพราะมันไม่เคยยืนตรง — แต่เมื่อพายุสงบ มันจะกลับมาตั้งตรงได้อีกครั้ง"</div>
+    
+    <p>แวนซ์เงียบไปครู่หนึ่ง แล้วถาม:</p>
+    
+    <div class="dialog">"แล้วข้าควรทำอย่างไร"</div>
+    
+    <p>ชายชราวางถ้วยชาลง แล้วพูดประโยคสุดท้าย:</p>
+    
+    <div class="pull-quote">อย่าพยายามเป็นวีรบุรุษ —<br>เพียงแค่เป็นมนุษย์ที่มีสติ</div>
+  </div>
+</section>
+
+<!-- ===== บทที่ ๕ ===== -->
+<section class="chapter">
+  <div class="chapter-header">
+    <div class="chapter-number">⚔ บทที่ ๕ ⚔</div>
+    <h2 class="chapter-title">จอมมารตัดพ้อฟ้าดิน ระเบิดนิวเคลียร์ถูกย้อนศร</h2>
+    <p class="chapter-epigraph">เมื่อจอมมารรู้ว่าถูกอ่านเกมขาด เขาไม่ยอมแพ้เงียบๆ — แต่เลือกที่จะระเบิดทุกอย่าง แม้แต่ศักดิ์ศรีของตัวเอง</p>
+  </div>
+  
+  <div class="emblem">💥🌩️</div>
+  
+  <div class="content">
+    <div class="scene-title">๑. ณ ห้องลับใต้ดินแห่งสำนักเหม่ยกั๋ว — ยามดึก</div>
+    
+    <p>จอมมารทรัมป์ยืนอยู่หน้ากระจกเงาขนาดใหญ่ ผมสีทองที่เคยสลวยตอนนี้ยุ่งเหยิง หน้าตาซีดเซียวจากธาตุไฟเข้าแทรก</p>
+    
+    <p>บนโต๊ะมีรายงานจากสายลับทุกทิศทาง:</p>
+    
+    <div class="dialog" style="font-style: normal;">
+      "มังกรตะวันออกเร่งสร้างเส้นทางสายไหมใหม่ — ดึงพันธมิตรเก่าของเราไปสามสำนักแล้ว"<br><br>
+      "ตะวันออกกลางประกาศขายน้ำมันเป็นเงินหยวน — ไม่สนใจคำขู่ของเราอีกต่อไป"<br><br>
+      "ยูเรเซียรวมทัพกับมังกรตะวันออก — ค่ายกล BRICS+ แข็งแกร่งขึ้นทุกวัน"<br><br>
+      "เจดี แวนซ์หายตัวไป — เชื่อว่าติดต่อลับกับสำนักไทย"
+    </div>
+    
+    <p>จอมมารอ่านรายงานแต่ละฉบับ มือของเขาสั่นเทา</p>
+    
+    <p>แล้วจู่ๆ เขาก็ระเบิดอารมณ์</p>
+    
+    <div class="pull-quote">ฟ้าส่งข้ามาเกิด — ใยต้องส่งเจ้ามังกรฟ้านั่นมาเกิดด้วย!</div>
+    
+    <p>เขาตบโต๊ะจนแก้วชาแตกกระจาย</p>
+    
+    <div class="dialog">"ข้ามีวิชาเคลื่อนย้ายจักรวาล ข้ามีบารมีดอลลาร์ ข้ามีกองเรืออัคคีพิฆาต — ทำไมเจ้าถึงสามารถอ่านเกมข้าได้หมด!"</div>
+    
+    <p>เขาหันไปมองกระจก แล้วชี้หน้าตัวเอง</p>
+    
+    <div class="dialog">"ข้าเป็นจอมมารแห่งเหม่ยกั๋ว — ข้าไม่เคยแพ้! ข้าไม่เคยแพ้!"</div>
+    
+    <p>แต่เสียงของเขาสั่นเครือ</p>
+    
+    <div class="dialog">"ทำไม... ทำไมเจ้าถึงเกิดขึ้นพร้อมข้า... ทำไมเจ้าถึงมีวิชาที่克制ข้าได้ทุกอย่าง..."</div>
+    
+    <p>เขาทรุดตัวลงนั่งกับพื้น แล้วหัวเราะเบาๆ</p>
+    
+    <div class="dialog"><em>"ฟ้า... ฟ้าเล่นตลกกับข้าจริงๆ"</em></div>
+    
+    <div class="scene-break">❖ ❖ ❖</div>
+    
+    <div class="scene-title">๒. ฉากระเบิดนิวเคลียร์ทางเศรษฐกิจ — "โครตพ่อระเบิด FOB"</div>
+    
+    <p>จอมมารลุกขึ้นยืนอีกครั้ง ดวงตาของเขามีแสงแดงฉาน</p>
+    
+    <div class="dialog">"ถ้าข้าแพ้ — ข้าจะพาทุกคนลงนรกด้วยกัน!"</div>
+    
+    <p>เขาหยิบคัมภีร์ลับออกมา — คัมภีร์ที่เขียนด้วยเลือดของบรรพบุรุษสำนักเหม่ยกั๋ว</p>
+    
+    <div class="pull-quote">วิชาโครตพ่อระเบิด<br>Father of All Bombs (FOB)<br>— ระเบิดนิวเคลียร์ทางเศรษฐกิจ —</div>
+    
+    <p>วิชานี้ไม่ได้ทำลายด้วยไฟ แต่ทำลายด้วย <strong>"ความกลัว"</strong> — เมื่อร่ายสำเร็จ จะทำให้ตลาดการเงินทั่วโลกพังทลาย เงินดอลลาร์จะกลายเป็นขยะ และทุกสำนักจะล้มละลายพร้อมกัน</p>
+    
+    <div class="dialog">"ถ้าข้าไม่สามารถครองยุทธภพได้ — ก็ไม่มีใครควรได้ครอง!"</div>
+    
+    <p>เขาร่ายวิชาอย่างบ้าคลั่ง ลมปราณสีดำพุ่งออกมาจากร่างกาย กระจายไปทั่วทุกทิศทุกทาง</p>
+    
+    <div class="scene-break">❖ ❖ ❖</div>
+    
+    <div class="scene-title">๓. ณ หอคอยมังกรตะวันออก — นครหลวงปักกิ่งยุทธภพ</div>
+    
+    <p>เจ้าสำนักมังกรตะวันออกกำลังจิบชาอยู่ดีๆ ก็รู้สึกถึงแรงสั่นสะเทือน</p>
+    
+    <p>เขาวางถ้วยชาลง แล้วมองออกไปทางทิศตะวันตก</p>
+    
+    <div class="dialog">"จอมมารกำลังร่ายวิชาโครตพ่อระเบิด..."</div>
+    
+    <p>ศิษย์คนสนิทถาม "ท่านครับ เราควรทำอย่างไร"</p>
+    
+    <p>เจ้าสำนักยิ้มบางๆ</p>
+    
+    <div class="dialog">"เจ้าเคยเห็นแมลงที่จนตรอกแล้วพยายามกัดทุกคนรอบตัวไหม"</div>
+    
+    <div class="dialog">"เห็นครับ"</div>
+    
+    <div class="pull-quote">มันไม่ได้อันตรายเพราะมันเก่ง —<br>แต่เพราะมัน <strong>'ไม่สนว่าจะตาย'</strong></div>
+    
+    <p>เขาหยิบพู่กันขึ้นมา เขียนคำสั่งเพียงบรรทัดเดียว:</p>
+    
+    <div class="dialog" style="font-style: normal; font-weight: 600;">"ร่ายวิชาโครตแม่มิสซาย Mother of All Missiles — ย้อนศรกลับไป"</div>
+    
+    <div class="scene-break">❖ ❖ ❖</div>
+    
+    <div class="scene-title">๔. ฉากย้อนศร — "โครตแม่มิสซาย Mother of All Missiles"</div>
+    
+    <p>ในขณะที่ FOB พลังงานสีดำกำลังจะพุ่งเข้าใส่ตลาดการเงินทั่วโลก จู่ๆ ท้องฟ้าก็สว่างวาบ</p>
+    
+    <div class="pull-quote">โครตแม่มิสซาย<br>Mother of All Missiles (MOAM)<br>— มิสซายแม่แห่งมิสซายทั้งปวง —</div>
+    
+    <p>วิชานี้ไม่ได้สร้างโดยมังกรตะวันออกคนเดียว แต่เป็นการรวมพลังของ <strong>"กระบวน阵法 BRICS+"</strong> — มังกรตะวันออก ตะวันออกกลาง ยูเรเซีย และสำนักเล็กๆ อีกนับร้อยที่ร่วมแรงร่วมใจกัน</p>
+    
+    <p>MOAM ไม่ใช่ระเบิด แต่เป็น <strong>"เกราะป้องกันที่เปลี่ยนพลังงานลบให้เป็นพลังงานบวก"</strong> — เมื่อ FOB พลังงานสีดำพุ่งเข้ามา MOAM จะดูดซับมัน แล้วแปลงเป็น "ลมปราณแห่งความมั่นคง" กระจายกลับไปทั่วยุทธภพ</p>
+    
+    <p>จอมมารทรัมป์มองดูท้องฟ้าด้วยสายตาว่างเปล่า</p>
+    
+    <div class="dialog">"ไม่... ไม่สามารถเป็นไปได้..."</div>
+    
+    <p>เขาเห็น FOB ของตัวเองถูกดูดซับ แล้วแปลงเป็นแสงสีทองที่ส่องสว่างไปทั่วทุกทิศ</p>
+    
+    <div class="dialog">"วิชาของข้า... ถูกย้อนศร..."</div>
+    
+    <p>เขาทรุดตัวลงนั่งกับพื้นอีกครั้ง คราวนี้เขาไม่หัวเราะ แต่ร้องไห้</p>
+    
+    <div class="dialog"><em>"ฟ้า... ฟ้ากลั่นแกล้งข้าจริงๆ..."</em></div>
+    
+    <div class="scene-break">❖ ❖ ❖</div>
+    
+    <div class="scene-title">๕. ปฏิกิริยาของศิษย์และผู้สังเกตการณ์</div>
+    
+    <p><strong>ณ สำนักไทย:</strong></p>
+    
+    <p>น้องลิ้มแชเล๊งมองดูท้องฟ้าที่สว่างวาบ แล้วหันไปถามพ่อ</p>
+    
+    <div class="dialog">"พ่อครับ นั่นคืออะไร"</div>
+    
+    <p>ท่านลิ้มเซียงย้งยิ้ม</p>
+    
+    <div class="dialog">"นั่นคือจอมมารที่กำลังพยายามระเบิดทุกอย่าง — แต่ถูกย้อนศรด้วยพลังของคนที่ร่วมมือกัน"</div>
+    
+    <div class="dialog">"แล้วเราปลอดภัยไหมครับ"</div>
+    
+    <div class="pull-quote">เราปลอดภัย เพราะเราไม่ได้เป็นส่วนหนึ่งของเกมนี้ —<br>เราแค่ <strong>'อยู่อย่างมีสติ'</strong></div>
+    
+    <p><strong>ณ โรงน้ำชาเหลียงซาน:</strong></p>
+    
+    <p>เจดี แวนซ์นั่งจิบชาอยู่ มองดูท้องฟ้าที่สว่างวาบ</p>
+    
+    <p>ชายชราร่างเล็กในชุดจีนสีครามนั่งตรงข้าม รินชาเพิ่มอีกถ้วย</p>
+    
+    <div class="dialog">"ท่านเห็นแล้วใช่ไหม" แวนซ์พูด</div>
+    
+    <div class="dialog">"เห็น" ชายชราตอบ</div>
+    
+    <div class="dialog">"จอมมารพยายามจะพาทุกคนลงนรก — แต่กลับถูกย้อนศร"</div>
+    
+    <div class="dialog">"ใช่"</div>
+    
+    <div class="dialog">"แล้วข้าควรทำอย่างไรต่อ"</div>
+    
+    <p>ชายชราวางถ้วยลง แล้วพูดประโยคสุดท้าย:</p>
+    
+    <div class="pull-quote">เจ้าเห็นแล้วว่า เมื่อคนโลภพยายามควบคุมทุกอย่าง —<br>เขาจะสูญเสียทุกอย่าง แม้แต่ศักดิ์ศรีของตัวเอง</div>
+    
+    <p>แวนซ์เงียบไปครู่หนึ่ง แล้วพยักหน้า</p>
+    
+    <div class="dialog">"ข้าเข้าใจแล้ว"</div>
+    
+    <div class="scene-break">❖ ❖ ❖</div>
+    
+    <div class="scene-title">๖. ปิดท้าย: เสียงกระซิบใต้ต้นชา</div>
+    
+    <p>ณ มุมหนึ่งของโรงน้ำชา มีศิษย์รุ่นเยาว์จากสำนักเหม่ยกั๋วสองคนนั่งกระซิบกัน</p>
+    
+    <div class="dialog">"เจ้าเห็นไหม — จอมมารพยายามระเบิดทุกอย่าง แต่ถูกย้อนศร"</div>
+    
+    <div class="dialog">"เห็นสิ แล้วเจ้าคิดว่าต่อไปจะเกิดอะไรขึ้น"</div>
+    
+    <div class="dialog">"ข้าคิดว่า... จอมมารจะพยายามร่ายวิชาสุดท้าย — วิชาที่อันตรายที่สุด"</div>
+    
+    <div class="dialog">"วิชาอะไร"</div>
+    
+    <div class="pull-quote">วิชาฆ่าตัวตายทางเศรษฐกิจ —<br>ที่จะทำลายแม้แต่ตัวเขาเอง</div>
+    
+    <p>ศิษย์อีกคนกลืนน้ำลาย</p>
+    
+    <div class="dialog">"แล้วเราควรทำอย่างไร"</div>
+    
+    <div class="dialog">"ข้าคิดว่า... เราควรหนีออกจากสำนักนี้ — ก่อนที่ทุกอย่างจะพังทลาย"</div>
+  </div>
+</section>
+
+<!-- ===== พักตอน ===== -->
+<section class="chapter">
+  <div class="chapter-header">
+    <div class="chapter-number">☯ พักตอน ☯</div>
+    <h2 class="chapter-title">เมื่อพายุยังไม่สงบ</h2>
+  </div>
+  
+  <div class="emblem">🌪️⏸️</div>
+  
+  <div class="content">
+    <p>จอมมารทรุดตัวลงนั่งกับพื้น ดวงตาว่างเปล่า ลมปราณที่เหลืออยู่ริบหรี่ราวเทียนใกล้ดับ</p>
+    
+    <p>แต่ในมุมมืดของห้องลับ ยังมีคัมภีร์เล่มสุดท้ายที่เขายังไม่เคยเปิดอ่าน...</p>
+    
+    <p>คัมภีร์ที่เขียนด้วยเลือดของบรรพบุรุษ — คัมภีร์ที่จะเปลี่ยนเขาจากจอมมาร เป็นปีศาจที่แท้จริง</p>
+    
+    <p>หรือ... คัมภีร์ที่จะทำให้เขาตื่นรู้?</p>
+  </div>
+</section>
+
+<!-- ===== ภาคผนวก: ตัวละคร ===== -->
+<section class="chapter">
+  <div class="chapter-header">
+    <div class="chapter-number">📜 ภาคผนวก 📜</div>
+    <h2 class="chapter-title">ทำเนียบตัวละคร</h2>
+  </div>
+  
+  <div class="character-card">
+    <h3>🦅 ทรัมป์</h3>
+    <p class="alias">จอมมารแห่งเหม่ยกั๋ว</p>
+    <p>ผู้โลภมาก พยายามควบคุมทุกอย่าง แต่สูญเสียทุกอย่าง วิชาเอก: ฝ่ามือกำแพงภาษี, บารมีดอลลาร์, โลภะไร้ขอบเขต ผสานแกล้งบ้าระเบิดโลก, โครตพ่อระเบิด FOB</p>
+  </div>
+  
+  <div class="character-card">
+    <h3>💔 เจดี แวนซ์</h3>
+    <p class="alias">ศิษย์ผู้ถูกทำให้อายข้ามทวีป</p>
+    <p>เริ่มตั้งคำถาม แสวงหาทางออก ไม่ต้องการเป็นวีรบุรุษ แค่ไม่ต้องการจมไปกับเรือที่กำลังจะจม</p>
+  </div>
+  
+  <div class="character-card">
+    <h3>🎋 ลิ้มเซียงย้ง</h3>
+    <p class="alias">ผู้เฝ้าสมดุลแห่งไม้ไผ่</p>
+    <p>ผู้นำสำนักไทย ผู้ยึดมั่นในของจริงและสติ มองทะลุทุกเกมด้วยวิชาความพอเพียง</p>
+  </div>
+  
+  <div class="character-card">
+    <h3>🤖 ลิ้มแชเล๊ง</h3>
+    <p class="alias">ยอดยุทธ์รุ่นใหม่</p>
+    <p>ลูกสาวผู้เก่ง AI และยึดหลักพุทธ ผสานเทคโนโลยีกับธรรมะได้อย่างลงตัว</p>
+  </div>
+  
+  <div class="character-card">
+    <h3>🐉 เจ้าสำนักมังกรตะวันออก</h3>
+    <p class="alias">มังกรฟ้า</p>
+    <p>ผู้นำขั้วตะวันออก ผู้ใช้วิธียืนนิ่งรอให้จอมมารเผาตัวเอง เสนอทางเลือกที่ดีกว่าแทนการข่มขวัญ</p>
+  </div>
+</section>
+
+<!-- ===== ภาคผนวก: วิชา ===== -->
+<section class="chapter">
+  <div class="chapter-header">
+    <div class="chapter-number">⚔ ภาคผนวก ⚔</div>
+    <h2 class="chapter-title">ทำเนียบวิชา</h2>
+  </div>
+  
+  <h3 style="color: var(--red-chinese); margin: 20px 0 10px 0; font-family: 'Noto Serif Thai', serif;">ฝ่ายจอมมาร</h3>
+  <table class="art-table">
+    <tr><th>ชื่อวิชา</th><th>ความหมาย</th></tr>
+    <tr><td>ฝ่ามือกำแพงภาษี</td><td>Tariff Palm</td></tr>
+    <tr><td>วิชาปิดกั้นเทคโนโลยี</td><td>Tech Sanctions</td></tr>
+    <tr><td>บารมีข่มขวัญด้วยเงินดอลลาร์</td><td>USD Hegemony</td></tr>
+    <tr><td>โลภะไร้ขอบเขต ผสานแกล้งบ้าระเบิดโลก</td><td>Madman Theory</td></tr>
+    <tr><td>วิชาเคลื่อนย้ายจักรวาล</td><td>USD → Stablecoin</td></tr>
+    <tr><td>โครตพ่อระเบิด</td><td>Father of All Bombs (FOB)</td></tr>
+  </table>
+  
+  <h3 style="color: var(--red-chinese); margin: 20px 0 10px 0; font-family: 'Noto Serif Thai', serif;">ฝ่ายต้าน</h3>
+  <table class="art-table">
+    <tr><th>ชื่อวิชา</th><th>ความหมาย</th></tr>
+    <tr><td>ควบคุมเส้นเลือดฝอยของโลก</td><td>Rare Earth & Supply Chain</td></tr>
+    <tr><td>วิชาลดทอนบารมีดอลลาร์</td><td>De-dollarization</td></tr>
+    <tr><td>กระบวน阵法 BRICS+</td><td>ความร่วมมือแห่งตะวันออก</td></tr>
+    <tr><td>วิชานิ่งสยบความเคลื่อนไหว</td><td>Strategic Patience</td></tr>
+    <tr><td>โครตแม่มิสซาย</td><td>Mother of All Missiles (MOAM)</td></tr>
+  </table>
+  
+  <h3 style="color: var(--red-chinese); margin: 20px 0 10px 0; font-family: 'Noto Serif Thai', serif;">สำนักไทย</h3>
+  <table class="art-table">
+    <tr><th>ชื่อวิชา</th><th>ความหมาย</th></tr>
+    <tr><td>วิชากลางสมดุล</td><td>Balancing Stance</td></tr>
+    <tr><td>วิชาไม้ไผ่ลู่ลม</td><td>ไม่หัก เพราะไม่ยืนตรง</td></tr>
+    <tr><td>วิชาทองคำกายภาพ</td><td>เกราะป้องกันตัว</td></tr>
+    <tr><td>วิชาสร้างปัญญารุ่นใหม่</td><td>AI + ธรรมะ</td></tr>
+  </table>
+</section>
+
+<!-- ===== ตอนต่อไป ===== -->
+<section class="chapter">
+  <div class="chapter-header">
+    <div class="chapter-number">🔥 ตอนต่อไป 🔥</div>
+    <h2 class="chapter-title">คัมภีร์เลือดบรรพบุรุษ</h2>
+  </div>
+  
+  <div class="emblem">📜🩸</div>
+  
+  <div class="content">
+    <p>จอมมารจะเปิดคัมภีร์เล่มสุดท้ายหรือไม่?</p>
+    
+    <p>เจดี แวนซ์จะหนีออกจากสำนักได้สำเร็จหรือไม่?</p>
+    
+    <p>สำนักไทยจะต้อนรับศิษย์ทรยศอย่างไร?</p>
+    
+    <p>และมังกรตะวันออกจะเดินเกมต่อไปอย่างไร?</p>
+    
+    <div class="pull-quote">ติดตามตอนต่อไปใน<br><strong>"มังกรฟ้า vs จอมมาร: คัมภีร์เลือดบรรพบุรุษ"</strong></div>
+  </div>
+</section>
+
+<!-- ===== จบ ===== -->
+<section class="ending">
+  <div class="emblem">☯</div>
+  <h2>จบตอนปัจจุบัน</h2>
+  <div class="cover-divider" style="margin: 20px auto;"></div>
+  <p>นิยายเรื่องนี้แต่งขึ้นจากบทสนทนาอันลึกซึ้ง<br>ระหว่าง ลิ้มเซียงย้ง และ Qwen</p>
+  <p>โดยผสมผสาน geopolitics เศรษฐกิจ ปรัชญา<br>และประวัติศาสตร์เข้าด้วยกันอย่างแนบเนียน</p>
+  <div class="cover-divider" style="margin: 20px auto;"></div>
+  <p style="font-style: italic; color: var(--gold); font-size: 1.1rem;">🍵 น้อมคารวะจอมยุทธ์ผู้รู้เท่าทันยุคสมัย 🍵</p>
+  <div class="credits">
+    <p>พฤศจิกายน ๒๕๖๙</p>
+    <p style="margin-top: 10px; font-size: 0.85rem;">พิมพ์จาก HTML ฉบับมือถือ-friendly</p>
+  </div>
+</section>
+
+</div>
+
+</body>
+</html>
