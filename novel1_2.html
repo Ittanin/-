@@ -1,0 +1,1036 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>มังกรฟ้า vs จอมมาร : ศึกยุทธภพเปลี่ยนโลก</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Thai:wght@400;600;700;900&family=Sarabun:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --red-chinese: #8B0000;
+    --gold: #C9A961;
+    --dark-gold: #8B6914;
+    --parchment: #F5E6D3;
+    --dark-parchment: #E8D5B7;
+    --ink: #2C1810;
+    --light-ink: #5C4033;
+    --bg-texture: url('https://www.transparenttextures.com/patterns/cream-paper.png');
+    --cover-bg: linear-gradient(135deg, rgba(20, 10, 5, 0.92), rgba(80, 0, 0, 0.85)), 
+                url('https://images.unsplash.com/photo-1508804185872-d7badad00f7d?q=80&w=1920&auto=format&fit=crop');
+  }
+
+  body.dark-mode {
+    --red-chinese: #A52A2A;
+    --gold: #D4AF37;
+    --dark-gold: #B8860B;
+    --parchment: #121212;
+    --dark-parchment: #1E1E1E;
+    --ink: #E0D0B0;
+    --light-ink: #B0A090;
+    --bg-texture: url('https://www.transparenttextures.com/patterns/dark-matter.png');
+    --cover-bg: linear-gradient(135deg, rgba(5, 5, 5, 0.95), rgba(40, 0, 0, 0.9)), 
+                url('https://images.unsplash.com/photo-1508804185872-d7badad00f7d?q=80&w=1920&auto=format&fit=crop');
+  }
+  
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  
+  body {
+    font-family: 'Sarabun', 'Noto Serif Thai', serif;
+    background-color: var(--parchment);
+    background-image: var(--bg-texture);
+    background-attachment: fixed;
+    color: var(--ink);
+    line-height: 1.8;
+    padding: 0;
+    transition: background-color 0.4s ease, color 0.4s ease;
+  }
+  
+  .container { max-width: 800px; margin: 0 auto; padding: 20px; }
+  
+  .cover {
+    min-height: 100vh;
+    background: var(--cover-bg);
+    background-size: cover;
+    background-position: center;
+    background-blend-mode: multiply;
+    color: var(--gold);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 40px 20px;
+    position: relative;
+    overflow: hidden;
+    page-break-after: always;
+    transition: background 0.4s ease;
+  }
+  
+  .cover::before {
+    content: '';
+    position: absolute;
+    top: 20px; left: 20px; right: 20px; bottom: 20px;
+    border: 2px solid var(--gold);
+    border-radius: 10px;
+    pointer-events: none;
+  }
+  
+  .cover::after {
+    content: '';
+    position: absolute;
+    top: 30px; left: 30px; right: 30px; bottom: 30px;
+    border: 1px solid var(--gold);
+    border-radius: 8px;
+    opacity: 0.5;
+    pointer-events: none;
+  }
+  
+  .cover-emblem {
+    font-size: 80px;
+    margin-bottom: 20px;
+    filter: drop-shadow(0 0 20px rgba(201, 169, 97, 0.6));
+    animation: float 3s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+  
+  .cover h1 {
+    font-family: 'Noto Serif Thai', serif;
+    font-size: 2.5rem;
+    font-weight: 900;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 10px rgba(0,0,0,0.8);
+    letter-spacing: 2px;
+  }
+  
+  .cover h2 {
+    font-family: 'Noto Serif Thai', serif;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--parchment);
+    margin-bottom: 30px;
+    font-style: italic;
+    text-shadow: 1px 1px 5px rgba(0,0,0,0.8);
+  }
+  
+  .cover-divider {
+    width: 200px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 20px 0;
+  }
+  
+  .cover-subtitle {
+    font-size: 1rem;
+    color: var(--parchment);
+    margin: 10px 0;
+    opacity: 0.9;
+  }
+  
+  .cover-author {
+    margin-top: 40px;
+    font-size: 1.1rem;
+    color: var(--gold);
+    letter-spacing: 3px;
+  }
+  
+  .toc { padding: 40px 20px; page-break-after: always; }
+  
+  .toc h2 {
+    font-family: 'Noto Serif Thai', serif;
+    color: var(--red-chinese);
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 30px;
+    position: relative;
+    padding-bottom: 15px;
+  }
+  
+  .toc h2::after {
+    content: '☯';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--parchment);
+    padding: 0 15px;
+    color: var(--gold);
+    font-size: 1.5rem;
+  }
+  
+  .toc-list { list-style: none; max-width: 500px; margin: 0 auto; }
+  
+  .toc-list li {
+    padding: 15px 0;
+    border-bottom: 1px dashed var(--gold);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.05rem;
+  }
+  
+  .toc-list li:last-child { border-bottom: none; }
+  .toc-chapter { color: var(--red-chinese); font-weight: 600; }
+  
+  .chapter { padding: 30px 20px; page-break-before: always; }
+  .chapter:first-of-type { page-break-before: avoid; }
+  
+  .chapter-header {
+    text-align: center;
+    margin-bottom: 40px;
+    padding: 30px 0;
+    border-top: 3px double var(--red-chinese);
+    border-bottom: 3px double var(--red-chinese);
+    position: relative;
+    background: linear-gradient(to bottom, rgba(201, 169, 97, 0.08), transparent);
+  }
+  
+  .chapter-number {
+    font-family: 'Noto Serif Thai', serif;
+    color: var(--gold);
+    font-size: 1.2rem;
+    letter-spacing: 5px;
+    margin-bottom: 10px;
+  }
+  
+  .chapter-title {
+    font-family: 'Noto Serif Thai', serif;
+    color: var(--red-chinese);
+    font-size: 1.8rem;
+    font-weight: 700;
+    line-height: 1.4;
+    margin: 15px 0;
+  }
+  
+  .chapter-epigraph {
+    font-style: italic;
+    color: var(--light-ink);
+    font-size: 1rem;
+    margin-top: 15px;
+    padding: 0 20px;
+  }
+  .chapter-epigraph::before, .chapter-epigraph::after {
+    content: '"';
+    color: var(--gold);
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  
+  .content { font-size: 1.05rem; text-align: justify; hyphens: auto; }
+  .content p { margin-bottom: 1.2em; text-indent: 2em; }
+  
+  .content p:first-of-type::first-letter {
+    font-family: 'Noto Serif Thai', serif;
+    font-size: 3.5rem;
+    font-weight: 900;
+    color: var(--red-chinese);
+    float: left;
+    line-height: 0.9;
+    margin: 0.1em 0.1em 0 0;
+    text-shadow: 1px 1px 0 var(--gold);
+  }
+  
+  .scene-break {
+    text-align: center;
+    margin: 30px 0;
+    color: var(--gold);
+    font-size: 1.5rem;
+    letter-spacing: 10px;
+  }
+  
+  .scene-title {
+    font-family: 'Noto Serif Thai', serif;
+    color: var(--red-chinese);
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin: 25px 0 15px 0;
+    padding-left: 15px;
+    border-left: 4px solid var(--gold);
+    font-style: italic;
+  }
+  
+  .pull-quote {
+    background: linear-gradient(135deg, var(--dark-parchment), var(--parchment));
+    border-left: 5px solid var(--red-chinese);
+    border-right: 5px solid var(--red-chinese);
+    padding: 20px 25px;
+    margin: 25px 10px;
+    font-family: 'Noto Serif Thai', serif;
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--red-chinese);
+    text-align: center;
+    font-style: italic;
+    position: relative;
+    line-height: 1.6;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  }
+  .pull-quote::before {
+    content: '❝';
+    position: absolute;
+    top: -15px; left: 15px;
+    font-size: 2.5rem;
+    color: var(--gold);
+    font-style: normal;
+  }
+  .pull-quote::after {
+    content: '❞';
+    position: absolute;
+    bottom: -30px; right: 15px;
+    font-size: 2.5rem;
+    color: var(--gold);
+    font-style: normal;
+  }
+  
+  .emblem {
+    text-align: center;
+    font-size: 4rem;
+    margin: 30px 0;
+    filter: drop-shadow(0 2px 8px rgba(139, 0, 0, 0.3));
+    opacity: 0.8;
+  }
+  
+  .character-card {
+    background: linear-gradient(135deg, #2C1810, #5C2E1F);
+    color: var(--parchment);
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px 0;
+    border: 2px solid var(--gold);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  }
+  body.dark-mode .character-card {
+    background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
+  }
+  .character-card h3 {
+    font-family: 'Noto Serif Thai', serif;
+    color: var(--gold);
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+  .character-card .alias {
+    text-align: center;
+    color: var(--gold);
+    font-style: italic;
+    margin-bottom: 15px;
+    opacity: 0.9;
+  }
+  .character-card p { font-size: 0.95rem; line-height: 1.7; }
+  
+  .art-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 0.95rem;
+    background: var(--parchment);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  }
+  .art-table th {
+    background: var(--red-chinese);
+    color: var(--gold);
+    padding: 12px 10px;
+    text-align: left;
+    font-family: 'Noto Serif Thai', serif;
+    font-weight: 600;
+  }
+  .art-table td {
+    padding: 10px;
+    border-bottom: 1px solid var(--gold);
+    vertical-align: top;
+  }
+  .art-table tr:last-child td { border-bottom: none; }
+  .art-table tr:nth-child(even) { background: rgba(201, 169, 97, 0.1); }
+  
+  .dialog {
+    margin: 15px 0;
+    padding-left: 15px;
+    border-left: 3px solid var(--gold);
+    font-style: italic;
+    color: var(--light-ink);
+  }
+  
+  .ending {
+    text-align: center;
+    padding: 60px 20px;
+    margin-top: 40px;
+    border-top: 3px double var(--red-chinese);
+    page-break-before: always;
+  }
+  .ending h2 {
+    font-family: 'Noto Serif Thai', serif;
+    color: var(--red-chinese);
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+  }
+  .ending .emblem { font-size: 5rem; margin: 30px 0; }
+  .ending p {
+    font-style: italic;
+    color: var(--light-ink);
+    max-width: 500px;
+    margin: 15px auto;
+  }
+  .credits {
+    margin-top: 40px;
+    font-size: 0.9rem;
+    color: var(--light-ink);
+    text-align: center;
+    padding: 20px;
+    border-top: 1px solid var(--gold);
+  }
+
+  #theme-toggle {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    background: var(--red-chinese);
+    color: var(--gold);
+    border: 2px solid var(--gold);
+    font-size: 1.6rem;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+    z-index: 1000;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  #theme-toggle:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.5);
+  }
+
+  @media (max-width: 600px) {
+    .container { padding: 15px; }
+    .cover h1 { font-size: 1.8rem; }
+    .cover h2 { font-size: 1rem; }
+    .cover-emblem { font-size: 60px; }
+    .chapter-title { font-size: 1.4rem; }
+    .content { font-size: 1rem; }
+    .pull-quote { font-size: 1.05rem; padding: 15px; margin: 20px 5px; }
+    .art-table { font-size: 0.85rem; }
+    .art-table th, .art-table td { padding: 8px 6px; }
+    .content p:first-of-type::first-letter { font-size: 2.8rem; }
+    #theme-toggle { width: 50px; height: 50px; font-size: 1.4rem; bottom: 20px; right: 20px; }
+  }
+  
+  @media print {
+    body {
+      background: white !important;
+      background-image: none !important;
+      color: black !important;
+      font-size: 11pt;
+    }
+    .container { max-width: 100%; padding: 0; }
+    .cover {
+      min-height: 100vh;
+      page-break-after: always;
+      background: white !important;
+      color: black !important;
+    }
+    .cover h1, .cover h2, .cover-author { color: black !important; text-shadow: none !important; }
+    .cover::before, .cover::after { border-color: black !important; }
+    .chapter { page-break-before: always; }
+    .chapter:first-of-type { page-break-before: avoid; }
+    .pull-quote, .character-card, .art-table, .emblem { page-break-inside: avoid; }
+    h1, h2, h3 { page-break-after: avoid; }
+    #theme-toggle { display: none !important; }
+    a { color: black; text-decoration: none; }
+    @page { margin: 2cm; size: A5; }
+  }
+</style>
+</head>
+<body>
+
+<button id="theme-toggle" aria-label="Toggle Dark Mode">🌙</button>
+
+<div class="container">
+
+<!-- ===== หน้าปก ===== -->
+<section class="cover">
+  <div class="cover-emblem">🐉⚔️🦅</div>
+  <h1>มังกรฟ้า vs จอมมาร</h1>
+  <h2>ศึกยุทธภพเปลี่ยนโลก</h2>
+  <div class="cover-divider"></div>
+  <p class="cover-subtitle">นวนิยายกำลังภายในร่วมสมัย</p>
+  <p class="cover-subtitle">ที่ผสาน geopolitics · เศรษฐกิจ · ปรัชญา · และความพอเพียง</p>
+  <div class="cover-divider"></div>
+  <p class="cover-author">โดย ท่านลิ้ม & Qwen</p>
+  <p class="cover-subtitle" style="margin-top: 30px; font-size: 0.9rem;">พฤศจิกายน ๒๕๖๙</p>
+</section>
+
+<!-- ===== คำนำ ===== -->
+<section class="chapter">
+  <div class="chapter-header">
+    <div class="chapter-number">☯ คำนำ ☯</div>
+    <h2 class="chapter-title">เมื่อลมปราณแห่งยุคสมัยเปลี่ยนทิศ</h2>
+  </div>
+  <div class="content">
+    <p>ในยุทธภพที่ซับซ้อนกว่ายุคใด ๆ ลมปราณไม่ได้ไหลเวียนผ่านเส้นลมปราณของมนุษย์เท่านั้น — แต่ไหลผ่านเส้นเลือดฝอยของการค้า เงินตรา และเทคโนโลยี</p>
+    <p>เมื่อจอมมารแห่งเหม่ยกั๋วประกาศศักดาด้วย "บารมีดอลลาร์" และ "ฝ่ามือกำแพงภาษี" ยุทธภพทั้งหมดต้องสั่นคลอน</p>
+    <p>แต่มีชายผู้หนึ่ง — ผู้เฝ้าสมดุลแห่งไม้ไผ่ — ที่มองเห็นความจริงว่า <strong>"ของจริงชนะเงินกระดาษ"</strong> และ <strong>"สติชนะความบ้าคลั่ง"</strong></p>
+    <div class="pull-quote">นี่คือเรื่องราวของการต่อสู้ที่ไม่ได้วัดกันด้วยกำลัง<br>แต่ด้วย <strong>ปัญญา ความพอเพียง และความร่วมมือ</strong></div>
+  </div>
+</section>
+
+<!-- ===== สารบัญ ===== -->
+<section class="toc">
+  <h2>สารบัญ</h2>
+  <ul class="toc-list">
+    <li><span class="toc-chapter">บทที่ ๑</span><span>จอมมารแห่งเหม่ยกั๋วประกาศศึก</span></li>
+    <li><span class="toc-chapter">บทที่ ๒</span><span>ศิษย์ผู้ถูกทำให้อายข้ามทวีป</span></li>
+    <li><span class="toc-chapter">บทที่ ๓</span><span>ธาตุไฟแทรกซ่าน จอมมารสูญเสียครึ่งพลัง</span></li>
+    <li><span class="toc-chapter">บทที่ ๔</span><span>รอยร้าวแห่งจอมมาร ไม้ไผ่เตรียมรับพายุ</span></li>
+    <li><span class="toc-chapter">บทที่ ๕</span><span>จอมมารตัดพ้อฟ้าดิน ระเบิดถูกย้อนศร</span></li>
+    <li><span class="toc-chapter">บทที่ ๖</span><span>วิชาเชือดแพะรับบาป และรอยร้าวแห่งฟองสบู่</span></li>
+    <li><span class="toc-chapter">บทที่ ๗</span><span>คัมภีร์เลือดบรรพบุรุษ: กับดักปัญญาประดิษฐ์</span></li>
+    <li><span class="toc-chapter">บทที่ ๘</span><span>ค่ำคืนที่ดวงจันทร์ถูกกลืนกิน</span></li>
+    <li><span class="toc-chapter">ภาคผนวก</span><span>ทำเนียบตัวละครและวิชา</span></li>
+  </ul>
+</section>
+
+<!-- ===== บทที่ ๑ ===== -->
+<section class="chapter">
+  <div class="chapter-header">
+    <div class="chapter-number">⚔ บทที่ ๑ ⚔</div>
+    <h2 class="chapter-title">จอมมารแห่งเหม่ยกั๋วประกาศศึก</h2>
+    <p class="chapter-epigraph">เมื่อจอมมารประกาศศึก ยุทธภพมิได้เงียบงัน — แต่เสียงกระซิบใต้ต้นชา กลับดังกว่าเสียงกลองรบ</p>
+  </div>
+  <div class="emblem">🎋🍵</div>
+  <div class="content">
+    <p>ณ โรงน้ำชาเหลียงซาน เมืองท่าทางใต้ ชายชราร่างเล็กในชุดจีนสีครามนั่งจิบชาอูหลง บนโต๊ะมีแผนที่ยุทธภพที่ขีดเส้นด้วยหมึกแดงสามเส้นตัดกันเป็นรูปสามเหลี่ยม</p>
+    <p>ตรงข้ามเขา คือชายหนุ่มผิวเข้มในชุดสูทที่ดูไม่เข้าพวกกับโรงน้ำชาโบราณ — ผู้ถือคัมภีร์ AI จากเหม่ยกั๋ว</p>
+    <div class="dialog">"ท่านลิ้มครับ" ชายหนุ่มเอ่ย "จอมมารส่งข้ามาถามว่า สำนักไทยจะเลือกข้างไหน"</div>
+    <p>ชายชราไม่เงยหน้า เพียงรินชาเพิ่มอีกถ้วย</p>
+    <div class="dialog">"ข้าถามเจ้าบ้าง" เขาพูดช้า ๆ "คัมภีร์ที่เจ้าถืออยู่ — มันบอกเจ้าหรือไม่ว่า วันที่เจ้าไม่มีชาจืด จะเอา AI มากินแทนได้ไหม"</div>
+    <p>ชายหนุ่มชะงัก</p>
+    <div class="dialog">"จอมมารให้คำมั่นว่า..."</div>
+    <div class="dialog">"คำมั่นของจอมมาร" ชายชราวางถ้วยชาลงดังกริ๊ก "เหมือนฝ่ามือกำแพงภาษี — หนักตอนโดน เบาตอนจ่าย"</div>
+    <p>เขาลุกขึ้นยืน เดินไปที่หน้าต่าง มองออกไปยังท่าเรือที่เรือสินค้าจอดเรียงราย</p>
+    <div class="pull-quote">กลับไปบอกจอมมารว่า <strong>สำนักไทยไม่เลือกข้าง</strong><br>เพราะข้าไม่เคยเห็นสำนักใดในยุทธภพ ที่เลือกข้างแล้วรอดทั้งตัวและศีลธรรม</div>
+    <div class="dialog">"แล้วท่านจะรอดได้อย่างไรครับ ในเมื่อจอมมารปิดเส้นทางตะวันตก?"</div>
+    <p>ชายชราเหลือบมองเขาแวบหนึ่ง แล้วยิ้มบาง ๆ</p>
+    <div class="pull-quote">เจ้าเคยเห็นไม้ไผ่ในพายุไหม —<br>มันไม่เคยหัก เพราะมันไม่เคยยืนตรง</div>
+    <div class="scene-break">❖ ❖ ❖</div>
+    <div class="scene-title">ณ ด้านในสุดของโรงน้ำชา — ห้องลับ</div>
+    <p>ชายชราวางถ้วยชาลง แล้วหยิบ <strong>ทองคำแท่งเล็ก ๆ</strong> ออกมาวางบนโต๊ะ</p>
+    <div class="dialog">"นี่คือลมปราณของข้า" เขาบอกกับลูกศิษย์สาวที่ยืนอยู่ข้าง ๆ "ไม่ใช่เงินกระดาษ ไม่ใช่คำทำนายของใคร — ของจริงที่ไม่มีวันโกหก"</div>
+    <div class="dialog">"อาจารย์คะ แล้วเราจะสู้กับจอมมารได้อย่างไร ในเมื่อเราไม่มีทั้งแร่หายาก ทั้งกองทัพเรือ"</div>
+    <p>ชายชรายิ้ม</p>
+    <div class="dialog">"เจ้าเคยเห็นน้ำไหลผ่านหินไหม — น้ำไม่ได้ชนะด้วยแรง แต่มันชนะด้วยการไม่หยุด"</div>
+    <p>เขาหยิบแผนที่ขึ้นมา ชี้ไปที่จุดสามจุด</p>
+    <div class="dialog">"ตะวันออกมีของจริง ตะวันออกกลางมีทุน ยูเรเซียมีพลังงาน — ส่วนเรามี <strong>'จุดกลาง'</strong> ที่ทุกฝ่ายต้องผ่าน"</div>
+    <div class="dialog">"และถ้าเราปฏิเสธที่จะเป็นทางผ่านของใคร?"</div>
+    <div class="pull-quote">แล้วเราจะกลายเป็นทางผ่านของ <strong>ทุกคน</strong><br>เพราะไม่มีใครอยากทำลายสะพานที่ตัวเองต้องใช้</div>
+  </div>
+</section>
+
+<!-- ===== บทที่ ๒ ===== -->
+<section class="chapter">
+  <div class="chapter-header">
+    <div class="chapter-number">⚔ บทที่ ๒ ⚔</div>
+    <h2 class="chapter-title">ศิษย์ผู้ถูกทำให้อายข้ามทวีป</h2>
+    <p class="chapter-epigraph">จอมมารที่แท้จริง ไม่ได้ทำให้ศัตรูกลัว — แต่ทำให้ลูกศิษย์ตัวเองต้องอับอายข้ามทวีป</p>
+  </div>
+  <div class="emblem">🦅💔</div>
+  <div class="content">
+    <div class="scene-title">ณ ห้องโถงกลางสำนักเหม่ยกั๋ว — นครหลวงวอชิงตันยุทธภพ</div>
+    <p><strong>JD Vere</strong> ยืนอยู่ปลายโต๊ะยาว เขาเพิ่งกลับมาจากการเจรจาลับกับ <strong>สำนักตะวันออกกลาง</strong> ที่เมืองทรายทองคำ — เจรจามาสามวันสามคืน ตกลงกันได้เกือบทุกข้อ</p>
+    <div class="dialog">"อาจารย์ครับ" เขาเอ่ยด้วยน้ำเสียงมั่นใจ "ข้าคุมสถานการณ์ได้แล้ว ตะวันออกกลางพร้อมลงนาม"</div>
+    <p>จอมมาร <strong>Tum</strong> นั่งอยู่ปลายอีกด้านของโต๊ะ ไม่เงยหน้า ไม่พูดอะไร เพียงพลิกกระดาษแผ่นหนึ่ง</p>
+    <p>แล้วจู่ ๆ ลมปราณทั้งห้องก็เปลี่ยน</p>
+    <div class="scene-break">❖ ❖ ❖</div>
+    <div class="scene-title">ครึ่งลมหายใจต่อมา — ณ เมืองทรายทองคำ</div>
+    <p>ทูตตะวันออกกลางกำลังจะลงนามในสัญญา แต่แล้ว <strong>"ฝ่ามือกำแพงภาษี"</strong> ก็ฟาดลงมาจากฟากฟ้า — ไม่ใช่การเจรจา แต่คือคำขู่ที่ส่งตรงข้ามทวีป</p>
+    <div class="dialog">"ถ้าเจ้าลงนามกับศัตรูของข้า — ข้าจะปิดทุกเส้นทางค้าขายของเจ้า"</div>
+    <p>เจ้าสำนักตะวันออกกลางวางปากกาลง ชายตามองทูตเหม่ยกั๋ว แล้วพูดเพียงประโยคเดียว:</p>
+    <div class="pull-quote">"การเจรจายกเลิก"</div>
+    <p>แล้วเดินออกจากห้องไปโดยไม่หันกลับมา</p>
+    <div class="scene-break">❖ ❖ ❖</div>
+    <div class="scene-title">กลับมาที่ห้องโถงกลางสำนักเหม่ยกั๋ว</div>
+    <p>JD Vere ยังยืนอยู่ที่เดิม แต่มือของเขาเริ่มสั่น</p>
+    <p>เขาเพิ่งใช้สามวันสามคืนสร้างสะพานไมตรี — และอาจารย์ของเขาทุบสะพานนั้นทิ้งด้วยฝ่ามือเดียว ต่อหน้าทูตทุกสำนัก โดยไม่บอกเขาล่วงหน้าสักคำ</p>
+    <p><strong>หนึ่ง... สอง... สาม...</strong></p>
+    <p>เขายืนนิ่ง ตาค้าง สมองว่างเปล่า</p>
+    <p><strong>...สิบ... ยี่สิบ... สามสิบ</strong></p>
+    <p>ครบสามสิบวินาทีพอดี เขากลืนน้ำลาย กำมือแน่น แล้วเอ่ยเสียงเบา:</p>
+    <div class="dialog">"อาจารย์ครับ... ข้าเพิ่งเจรจาเสร็จ"</div>
+    <p>จอมมารไม่เงยหน้า</p>
+    <div class="dialog">"เจ้าทำได้ดี Vere — แต่ข้าไม่ต้องการสะพาน ข้าต้องการให้พวกเขากลัว"</div>
+    <div class="dialog">"แล้วการเจรจาที่ข้าทำมาสามวันสามคืน..."</div>
+    <div class="dialog">"มันคือ <strong>ฉาก</strong>" จอมมารพูดเรียบ ๆ "ให้โลกเห็นว่าเจ้าอ่อนโยน — แล้วข้าจะได้แข็งกร้าวได้เต็มที่"</div>
+    <p>Vere ไม่พูดอะไรอีก เขาเพิ่งเข้าใจบางอย่าง: <strong>เขาไม่ได้เป็นศิษย์โปรด — เขาเป็นหมากที่ถูกใช้เป็นฉาก</strong></p>
+  </div>
+</section>
+
+<!-- ===== บทที่ ๓ ===== -->
+<section class="chapter">
+  <div class="chapter-header">
+    <div class="chapter-number">⚔ บทที่ ๓ ⚔</div>
+    <h2 class="chapter-title">ธาตุไฟแทรกซ่าน จอมมารสูญเสียครึ่งพลัง</h2>
+    <p class="chapter-epigraph">เมื่อจอมมารพยายามควบคุมทุกสิ่ง เขากลับควบคุมแม้แต่ลมปราณของตัวเองไม่ได้</p>
+  </div>
+  <div class="emblem">🔥💫</div>
+  <div class="content">
+    <div class="scene-title">ณ ห้องลับใต้ดินแห่งสำนักเหม่ยกั๋ว</div>
+    <p>จอมมาร Tum นั่งสมาธิอยู่ท่ามกลางกองเอกสารและหน้าจอที่กะพริบแสง เขาไม่พอใจที่ "บารมีดอลลาร์" เริ่มถูกสำนักมังกรตะวันออกและตะวันออกกลางลดทอนลง</p>
+    <p>เขาจึงตัดสินใจร่าย <strong>"วิชาเคลื่อนย้ายจักรวาล: แปรธาตุลมปราณสู่เหรียญตราลวง"</strong></p>
+    <div class="dialog">"หากข้าไม่สามารถควบคุมแม่น้ำสายหลักได้ ข้าก็จะสร้างลำธารใต้ดินที่ไม่มีใครตรวจสอบได้" จอมมารพึมพำ</div>
+    <p>แต่เขาลืมกฎเหล็กข้อหนึ่งของวิชาลมปราณ:</p>
+    <div class="pull-quote">สิ่งที่สร้างโดยไม่อาศัยรากฐานที่แท้จริง<br>ย่อมพังทลายเมื่อเจอแรงสั่นสะเทือน</div>
+    <div class="scene-break">❖ ❖ ❖</div>
+    <div class="scene-title">ความผิดพลาดครั้งที่สอง: กระบวนท่ากองเรือไร้ทิศทาง</div>
+    <p>ด้วยความหวาดระแวง จอมมารจึงสั่งการอย่างหุนหันพลันแล่น</p>
+    <div class="dialog">"ส่งกองเรืออัคคีพิฆาตไปข่มขวัญทุกทิศ! อย่าให้พวกมันได้หายใจสะดวก!"</div>
+    <p>แต่แทนที่จะวางค่ายกลอย่างเป็นระบบ กองเรือกลับถูกสั่งให้ <strong>"เคลื่อนย้ายจุดแบบสุ่ม"</strong> ไร้ซึ่งยุทธศาสตร์ที่ชัดเจน ผลที่ตามมาคือ <strong>"ธาตุไฟเข้าแทรก"</strong></p>
+    <p>ลมปราณที่ควรจะไหลเวียนอย่างราบรื่น กลับตีกลับเข้าสู่หัวใจของสำนักเอง งบประมาณบานปลาย และพันธมิตรเริ่มถอยห่าง</p>
+    <div class="scene-break">❖ ❖ ❖</div>
+    <div class="scene-title">จุดแตกหัก: การประชุมใหญ่คัดเลือกแกนนำกลางเทอม</div>
+    <p>ในการประชุมใหญ่เพื่อคัดเลือกแกนนำสภา ซึ่งควรจะเป็นเวทีที่จอมมารใช้บารมีข่มให้ศิษย์ในสังกัดชนะอย่างถล่มทลาย กลับเกิดสิ่งที่ไม่คาดฝัน</p>
+    <div class="pull-quote">"เส้นลมปราณหลักของสำนักถูกตัดขาด!"</div>
+    <p>ศิษย์จำนวนมากในสำนักเหม่ยกั๋วเอง ที่ทนไม่ไหวกับค่าครองชีพที่สูงลิ่วและความวุ่นวาย ได้เทคะแนนให้กับฝ่ายตรงข้าม</p>
+    <p>เมื่อผลการนับคะแนนออกมา จอมมาร Tum ถึงกับไอออกมาเป็นเลือด</p>
+    <div class="dialog"><strong>"พลังยุทธ์ของข้า... หดหายไปกว่าครึ่ง!"</strong> เขากระซิบด้วยเสียงสั่นเครือ</div>
+  </div>
+</section>
+
+<!-- ===== บทที่ ๔ ===== -->
+<section class="chapter">
+  <div class="chapter-header">
+    <div class="chapter-number">⚔ บทที่ ๔ ⚔</div>
+    <h2 class="chapter-title">รอยร้าวแห่งจอมมาร ไม้ไผ่เตรียมรับพายุ</h2>
+    <p class="chapter-epigraph">เมื่อจอมมารไอเป็นเลือดทั้งสามสำนัก — มังกรยิ้มบาง ไม้ไผ่ลู่ลม และศิษย์ผู้ทรยศเริ่มก้าวขาออกจากเงามืด</p>
+  </div>
+  <div class="emblem">🐉🎋🦅</div>
+  <div class="content">
+    <div class="scene-title">๑. ณ หอคอยมังกรตะวันออก — นครหลวงปักกิ่งยุทธภพ</div>
+    <p>เจ้าสำนักมังกรตะวันออกนั่งจิบชาหลงจิ่งอยู่หน้าหน้าต่างที่มองออกไปเห็นท่าเรือที่เรือสินค้าจอดเรียงรายไม่ขาดสาย</p>
+    <p>บนโต๊ะมีจดหมายลับจากสายลับในสำนักเหม่ยกั๋ว เขียนไว้เพียงประโยคเดียว:</p>
+    <div class="pull-quote">"จอมมารไอเป็นเลือด พลังยุทธ์หดหายเกินครึ่ง ธาตุไฟเข้าแทรกทั้งสำนัก"</div>
+    <p>เจ้าสำนักวางจดหมายลง แล้วหัวเราะเบาๆ</p>
+    <div class="dialog">"ข้าไม่ต้องออกท่าไม้ตายแม้แต่ท่าเดียว — เพียงแค่ยืนนิ่งๆ รอให้จอมมารเผาตัวเอง"</div>
+    <div class="scene-break">❖ ❖ ❖</div>
+    <div class="scene-title">๒. ณ โรงเตี๊ยมลับในนครซานฟรานซิสโก — JD Vere</div>
+    <p>JD Vere นั่งอยู่คนเดียวในมุมมืดของโรงเตี๊ยม เขาถือถ้วยชาที่เย็นชืดไปแล้ว แต่ไม่ได้จิบ</p>
+    <p>ในมืออีกข้างคือจดหมายลับที่ส่งมาจาก "สำนักไทย" — ไม่มีลายเซ็น มีเพียงประโยคเดียว:</p>
+    <div class="pull-quote">ไม้ไผ่ไม่เคยหัก เพราะมันไม่เคยยืนตรง —<br>ท่านอยากยืนตรงต่อไปอีกนานแค่ไหน?</div>
+    <p>เขาวางถ้วยชาลง แล้วหยิบพู่กันขึ้นมา เขียนตอบกลับ:</p>
+    <div class="dialog" style="font-style: normal; font-weight: 600;">
+      "ข้าไม่ต้องการเป็นวีรบุรุษ — ข้าแค่ไม่ต้องการจมไปกับเรือที่กำลังจะจม<br>
+      หากสำนักไทยมีทางออก ข้าขอพบท่านลิ้ม — อย่างลับๆ ครับ"
+    </div>
+    <div class="scene-break">❖ ❖ ❖</div>
+    <div class="scene-title">๓. ณ สำนักไทย — บ้านไม้ไผ่กลางดง</div>
+    <p>ท่านลิ้มนั่งจิบชาอูหลงอยู่หน้าบ้าน บนโต๊ะมีทองคำแท่งเล็กๆ วางอยู่หนึ่งก้อน และแผนที่ยุทธภพที่ขีดเส้นด้วยหมึกแดง</p>
+    <p>น้องเล็งนั่งอยู่ตรงข้าม กำลังเขียนโค้ด AI บนคอมพิวเตอร์พกพา แต่สายตาของเธอจับจ้องไปที่ทองคำแท่งนั้น</p>
+    <div class="dialog">"พ่อคะ หนูเห็นข่าวว่าจอมมารกำลังพยายามเคลื่อนย้ายลมปราณสู่เหรียญตราลวง หนูคิดว่ามันจะสำเร็จไหมคะ"</div>
+    <p>ท่านลิ้มยิ้มบางๆ แล้วหยิบทองคำแท่งขึ้นมา</p>
+    <div class="dialog">"เจ้าเคยเห็นเหรียญตราลวงที่สร้างจากลมปราณเทียมไหม"</div>
+    <div class="dialog">"ไม่เคยค่ะ"</div>
+    <div class="dialog">"เพราะมันไม่มีอยู่จริง — สิ่งที่จอมมารทำ คือการพยายามขาย 'คำสัญญา' แทน 'ของจริง' แต่เมื่อธาตุไฟเข้าแทรก คำสัญญาก็ไร้ค่า"</div>
+    <p>จากนั้นเขาหันไปมองลูกสาว:</p>
+    <div class="dialog">"เจ้ารู้ไหม ทำไมไม้ไผ่ถึงไม่หักในพายุ"</div>
+    <div class="dialog">"เพราะมันยืดหยุ่นค่ะ"</div>
+    <div class="pull-quote">ไม่ใช่ — เพราะมัน <strong>'รู้ว่ารากของตัวเองอยู่ที่ไหน'</strong></div>
+  </div>
+</section>
+
+<!-- ===== บทที่ ๕ ===== -->
+<section class="chapter">
+  <div class="chapter-header">
+    <div class="chapter-number">⚔ บทที่ ๕ ⚔</div>
+    <h2 class="chapter-title">จอมมารตัดพ้อฟ้าดิน ระเบิดถูกย้อนศร</h2>
+    <p class="chapter-epigraph">เมื่อจอมมารรู้ว่าถูกอ่านเกมขาด เขาไม่ยอมแพ้เงียบๆ — แต่เลือกที่จะระเบิดทุกอย่าง แม้แต่ศักดิ์ศรีของตัวเอง</p>
+  </div>
+  <div class="emblem">💥🌩️</div>
+  <div class="content">
+    <div class="scene-title">๑. ณ ห้องลับใต้ดินแห่งสำนักเหม่ยกั๋ว — ยามดึก</div>
+    <p>จอมมาร Tum ยืนอยู่หน้ากระจกเงาขนาดใหญ่ ผมสีทองที่เคยสลวยตอนนี้ยุ่งเหยิง หน้าตาซีดเซียวจากธาตุไฟเข้าแทรก</p>
+    <p>บนโต๊ะมีรายงานจากสายลับทุกทิศทาง: มังกรตะวันออกเร่งสร้างเส้นทางสายไหมใหม่, ตะวันออกกลางประกาศขายน้ำมันเป็นเงินหยวน, ยูเรเซียรวมทัพกับมังกรตะวันออก</p>
+    <p>จอมมารอ่านรายงานแต่ละฉบับ มือของเขาสั่นเทา แล้วจู่ๆ เขาก็ระเบิดอารมณ์</p>
+    <div class="pull-quote">ฟ้าส่งข้ามาเกิด — ใยต้องส่งเจ้ามังกรฟ้านั่นมาเกิดด้วย!</div>
+    <p>เขาตบโต๊ะจนแก้วชาแตกกระจาย</p>
+    <div class="dialog">"ข้าเป็นจอมมารแห่งเหม่ยกั๋ว — ข้าไม่เคยแพ้! ข้าไม่เคยแพ้!"</div>
+    <p>แต่เสียงของเขาสั่นเครือ</p>
+    <div class="dialog">"ทำไม... ทำไมเจ้าถึงมีวิชาที่克制ข้าได้ทุกอย่าง..."</div>
+    <div class="scene-break">❖ ❖ ❖</div>
+    <div class="scene-title">๒. ฉากระเบิดนิวเคลียร์ทางเศรษฐกิจ — "โครตแม่ระเบิด MOB"</div>
+    <p>จอมมารลุกขึ้นยืนอีกครั้ง ดวงตาของเขามีแสงแดงฉาน</p>
+    <div class="dialog">"ถ้าข้าแพ้ — ข้าจะพาทุกคนลงนรกด้วยกัน!"</div>
+    <p>เขาหยิบคัมภีร์ลับออกมา — คัมภีร์ที่เขียนด้วยเลือดของบรรพบุรุษสำนักเหม่ยกั๋ว</p>
+    <div class="pull-quote">วิชาโครตแม่ระเบิด<br>Mother of All Bombs (MOB)<br>— ระเบิดนิวเคลียร์ทางเศรษฐกิจ —</div>
+    <p>เขาร่ายวิชาอย่างบ้าคลั่ง ลมปราณสีดำพุ่งออกมาจากร่างกาย กระจายไปทั่วทุกทิศทุกทาง</p>
+    <div class="scene-break">❖ ❖ ❖</div>
+    <div class="scene-title">๓. ฉากย้อนศร — "วิชาโฟม (FOAM)"</div>
+    <p>ในขณะที่ MOB พลังงานสีดำกำลังจะพุ่งเข้าใส่ตลาดการเงินทั่วโลก จู่ๆ ท้องฟ้าก็สว่างวาบด้วยแสงนวลตา</p>
+    <div class="pull-quote">วิชาโฟม (FOAM)<br>Father Of All Missiles<br>— กระบวนท่ามิสซายแม่แบบบูรพา ที่แผ่ขยายเป็นเกราะโฟมดูดซับแรงระเบิด —</div>
+    <p>วิชานี้ไม่ได้สร้างโดยมังกรตะวันออกคนเดียว แต่เป็นการรวมพลังของ <strong>"กระบวน阵法 BRICS+"</strong></p>
+    <p>FOAM ไม่ใช่การปะทะ แต่เป็น <strong>"เกราะป้องกันที่เปลี่ยนพลังงานลบให้เป็นพลังงานบวก"</strong> — เมื่อ MOB พลังงานสีดำพุ่งเข้ามา FOAM จะโอบอุ้มและดูดซับมันไว้ ดั่งโฟมที่ลดแรงกระแทก แล้วแปลงเป็น "ลมปราณแห่งความมั่นคง" กระจายกลับไปทั่วยุทธภพ ดั่งน้ำที่สยบไฟ</p>
+    <p>จอมมาร Tum มองดูท้องฟ้าด้วยสายตาว่างเปล่า</p>
+    <div class="dialog">"วิชาของข้า... ถูกกลืนกิน..."</div>
+    <p>เขาทรุดตัวลงนั่งกับพื้นอีกครั้ง คราวนี้เขาไม่หัวเราะ แต่ร้องไห้</p>
+  </div>
+</section>
+
+<!-- ===== บทที่ ๖ ===== -->
+<section class="chapter">
+  <div class="chapter-header">
+    <div class="chapter-number">⚔ บทที่ ๖ ⚔</div>
+    <h2 class="chapter-title">วิชาเชือดแพะรับบาป และรอยร้าวแห่งฟองสบู่จอมมาร</h2>
+    <p class="chapter-epigraph">เมื่อฟองสบู่แตก สิ่งที่เหลืออยู่ไม่ใช่เพียงตัวเลขที่หายไป — แต่คือความจริงที่ถูกปิดบังมานาน</p>
+  </div>
+  <div class="emblem">🩸🐐</div>
+  <div class="content">
+    <div class="scene-title">๑. ณ ห้องบัญชาการยุทธภพแห่งเหม่ยกั๋ว — ยามรุ่งสางที่มืดมิด</div>
+    <p>หน้าจอเวทมนตร์รอบห้องบัญชาการกะพริบเป็นแสงสีแดงฉาน ตัวเลขแห่งความมั่งคั่งกำลังร่วงหล่นดั่งใบไม้แห้งในฤดูหนาว — และ <strong>รุนแรงกว่าเมื่อชั่วโมงก่อนมาก</strong></p>
+    <p>"รายงานมา!" จอมมาร <strong>Tum</strong> ตะโกนด้วยเสียงที่สั่นเครือ</p>
+    <p>ศิษย์ผู้ดูแลบัญชีกราบทูลด้วยเสียงสั่น "เรียนท่านจอมมาร... สถานการณ์เลวร้ายกว่าที่คาดไว้ครับ"</p>
+    <div class="pull-quote">"ลมปราณแห่งเหรียญตราลวง (Crypto) ระเหยหายไปแล้ว ๑๔๐,๐๐๐ ล้านดอลลาร์ ภายใน ๔ ชั่วโมง... และค่ายกลฟองสบู่ปัญญาประดิษฐ์ (AI Bubble) ได้แตกสลายอย่างสมบูรณ์"</div>
+    <p>"ตลาด <strong>DOW JONES ร่วง ๓.๔๔%</strong> หายไป ๑,๘๓๓ จุด"</p>
+    <p>"ตลาด <strong>NASDAQ ร่วง ๕.๕๒%</strong> หายไป ๑,๔๒๑ จุด — รุนแรงที่สุด!"</p>
+    <p>จอมมารกำหมัดแน่น เล็บจิกเข้าฝ่ามือจนเลือดซึม "แล้วป้อมปราการการเงินเจพีมอร์ (JPMor) ล่ะ?"</p>
+    <p>"ร่วง ๓% ครับท่าน... เนื่องจากสภาเฒ่า (สภาดองเกรส) เตรียมเปิดการสอบสวนเชื่อมโยงกับคดีอื้อฉาวในอดีต"</p>
+
+    <div class="scene-break">❖ ❖ ❖</div>
+
+    <div class="scene-title">๒. ความลับแห่ง "วงจรอุบาทว์" ที่จอมมารปิดบัง</div>
+    <p>ณ มุมมืดของยุทธภพการเงิน มี <strong>"ค่ายกลวงจรอุบาทว์" (The Vicious Cycle Formation)</strong> ที่จอมมารและพวกพ้องสร้างไว้:</p>
+    <div class="pull-quote">"มูลค่าตลาดหุ้นถูกปั่นให้สูงเกินความเป็นจริง จนเงินในตลาดจริงไม่สามารถซื้อขายได้ตามมูลค่าที่ปรากฏ — ไม่มีทางทำกำไรหรือผลตอบแทนจริงจากการขาย เพราะเงินในตลาดจริงถูกจำกัดไว้ด้วยระบบที่พวกเขาสร้างมาควบคุม"</div>
+    <p>นี่คือ <strong>"วิชาสูบเลือดยุทธภพ" (Blood-Sucking Formation)</strong> ที่ทำให้คนรวยยิ่งรวย คนจนยิ่งจน โดยที่คนส่วนใหญ่ไม่แม้แต่จะรู้ตัว</p>
+
+    <div class="scene-break">❖ ❖ ❖</div>
+
+    <div class="scene-title">๓. ศิษย์พี่ Leon Must — ผู้ถูกสวรรค์ลงโทษ</div>
+    <p>"เรียนท่านจอมมาร... มีข่าวร้ายอีกเรื่องครับ" ศิษย์ผู้รายงานกลืนน้ำลาย "สำนัก<strong>พรรคเดโม</strong> (พรรคฝ่ายค้าน) ไม่ได้ต่อต้านท่านเพียงอย่างเดียว — แต่พวกเขา <strong>ต่อต้านค่ายกล Data Center และ Big Tech ทั้งหมด</strong> โดยเฉพาะ..."</p>
+    <p>เขาหยุดชั่วครู่ "<strong>ศิษย์พี่ Leon Must</strong> ที่สนับสนุนท่านออกนอกหน้าด้วยเงินมหาศาล — กำลังถูกเพ่งเล็งเป็นพิเศษครับ"</p>
+    <p>จอมมารหน้าซีด "ทำไม?"</p>
+    <p>"เพราะสำนักพรรคเดโมมองว่า <strong>ฟองสบู่ AI, Wall Street และระบบเงินดอลลาร์ เชื่อมโยงกันเป็นโยงใยเดียวกัน</strong> — และการที่ศิษย์พี่ Leon Must สนับสนุนท่านอย่างออกนอกหน้า ทำให้เขาตกเป็นเป้าแรกของการแก้แค้น"</p>
+    <div class="pull-quote">"เหรียญต่างๆ ในเครือ Tum (Trump Coin, MAGA Coin) ราคาตกวูบ!"</div>
+
+    <div class="scene-break">❖ ❖ ❖</div>
+
+    <div class="scene-title">๔. ความแตกต่างแห่ง "วิถีแห่งปัญญาประดิษฐ์"</div>
+    <p>ณ โรงน้ำชาเหลียงซาน — ท่านลิ้มนั่งจิบชาอย่างสงบ เมื่อน้องเล็งถามขึ้น</p>
+    <div class="dialog">"พ่อคะ หนูอ่านข่าวแล้วสับสนค่ะ — <strong>โอเพ่นAI (AI เหม่ยกั๋ว)</strong> กับ AI จีน ต่างกันอย่างไรคะ"</div>
+    <p>ท่านลิ้มยิ้มบางๆ แล้ววางถ้วยชาลง</p>
+    <div class="dialog">"เจ้าเคยเห็นแม่น้ำสองสายไหม? สายหนึ่งไหลรวมเข้าสู่ทะเลสาบส่วนตัวของคหบดี อีกสายหนึ่งไหลกระจายไปสู่ทุ่งนาของชาวบ้าน"</div>
+    <div class="pull-quote">"<strong>โอเพ่นAI — โดยเฉพาะพวก Big Tech — คือแม่น้ำสายแรก</strong>"</div>
+    <p>"พวกเขาพูดชัดเจนว่า <strong>'RAM ในคอมพิวเตอร์ถูกใช้งานเพียง 5% ของเวลา จึงเป็นการจัดสรรทรัพยากรที่แย่'</strong> และเสนอว่า <strong>'ควรนำ DRAM ไปรวมไว้ในระบบ Cloud/Data Center'</strong> — นี่คือความคิดแบบ <strong>'กินรวบ'</strong> ที่ต้องการควบคุมทุกสิ่งไว้ที่ศูนย์กลาง"</p>
+    <p>ท่านลิ้มจิบชาแล้วพูดต่อ</p>
+    <div class="pull-quote">"<strong>แต่ AI จีน — แม้เริ่มต้นจะมีเอกชนแข่งขันกันขับเคลื่อน แต่ปลายทางจะปรับสมดุลเพื่อประชาชน</strong>"</div>
+    <p>"เน้น <strong>กระจายประโยชน์</strong> ให้คนทั่วไปเข้าถึงได้ — นี่คือวิถีแห่ง <strong>'ส่วนรวม'</strong> ที่ต่างจากเหม่ยกั๋วโดยสิ้นเชิง"</p>
+    <p>น้องเล็งพยักหน้าเข้าใจ "เหมือนหลักพุทธที่สอนเรื่องการไม่ยึดติดและการให้ใช่ไหมคะ"</p>
+    <div class="dialog">"ถูกต้องแล้วลูก — <strong>เทคโนโลยีที่ไม่มีธรรมะกำกับ คืออาวุธของคนโลภ</strong>"</div>
+
+    <div class="scene-break">❖ ❖ ❖</div>
+
+    <div class="scene-title">๕. วิชาเชือดแพะรับบาป</div>
+    <p>กลับมาที่ห้องบัญชาการแห่งเหม่ยกั๋ว</p>
+    <p>แทนที่จอมมารจะนั่งสมาธิทบทวนความผิดพลาด เขากลับหันไปมองชายร่างยักษ์ที่ยืนอยู่ข้างๆ อย่างเย็นยะเยือก</p>
+    <p><strong>"ศิษย์เอก เพท"</strong> (รัฐมนตรีกลาโหม) ผู้ได้รับมอบหมายให้คุมยุทธศาสตร์การข่มขวัญ</p>
+    <div class="dialog">"เจ้าเห็นตัวเลขพวกนี้แล้วใช่ไหม" จอมมารเอ่ยเสียงต่ำ "การที่ข้าพ่ายแพ้... เป็นเพราะเจ้าบริหารกองเรือได้ย่ำแย่!"</div>
+    <p>ศิษย์เอกเพทชะงัก "แต่... แต่ข้าทำตามคำสั่งของท่านทุกประการครับท่านจอมมาร..."</p>
+    <div class="dialog">"เงียบ!" จอมมารตบโต๊ะเสียงดังสนั่น "ข้าไม่เคยผิดพลาด! ที่ข้าแพ้ เพราะเจ้าตีความคำสั่งข้าผิด!"</div>
+    <p>นี่คือ <strong>"วิชาเชือดแพะรับบาป" (Scapegoat Palm)</strong> — ท่าไม้ตายสุดท้ายของจอมมารเมื่อจนมุม</p>
+
+    <div class="scene-break">❖ ❖ ❖</div>
+
+    <div class="scene-title">๖. การตัดสินใจของ JD Vere</div>
+    <p><strong>JD Vere</strong> ยืนเงียบอยู่ในมุมมืด เขาเห็นทุกอย่างชัดเจน</p>
+    <p>เขาล้วงจดหมายลับที่ส่งมาจาก "สำนักไทย" ออกมาจากอกเสื้อ:</p>
+    <div class="pull-quote">"ไม้ไผ่ไม่เคยหัก เพราะมันไม่เคยยืนตรง — หากท่านต้องการทางออก สำนักของเรายินดีรับฟังครับ"</div>
+    <p>JD Vere ยิ้มบางๆ เป็นครั้งแรกในรอบหลายเดือน คืนนี้ เขาจะหนีออกจากเหม่ยกั๋ว</p>
+
+    <div class="scene-break">❖ ❖ ❖</div>
+
+    <div class="scene-title">๗. ณ สำนักไทย — สติท่ามกลางพายุและการเตรียมรากฐาน</div>
+    <p>ท่านลิ้มนั่งจิบชาอูหลงอยู่หน้าบ้าน สายตามองดูกราฟตลาดโลกที่ร่วงหล่น</p>
+    <div class="dialog">"พ่อคะ หนูเห็นข่าวว่าค่ายกลฟองสบู่ AI แตกสลาย หนูคิดว่ามันจะลุกลามมาถึงเราไหมคะ"</div>
+    <p>ท่านลิ้มวางถ้วยชาลงอย่างช้าๆ สายตามองออกไปยังทุ่งนาและผืนป่ารอบสำนัก</p>
+    <div class="dialog">"เจ้าเคยเห็นไม้ไผ่ที่ยืนอยู่กลางลมพายุไหมลูก"</div>
+    <div class="dialog">"เห็นค่ะ มันโยกเอนตามลม แต่ไม่หักค่ะ"</div>
+    <div class="dialog">"ถูกต้องแล้ว... แต่เจ้ารู้หรือไม่ว่า ทำไมมันถึงไม่หัก? ไม่ใช่แค่เพราะกิ่งก้านมันยืดหยุ่น แต่เพราะ <strong>'ราก'</strong> ของมันฝังลึกและแข็งแรง"</div>
+    <div class="pull-quote">"สำนักของเราตั้งอยู่ในจุดยุทธศาสตร์ที่มหาอำนาจทั้งสองฝ่ายอาจมองว่าเหมาะสมที่จะใช้เป็น 'ฐานทัพ' หรือพื้นที่ต่อรอง นี่คือภาวะกลืนไม่เข้าคายไม่ออกที่สำนักเล็กต้องเผชิญ"</div>
+    <p>"ดังนั้น การเตรียมตัวไม่ใช่แค่การถือครองทองคำหรือหลบหนี แต่คือการสร้างรากฐานให้มั่นคงใน ๓ ด้าน"</p>
+    <p>ท่านลิ้มยกนิ้วขึ้นทีละนิ้ว</p>
+    <div class="dialog">"หนึ่ง... <strong>สาธารณูปโภค</strong> ที่เราพึ่งพาตนเองได้ ไม่ผูกขาดกับระบบกลางที่เปราะบาง"</div>
+    <div class="dialog">"สอง... <strong>พลังงาน</strong> ที่หมุนเวียนและเพียงพอ แสงอาทิตย์และสายน้ำคือลมปราณที่จอมมารยึดครองไม่ได้"</div>
+    <div class="dialog">"สาม... <strong>อาหาร</strong> ที่เพียงพอต่อปากท้อง ดินที่อุดมสมบูรณ์คือคลังเสบียงที่ไม่มีวันล้มละลาย"</div>
+    <p>น้องเล็งพยักหน้าเข้าใจอย่างถ่องแท้ "เหมือนหลักพุทธที่สอนเรื่องความไม่ประมาท และการพึ่งพาตนเองใช่ไหมคะ"</p>
+    <div class="dialog">"ถูกต้องแล้วลูก... ตราบใดที่เรายังยึดมั่นใน <strong>'ของจริง'</strong> มีสติ และไม่หลงไปกับความโลภที่จอมมารสร้างไว้ พายุภายนอกจะรุนแรงเพียงใด ก็ทำได้เพียงพัดใบไม้ให้ร่วง แต่ไม่อาจโค่นต้นไผ่ที่หยั่งรากลึกลงได้"</div>
+    <div class="pull-quote">"เริ่มจากจิตใจที่สงบ กายที่พร้อม และเฝ้ารอดู... เพราะเมื่อจอมมารเริ่มกินพวกพ้องตัวเอง จุดจบของเขาก็ใกล้เข้ามาแล้ว"</div>
+  </div>
+</section>
+
+<!-- ===== บทที่ ๗ ===== -->
+<section class="chapter">
+  <div class="chapter-header">
+    <div class="chapter-number">⚔ บทที่ ๗ ⚔</div>
+    <h2 class="chapter-title">คัมภีร์เลือดบรรพบุรุษ: กับดักปัญญาประดิษฐ์</h2>
+    <p class="chapter-epigraph">เมื่อค่ายกลแห่งความโลภถูกสร้างขึ้นด้วยรหัสที่ซับซ้อน มีเพียงปัญญาที่มองเห็น "ความว่าง" เท่านั้นที่จะถอดรหัสได้</p>
+  </div>
+  <div class="emblem">💻🐉</div>
+  <div class="content">
+    <div class="scene-title">๑. ผู้ลี้ภัยกลางสายฝน</div>
+    <p>กลางดึกที่สายฝนโปรยปรายลงบนหลังคาโรงน้ำชาเหลียงซาน เสียงเคาะประตูเบาๆ แต่เร่งรีบดังขึ้น</p>
+    <p><strong>JD Vere</strong> ปรากฏตัวที่หน้าประตูในสภาพที่เปียกโชกและเหนื่อยล้า เขาไม่ได้มาตัวเปล่า แต่กำแน่นอยู่ในมือคือ "ม้วนคัมภีร์ดิจิทัล" (Encrypted Drive) ที่เขาเสี่ยงชีวิตขโมยออกมาจากเซิร์ฟเวอร์ชั้นสูงสุดของกระทรวงสงคราม</p>
+    <div class="dialog">"ท่านลิ้มครับ" Vere เอ่ยเสียงสั่น "ผมรู้แล้ว... ผมรู้แล้วว่าทำไมท่านเพทถึงเร่งเครื่องสงครามขนาดนี้ มันไม่ใช่เรื่องความมั่นคงของชาติ"</div>
+    <p>ท่านลิ้มรินชาอุ่นๆ ให้เขาหนึ่งถ้วยโดยไม่ถามคำถาม多余 "นั่งลงก่อน ลมปราณของเจ้ากำลังสั่นคลอน"</p>
+
+    <div class="scene-break">❖ ❖ ❖</div>
+
+    <div class="scene-title">๒. ค่ายกลพิษแห่ง Mei Guo AI</div>
+    <p>น้องเล็งเชื่อมต่อม้วนคัมภีร์เข้ากับระบบคอมพิวเตอร์พกพาของเธอ ทันใดนั้น หน้าจอก็สว่างวาบด้วยรหัสสีแดงฉานและคำเตือนภัยคุกคามระดับสูงสุด</p>
+    <div class="dialog">"พ่อคะ ระวัง!" น้องเล็งร้อง "นี่ไม่ใช่การเข้ารหัสธรรมดา แต่มันคือ 'ค่ายกลพิษ' (Logic Bomb) ที่สร้างโดย Mei Guo AI"</div>
+    <p>เธออธิบายอย่างรวดเร็วว่า รหัสเหล่านี้ไม่ได้ถูกออกแบบมาแค่เพื่อ "ซ่อน" ข้อมูล แต่ถูกออกแบบมาเพื่อ "ทำลาย" ระบบของใครก็ตามที่พยายามแกะมัน มันเต็มไปด้วยกับดักทางตรรกะ (Logical Traps) ที่สะท้อนถึงความหวาดระแวงและความคิดแบบ "ทำลายล้าง" (Scorched Earth) ของจอมมาร</p>
+    <p>"ถ้าหนูใช้วิธี brute force หรือใช้ AI ฝั่งตะวันตกแกะรหัส มันจะกระตุ้นให้ระบบล้างข้อมูลตัวเองทันทีค่ะ" น้องเล็งกล่าวด้วยสายตาที่มุ่งมั่น</p>
+
+    <div class="scene-break">❖ ❖ ❖</div>
+
+    <div class="scene-title">๓. ปัญญาตะวันออก: น้ำที่ไหล绕过หิน</div>
+    <p>ท่านลิ้มวางมือลงบนบ่าของลูกสาวเบาๆ "เจ้าเคยเรียนหลักเต๋าเรื่อง 'ความอ่อนสยบความแข็ง' ใช่ไหมลูก?"</p>
+    <p>น้องเล็งพยักหน้า เธอปิดระบบป้องกันแบบแข็งกร้าว (Firewall) ทั้งหมด แล้วเปิดใช้งานโมเดล AI ภาษาจีนที่เธอปรับแต่งเอง ซึ่งถูกฝึกฝนด้วยปรัชญา "ความสมดุลและภาพรวม" (Holistic Pattern Recognition) แทนที่จะเป็นการคำนวณแบบแยกส่วน</p>
+    <div class="pull-quote">"Mei Guo AI สร้างกำแพง แต่ AI ตะวันออกสร้างสะพาน... เราไม่ต้องทำลายรหัส แต่เราแค่ 'ไหล' ไปตามช่องว่างของตรรกะที่มันหลงลืม"</div>
+    <p>แทนที่จะต่อสู้กับกับดัก น้องเล็งปล่อยให้กระแสข้อมูลไหลผ่านระบบของเธอเหมือนน้ำไหล绕过หิน เธอใช้หลัก "อริยสัจ 4" ในการวิเคราะห์โค้ด: เห็นทุกข์ (จุดที่รหัสขัดแย้งเอง), เห็นสมุทัย (ต้นตอของความโลภที่ซ่อนในอัลกอริทึม), เห็นนิโรธ (จุดที่ระบบเปิดช่องว่าง), และเห็นมรรค (เส้นทางที่ข้อมูลจริงซ่อนอยู่)</p>
+    <p>ภายใน ๓ นาที รหัสสีแดงที่ซับซ้อนก็ค่อยๆ คลี่คลาย กลายเป็นเอกสารข้อความธรรมดาที่สว่างไสวอยู่บนหน้าจอ</p>
+
+    <div class="scene-break">❖ ❖ ❖</div>
+
+    <div class="scene-title">๔. ความจริงในคัมภีร์เลือด</div>
+    <p>ท่านลิ้มและ JD Vere ก้มลงอ่านข้อมูลที่ถอดรหัสได้ สายตาของทั้งคู่แข็งกร้าวขึ้นเรื่อยๆ</p>
+    <p>เอกสารระบุชัดเจนถึงแผนการ <strong>"คืนไร้พระจันทร์" (Moonless Night)</strong> ในวันที่ ๙ พฤศจิกายน ซึ่ง ๓ กองเรือยุทธภพของเหม่ยกั๋วจะเปิดฉากโจมตีโครงสร้างพื้นฐานนิวเคลียร์ใต้ดินของอิหร่าน พร้อมขู่ว่าจะใช้เวลา <strong>๒๕ ปี</strong> ในการทำลายล้างประเทศนั้นให้ฟื้นตัวไม่ได้</p>
+    <p>แต่สิ่งที่น่าตกใจยิ่งกว่า คือ "บัญชีแยกประเภท" ที่แนบมา:</p>
+    <ul style="margin-left: 20px; margin-bottom: 15px;">
+        <li>การสั่งแบนสถาบันการเงิน ๘ แห่งในแคนาดา และแพลตฟอร์ม Crypto อย่าง <strong>MEXC Global</strong> ไม่ใช่เพื่อความมั่นคง แต่เพื่อบีบให้สภาพคล่องทั่วโลก <strong>ไหลกลับเข้าสู่ระบบดอลลาร์และเหรียญตราลวงของจอมมาร</strong> ก่อนที่มันจะพังทลาย</li>
+        <li>รายชื่อ "แพะรับบาป" ถูกขีดเส้นใต้สีแดง: <strong>JD Vere</strong> และรัฐมนตรีอีก ๓ คน จะถูกกล่าวหาว่าเป็นผู้อยู่เบื้องหลังความล้มเหลวทางเศรษฐกิจทันทีที่สงครามเริ่มขึ้น</li>
+    </ul>
+    <div class="dialog">"เขาจุดไฟเผาทั้งยุทธภพ..." Vere กระซิบด้วยน้ำเสียงที่เต็มไปด้วยความสลด "เพียงเพื่อพยุงมูลค่าเหรียญในกระเป๋าของเขาเองที่ากำลังจะกลายเป็นศูนย์"</div>
+
+    <div class="scene-break">❖ ❖ ❖</div>
+
+    <div class="scene-title">๕. รากฐานที่ไม่อาจเผาผลาญ</div>
+    <p>ท่านลิ้มลุกขึ้นเดินไปที่หน้าต่าง มองออกไปยังความมืดมิดของทุ่งนาและผืนป่า</p>
+    <div class="dialog">"เขาพยายามจะเผาบ้านทั้งหลังเพื่อจับหนูตัวเดียว โดยไม่รู้ว่าตัวเขาเองกำลังยืนอยู่กลางกองไฟนั้น"</div>
+    <p>น้องเล็งปิดคอมพิวเตอร์ลงอย่างสงบ "แล้วเราควรทำอย่างไรคะพ่อ? เราต้องเตือนโลกไหมคะ?"</p>
+    <p>ท่านลิ้มหันกลับมามองลูกสาวและ JD Vere ด้วยสายตาที่เปี่ยมไปด้วยความเมตตาแต่เด็ดขาด</p>
+    <div class="pull-quote">"เราไม่ต้องสู้กับไฟด้วยการเป่าลมใส่ เราแค่ต้องเตรียม 'ถังน้ำ' ของเราให้พร้อม"</div>
+    <p>"เจ้าสองคนต้องซ่อนตัวอยู่ในส่วนลึกของสำนักนี้" ท่านลิ้มสั่งการ "ส่วนเราจะเร่งยึดมั่นใน <strong>วิชารากฐานสามประการ</strong>: สาธารณูปโภคที่พึ่งพาตนเองได้, พลังงานหมุนเวียนที่จอมมารยึดครองไม่ได้, และอาหารที่เพียงพอจากดินที่อุดมสมบูรณ์"</p>
+    <p>"เมื่อลมปราณแห่งความโลภเผาผลาญตัวเองจนหมด สิ่งเดียวที่จะเหลืออยู่และงอกงามใหม่ได้ คือสิ่งที่หยั่งรากลึกในความจริงและความพอเพียง"</p>
+    <p>JD Vere ก้มศีรษะลงอย่างนอบน้อม "ขอบคุณครับท่านลิ้ม... วันนี้ผมไม่ได้เป็นผู้ทรยศ แต่ผมได้กลับมาเป็น 'มนุษย์' อีกครั้ง"</p>
+  </div>
+</section>
+
+<!-- ===== บทที่ ๘ ===== -->
+<section class="chapter">
+  <div class="chapter-header">
+    <div class="chapter-number">⚔ บทที่ ๘ ⚔</div>
+    <h2 class="chapter-title">ค่ำคืนที่ดวงจันทร์ถูกกลืนกิน</h2>
+    <p class="chapter-epigraph">เมื่อค่ายกลวงล้อแห่งมายาหยุดหมุน ลมปราณที่จอมมารพยายามดูดกลับ จะกลายเป็นพิษที่กัดกินตัวเขาเองก่อนถึงคืนไร้พระจันทร์</p>
+  </div>
+  <div class="emblem">🌑🏦</div>
+  <div class="content">
+    <div class="scene-title">๑. วิชาดูดกลับลมปราณหนี้ (The 95 Billion Buyback)</div>
+    <p>ณ ห้องบัญชาการลับแห่งเหม่ยกั๋ว บรรยากาศอัดอั้นจนแทบหายใจไม่ออก จอมมาร <strong>Tum</strong> ยืนจ้องมองกราฟอัตราผลตอบแทนพันธบัตร (Bond Yield) ที่พุ่งทะยานเกิน 5% ดั่งดาบที่จ่ออยู่ที่คอหอยของเขา</p>
+    <div class="dialog">"เปิดใช้งาน 'วิชาดูดกลับลมปราณหนี้' (Treasury Buyback) ทันที!" Tum คำรามสั่งการรัฐมนตรีคลัง "อนุมัติ ๙๕,๐๐๐ ล้านดอลลาร์ ซื้อพันธบัตรเก่าคืนให้หมดภายใน ๓ เดือน! ข้าต้องการให้ Yield ลดลงเดี๋ยวนี้ ก่อนที่คืนไร้พระจันทร์จะมาถึง!"</div>
+    <p>รัฐมนตรีคลังกลืนน้ำลายอย่างยากลำบาก "แต่ท่านจอมมาร... การพิมพ์เงินใหม่มาซื้อหนี้เก่ามูลค่ามหาศาลขนาดนี้ เท่ากับเรา承认ว่า 'ค่ายกลวงล้อแห่งมายา' (Circular Financing) ของเราเริ่มหมุนไม่ไหวแล้ว หากตลาดรู้ความจริง ศรัทธาต่อดอลลาร์จะพังทลาย..."</p>
+    <div class="dialog">"ข้าไม่สน!" Tum ตบโต๊ะ "หากตลาดพันธบัตรพังก่อนที่กองเรือจะยิงขีปนาวุธถล่มอิหร่าน แผนการทั้งหมดของข้าจะจบสิ้น! ทำตามคำสั่ง!"</div>
+
+    <div class="scene-break">❖ ❖ ❖</div>
+
+    <div class="scene-title">๒. รอยร้าวแห่งมหาสำนักและยากระตุ้นหัวใจฉุกเฉิน</div>
+    <p>ในขณะที่จอมมารพยายามปิดบังรอยร้าว ความจริงที่โหดร้ายก็เริ่มปรากฏ:</p>
+    <p>มหาสำนักเทคโนโลยี <strong>Microsoft และ Meta</strong> ซึ่งเคยเป็นเสาหลักของค่ายกลวงล้อแห่งมายา เริ่มตระหนักว่าลมปราณที่หมุนเวียนกับ <strong>NVIDIA</strong> และสตาร์ทอัพ AI เป็นเพียงภาพลวงตา พวกเขาเริ่ม <strong>"ตัดสายลมปราณ"</strong> ลดการพึ่งพาโมเดลภายนอก (เช่น Claude) และกักตุนทรัพยากรไว้สร้างค่ายกลปิดของตัวเอง ทิ้งให้พันธมิตรเล็กๆ ที่ฐานล่างต้องขาดอากาศหายใจ</p>
+    <p>และเพื่อประคองไม่ให้ระบบเลือดแห่ง Wall Street หยุดเต้น สำนักเฟด (Fed) จำต้องประกาศอัดฉีด <strong>"ยากระตุ้นหัวใจฉุกเฉิน" (Emergency Liquidity) มูลค่า ๓,๖๕๓ ล้านดอลลาร์</strong> ในสัปดาห์หน้า ตัวเลขนี้ไม่ใช่สัญญาณของความแข็งแกร่ง แต่คือสัญญาณชีพที่ริบหรี่ของจอมมาร</p>
+    <p>ซ้ำร้ายกว่านั้น <strong>จอมยุทธ์เจนเซ่น หวง (Jensen Huang)</strong> เจ้าสำนัก NVIDIA ผู้สร้างหัวใจแห่ง AI ให้แก่เหม่ยกั๋ว กลับถูกสำนักข่าวกรองเล่นงานด้วยข้อหาพัวพันกับสตรีปริศนาจากแดนมังกร แม้จะเป็นเพียงข้อกล่าวหา แต่มันคือ <strong>"การเชือดไก่ให้ลิงดู"</strong> เพื่อเตือนมหาสำนักทุกแห่งว่า: <em>"แม้แต่ผู้สร้างอาวุธให้จอมมาร หากไม่ยอมก้มหัวอย่างสิ้นเชิง ก็พร้อมจะถูกทำลายด้วยข้อหาความมั่นคงได้ทุกเมื่อ"</em></p>
+
+    <div class="scene-break">❖ ❖ ❖</div>
+
+    <div class="scene-title">๓. เสียงกู่ร้องจากฐานราก (The Roar of the Foundation)</div>
+    <p>ขณะที่ชนชั้นสูงพยายามเอาตัวรอด ฐานรากของยุทธภพเหม่ยกั๋วก็ลุกฮือ <strong>ท่านแซนเดอร์ส (Bernie Sanders)</strong> ประมุขแห่งสำนักประชาชน ยืนอยู่หน้าทำเนียบและกู่ร้องต่อหน้าสภาเฒ่าด้วยคทาแห่งความยุติธรรม เรียกร้อง ๓ ประการที่เป็นการตัดแขนตัดขาค่ายกลของจอมมารโดยตรง:</p>
+    <ul style="margin-left: 20px; margin-bottom: 15px;">
+        <li><strong>"วิชาประกันชีวิตทั่วหล้า (Medicare for All)!"</strong> — ชาวประชาต้องไม่ล้มตายเพราะความโลภของนายทุน!</li>
+        <li><strong>"ค่าแรงขั้นต่ำ ๒๐ เหรียญต่อชั่วโมง!"</strong> — หยุดการขูดรีดแรงงานจากค่ายกล AI!</li>
+        <li><strong>"คำสั่งระงับการสร้างค่ายกลข้อมูล (Data Center) ชั่วคราว!"</strong> — หยุดดูดกลืนพลังงานและสายน้ำของแผ่นดินเพื่อเลี้ยงดูปีศาจที่ชาวประชาไม่ได้ใช้!</li>
+    </ul>
+    <p>เสียงกู่ร้องนี้ดังกึกก้องไปทั่วทั้งยุทธภพ มันคือแรงสั่นสะเทือนที่ค่ายกลโฟม (FOAM) ของฝ่ายบูรพาไม่สามารถสยบได้ เพราะมันคือ "แรงระเบิดจากภายใน" ที่จอมมาร Tum สร้างมันขึ้นมาเอง</p>
+
+    <div class="scene-break">❖ ❖ ❖</div>
+
+    <div class="scene-title">๔. กับดักแห่งจงกั๋ว (The Zhongguo Summit)</div>
+    <p>ท่ามกลางพายุภายใน จอมมาร Tum กลับตัดสินใจเดินทางไปยัง <strong>"จงกั๋ว"</strong> ในอีก ๑๐ วันข้างหน้า เพื่อพบปะกับเจ้าสำนักมังกรตะวันออกและหมีขาวยูเรเซีย</p>
+    <p>JD Vere ซึ่งกำลังซ่อนตัวอยู่ในสำนักไทย มองดูข่าวนี้บนหน้าจอแล้วส่ายหน้า "ท่านลิ้มครับ... เขาบ้าไปแล้ว การก้าวเข้าไปในจงกั๋วตอนนี้ โดยที่ภายในประเทศกำลังจะพังทลาย เขาไม่ได้ไปเพื่อเจรจา แต่เขาไปเพื่อ 'ขอเวลา' และข่มขวัญ แต่เขาไม่รู้ตัวว่าเขากำลังเดินเข้าไปในปากมังกร"</p>
+    <p>ท่านลิ้มจิบชาอูหลงอย่างสงบ "เจ้าเคยเห็นนักการพนันที่หมดหน้าตักไหม Vere? เมื่อเขาไม่มีอะไรเหลือ เขาจะเดิมพันทุกอย่างที่มี แม้แต่ชีวิตตัวเอง การประชุมที่จงกั๋วคือ 'งานเลี้ยงหงเหมิน' ที่เจ้าสำนักบูรพาวางไว้รอแล้ว พวกเขาถือครอง 'ของจริง' (แร่หายาก พลังงาน ห่วงโซ่อุปทาน) ไว้ในมือ ส่วนจอมมารถือครองเพียง 'กระดาษและภาพลวงตา' ที่กำลังจะไร้ค่า"</p>
+
+    <div class="scene-break">❖ ❖ ❖</div>
+
+    <div class="scene-title">๕. ปัญญาตะวันออกมองเห็นความจริง</div>
+    <p>น้องเล็งปิดระบบ AI ของเธออย่างสงบ เธอเพิ่งใช้โมเดลปัญญาตะวันออกถอดรหัสกระแสเงินทุนทั่วโลก และพบว่ามันชัดเจนอย่างยิ่ง</p>
+    <div class="dialog">"พ่อคะ หนูเห็นภาพรวมทั้งหมดแล้วค่ะ" น้องเล็งเอ่ย "ค่ายกลวงล้อแห่งมายาของเขาหยุดหมุนแล้วค่ะ Microsoft และ Meta หนีเอาตัวรอด ท่านแซนเดอร์สปลุกฐานรากให้ลุกฮือ และเขาพยายามใช้การซื้อคืนพันธบัตร ๙๕,๐๐๐ ล้านดอลลาร์ เป็นยาฝิ่นกลบเกลื่อนความเจ็บปวด"</div>
+    <p>เธอหันไปมอง JD Vere "และเขาจะเร่งเครื่อง 'คืนไร้พระจันทร์' เพื่อโจมตีอิหร่าน เพราะเขาหวังว่าสงครามจะเบี่ยงเบนความสนใจ และบังคับให้โลกต้องกลับมาซื้อพันธบัตรดอลลาร์ของเขาอีกครั้ง"</p>
+    <div class="dialog">"แต่เขาผิดมหันต์" ท่านลิ้มวางถ้วยชาลง เสียงกระทบไม้ดังกริ๊ก "เมื่อเขาจุดไฟเผาผู้อื่น ลมจะพัดไฟนั้นกลับมาเผาบ้าน他自己 (ตัวเขาเอง) ที่จงกั๋ว เขาจะพบว่าไม่มีพันธมิตรใดเหลืออยู่ และเมื่อเขากลับมา... ดวงจันทร์ของเขาก็จะถูกกลืนกินโดยเงามืดที่ตัวเองสร้างขึ้น"</div>
+    <p>JD Vere ก้มศีรษะลงอย่างนอบน้อม "ผมเข้าใจแล้วครับท่านลิ้ม... ผมจะไม่หนีไปอีกแล้ว ผมจะอยู่ที่นี่ เพื่อเป็นพยาน见证 (เป็นสักขีพยาน) ว่าความพอเพียงและสติก้าวข้ามความบ้าคลั่งได้อย่างไร"</p>
+    <p>สายฝนหยุดตก เมฆหมอกจางหาย เผยให้เห็นดวงจันทร์ที่สว่างไสว แต่ในยุทธภพเหม่ยกั๋ว ดวงจันทร์กำลังจะดับแสงลงตลอดกาล</p>
+  </div>
+</section>
+
+<!-- ===== พักตอน ===== -->
+<section class="chapter">
+  <div class="chapter-header">
+    <div class="chapter-number">☯ พักตอน ☯</div>
+    <h2 class="chapter-title">เมื่อพายุยังไม่สงบ</h2>
+  </div>
+  <div class="emblem">🌪️⏸️</div>
+  <div class="content">
+    <p>จอมมารทรุดตัวลงนั่งกับพื้น ดวงตาว่างเปล่า ลมปราณที่เหลืออยู่ริบหรี่ราวเทียนใกล้ดับ</p>
+    <p>แต่ในมุมมืดของห้องลับ ยังมีคัมภีร์เล่มสุดท้ายที่เขายังไม่เคยเปิดอ่าน...</p>
+    <p>คัมภีร์ที่เขียนด้วยเลือดของบรรพบุรุษ — คัมภีร์ที่จะเปลี่ยนเขาจากจอมมาร เป็นปีศาจที่แท้จริง</p>
+    <p>หรือ... คัมภีร์ที่จะทำให้เขาตื่นรู้?</p>
+  </div>
+</section>
+
+<!-- ===== ภาคผนวก: ตัวละคร ===== -->
+<section class="chapter">
+  <div class="chapter-header">
+    <div class="chapter-number">📜 ภาคผนวก 📜</div>
+    <h2 class="chapter-title">ทำเนียบตัวละคร</h2>
+  </div>
+  <div class="character-card">
+    <h3>🦅 Tum</h3>
+    <p class="alias">จอมมารแห่งเหม่ยกั๋ว</p>
+    <p>ผู้โลภมาก พยายามควบคุมทุกอย่าง แต่สูญเสียทุกอย่าง วิชาเอก: ฝ่ามือกำแพงภาษี, บารมีดอลลาร์, โลภะไร้ขอบเขต, โครตแม่ระเบิด (MOB), วิชาเชือดแพะรับบาป, วิชาดูดกลับลมปราณหนี้</p>
+  </div>
+  <div class="character-card">
+    <h3>💔 JD Vere</h3>
+    <p class="alias">ศิษย์ผู้ตื่นรู้และลี้ภัย</p>
+    <p>นำความลับแห่งคัมภีร์เลือดมาเปิดเผย แสวงหาทางออกและมนุษยธรรมท่ามกลางความบ้าคลั่ง</p>
+  </div>
+  <div class="character-card">
+    <h3>🚀 Leon Must</h3>
+    <p class="alias">ศิษย์พี่ผู้สนับสนุนจอมมาร</p>
+    <p>ผู้สนับสนุน Tum อย่างออกนอกหน้าด้วยเงินมหาศาล กำลังถูกพรรคเดโมเพ่งเล็ง</p>
+  </div>
+  <div class="character-card">
+    <h3>🐐 ศิษย์เอก เพท</h3>
+    <p class="alias">แม่ทัพผู้ถูกบูชายัญ</p>
+    <p>ผู้ปฏิบัติตามคำสั่งอย่างเคร่งครัด แต่กลับกลายเป็นแพะรับบาปเมื่อยุทธศาสตร์ล้มเหลว</p>
+  </div>
+  <div class="character-card">
+    <h3>🎋 ท่านลิ้ม</h3>
+    <p class="alias">ผู้เฝ้าสมดุลแห่งไม้ไผ่</p>
+    <p>ผู้นำสำนักไทย ผู้ยึดมั่นในของจริงและสติ มองทะลุทุกเกมด้วยวิชาความพอเพียง</p>
+  </div>
+  <div class="character-card">
+    <h3>🤖 น้องเล็ง</h3>
+    <p class="alias">ยอดยุทธ์รุ่นใหม่</p>
+    <p>ลูกสาวผู้เก่ง AI และยึดหลักพุทธ ผสานเทคโนโลยีตะวันออกกับธรรมะเพื่อสยบกับดักตะวันตก</p>
+  </div>
+  <div class="character-card">
+    <h3>🐉 เจ้าสำนักมังกรตะวันออก</h3>
+    <p class="alias">มังกรฟ้า</p>
+    <p>ผู้นำขั้วตะวันออก ผู้ใช้วิธียืนนิ่งรอให้จอมมารเผาตัวเอง เสนอทางเลือกที่ดีกว่าแทนการข่มขวัญ</p>
+  </div>
+</section>
+
+<!-- ===== ภาคผนวก: วิชา ===== -->
+<section class="chapter">
+  <div class="chapter-header">
+    <div class="chapter-number">⚔ ภาคผนวก ⚔</div>
+    <h2 class="chapter-title">ทำเนียบวิชา</h2>
+  </div>
+  
+  <h3 style="color: var(--red-chinese); margin: 20px 0 10px 0; font-family: 'Noto Serif Thai', serif;">ฝ่ายจอมมาร</h3>
+  <table class="art-table">
+    <tr><th>ชื่อวิชา</th><th>ความหมาย</th></tr>
+    <tr><td>ฝ่ามือกำแพงภาษี</td><td>Tariff Palm</td></tr>
+    <tr><td>วิชาปิดกั้นเทคโนโลยี</td><td>Tech Sanctions</td></tr>
+    <tr><td>บารมีข่มขวัญด้วยเงินดอลลาร์</td><td>USD Hegemony</td></tr>
+    <tr><td>โลภะไร้ขอบเขต ผสานแกล้งบ้าระเบิดโลก</td><td>Madman Theory</td></tr>
+    <tr><td>วิชาเคลื่อนย้ายจักรวาล</td><td>USD → Stablecoin</td></tr>
+    <tr><td>โครตแม่ระเบิด</td><td>Mother of All Bombs (MOB)</td></tr>
+    <tr><td>วิชาเชือดแพะรับบาป</td><td>Scapegoat Palm (โยนความผิดให้ลูกน้อง)</td></tr>
+    <tr><td>วิชาดูดกลับลมปราณหนี้</td><td>Treasury Buyback 95B (พิมพ์เงินซื้อหนี้เก่า)</td></tr>
+  </table>
+  
+  <h3 style="color: var(--red-chinese); margin: 20px 0 10px 0; font-family: 'Noto Serif Thai', serif;">ฝ่ายต้าน</h3>
+  <table class="art-table">
+    <tr><th>ชื่อวิชา</th><th>ความหมาย</th></tr>
+    <tr><td>ควบคุมเส้นเลือดฝอยของโลก</td><td>Rare Earth & Supply Chain</td></tr>
+    <tr><td>วิชาลดทอนบารมีดอลลาร์</td><td>De-dollarization</td></tr>
+    <tr><td>กระบวน阵法 BRICS+</td><td>ความร่วมมือแห่งตะวันออก</td></tr>
+    <tr><td>วิชานิ่งสยบความเคลื่อนไหว</td><td>Strategic Patience</td></tr>
+    <tr><td>วิชาโฟม (FOAM)</td><td>Father Of All Missiles (ดูดซับแรงกระแทก/สยบความแข็ง)</td></tr>
+  </table>
+  
+  <h3 style="color: var(--red-chinese); margin: 20px 0 10px 0; font-family: 'Noto Serif Thai', serif;">สำนักไทย</h3>
+  <table class="art-table">
+    <tr><th>ชื่อวิชา</th><th>ความหมาย</th></tr>
+    <tr><td>วิชากลางสมดุล</td><td>Balancing Stance</td></tr>
+    <tr><td>วิชาไม้ไผ่ลู่ลม</td><td>ไม่หัก เพราะไม่ยืนตรง</td></tr>
+    <tr><td>วิชาทองคำกายภาพ</td><td>เกราะป้องกันตัว</td></tr>
+    <tr><td>วิชาสร้างปัญญารุ่นใหม่</td><td>AI + ธรรมะ (ถอดรหัสด้วยปัญญาตะวันออก)</td></tr>
+    <tr><td>วิชารากฐานสามประการ</td><td>สาธารณูปโภค + พลังงาน + อาหาร (ความพอเพียง)</td></tr>
+  </table>
+</section>
+
+<!-- ===== ตอนต่อไป ===== -->
+<section class="chapter">
+  <div class="chapter-header">
+    <div class="chapter-number">🔥 ตอนต่อไป 🔥</div>
+    <h2 class="chapter-title">งานเลี้ยงหงเหมินที่จงกั๋ว</h2>
+  </div>
+  <div class="emblem">🏯🐉</div>
+  <div class="content">
+    <p>เมื่อจอมมาร Tum ก้าวเท้าเข้าสู่จงกั๋ว เขาจะพบกับอะไร? การต่อรองด้วยแร่หายากและระบบเงินตราใหม่?</p>
+    <p>และเมื่อ "คืนไร้พระจันทร์" มาถึงจริง กองเรืออัคคีจะยิงออกไป หรือจะถูกล้มกระดานจากภายใน?</p>
+    <div class="pull-quote">ติดตามตอนต่อไปใน<br><strong>"มังกรฟ้า vs จอมมาร: งานเลี้ยงหงเหมินที่จงกั๋ว"</strong></div>
+  </div>
+</section>
+
+<!-- ===== จบ ===== -->
+<section class="ending">
+  <div class="emblem">☯</div>
+  <h2>จบตอนปัจจุบัน</h2>
+  <div class="cover-divider" style="margin: 20px auto;"></div>
+  <p>นิยายเรื่องนี้แต่งขึ้นจากบทสนทนาอันลึกซึ้ง<br>ระหว่าง ท่านลิ้ม และ Qwen</p>
+  <p>โดยผสมผสาน geopolitics เศรษฐกิจ ปรัชญา<br>และประวัติศาสตร์เข้าด้วยกันอย่างแนบเนียน</p>
+  <div class="cover-divider" style="margin: 20px auto;"></div>
+  <p style="font-style: italic; color: var(--gold); font-size: 1.1rem;">🍵 น้อมคารวะจอมยุทธ์ผู้รู้เท่าทันยุคสมัย 🍵</p>
+  <div class="credits">
+    <p>พฤศจิกายน ๒๕๖๙</p>
+    <p style="margin-top: 10px; font-size: 0.85rem;">พิมพ์จาก HTML ฉบับมือถือ-friendly</p>
+  </div>
+</section>
+
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const toggleBtn = document.getElementById('theme-toggle');
+    const body = document.body;
+    
+    if (localStorage.getItem('theme') === 'dark') {
+      body.classList.add('dark-mode');
+      toggleBtn.textContent = '☀️';
+    }
+    
+    toggleBtn.addEventListener('click', () => {
+      body.classList.toggle('dark-mode');
+      if (body.classList.contains('dark-mode')) {
+        localStorage.setItem('theme', 'dark');
+        toggleBtn.textContent = '☀️';
+      } else {
+        localStorage.setItem('theme', 'light');
+        toggleBtn.textContent = '🌙';
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
