@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>แผนที่ยุทธภพ & คู่มือผู้อ่าน</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Thai:wght@400;600;700;900&family=Sarabun:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --red-chinese: #8B0000;
+    --gold: #C9A961;
+    --dark-gold: #8B6914;
+    --parchment: #F5E6D3;
+    --dark-parchment: #E8D5B7;
+    --ink: #2C1810;
+    --light-ink: #5C4033;
+    --bg-texture: url('https://www.transparenttextures.com/patterns/cream-paper.png');
+  }
+  body.dark-mode {
+    --red-chinese: #A52A2A;
+    --gold: #D4AF37;
+    --dark-gold: #B8860B;
+    --parchment: #121212;
+    --dark-parchment: #1E1E1E;
+    --ink: #E0D0B0;
+    --light-ink: #B0A090;
+    --bg-texture: url('https://www.transparenttextures.com/patterns/dark-matter.png');
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Sarabun', 'Noto Serif Thai', serif; background-color: var(--parchment); background-image: var(--bg-texture); background-attachment: fixed; color: var(--ink); line-height: 1.8; padding: 0; transition: background-color 0.4s ease, color 0.4s ease; }
+  .container { max-width: 900px; margin: 0 auto; padding: 40px 20px; }
+  
+  .header { text-align: center; margin-bottom: 50px; border-bottom: 3px double var(--red-chinese); padding-bottom: 30px; }
+  .header h1 { font-family: 'Noto Serif Thai', serif; font-size: 2.5rem; color: var(--red-chinese); margin-bottom: 10px; }
+  .header h2 { font-size: 1.2rem; color: var(--gold); font-weight: 600; letter-spacing: 2px; }
+  
+  .section { margin-bottom: 40px; }
+  .section h3 { font-family: 'Noto Serif Thai', serif; color: var(--red-chinese); font-size: 1.5rem; margin-bottom: 20px; border-left: 5px solid var(--gold); padding-left: 15px; }
+  
+  .faction-grid { display: grid; grid-template-columns: 1fr; gap: 20px; margin-top: 20px; }
+  .faction-card { background: var(--dark-parchment); padding: 20px; border-radius: 8px; border-left: 5px solid var(--gold); }
+  .faction-card h4 { color: var(--red-chinese); font-size: 1.2rem; margin-bottom: 10px; font-weight: 700; }
+  .faction-card ul { margin-left: 20px; font-size: 0.95rem; }
+  .faction-card li { margin-bottom: 5px; }
+  .faction-card .weakness { color: var(--red-chinese); font-weight: 600; }
+  .faction-card .strength { color: #1e8449; font-weight: 600; }
+  
+  .route-box { background: linear-gradient(135deg, var(--dark-parchment), var(--parchment)); padding: 20px; border-radius: 8px; margin-top: 20px; border: 1px solid var(--gold); }
+  .route-box h4 { color: var(--red-chinese); margin-bottom: 10px; }
+  .route-box p { margin-bottom: 8px; font-size: 0.95rem; }
+  
+  .glossary-table { width: 100%; border-collapse: collapse; margin-top: 20px; font-size: 0.95rem; }
+  .glossary-table th { background: var(--red-chinese); color: var(--gold); padding: 12px 10px; text-align: left; font-family: 'Noto Serif Thai', serif; }
+  .glossary-table td { padding: 10px; border-bottom: 1px solid var(--gold); }
+  .glossary-table tr:nth-child(even) { background: rgba(201, 169, 97, 0.1); }
+  
+  .tip-box { background: #eef5fb; border-left: 4px solid #3a8fd4; padding: 15px; margin-top: 20px; border-radius: 8px; font-size: 0.9rem; }
+  
+  .back-link { display: inline-block; margin-top: 40px; padding: 12px 25px; background: var(--red-chinese); color: var(--gold); text-decoration: none; border-radius: 5px; font-weight: 600; transition: all 0.3s ease; border: 1px solid var(--gold); }
+  .back-link:hover { background: var(--gold); color: var(--red-chinese); }
+  
+  #theme-toggle { position: fixed; bottom: 25px; right: 25px; width: 55px; height: 55px; border-radius: 50%; background: var(--red-chinese); color: var(--gold); border: 2px solid var(--gold); font-size: 1.6rem; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.4); z-index: 1000; transition: all 0.3s ease; display: flex; align-items: center; justify-content: center; }
+  #theme-toggle:hover { transform: scale(1.1); }
+  
+  @media (max-width: 768px) {
+    .header h1 { font-size: 2rem; }
+    .section h3 { font-size: 1.3rem; }
+  }
+  @media print {
+    body { background: white !important; color: black !important; }
+    .header h1, .header h2, .section h3, .faction-card h4, .glossary-table th { color: black !important; }
+    .faction-card { border: 1px solid #ccc; background: #f9f9f9 !important; }
+    #theme-toggle, .back-link { display: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<button id="theme-toggle" aria-label="Toggle Dark Mode">🌙</button>
+
+<div class="container">
+  
+  <div class="header">
+    <h1>🗺️ แผนที่ยุทธภพ & คู่มือผู้อ่าน</h1>
+    <h2>ก่อนก้าวเข้าสู่โลกแห่งมังกรฟ้า vs จอมมาร</h2>
+  </div>
+
+  <!-- แผนที่ยุทธภพ -->
+  <div class="section">
+    <h3>ขั้วอำนาจทั้งสามในยุทธภพ</h3>
+    <div class="faction-grid">
+      
+      <div class="faction-card">
+        <h4>🦅 เหม่ยกั๋ว (ตะวันตก)</h4>
+        <ul>
+          <li><strong>จอมมาร:</strong> Tum (ทรัมป์)</li>
+          <li><strong>ป้อมปราการ:</strong> Wall Street, Big Tech, สำนักเฟด</li>
+          <li><strong>วิชาเอก:</strong> ฝ่ามือกำแพงภาษี, บารมีดอลลาร์, โครตแม่ระเบิด (MOB), วิชาดูดกลับลมปราณหนี้</li>
+          <li><strong>ศิษย์เอก:</strong> JD Vere (JD Vance), Leon Must (Elon Musk), ศิษย์เอก เพท (รัฐมนตรีกลาโหม)</li>
+          <li class="weakness">⚠️ จุดอ่อน: วงจรอุบาทว์ภายใน, ฟองสบู่ AI, การพึ่งพาดอลลาร์</li>
+        </ul>
+      </div>
+      
+      <div class="faction-card">
+        <h4>🐉 มังกรตะวันออก (บูรพา)</h4>
+        <ul>
+          <li><strong>เจ้าสำนัก:</strong> มังกรฟ้า (ไม่ปรากฏนาม)</li>
+          <li><strong>พันธมิตร:</strong> BRICS+, ยูเรเซีย (หมีขาว), ตะวันออกกลาง</li>
+          <li><strong>วิชาเอก:</strong> นิ่งสยบความเคลื่อนไหว, วิชาโฟม (FOAM), ควบคุมเส้นเลือดฝอยของโลก</li>
+          <li><strong>จุดแข็ง:</strong> แร่หายาก, ห่วงโซ่อุปทาน, สกุลเงินจริง (หยวน), พลังงาน</li>
+          <li class="strength">✅ ยุทธวิธี: ยืนนิ่งรอให้จอมมารเผาตัวเอง</li>
+        </ul>
+      </div>
+      
+      <div class="faction-card">
+        <h4>🎋 สำนักไทย (จุดกลาง)</h4>
+        <ul>
+          <li><strong>ผู้นำ:</strong> ท่านลิ้ม (ผู้เฝ้าสมดุลแห่งไม้ไผ่)</li>
+          <li><strong>ยอดยุทธ์รุ่นใหม่:</strong> น้องเล็ง (ลูกสาวผู้เก่ง AI + หลักพุทธ)</li>
+          <li><strong>ยุทธ์:</strong> ไม่เลือกข้าง, เป็นสะพาน, ไม้ไผ่ลู่ลม</li>
+          <li><strong>วิชาเอก:</strong> วิชารากฐานสามประการ (สาธารณูปโภค+พลังงาน+อาหาร), วิชาทองคำกายภาพ, AI+ธรรมะ</li>
+          <li class="weakness">⚠️ จุดเสี่ยง: ถูก Capture, ถูกบีบให้เลือกข้าง, การกลายเป็นผู้มีอำนาจเสียเอง</li>
+        </ul>
+      </div>
+      
+    </div>
+    
+    <div class="route-box">
+      <h4>🛤️ เส้นทางยุทธศาสตร์หลัก</h4>
+      <p>🔥 <strong>คืนไร้พระจันทร์:</strong> เหม่ยกั๋ว → ตะวันออกกลาง (อิหร่าน) — ๓ กองเรือบรรทุกเครื่องบิน</p>
+      <p>🏯 <strong>งานเลี้ยงหงเหมิน:</strong> เหม่ยกั๋ว → จงกั๋ว — การเจรจาที่ซ่อนกับดัก</p>
+      <p>🌐 <strong>สะพานลับ:</strong> สำนักไทย ← → ทุกฝ่าย — จุดกลางที่ทุกขั้วต้องผ่าน</p>
+    </div>
+  </div>
+
+  <!-- คู่มือผู้อ่าน -->
+  <div class="section">
+    <h3>📖 ศัพท์ยุทธภพ (Glossary)</h3>
+    <table class="glossary-table">
+      <thead>
+        <tr>
+          <th>ศัพท์ในนิยาย</th>
+          <th>ความหมายจริง</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>ลมปราณ</strong></td><td>อำนาจทางเศรษฐกิจ / สภาพคล่อง / พลังงาน</td></tr>
+        <tr><td><strong>สำนัก</strong></td><td>รัฐชาติ / บล็อกอำนาจ / องค์กร</td></tr>
+        <tr><td><strong>วิชา</strong></td><td>นโยบาย / มาตรการ / กลยุทธ์</td></tr>
+        <tr><td><strong>ยุทธภพ</strong></td><td>ระเบียบโลก / ระบบระหว่างประเทศ</td></tr>
+        <tr><td><strong>ของจริง</strong></td><td>ทรัพยากรจริง (อาหาร, พลังงาน, แร่หายาก)</td></tr>
+        <tr><td><strong>ของฝัน / ลมปราณเทียม</strong></td><td>สินทรัพย์ดิจิทัล / การเก็งกำไร / ฟองสบู่</td></tr>
+        <tr><td><strong>นันทิ</strong></td><td>ความเพลิน/ความยึดติด (พุทธปรัชญา)</td></tr>
+        <tr><td><strong>บ่วง</strong></td><td>โครงสร้างที่ดูดเราเข้าไปเป็นส่วนหนึ่ง (เช่น อัลกอริทึม, ระบบเก็งกำไร)</td></tr>
+        <tr><td><strong>ค่ายกล</strong></td><td>ระบบ / โครงสร้าง / กับดัก</td></tr>
+        <tr><td><strong>สภาเฒ่า / สภาดองเกรส</strong></td><td>สภาคองเกรส สหรัฐอเมริกา</td></tr>
+        <tr><td><strong>พรรคเดโม</strong></td><td>พรรคเดโมแครต</td></tr>
+      </tbody>
+    </table>
+    
+    <div class="tip-box">
+      💡 <strong>เคล็ดลับการอ่าน:</strong> อ่านเพื่อความสนุกก่อน — รายละเอียดเชิงลึกมีอยู่ในเอกสาร <a href="moneyis.html" style="color:#3a8fd4; font-weight:600;">"Moneyis: พิมพ์เขียวแซนด์บ็อกซ์แห่งความพอเพียง"</a>
+    </div>
+  </div>
+
+  <!-- ปรัชญาหลัก -->
+  <div class="section">
+    <h3>☯️ ปรัชญาหลักของเรื่อง</h3>
+    <div class="route-box">
+      <p><strong>๑. สายพิณไม่ตึงไม่หย่อน:</strong> ความสนุกไม่ใช่ศัตรู แต่ต้อง "จูน" ให้พอดี — ไม่ใช่ค่าคงที่ แต่ปรับตามกาละ</p>
+      <p><strong>๒. บริโภคเนื้อได้ แต่ไม่จมบ่วง:</strong> ใช้ความสนุกเป็นเครื่องมือดำรงชีวิตได้ แต่อย่าตกเป็นเครื่องมือของโครงสร้าง</p>
+      <p><strong>๓. ไม้ไผ่ไม่หัก เพราะรู้ว่ารากอยู่ที่ไหน:</strong> การรู้ราก = การรู้เสียงพิณของตัวเอง = การแยกของจริง/ของฝันได้</p>
+      <p><strong>๔. ของจริงชนะเงินกระดาษ:</strong> ทรัพยากรจริง (อาหาร, พลังงาน) มีค่ากว่าตัวเลขในหน้าจอ</p>
+      <p><strong>๕. สติชนะความบ้าคลั่ง:</strong> การไม่เลือกข้าง + การเตรียมรากฐาน = ทางรอดในยุคพายุ</p>
+    </div>
+  </div>
+
+  <div style="text-align: center;">
+    <a href="index.html" class="back-link">← กลับสู่หน้าหลัก (Main Portal)</a>
+  </div>
+
+  <div style="text-align: center; margin-top: 50px; font-size: 0.9rem; color: var(--light-ink); border-top: 1px solid var(--gold); padding-top: 20px;">
+    <p>พัฒนาโดย ท่านลิ้ม & Qwen | พฤศจิกายน ๒๕๖๙</p>
+    <p>🍵 น้อมคารวะจอมยุทธ์ผู้รู้เท่าทันยุคสมัย 🍵</p>
+  </div>
+
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const toggleBtn = document.getElementById('theme-toggle');
+    const body = document.body;
+    if (localStorage.getItem('theme') === 'dark') { body.classList.add('dark-mode'); toggleBtn.textContent = '☀️'; }
+    toggleBtn.addEventListener('click', () => {
+      body.classList.toggle('dark-mode');
+      if (body.classList.contains('dark-mode')) { localStorage.setItem('theme', 'dark'); toggleBtn.textContent = '☀️'; } 
+      else { localStorage.setItem('theme', 'light'); toggleBtn.textContent = '🌙'; }
+    });
+  });
+</script>
+</body>
+</html>
