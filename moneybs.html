@@ -228,21 +228,20 @@
   border-collapse: collapse;
   margin: 1.5rem 0;
   font-size: 0.95rem;
-  background: #ffffff; /* เพิ่มพื้นหลังขาวให้ตาราง */
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05); /* เงาบางๆ ให้ดูมีมิติ */
+  background: #ffffff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
   border-radius: 8px;
-  overflow: hidden; /* ให้มุมโค้งทำงาน */
+  overflow: hidden;
 }
 
 .tuning-table th,
 .tuning-table td {
-  border: 1px solid #e0d8c8; /* เส้นขอบอ่อนลง */
+  border: 1px solid #e0d8c8;
   padding: 12px 14px;
   text-align: left;
   vertical-align: top;
 }
 
-/* หัวตาราง: ใช้สีเขียวเข้ม ตัวหนังสือขาว (สอดคล้องกับธีมหลัก) */
 .tuning-table th {
   background: var(--primary); 
   color: #ffffff;
@@ -250,25 +249,23 @@
   white-space: nowrap;
 }
 
-/* เนื้อหา: สลับสีอ่อนๆ ให้อ่านง่าย */
 .tuning-table tr:nth-child(even) td {
-  background: #f9f9f9; /* สีเทาอ่อนมาก แทนสีเบจ */
+  background: #f9f9f9;
 }
 .tuning-table tr:nth-child(odd) td {
   background: #ffffff;
 }
 
-/* ปรับสี Callout ให้ตัดกับพื้นหลังได้ชัดขึ้น */
 .callout {
   border-left: 4px solid;
   padding: 1rem 1.25rem;
   margin: 1.5rem 0;
   border-radius: 0 8px 8px 0;
-  color: var(--text); /* บังคับสีตัวหนังสือให้เข้ม */
+  color: var(--text);
   font-size: 0.95rem;
 }
 
-.callout strong { color: var(--primary); } /* หัวข้อ callout ให้เด่น */
+.callout strong { color: var(--primary); }
 .callout-info { background: #eef5fb; border-color: #3a8fd4; }
 .callout-warning { background: #fdf3e3; border-color: #e0a23a; }
 .callout-success { background: #eef8ee; border-color: #4caf50; }
@@ -326,7 +323,7 @@
                     <li><strong>เงินคือ Claim on Resources:</strong> เงินเป็นเพียงสิทธิ์เรียกร้อง ไม่ใช่ทรัพยากรจริง</li>
                     <li><strong>คุณภาพชีวิต ≠ GDP:</strong> "รวยปลอม เงินแพง" ที่ GDP สูงแต่หนี้ท่วม ไม่เท่ากับคุณภาพชีวิตจริง</li>
                     <li><strong>สถาปัตยกรรมสองชั้น:</strong> ภายในใช้ <em>Provisioning</em> ภายนอกใช้ <em>Exchange</em> พร้อมเพดานควบคุม</li>
-                    <li><strong>Dream/Real Firewall:</strong> แยกวงจร "ของจริง" ออกจาก "ของฝัน" (Crypto, Game) ไม่ให้ปั่นราคาปัจจัย 4</li>
+                    <li><strong>The Value Firewall:</strong> แยกกิจกรรมที่ "เสริมสร้างชีวิต" ออกจาก "สิ่งลวง/กับดัก" (ยาเสพติด, การเสพติดหน้าจอ, การเก็งกำไร) ไม่ให้ดูดพลังงานชีวิตทิ้งอย่างไร้ค่า</li>
                     <li><strong>Sandbox นำร่อง:</strong> ใช้ Physical AI ดูแลผู้สูงอายุ วัดผลด้วย <em>คุณภาพชีวิต + เวลาที่ได้คืน</em></li>
                     <li><strong>สวัสดิการสองชั้น:</strong> ชั้นพื้นฐาน (รัฐจัดหา) + ชั้นศักยภาพ (ตลาดเสรี) เป็นตาข่ายรองรับ</li>
                     <li><strong>Non-convertible Rewards:</strong> จำกัดการสะสม เปลี่ยนเป็น <em>Hall of Fame</em> ตัดวงจร Wealth → Power</li>
@@ -382,7 +379,7 @@
                         <div><strong>High Entropy (พังทลาย):</strong> พลังงานจริง → ขุดคริปโต/ปั่นตัวเลข → ความไร้ระเบียบ (Heat Death)</div>
                     </div>
                 </div>
-                <p style="margin-top:16px; font-size:0.95rem;">เศรษฐกิจแห่งความฝัน (Digital/Financial) เป็นเพียง <span class="highlight">"กาฝาก"</span> ที่ดูดพลังงานจากภาคจริง หากภาคจริงล่มสลาย ความฝันก็จะตายตาม</p>
+                <p style="margin-top:16px; font-size:0.95rem;">เศรษฐกิจที่ขับเคลื่อนด้วย "ฟองสบู่" (Digital/Financial Bubbles) เป็นเพียง <span class="highlight">"กาฝาก"</span> ที่ดูดพลังงานจากภาคจริง หากภาคจริงล่มสลาย ฟองสบู่ก็จะแตกตาม</p>
 
                 <details class="deep-dive">
                     <summary>อ่านหลักฐาน: Digital Dollarization 2026</summary>
@@ -430,424 +427,6 @@
                     <summary>อ่านเชิงลึก: สะพานแห่งจิต (The Bridge of Mind) — ทำไมของจริงกับของฝันต้องอยู่ร่วมกัน</summary>
                     <div class="deep-dive-content">
                         <h4>1. "ของจริง" และ "ของฝัน" ไม่ใช่ศัตรูกัน แต่ต้องมี "จิต" เป็นตัวนำ</h4>
-                        <p>การแยก "ของจริง" (Real Circuit) และ "ของฝัน" (Dream Circuit) ตามที่เราเคยคุยกันไว้ ไม่ได้หมายความว่าเราต้องทำลาย "ความฝัน" หรือ "จินตนาการ" ทิ้งไป เพราะมนุษย์ขาดสิ่งเหล่านี้ไม่ได้—มันคือศิลปะ วรรณกรรม ดนตรี และการวิจัย ที่สร้างคุณค่าให้กับชีวิต</p>
-                        <p><strong>ปัญหาของ "ของฝัน" คือ:</strong> เมื่อมันถูกขับเคลื่อนด้วย "จิตที่โลภ" หรือ "การเก็งกำไร" (Speculation) มันก็จะกลายเป็น "ฟองสบู่" ที่ดูดเอาทรัพยากรจริงไปทิ้งเปล่า (High Entropy) และเป็น "กาฝาก" ของระบบ</p>
-                        <p><strong>ทางออก:</strong> เราต้องมี <strong>"สะพานแห่งจิต" (The Bridge of Mind)</strong> ที่คอยทำหน้าที่เป็นตัวกรอง—"ของฝัน" ที่สร้างด้วย "จิตที่สร้างสรรค์" (Creative Mind) จะสามารถ<strong>ส่งผ่านคุณค่ามาสู่ "ของจริง"</strong> ได้ เช่น:</p>
-                        <ul>
-                            <li><strong>ศิลปะ/ดนตรี:</strong> สร้างความบันเทิงและแรงบันดาลใจให้มนุษย์ทำงานจริงได้ (ไม่ใช่แค่ปั่นราคา NFT)</li>
-                            <li><strong>งานวิจัย/นวัตกรรม:</strong> เกิดจากจินตนาการ (Dream) แต่กลายเป็นสิทธิบัตร (Real) ที่เพิ่มผลผลิตจริง</li>
-                            <li><strong>เกม/ซอฟต์แวร์:</strong> ถ้าสร้างเพื่อการศึกษา (EdTech) หรือฝึกทักษะ ก็เป็นของจริง แต่ถ้าสร้างเพื่อปั่นมูลค่าหรือดูดเวลา ก็เป็นของฝัน</li>
-                        </ul>
-                        <p><strong>หน้าที่ของระบบใหม่:</strong> ไม่ใช่การห้าม "ของฝัน" แต่คือการออกแบบ <strong>"กลไกคัดกรอง"</strong> ที่ส่งเสริมให้เกิด "ของฝันที่สร้างคุณค่าจริง" (Creative Dream) และกีดกัน "ของฝันที่ทำลายคุณค่าจริง" (Destructive Dream)</p>
-                        
-                        <h4>2. "จิต" คือตัวกำหนดคุณค่าที่แท้จริง</h4>
-                        <p>ไม่ว่าจะเป็น "ของจริง" หรือ "ของฝัน" มันจะไม่มีค่าอะไรเลยถ้าขาด "จิต" ที่ดีเข้ามาเสริม:</p>
-                        <ul>
-                            <li><strong>ของจริงที่ไร้จิต:</strong> อาหาร, ที่อยู่ ที่ถูกผลิตขึ้นโดยไม่คำนึงถึงคุณภาพ, สิ่งแวดล้อม, หรือความพอเพียง → กลายเป็น "ของจริง" ที่ทำลายชีวิตมนุษย์</li>
-                            <li><strong>ของฝันที่มีจิต:</strong> ภาพยนตร์ที่สร้างแรงบันดาลใจ, เกมที่สอนประวัติศาสตร์ → กลายเป็น "ของฝัน" ที่มีคุณค่าต่อ "ของจริง"</li>
-                        </ul>
-                        <p><strong>นี่คือเหตุผลว่าทำไมระบบ "แจกัน" ต้องให้ความสำคัญกับ "ผู้นำทางปัญญา" (Hall of Fame) และ "คุณค่านามธรรม" (Non-convertible Rewards):</strong> เพราะเราต้องการส่งเสริม "จิต" ที่สร้างคุณค่าให้กับทั้งสองฝั่ง ไม่ใช่แค่การสะสมวัตถุหรือการปั่นตัวเลข</p>
-                    </div>
-                </details>
-            </div>
-        </section>
-
-        <!-- 4. Architecture -->
-        <section id="architecture" class="section">
-            <div class="section-title"><span class="icon">🏛️</span> สถาปัตยกรรม: ทางออก 3 เสาหลัก</div>
-            
-            <div class="card">
-                <h3>1. อธิปไตยทางการผลิต (Production Sovereignty)</h3>
-                <p>"จัดหาได้" ไม่เท่ากับ "ผลิตได้" รัฐต้องมั่นใจว่าผลิตปัจจัย 4 จากฐานทรัพยากรภายในได้จริง ไม่ใช่พึ่งพาการพิมพ์เงินหรือ Unequal Exchange</p>
-
-                <details class="deep-dive">
-                    <summary>อ่านเชิงลึก: Unequal Exchange และบทเรียนยุโรป</summary>
-                    <div class="deep-dive-content">
-                        <p>รัฐสวัสดิการยุโรปใช้ Financial Hegemony ดึงส่วนเกินจาก real sector ของประเทศกำลังพัฒนา ผ่าน:</p>
-                        <ul>
-                            <li><strong>Terms of Trade ที่เอียง:</strong> ส่งออกของ markup สูง นำเข้าของถูก</li>
-                            <li><strong>Brand Premium:</strong> สร้างมาตรฐานและ IP กีดกันคู่แข่ง</li>
-                            <li><strong>Seigniorage:</strong> กู้เงินในสกุลตัวเองได้ถูกกว่ามาก</li>
-                        </ul>
-                    </div>
-                </details>
-            </div>
-
-            <div class="card">
-                <h3>2. Dream/Real Firewall</h3>
-                <p>แยกวงจรเศรษฐกิจอย่างเด็ดขาด:</p>
-                <div class="firewall-viz">
-                    <div class="fw-zone fw-real">
-                        <div class="fw-title">🌍 Real Circuit (ของจริง)</div>
-                        <div class="fw-desc">อาหาร, ที่อยู่อาศัย, สุขภาพ<br>จัดสรรโดยตรงผ่านคูปองพื้นฐาน</div>
-                    </div>
-                    <div class="fw-bar">🚫 FIREWALL: ห้ามเงินเก็งกำไรซื้อของจริง 🚫</div>
-                    <div class="fw-zone fw-dream">
-                        <div class="fw-title">🎮 Dream Circuit (ของฝัน)</div>
-                        <div class="fw-desc">คริปโต, เกม, สินทรัพย์ดิจิทัล<br>แลกเปลี่ยนกันได้ แต่แปลงเป็นของจริงแบบ Unlimited ไม่ได้</div>
-                    </div>
-                </div>
-
-                <details class="deep-dive">
-                    <summary>อ่านเชิงลึก: กลไกปฏิบัติการ 3 ชั้น</summary>
-                    <div class="deep-dive-content">
-                        <h4>(ก) Proof of Reserves (PoR)</h4>
-                        <p>คูปองภายในต้องมี PoR ตรวจสอบได้ Real-time ป้องกันการพิมพ์เพิ่ม</p>
-                        <h4>(ข) Non-Convertible Bridge</h4>
-                        <p>ให้สิทธิ์เข้าถึงของจริงบางประเภท แต่ไม่ให้แลกเป็นเงิน/ที่ดินแบบ unlimited</p>
-                        <h4>(ค) Regional Settlement</h4>
-                        <p>สร้างท่อภูมิภาค (LCS, mBridge) ให้การค้าของจริงไม่ต้องผ่านดอลลาร์</p>
-                    </div>
-                </details>
-            </div>
-
-            <div class="card">
-                <h3>3. Non-convertible Rewards</h3>
-                <p>ตัดวงจร Wealth → Power โดยเปลี่ยนรางวัลจากการสะสมวัตถุ เป็น <span class="highlight">"คุณค่านามธรรม"</span> (Hall of Fame, การยอมรับ) ที่ไม่สามารถแปลงเป็นอำนาจครอบงำผู้อื่นได้</p>
-            </div>
-        </section>
-
-        <!-- 5. Sandbox & China -->
-        <section id="sandbox" class="section">
-            <div class="section-title"><span class="icon">🧪</span> Sandbox & บทเรียนจากจีน</div>
-            <div class="card accent">
-                <p>ใช้ Physical AI ทดแทนแรงงานซ้ำซาก (เช่น ดูแลผู้สูงอายุ) เพื่อทดสอบว่า: <strong>"เสรีภาพ + ความมั่นคงพื้นฐาน ปลดปล่อยศักยภาพที่ซ่อนอยู่ได้จริงหรือไม่?"</strong></p>
-                
-                <details class="deep-dive">
-                    <summary>อ่านเชิงลึก: กลไก Sandbox และมหภาคจีน (2025-2026)</summary>
-                    <div class="deep-dive-content">
-                        <h4>จุดเริ่มต้น: การดูแลผู้สูงอายุ</h4>
-                        <p>Physical AI ทำได้ดี (ยกผู้ป่วย, เตือนยา) แต่ยังต้องมีมนุษย์ดูแลจิตใจ KPI คือ <strong>คุณภาพชีวิต + เวลาที่ผู้ดูแลได้คืนมา</strong></p>
-                        <h4>บทเรียนจากจีน: Work-Based Learning</h4>
-                        <p>จีนร่วมมือกับภาคอุตสาหกรรม (校企合作) ปฏิรูปการศึกษาตั้งแต่ ม.ปลาย โดยให้ความสำคัญกับ "ทักษะจริง" มากกว่า "ใบปริญญา" นี่คือการทลายกรงขังการศึกษา</p>
-                        <h4>ข้อมูลชี้ชัด: จีนกับ "สกุลเงินแห่งห่วงโซ่อุปทาน"</h4>
-                        <p><strong>1. M2 ที่ถูกยึดเหนี่ยวด้วยของจริง:</strong> จีนมี M2 ~50-52 ล้านล้านดอลลาร์ (>240% GDP) แต่ไม่เกิดเงินเฟ้อ เพราะดูดซับด้วย Real Sector (Supply-Side Deflation)</p>
-                        <p><strong>2. พลังการผลิตคุณภาพใหม่:</strong> แผนพัฒนาฯ ฉบับที่ 15 ใช้ AI และ Dark Factories เพื่อสร้างคุณค่าจริง (Low Entropy) ไม่ใช่ฟองสบู่การเงิน</p>
-                        <p><strong>3. Supply Chain Currency:</strong> จีนบังคับคู่ค้าชำระค่าชิ้นส่วนเป็น "หยวน" ควบคุมเงินทุนให้ 95% หมุนเวียนในประเทศ นี่คือ Dream/Real Firewall ในระดับมหภาค</p>
-                    </div>
-                </details>
-            </div>
-        </section>
-
-        <!-- 5.5 The Sufficiency Token (REPLACED) -->
-        <section id="token" class="section">
-            <div class="section-title"><span class="icon">🪙</span> 5.5 โมเดลรูปธรรม: The Sufficiency Token</div>
-            <div class="card token">
-                <h3>เศรษฐศาสตร์หมุนเวียนแห่งความดี (Regenerative Economics)</h3>
-                <p>เพื่อให้ภาพของ Sandbox ชัดเจนขึ้น เราได้ออกแบบระบบ <strong>"Merit Token"</strong> ที่ไม่ใช่คริปโตเก็งกำไร และไม่ใช่ Social Credit แบบสอดแนม แต่เป็น <strong>ระบบปิด (Closed-Loop)</strong> ที่สร้างแรงจูงใจให้คนทำดี:</p>
-                
-                <ul>
-                    <li><strong>Proof of Good Action:</strong> ทำความดี (แยกขยะ, ปลูกต้นไม้, ดูแลผู้สูงอายุ) → AI ตรวจสอบผ่าน ZKP (ไม่ละเมิดความเป็นส่วนตัว) → ออกโทเคน</li>
-                    <li><strong>Asset-Backed Reserve:</strong> รัฐมีกองทุนสำรองสินค้าจำเป็น (ข้าว, น้ำมัน) เพื่อรับประกันว่าโทเคนมีมูลค่าจริง ไม่ใช่ฟองสบู่</li>
-                    <li><strong>Utility & Demurrage:</strong> แลกได้กับสินค้าจำเป็น/ส่วนลดภาษี และมีวันหมดอายุเล็กน้อยเพื่อกระตุ้นให้เกิดการหมุนเวียน ไม่ใช่การสะสม</li>
-                </ul>
-
-                <div style="text-align: center; margin-top: 20px;">
-                    <a href="concept-note.pdf" target="_blank" class="btn-pdf">
-                        📄 ดาวน์โหลด Concept Note (PDF)
-                    </a>
-                </div>
-            </div>
-        </section>
-
-<!-- ============================================ -->
-<!-- ส่วนเพิ่มเติม: ศิลปะแห่งการจูน — สายพิณและบ่วง -->
-<!-- ============================================ -->
-<section id="tuning-art" class="content-section">
-  <h2>🎻 ศิลปะแห่งการจูน: สายพิณและบ่วง</h2>
-  <p class="lead">
-    <em>"สายพิณที่ต้องไม่ตึงไม่หย่อน เสียงจึงเพราะ — และเราบริโภคเนื้อได้ แต่ต้องไม่จมบ่วง"</em>
-  </p>
-
-  <p>
-    หาก "Dream/Real Firewall" คือกำแพงที่ต้องสร้าง ปัญหาที่แท้จริงคือ:
-    <strong>ความสนุก (นันทิ) ไม่ใช่ศัตรู แต่เป็นสิ่งที่ต้อง "จัดระเบียบ"</strong>
-    ด้วยหลักการสองชั้น — <strong>จูนภายใน</strong> และ <strong>กันบ่วงภายนอก</strong>
-  </p>
-
-  <h3>๑. สายพิณ: การจูนภายใน (Individual Tuning)</h3>
-  <p>
-    จากพุทธประวัติเรื่องพระโสณะ — พิณสายตึงเกินก็ขาด สายหย่อนเกินก็ไม่ดัง
-    เสียงที่เพราะเกิดจาก <strong>"มัชฌิมา"</strong> ที่ต้องจูนใหม่ทุกครั้งที่สภาพเปลี่ยน
-  </p>
-
-  <table class="tuning-table">
-    <thead>
-      <tr><th>สภาวะ</th><th>ลักษณะ</th><th>ผล</th></tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><strong>ตึงเกิน (ตัณหาเกิน)</strong></td>
-        <td>หมกมุ่นในความสนุกจนเสียสมดุล</td>
-        <td>ขาด — ชีวิตจริงพัง</td>
-      </tr>
-      <tr>
-        <td><strong>หย่อนเกิน (ตัณหาขาด)</strong></td>
-        <td>กดทับ/ปฏิเสธความสนุกโดยสิ้นเชิง</td>
-        <td>เกียจคร้าน — ขาดแรงขับ</td>
-      </tr>
-      <tr>
-        <td><strong>พอดี (มัชฌิมา)</strong></td>
-        <td>ความสนุกที่ <em>เสริม</em> การดำรงชีวิต</td>
-        <td>เสียงเพราะ — อยู่ได้ + มีความสุข</td>
-      </tr>
-    </tbody>
-  </table>
-
-  <div class="callout callout-info">
-    <strong>เกณฑ์จูนสายพิณ ๕ ข้อ</strong>
-    <ol>
-      <li><strong>วัดสัดส่วน:</strong> กิจกรรมนี้กินเวลากี่ส่วนของชีวิตที่ต้องดำรงอยู่?</li>
-      <li><strong>ถามทิศทาง:</strong> กิจกรรมนี้ "เสริม" หรือ "แทนที่" การผลิตของจริง?</li>
-      <li><strong>ฟังเสียง:</strong> หลังทำแล้ว รู้สึก " refreshed" หรือ "ถูกดูด"?</li>
-      <li><strong>จูนซ้ำ:</strong> สภาพเปลี่ยน → ปรับจุดสมดุลใหม่ (ไม่ใช่ค่าคงที่)</li>
-      <li><strong>รู้ราก:</strong> กิจกรรมนี้ทำให้รู้จักตัวเองชัดขึ้น หรือทำให้หลงตัวเอง?</li>
-    </ol>
-  </div>
-
-  <h3>๒. เนื้อและบ่วง: การกันการติด (Structural Safeguard)</h3>
-  <p>
-    จากบาลี <em>"มังสํ ภุญชิตุํ วฏฺฏติ, น จ พนฺธนํ คเหตุํ"</em> —
-    บริโภคเนื้อได้ แต่ไม่ควรจับบ่วง (เครื่องดักสัตว์)
-  </p>
-  <p>
-    <strong>"บ่วง"</strong> คือโครงสร้างที่ทำให้เรากลายเป็น <em>ส่วนหนึ่งของวงจร</em> ไม่ใช่ผู้ใช้:
-  </p>
-
-  <table class="tuning-table">
-    <thead>
-      <tr><th>บ่วง</th><th>ลักษณะ</th><th>กลไกที่ดูด</th></tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>บ่วงเงินตราเก็งกำไร</td>
-        <td>เข้าไปเป็นส่วนหนึ่งของวงจรปั๊ม-ดูด</td>
-        <td>สภาพคล่องถูกดึงออกจาก real sector</td>
-      </tr>
-      <tr>
-        <td>บ่วงตลาดหุ้น / exchange</td>
-        <td>เข้าไปเป็นส่วนหนึ่งของ "ความฝัน" ของคนอื่น</td>
-        <td>ราคาถูกปั่นเหนือมูลค่าจริง</td>
-      </tr>
-      <tr>
-        <td>บ่วงหน้าจอ</td>
-        <td>เข้าไปเป็นส่วนหนึ่งของอัลกอริทึมที่ออกแบบมาให้ติด</td>
-        <td>เวลา/ความสนใจถูกดูดเป็นทุน</td>
-      </tr>
-      <tr>
-        <td>บ่วงค่าเงิน</td>
-        <td>เข้าไปเป็นส่วนหนึ่งของการพนันค่าเงิน</td>
-        <td>ความเสี่ยงถูกโอนจากผู้ผลิตจริง</td>
-      </tr>
-    </tbody>
-  </table>
-
-  <div class="callout callout-warning">
-    <strong>เกณฑ์ตรวจบ่วง ๕ ข้อ</strong>
-    <ol>
-      <li><strong>ทดสอบ "ผู้ใช้ vs ถูกใช้":</strong> เราคุมกิจกรรม หรือกิจกรรมคุมเรา?</li>
-      <li><strong>มองเห็นต้นทุนจริง:</strong> รู้หรือไม่ว่าเสียเวลา/เงิน/โอกาสอะไรไป?</li>
-      <li><strong>มีทางออก:</strong> หยุดได้ทันทีโดยไม่เสียหายหรือไม่?</li>
-      <li><strong>ตรวจโครงสร้าง:</strong> กิจกรรมนี้ออกแบบมาเพื่อ "เรา" หรือ "ระบบ"?</li>
-      <li><strong>ถามกลับ:</strong> กิจกรรมนี้ "เสริม" การดำรงชีวิต หรือ "แทนที่" มัน?</li>
-    </ol>
-  </div>
-
-  <h3>๓. การจัดระเบียบที่ต้องทำซ้ำ</h3>
-  <p>
-    ทั้ง "สายพิณ" และ "เนื้อ/บ่วง" ชี้ไปที่หลักการเดียวกัน:
-    <strong>การจัดระเบียบไม่ใช่กฎตายตัว แต่คือ "ศิลปะที่ต้องฝึก"</strong>
-  </p>
-  <ul>
-    <li><strong>ระดับปัจเจก:</strong> ตั้งจุดสมดุลของตัวเอง + จูนซ้ำเมื่อสภาพเปลี่ยน</li>
-    <li><strong>ระดับสังคม:</strong> แยกกิจกรรม "ความสนุก" ออกจาก "โครงสร้างที่ดูด" + กำหนดเพดาน + ทำให้ "บ่วง" มองเห็นได้</li>
-    <li><strong>ระดับสถาบัน:</strong> สร้าง "หูที่ได้ยินเสียงพิณ" (กลไกตรวจสอบดุลยภาพ) และ "ตาที่มองเห็นบ่วง" (กลไกเปิดเผยต้นทุนจริง)</li>
-  </ul>
-
-  <div class="callout callout-success">
-    <strong>สรุป: จาก "กำแพง" สู่ "ส้อมเสียง"</strong>
-    <p>
-      Dream/Real Firewall ไม่ใช่กำแพงที่สร้างขึ้น แต่คือ
-      <strong>"กระจกที่ส่องดูตัวเอง"</strong> — การแยกของจริง/ของฝัน
-      จึงไม่ใช่การสร้างกำแพง แต่คือ <strong>"การรู้จักรากของตัวเอง"</strong>
-      ที่ต้องจูนใหม่ทุกครั้งที่ลมเปลี่ยนทิศ
-    </p>
-  </div>
-
-  <h3>๔. การเชื่อมกับ "คำถามเปิด ๗ ข้อ"</h3>
-  <table class="tuning-table">
-    <thead>
-      <tr><th>คำถามเปิด</th><th>คำตอบจากอุปมา</th></tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>เพดานการแลกเปลี่ยนควรยืดหยุ่นแค่ไหน?</td>
-        <td>สายพิณ — ไม่ตายตัว ต้องจูนตามกาละ</td>
-      </tr>
-      <tr>
-        <td>ใครกำหนดนิยามของจริง/ของฝัน?</td>
-        <td>ผู้ที่รู้จักเสียงพิณ — ผู้ที่จูนเป็น ไม่ใช่ผู้มีอำนาจ</td>
-      </tr>
-      <tr>
-        <td>จะป้องกันการเมืองแทรกแซง Sandbox อย่างไร?</td>
-        <td>กันบ่วง — โครงสร้างต้องไม่ให้ใครเป็นเจ้าของบ่วง</td>
-      </tr>
-      <tr>
-        <td>Hall of Fame ควรวัดคุณค่านามธรรมอย่างไร?</td>
-        <td>เสียงพิณที่เพราะ — วัดจากดุลยภาพที่ยั่งยืน ไม่ใช่การสะสม</td>
-      </tr>
-    </tbody>
-  </table>
-
-  <blockquote>
-    <p>
-      <em>"ไม้ไผ่ไม่หัก เพราะมันรู้ว่ารากของตัวเองอยู่ที่ไหน — การรู้ราก = การรู้เสียงพิณของตัวเอง"</em>
-    </p>
-    <footer>— หลักการสำนักไทย</footer>
-  </blockquote>
-</section>
-
-        <!-- 6. Thai Context -->
-        <section id="thai" class="section">
-            <div class="section-title"><span class="icon">🇹🇭</span> บริบทไทย: โอกาสและความท้าทาย</div>
-            <div class="card thai">
-                <p><strong>จุดแข็ง:</strong> ฐานการผลิตอาหาร (ครัวของโลก), PromptPay ที่ก้าวหน้า, วัฒนธรรมความพอเพียง</p>
-                <p><strong>ความท้าทาย:</strong> พึ่งพาการนำเข้าพลังงาน (~60%), หนี้ครัวเรือน (~90% GDP), ความเหลื่อมล้ำสูง</p>
-                <p><strong>ทางออก:</strong> เริ่มจาก <span class="highlight">"Sandbox ระดับจังหวัด"</span> ที่มีฐานการผลิตแข็งแรง (เช่น เชียงใหม่, ขอนแก่น) ผสานกับหลักเศรษฐกิจพอเพียง</p>
-            </div>
-        </section>
-
-        <!-- 7. Transition -->
-        <section id="transition" class="section">
-            <div class="section-title"><span class="icon">🗺️</span> การเปลี่ยนผ่านและความเสี่ยง</div>
-            <div class="card">
-                <p>ต้องยอมรับความเสี่ยงเพื่อออกแบบกลไกป้องกัน:</p>
-
-                <details class="deep-dive">
-                    <summary>อ่านเชิงลึก: เงื่อนไข 5 ข้อ + ความเสี่ยง 4 ข้อ + Phasing</summary>
-                    <div class="deep-dive-content">
-                        <h4>เงื่อนไข 5 ข้อ</h4>
-                        <ol>
-                            <li><strong>การคลัง:</strong> ภาษีทุน/SWF เพื่อนำผลผลิตจาก AI มาจัดสรร</li>
-                            <li><strong>การผลิต:</strong> Production Sovereignty</li>
-                            <li><strong>การเมือง:</strong> Coalition ระหว่าง real sector + รัฐ + ชุมชน</li>
-                            <li><strong>Governance:</strong> Accountability + Rotation + Transparency</li>
-                            <li><strong>จิตวิทยา:</strong> Soft power ภายใน</li>
-                        </ol>
-                        <h4>ความเสี่ยง 4 ข้อ</h4>
-                        <ol>
-                            <li><strong>Dual Currency ล้มเหลว:</strong> ปัญหาสิทธิ์แลก (คิวบา, โซเวียต)</li>
-                            <li><strong>Allocation Problem:</strong> AI จัดลำดับความสำคัญทางการเมืองไม่ได้</li>
-                            <li><strong>Incentive Problem:</strong> งานสกปรกต้องมีแรงจูงใจ</li>
-                            <li><strong>Capture Problem:</strong> รัฐอาจผูกขาดการจัดสรร</li>
-                        </ol>
-                        <h4>Phasing</h4>
-                        <ol>
-                            <li><strong>1-3 ปี:</strong> Sandbox นำร่อง + PoR + Coalition</li>
-                            <li><strong>3-7 ปี:</strong> ขยายผล + Regional Settlement (ASEAN)</li>
-                            <li><strong>7-15 ปี:</strong> Production Sovereignty + Dream/Real Firewall เต็มรูปแบบ</li>
-                        </ol>
-                    </div>
-                </details>
-            </div>
-        </section>
-
-        <!-- 8. Questions (REPLACED) -->
-        <section id="questions" class="section">
-            <div class="section-title"><span class="icon">❓</span> คำถามเปิดเพื่อการอภิปราย 7 ข้อ</div>
-            <div class="card">
-                <p>เอกสารนี้ <strong>ไม่ตอบ</strong> คำถามเหล่านี้ — เพราะต้องอภิปรายร่วมกัน:</p>
-                <ol>
-                    <li>กลไกจัดสรรสิทธิ์แลกเปลี่ยน "คูปอง" เป็น "เงินนอก" จะเป็นอย่างไร?</li>
-                    <li><strong>ใครเป็นผู้กำหนดว่า "จิต" แบบไหนคือ "ของจริง" และ "ของฝัน" แบบไหนคือ "ของจริง"?</strong> (ต้องเป็นกลไกที่โปร่งใสและมีส่วนร่วม ไม่ใช่การชี้นำจากรัฐ)</li>
-                    <li>เพดานการแลกเปลี่ยนควรยืดหยุ่นแค่ไหน?</li>
-                    <li>จะป้องกันการเมืองแทรกแซง Sandbox อย่างไร?</li>
-                    <li>ถ้า Sandbox สำเร็จ จะ Scale อย่างไรไม่ให้เป็น "เกาะสวรรค์"?</li>
-                    <li><strong>"Hall of Fame" ควรวัด "คุณค่านามธรรม" จาก "จิตที่สร้างสรรค์" อย่างไร?</strong> (เช่น วัดจากผลกระทบต่อสังคม, ความคิดสร้างสรรค์, หรือความยั่งยืน?)</li>
-                    <li>ถ้าประเทศหนึ่งทำสำเร็จ ประเทศอื่นไม่ทำ จะเกิดอะไรขึ้น?</li>
-                </ol>
-            </div>
-        </section>
-
-        <!-- Appendix -->
-        <section id="appendix" class="section">
-            <div class="section-title"><span class="icon">📚</span> ภาคผนวก</div>
-            <div class="card">
-                <h3>ก. Glossary</h3>
-                <ul>
-                    <li><strong>Provisioning:</strong> การจัดหา/การเข้าถึงปัจจัยที่จำเป็น</li>
-                    <li><strong>Production Sovereignty:</strong> อธิปไตยทางการผลิต</li>
-                    <li><strong>Unequal Exchange:</strong> การแลกเปลี่ยนที่ไม่เท่าเทียม</li>
-                    <li><strong>Dream/Real Firewall:</strong> กำแพงกั้นระหว่างวงจรจริงและฝัน</li>
-                    <li><strong>Non-convertible Rewards:</strong> รางวัลที่ไม่แปลงเป็นอำนาจ</li>
-                    <li><strong>Anti-Stack:</strong> สถาปัตยกรรมทางเลือกที่ตรงข้ามกับ "American Stack"</li>
-                </ul>
-
-                <h3>ข. กรณีศึกษาเปรียบเทียบ</h3>
-                <div class="table-wrap">
-                    <table>
-                        <thead><tr><th>กรณี</th><th>กลไก</th><th>ผลลัพธ์</th><th>บทเรียน</th></tr></thead>
-                        <tbody>
-                            <tr><td>คิวบา (CUC/CUP)</td><td>Dual currency</td><td>ล้มเหลว</td><td>สร้างชนชั้นใหม่จากสิทธิ์แลก</td></tr>
-                            <tr><td>โซเวียต (Beryozka)</td><td>ร้านค้าเงินตราต่างประเทศ</td><td>ล้มเหลว</td><td>สร้าง Elite</td></tr>
-                            <tr><td>UPI (อินเดีย)</td><td>ระบบชำระเงินภายใน</td><td>สำเร็จ</td><td>ปิดท่อชั้นในได้จริง</td></tr>
-                            <tr><td>mBridge</td><td>CBDC ข้ามพรมแดน</td><td>นำร่อง</td><td>ต้องขยาย scale</td></tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <h3>ค. References</h3>
-                <ul style="font-size:0.9rem; color:var(--text-light);">
-                    <li>Emmanuel, A. (1972). <em>Unequal Exchange</em>.</li>
-                    <li>Georgescu-Roegen, N. (1971). <em>The Entropy Law and the Economic Process</em>.</li>
-                    <li>Ostrom, E. (1990). <em>Governing the Commons</em>.</li>
-                    <li>Schumacher, E.F. (1973). <em>Small Is Beautiful</em>.</li>
-                    <li>BIS (2025-2026). <em>Reports on stablecoins and Digital Dollarization</em>.</li>
-                </ul>
-            </div>
-        </section>
-
-    </main>
-
-    <footer class="footer">
-        <strong>เงินที่สมดุลย์ คือรากฐานของสังคมที่พอเพียง</strong>
-        เอกสารฉบับนี้จัดทำขึ้นเพื่อการอภิปรายและจุดประกายความคิด<br>
-        สู่การออกแบบสังคมที่ยั่งยืนและเป็นธรรมสำหรับทุกคน
-        <br><br>
-        <span style="font-size:0.8rem; opacity:0.7;">© 2026 | DeepSeek Masterpiece Edition v1.3</span>
-    </footer>
-
-    <button class="btt" id="bttBtn" aria-label="กลับด้านบน">↑</button>
-
-    <script>
-        const menuBtn = document.getElementById('menuBtn');
-        const closeBtn = document.getElementById('closeBtn');
-        const drawer = document.getElementById('drawer');
-        const overlay = document.getElementById('overlay');
-        const links = document.querySelectorAll('.drawer-links a');
-
-        function toggleDrawer(show) {
-            if (show) { drawer.classList.add('active'); overlay.classList.add('active'); document.body.style.overflow = 'hidden'; } 
-            else { drawer.classList.remove('active'); overlay.classList.remove('active'); document.body.style.overflow = ''; }
-        }
-
-        menuBtn.addEventListener('click', () => toggleDrawer(true));
-        closeBtn.addEventListener('click', () => toggleDrawer(false));
-        overlay.addEventListener('click', () => toggleDrawer(false));
-        links.forEach(link => link.addEventListener('click', () => toggleDrawer(false)));
-
-        const progressBar = document.getElementById('progressBar');
-        const bttBtn = document.getElementById('bttBtn');
-
-        window.addEventListener('scroll', () => {
-            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            const scrolled = (winScroll / height) * 100;
-            progressBar.style.width = scrolled + "%";
-            if (winScroll > 500) { bttBtn.classList.add('show'); } else { bttBtn.classList.remove('show'); }
-        });
-
-        bttBtn.addEventListener('click', () => { window.scrollTo({ top: 0, behavior: 'smooth' }); });
-    </script>
-</body>
-</html>
+                        <p>การแยก "คุณค่าที่แท้จริง" (Real Value) และ "สิ่งลวง" (Illusion) ไม่ได้หมายความว่าเราต้องทำลาย "จินตนาการ" หรือ "ความสนุก" ทิ้งไป เพราะมนุษย์ขาดสิ่งเหล่านี้ไม่ได้—มันคือศิลปะ วรรณกรรม ดนตรี และการวิจัย ที่สร้างคุณค่าให้กับชีวิต</p>
+                        <p><strong>ปัญหาของ "สิ่งลวง" คือ:</strong> เมื่อมันถูกขับเคลื่อนด้วย "จิตที่โลภ" หรือ "การเก็งกำไร" มันก็จะกลายเป็น "ฟองสบู่" ที่ดูดเอาทรัพยากรจริงไปทิ้งเปล่า (High Entropy) และเป็น "กาฝาก" ของระบบ</p>
+                        <p><strong>ทางออก:</strong> เราต้องมี <strong>"สะพานแห่งจิต" (The Bridge of Mind)</strong> ที่คอยทำหน้าที่เป็นตัวกรอง—"
