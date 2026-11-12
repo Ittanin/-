@@ -5,12 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <meta name="theme-color" content="#1A4A4A">
     <meta name="description" content="ข้อเสนอเพื่อการอภิปราย: สถาปัตยกรรมสังคมแห่งความพอเพียง หลังยุคเงินเป็นตัวกลางหลัก">
-    <title>เงินสมดุลย์พอเพียง: สถาปัตยกรรมสังคมหลังยุคเงินเป็นตัวกลางหลัก</title>
-    
+    <title>เงินไม่ใช่ทุกสิ่ง: สถาปัตยกรรมสังคมแห่งความพอเพียง</title>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
+
     <style>
         :root {
             --primary: #1A4A4A;
@@ -101,7 +101,6 @@
         .card.accent { border-left-color: var(--accent); }
         .card.danger { border-left-color: var(--danger); }
         .card.thai { border-left-color: #3498DB; }
-        .card.token { border-left-color: var(--real); background: #F0FAF4; }
 
         h3 { font-size: 1.15rem; color: var(--primary); margin: 20px 0 12px; font-weight: 600; }
         h4 { font-size: 1rem; color: var(--primary-light); margin: 16px 0 10px; font-weight: 600; }
@@ -115,9 +114,33 @@
             border-radius: 0 12px 12px 0; font-style: italic; color: var(--primary); font-size: 1.05rem;
         }
 
+        /* ===== Killer Insight Box (新增) ===== */
+        .insight-box {
+            background: linear-gradient(135deg, #FFF8F0 0%, #FDF3E7 100%);
+            border-left: 4px solid #B8860B;
+            border-radius: 0 12px 12px 0;
+            padding: 20px;
+            margin: 24px 0;
+        }
+        .insight-box h4 {
+            margin-top: 0; margin-bottom: 12px;
+            color: #8A5A3A; font-size: 1.05rem; font-weight: 700; line-height: 1.5;
+        }
+        .insight-box p { font-size: 0.95rem; line-height: 1.75; margin-bottom: 14px; }
+        .insight-box p:last-child { margin-bottom: 0; }
+        .insight-key {
+            background: rgba(184, 134, 11, 0.15);
+            padding: 2px 6px; border-radius: 4px; font-weight: 700; color: #8A5A3A;
+        }
+        .insight-punch {
+            margin-top: 14px; padding-top: 14px;
+            border-top: 1px dashed rgba(184, 134, 11, 0.35);
+            font-weight: 700; color: #8A5A3A; font-size: 0.98rem;
+        }
+
         /* Executive Summary List */
         .exec-list { list-style: none; margin-left: 0; counter-reset: exec-counter; }
-        .exec-list li { 
+        .exec-list li {
             position: relative; padding-left: 35px; margin-bottom: 12px; counter-increment: exec-counter; font-size: 0.95rem;
         }
         .exec-list li::before {
@@ -146,11 +169,11 @@
         .deep-dive-content h4:first-child { margin-top: 0; }
         .deep-dive-content p, .deep-dive-content li { font-size: 0.95rem; line-height: 1.7; }
 
-        /* Infographics: Human Vase Shape */
+        /* Infographics */
         .shape-compare { display: flex; justify-content: space-around; align-items: flex-end; min-height: 280px; margin: 30px 0; gap: 20px; }
-        .shape-col { text-align: center; flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; height: 100%; }
+        .shape-col { text-align: center; flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; }
         .shape-label { font-weight: 700; margin-bottom: 16px; color: var(--text); font-size: 0.95rem; }
-        
+
         /* Pyramid */
         .pyramid { display: flex; flex-direction: column; align-items: center; width: 100%; }
         .p-layer { width: 100%; color: white; font-size: 0.7rem; font-weight: 600; padding: 8px 4px; text-align: center; }
@@ -158,15 +181,14 @@
         .p-mid { width: 60%; background: #F39C12; }
         .p-bot { width: 100%; background: var(--primary); border-radius: 0 0 8px 8px; }
 
-        /* Human-Centric Vase Shape (Organic) */
+        /* Human-Centric Vase (Organic) */
         .vase { display: flex; flex-direction: column; align-items: center; width: 100%; position: relative; }
         .v-layer { width: 100%; color: white; font-size: 0.75rem; font-weight: 600; text-align: center; line-height: 1.3; display: flex; align-items: center; justify-content: center; }
-        
-        .v-top { width: 45%; background: var(--accent); height: 45px; border-radius: 25px 25px 0 0; padding: 0 10px; }
+        .v-top { width: 45%; background: var(--accent); height: 52px; border-radius: 25px 25px 0 0; padding: 0 8px; }
         .v-neck { width: 30%; background: var(--accent); height: 10px; }
-        .v-mid { width: 95%; background: var(--primary-light); height: 70px; border-radius: 40% 40% 10% 10% / 20% 20% 10% 10%; padding: 0 10px; }
-        .v-bot { width: 70%; background: var(--primary); height: 50px; border-radius: 0 0 30px 30px; padding: 0 10px; }
-        
+        .v-mid { width: 95%; background: var(--primary-light); height: 76px; border-radius: 40% 40% 10% 10% / 20% 20% 10% 10%; padding: 0 10px; }
+        .v-bot { width: 70%; background: var(--primary); height: 54px; border-radius: 0 0 30px 30px; padding: 0 10px; }
+
         .shape-desc { font-size: 0.8rem; color: var(--text-light); margin-top: 16px; line-height: 1.4; }
 
         /* Firewall */
@@ -185,14 +207,6 @@
         .thermo-bad { background: rgba(231, 76, 60, 0.1); border-left: 4px solid var(--danger); }
         .thermo-icon { font-size: 1.6rem; }
 
-        /* Token Button */
-        .btn-pdf {
-            display: inline-flex; align-items: center; gap: 8px; background: var(--primary); color: white;
-            padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 600; margin-top: 16px;
-            transition: 0.2s; box-shadow: 0 4px 10px rgba(26,74,74,0.2); border: none; cursor: pointer; font-size: 0.95rem;
-        }
-        .btn-pdf:hover { background: var(--primary-light); transform: translateY(-2px); }
-
         /* Table */
         .table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; margin: 16px 0; border-radius: 8px; border: 1px solid rgba(0,0,0,0.1); }
         table { width: 100%; min-width: 500px; border-collapse: collapse; font-size: 0.88rem; }
@@ -209,69 +223,19 @@
             position: fixed; bottom: 24px; right: 24px; width: 50px; height: 50px; border-radius: 50%;
             background: var(--accent); color: white; border: none; font-size: 1.2rem;
             box-shadow: 0 4px 12px rgba(0,0,0,0.2); cursor: pointer; opacity: 0; visibility: hidden;
+            transform: translateY(10px);
             transition: 0.3s; z-index: 900; display: flex; align-items: center; justify-content: center;
         }
         .btt.show { opacity: 1; visibility: visible; transform: translateY(0); }
 
         @media (min-width: 768px) {
             .hero h1 { font-size: 3rem; }
-            .shape-compare { height: 320px; }
+            .shape-compare { min-height: 320px; }
             .p-layer, .v-layer { font-size: 0.85rem; }
-            .v-top { height: 60px; }
-            .v-mid { height: 90px; }
+            .v-top { height: 62px; }
+            .v-mid { height: 92px; }
             .v-bot { height: 70px; }
         }
-
-/* ===== อัปเดตทับของเดิม ===== */
-.tuning-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin: 1.5rem 0;
-  font-size: 0.95rem;
-  background: #ffffff;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-  border-radius: 8px;
-  overflow: hidden;
-}
-
-.tuning-table th,
-.tuning-table td {
-  border: 1px solid #e0d8c8;
-  padding: 12px 14px;
-  text-align: left;
-  vertical-align: top;
-}
-
-.tuning-table th {
-  background: var(--primary); 
-  color: #ffffff;
-  font-weight: 600;
-  white-space: nowrap;
-}
-
-.tuning-table tr:nth-child(even) td {
-  background: #f9f9f9;
-}
-.tuning-table tr:nth-child(odd) td {
-  background: #ffffff;
-}
-
-.callout {
-  border-left: 4px solid;
-  padding: 1rem 1.25rem;
-  margin: 1.5rem 0;
-  border-radius: 0 8px 8px 0;
-  color: var(--text);
-  font-size: 0.95rem;
-}
-
-.callout strong { color: var(--primary); }
-.callout-info { background: #eef5fb; border-color: #3a8fd4; }
-.callout-warning { background: #fdf3e3; border-color: #e0a23a; }
-.callout-success { background: #eef8ee; border-color: #4caf50; }
-.callout ol, .callout ul { margin: 0.5rem 0 0 1.25rem; }
-.callout li { margin-bottom: 0.5rem; }
-
     </style>
 </head>
 <body>
@@ -279,7 +243,7 @@
     <div class="progress-container"><div class="progress-bar" id="progressBar"></div></div>
 
     <nav class="nav-bar">
-        <div class="nav-title">เงินสมดุลย์พอเพียง</div>
+        <div class="nav-title">Money is Not Everything</div>
         <button class="menu-btn" id="menuBtn" aria-label="เปิดเมนู">☰</button>
     </nav>
 
@@ -289,17 +253,13 @@
             <span style="font-weight:700; font-size:1.1rem;">สารบัญ</span>
             <button class="drawer-close" id="closeBtn" aria-label="ปิดเมนู">×</button>
         </div>
-                <div class="drawer-links">
-            <a href="index.html"><span class="num">☯</span> กลับหน้าหลัก (Portal)</a>
-            <a href="Real Value Balance.html"><span class="num">🧩</span> พิมพ์เขียว Real Value Balance</a>
+        <div class="drawer-links">
             <a href="#summary"><span class="num">0.</span> บทสรุปผู้บริหาร</a>
             <a href="#philosophy"><span class="num">1.</span> ปรัชญา: กรงขังแห่งการอนุญาต</a>
             <a href="#diagnosis"><span class="num">2.</span> วินิจฉัย: กับดักอุณหพลศาสตร์</a>
             <a href="#paradigm"><span class="num">3.</span> จุดเปลี่ยน: จากปิรามิดสู่ทรงมนุษย์</a>
             <a href="#architecture"><span class="num">4.</span> สถาปัตยกรรม: ทางออก 3 เสาหลัก</a>
             <a href="#sandbox"><span class="num">5.</span> Sandbox & บทเรียนจากจีน</a>
-            <a href="#token"><span class="num">5.5</span> The Sufficiency Token (Merit)</a>
-            <a href="#tuning-art"><span class="num">5.6</span> ศิลปะแห่งการจูน: สายพิณและบ่วง</a>
             <a href="#thai"><span class="num">6.</span> บริบทไทย</a>
             <a href="#transition"><span class="num">7.</span> การเปลี่ยนผ่านและความเสี่ยง</a>
             <a href="#questions"><span class="num">8.</span> คำถามเปิด 7 ข้อ</a>
@@ -308,9 +268,9 @@
     </aside>
 
     <header class="hero">
-        <span class="hero-badge">DISCUSSION PAPER v1.3</span>
-        <h1>เงินสมดุลย์พอเพียง</h1>
-        <p>สถาปัตยกรรมสังคมแห่งความพอดีและอิสรภาพ<br>บูรณาการเศรษฐศาสตร์การเมือง ฟิสิกส์เชิงระบบ และปรัชญาตะวันออก</p>
+        <span class="hero-badge">DISCUSSION PAPER v1.1</span>
+        <h1>เงินไม่ใช่ทุกสิ่ง</h1>
+        <p>สถาปัตยกรรมสังคมแห่งความพอเพียงและอิสรภาพ<br>บูรณาการเศรษฐศาสตร์การเมือง ฟิสิกส์เชิงระบบ และปรัชญาตะวันออก</p>
         <div class="scroll-hint">↓</div>
     </header>
 
@@ -325,12 +285,12 @@
                     <li><strong>เงินคือ Claim on Resources:</strong> เงินเป็นเพียงสิทธิ์เรียกร้อง ไม่ใช่ทรัพยากรจริง</li>
                     <li><strong>คุณภาพชีวิต ≠ GDP:</strong> "รวยปลอม เงินแพง" ที่ GDP สูงแต่หนี้ท่วม ไม่เท่ากับคุณภาพชีวิตจริง</li>
                     <li><strong>สถาปัตยกรรมสองชั้น:</strong> ภายในใช้ <em>Provisioning</em> ภายนอกใช้ <em>Exchange</em> พร้อมเพดานควบคุม</li>
-                    <li><strong>The Value Firewall:</strong> แยกกิจกรรมที่ "เสริมสร้างชีวิต" ออกจาก "สิ่งลวง/กับดัก" (ยาเสพติด, การเสพติดหน้าจอ, การเก็งกำไร) ไม่ให้ดูดพลังงานชีวิตทิ้งอย่างไร้ค่า</li>
+                    <li><strong>Dream/Real Firewall:</strong> แยกวงจร "ของจริง" ออกจาก "ของฝัน" (Crypto, Game) ไม่ให้ปั่นราคาปัจจัย 4</li>
                     <li><strong>Sandbox นำร่อง:</strong> ใช้ Physical AI ดูแลผู้สูงอายุ วัดผลด้วย <em>คุณภาพชีวิต + เวลาที่ได้คืน</em></li>
                     <li><strong>สวัสดิการสองชั้น:</strong> ชั้นพื้นฐาน (รัฐจัดหา) + ชั้นศักยภาพ (ตลาดเสรี) เป็นตาข่ายรองรับ</li>
                     <li><strong>Non-convertible Rewards:</strong> จำกัดการสะสม เปลี่ยนเป็น <em>Hall of Fame</em> ตัดวงจร Wealth → Power</li>
                     <li><strong>สังคมแบบ "ทรงมนุษย์":</strong> ฐานแคบ-มั่นคง กลางหนา-เป็นหัวใจ ยอดบาน-ปัญญานำทาง</li>
-                    <li><strong> Thermodynamics & ธรรมะ:</strong> ระบบที่ฝ่าฝืนกฎฟิสิกส์และตัณหาย่อมพังทลาย</li>
+                    <li><strong>Thermodynamics & ธรรมะ:</strong> ระบบที่ฝ่าฝืนกฎฟิสิกส์และตัณหาย่อมพังทลาย</li>
                 </ol>
             </div>
         </section>
@@ -339,10 +299,6 @@
         <section id="philosophy" class="section">
             <div class="section-title"><span class="icon">🔓</span> ปรัชญาพื้นฐาน: กรงขังแห่งการอนุญาต</div>
             <div class="card accent">
-                <div class="callout callout-warning" style="margin-top: 0; margin-bottom: 24px;">
-                    <strong>ทำความเข้าใจก่อนอ่าน:</strong> เอกสารฉบับนี้ <strong>ไม่ได้บอกว่าเงินไม่สำคัญ</strong> แต่เรากำลังพูดถึง <strong>"เงินที่ขาดสมดุลย์"</strong> ซึ่งได้กลายเป็น "กรงขัง" ที่กดทับศักยภาพมนุษย์ เราจึงขอเสนอการออกแบบ "เงิน" รูปแบบใหม่ ที่ทำหน้าที่เป็นเครื่องมืออย่างพอดี ไม่ใช่เป็นเจ้านายที่ควบคุมชีวิตเราครับ
-                </div>
-
                 <p>มนุษย์เป็นสิ่งมีชีวิตที่ต้องการดำรงอยู่ แต่ด้วยความซับซ้อนทางความคิด จึงต้องจัดระเบียบสังคม ทว่าการจัดระเบียบกลับถูกครอบงำโดยผู้มีอำนาจที่ต้องการควบคุม</p>
                 <blockquote>
                     "เงินจึงถูกเปลี่ยนบทบาทจาก 'สื่อกลาง' ให้กลายเป็น <strong>'กลไกการอนุญาต' (Mechanism of Permission)</strong> โดยมีเงินคือ 'การอนุญาต' และไม่มีเงินคือ 'การไม่อนุญาต'"
@@ -381,7 +337,25 @@
                         <div><strong>High Entropy (พังทลาย):</strong> พลังงานจริง → ขุดคริปโต/ปั่นตัวเลข → ความไร้ระเบียบ (Heat Death)</div>
                     </div>
                 </div>
-                <p style="margin-top:16px; font-size:0.95rem;">เศรษฐกิจที่ขับเคลื่อนด้วย "ฟองสบู่" (Digital/Financial Bubbles) เป็นเพียง <span class="highlight">"กาฝาก"</span> ที่ดูดพลังงานจากภาคจริง หากภาคจริงล่มสลาย ฟองสบู่ก็จะแตกตาม</p>
+                <p style="margin-top:16px; font-size:0.95rem;">เศรษฐกิจแห่งความฝัน (Digital/Financial) เป็นเพียง <span class="highlight">"กาฝาก"</span> ที่ดูดพลังงานจากภาคจริง หากภาคจริงล่มสลาย ความฝันก็จะตายตาม</p>
+
+                <!-- ===== Killer Insight Box ===== -->
+                <div class="insight-box">
+                    <h4>💡 จุดตายของระบบ: "พิมพ์เงินได้ แต่พิมพ์ของจริงไม่ได้"</h4>
+                    <p>
+                        ประเทศมหาอำนาจสามารถพิมพ์เงิน (สภาพคล่อง) ได้ไม่จำกัด แต่เงินนั้นในขั้นต้นจะ <strong>"ติดอยู่กับตัว"</strong> ผู้พิมพ์ การที่เงินนี้จะมีมูลค่าจริงได้ <strong>ผู้อื่นต้องยอมรับและแลกเปลี่ยนด้วย "ของจริง"</strong>
+                    </p>
+                    <p>
+                        แต่หากภาคการผลิตจริง (Real Sector) ของโลกตัดสินใจสร้าง <strong>Dream/Real Firewall</strong> และปฏิเสธที่จะแลกเปลี่ยนสินค้าจริงกับเงินที่ถูกพิมพ์ขึ้นมาอย่างไม่มีที่สิ้นสุด เงินจำนวนมหาศาลนั้นจะกลายเป็นเพียง <span class="insight-key">"ตัวเลขที่ใช้งานไม่ได้"</span> และจะย้อนกลับมาสร้างเงินเฟ้อและความล่มสลายภายในระบบของผู้พิมพ์เอง
+                    </p>
+                    <p>
+                        นี่คือจุดจบทางอุณหพลศาสตร์ของระบบที่สร้าง "ความฝัน" โดยขาด "ความจริง" รองรับ — เพราะการระบายความไร้ระเบียบออกสู่ภายนอกไม่ได้ ความไร้ระเบียบนั้นก็จะย้อนกลับมาทำลายระบบปิดของตัวเอง
+                    </p>
+                    <div class="insight-punch">
+                        อำนาจที่แท้จริงจึงไม่ได้อยู่ที่ "ใครพิมพ์เงินได้" แต่อยู่ที่ "ใครมีของจริงให้แลก"
+                    </div>
+                </div>
+                <!-- ===== /Killer Insight Box ===== -->
 
                 <details class="deep-dive">
                     <summary>อ่านหลักฐาน: Digital Dollarization 2026</summary>
@@ -390,17 +364,19 @@
                         <p>98-99% ของ stablecoin ผูกกับดอลลาร์ BIS เตือนว่าเกิด "การ-dollarize โดยสมัครใจ" กัดกร่อนอธิปไตยทางการเงิน</p>
                         <h4>เครื่องมือดูดซับหนี้สหรัฐฯ</h4>
                         <p>Tether เป็นผู้ถือพันธบัตรรัฐบาลสหรัฐฯ อันดับ 19 ของโลก (ซื้อ T-bills 3.31 แสนล้านดอลลาร์ในปี 2024) ผ่านกลไก 100% Reserve เป็น T-bills ทำให้คนทั่วโลกให้กู้สหรัฐฯ โดยไม่รู้ตัว</p>
+                        <h4>ข้อสังเกต: มาตรฐานซ้อน (Double Standard)</h4>
+                        <p>หากประเทศอื่นขยายสภาพคล่องในสัดส่วนเทียบเท่า มักเผชิญค่าเงินอ่อนแรงและแรงกดดันจากตลาดทุนโลก แต่สหรัฐฯ ทำได้ในต้นทุนที่ต่ำกว่ามาก เพราะดอลลาร์เป็นสกุลเงินสำรอง นี่คือ <em>Exorbitant Privilege</em> ที่ดำรงอยู่ได้ตราบเท่าที่ผู้อื่นยังยอมรับดอลลาร์เป็นสื่อกลาง — และจะสิ้นสุดลงเมื่อการยอมรับนั้นลดลง</p>
                     </div>
                 </details>
             </div>
         </section>
 
-        <!-- 3. Paradigm (REPLACED) -->
+        <!-- 3. Paradigm -->
         <section id="paradigm" class="section">
             <div class="section-title"><span class="icon">⚖️</span> จุดเปลี่ยน: จาก "ปิรามิด" สู่ "ทรงมนุษย์"</div>
             <div class="card">
-                <p>我们从โครงสร้างที่กดทับ สู่โครงสร้างที่รองรับการงอกงาม:</p>
-                
+                <p>เราเปลี่ยนจากโครงสร้างที่กดทับ สู่โครงสร้างที่รองรับการงอกงาม:</p>
+
                 <div class="shape-compare">
                     <!-- Pyramid -->
                     <div class="shape-col">
@@ -426,34 +402,23 @@
                 </div>
 
                 <details class="deep-dive">
-                    <summary>อ่านเชิงลึก: สะพานแห่งจิต (The Bridge of Mind) — ทำไมของจริงกับของฝันต้องอยู่ร่วมกัน</summary>
+                    <summary>อ่านเชิงลึก: การบรรจบกันของ 3 สัจธรรม</summary>
                     <div class="deep-dive-content">
-                        <h4>1. "ของจริง" และ "ของฝัน" ไม่ใช่ศัตรูกัน แต่ต้องมี "จิต" เป็นตัวนำ</h4>
-                        <p>การแยก "คุณค่าที่แท้จริง" (Real Value) และ "สิ่งลวง" (Illusion) ไม่ได้หมายความว่าเราต้องทำลาย "จินตนาการ" หรือ "ความสนุก" ทิ้งไป เพราะมนุษย์ขาดสิ่งเหล่านี้ไม่ได้—มันคือศิลปะ วรรณกรรม ดนตรี และการวิจัย ที่สร้างคุณค่าให้กับชีวิต</p>
-                        <p><strong>ปัญหาของ "สิ่งลวง" คือ:</strong> เมื่อมันถูกขับเคลื่อนด้วย "จิตที่โลภ" หรือ "การเก็งกำไร" มันก็จะกลายเป็น "ฟองสบู่" ที่ดูดเอาทรัพยากรจริงไปทิ้งเปล่า (High Entropy) และเป็น "กาฝาก" ของระบบ</p>
-                        <p><strong>ทางออก:</strong> เราต้องมี <strong>"สะพานแห่งจิต" (The Bridge of Mind)</strong> ที่คอยทำหน้าที่เป็นตัวกรอง—"กิจกรรมที่สร้างสรรค์" จะสามารถ<strong>ส่งผ่านคุณค่ามาสู่ "ของจริง"</strong> ได้ เช่น:</p>
-                        <ul>
-                            <li><strong>ศิลปะ/ดนตรี:</strong> สร้างความบันเทิงและแรงบันดาลใจให้มนุษย์ทำงานจริงได้</li>
-                            <li><strong>งานวิจัย/นวัตกรรม:</strong> เกิดจากจินตนาการ แต่กลายเป็นสิทธิบัตรที่เพิ่มผลผลิตจริง</li>
-                            <li><strong>เกม/ซอฟต์แวร์:</strong> ถ้าสร้างเพื่อการศึกษา หรือฝึกทักษะ ก็เป็นของจริง</li>
-                        </ul>
-                        <p><strong>หน้าที่ของระบบใหม่:</strong> ไม่ใช่การห้ามความสนุก แต่คือการออกแบบ <strong>"กลไกคัดกรอง"</strong> ที่ส่งเสริมให้เกิดกิจกรรมที่สร้างคุณค่าจริง และกีดกันกิจกรรมที่ทำลายคุณค่าชีวิต</p>
-                        
-                        <h4>2. "จิต" คือตัวกำหนดคุณค่าที่แท้จริง</h4>
-                        <p>ไม่ว่าจะเป็นกิจกรรมใด มันจะไม่มีค่าอะไรเลยถ้าขาด "จิต" ที่ดีเข้ามาเสริม:</p>
-                        <ul>
-                            <li><strong>งานที่ทำโดยไร้จิต:</strong> การทำงานหนักจนไม่มีเวลาดูแลตัวเองหรือครอบครัว → กลายเป็น "ของจริง" ที่ทำลายชีวิต</li>
-                            <li><strong>การเล่นที่มีจิต:</strong> เกมที่สอนประวัติศาสตร์, ภาพยนตร์ที่สร้างแรงบันดาลใจ → กลายเป็นกิจกรรมที่มีคุณค่าต่อชีวิต</li>
-                        </ul>
+                        <h4>1. ฟิสิกส์ (Thermodynamics)</h4>
+                        <p>Georgescu-Roegen (1971) ชี้ว่าเศรษฐกิจคือระบบย่อยของระบบนิเวศ ระบบปิดที่ไม่มีขอบเขตการบริโภคพลังงานจะตาย (Heat Death)</p>
+                        <h4>2. เศรษฐกิจพอเพียง</h4>
+                        <p>3 ห่วง 2 เงื่อนไข: ความพอประมาณ, ความมีเหตุผล, ภูมิคุ้มกัน + เงื่อนไขความรู้ + เงื่อนไขคุณธรรม</p>
+                        <h4>3. ธรรมะ</h4>
+                        <p>ตัณหา (ความอยากไร้ขอบเขต) คือต้นเหตุแห่งทุกข์ สันตุฏฐี (ความพอใจ) และ อัปปิจฉตา (ความมักน้อย) คือทางออก</p>
                     </div>
                 </details>
             </div>
         </section>
 
-        <!-- 4. Architecture (REPLACED) -->
+        <!-- 4. Architecture -->
         <section id="architecture" class="section">
             <div class="section-title"><span class="icon">🏛️</span> สถาปัตยกรรม: ทางออก 3 เสาหลัก</div>
-            
+
             <div class="card">
                 <h3>1. อธิปไตยทางการผลิต (Production Sovereignty)</h3>
                 <p>"จัดหาได้" ไม่เท่ากับ "ผลิตได้" รัฐต้องมั่นใจว่าผลิตปัจจัย 4 จากฐานทรัพยากรภายในได้จริง ไม่ใช่พึ่งพาการพิมพ์เงินหรือ Unequal Exchange</p>
@@ -472,36 +437,29 @@
             </div>
 
             <div class="card">
-                <h3>2. The Value Firewall (กำแพงกั้นคุณค่าที่แท้จริง)</h3>
-                <p>ปัญหาของระบบไม่ใช่เรื่อง "เล่นเกม" หรือ "ดูโซเชียล" แต่คือสิ่งที่ <strong>ดูดกลืนเวลาและพลังงานชีวิตไปอย่างไร้คุณค่า</strong> เราจึงต้องแยก:</p>
-                
+                <h3>2. Dream/Real Firewall</h3>
+                <p>แยกวงจรเศรษฐกิจอย่างเด็ดขาด:</p>
                 <div class="firewall-viz">
                     <div class="fw-zone fw-real">
-                        <div class="fw-title">🌱 Real Value (คุณค่าที่แท้จริง)</div>
-                        <div class="fw-desc">กิจกรรมที่ <strong>อยู่บนความพอดี</strong> และไม่ว่าจะเป็นงานหรือการพักผ่อน ก็ <strong>เสริมสร้าง</strong> ชีวิต (Low Entropy) ให้พลังงานกลับคืนมา</div>
+                        <div class="fw-title">🌍 Real Circuit (ของจริง)</div>
+                        <div class="fw-desc">อาหาร, ที่อยู่อาศัย, สุขภาพ<br>จัดสรรโดยตรงผ่านคูปองพื้นฐาน</div>
                     </div>
-                    <div class="fw-bar">🚫 FIREWALL: ห้ามสิ่งลวงมาพรากพลังงานชีวิต 🚫</div>
+                    <div class="fw-bar">🚫 FIREWALL: ห้ามเงินเก็งกำไรซื้อของจริง 🚫</div>
                     <div class="fw-zone fw-dream">
-                        <div class="fw-title">🕳️ Illusion / Trap (สิ่งลวงและกับดัก)</div>
-                        <div class="fw-desc">กิจกรรมที่ไม่มีเป้าหมาย ไม่สร้างคุณค่า หรือหลุดจากความจริง (เช่น ยาเสพติด, การเสพติดหน้าจอแบบไม่ลืมหูลืมตา, การเก็งกำไรจนเสียสมดุล) ซึ่งดูดพลังงานชีวิตทิ้งอย่างไร้ค่า (High Entropy)</div>
+                        <div class="fw-title">🎮 Dream Circuit (ของฝัน)</div>
+                        <div class="fw-desc">คริปโต, เกม, สินทรัพย์ดิจิทัล<br>แลกเปลี่ยนกันได้ แต่แปลงเป็นของจริงแบบ Unlimited ไม่ได้</div>
                     </div>
                 </div>
 
                 <details class="deep-dive">
-                    <summary>อ่านเชิงลึก: กฎของความพอดี (The Rule of Balance)</summary>
+                    <summary>อ่านเชิงลึก: กลไกปฏิบัติการ 3 ชั้น</summary>
                     <div class="deep-dive-content">
-                        <h4>1. ไม่ใช่ "ห้ามเล่น" แต่คือ "ห้ามเป็นทาส"</h4>
-                        <p>เราไม่ได้ต่อต้านการเล่นเกม ดูหนัง หรือท่องโซเชียลมีเดีย เพราะสิ่งเหล่านี้คือ "การพักผ่อน" ที่สร้างความสุขและจินตนาการได้ <strong>หากอยู่บนความพอดี</strong> มันก็จัดเป็น "ของจริง" ที่มีคุณค่า</p>
-                        <p><strong>แต่ถ้าสิ่งใดก็ตาม</strong> (แม้แต่การทำงานหนักเกินไป การสะสมเงินทองแบบไร้ขีดจำกัด หรือการเสพติดวัตถุ) <strong>ทำให้คุณตกอยู่ในสภาพที่ไม่ได้ทำอะไรที่เป็นประโยชน์เลย มันก็เสมือนกับคุณกำลัง "นอนหลับและฝัน" ไปตลอดชีวิต</strong>—ไม่ได้ตื่นขึ้นมาใช้ชีวิตจริงๆ</p>
-                        
-                        <h4>2. เกณฑ์ตัดสิน: "ตื่น" หรือ "หลับ"</h4>
-                        <p>การจะแยกว่าสิ่งไหนคือคุณค่าที่แท้จริง หรือสิ่งไหนคือกับดัก ให้ถามตัวเองว่า:</p>
-                        <ul>
-                            <li><strong>มีสติรู้ตัวหรือไม่?</strong> (คุณควบคุมมัน หรือมันควบคุมคุณ)</li>
-                            <li><strong>มีเป้าหมายหรือไม่?</strong> (ทำแล้วได้อะไรต่อชีวิตหรือสังคม)</li>
-                            <li><strong>เมื่อจบแล้ว รู้สึกอย่างไร?</strong> (สดชื่นมีพลัง หรือถูกดูดจนหมดแรง)</li>
-                        </ul>
-                        <p><strong>ยาเสพติด</strong> คือสิ่งลวงที่ชัดเจนที่สุด เพราะมันทำให้คนหลุดจากความจริงโดยสิ้นเชิง ในขณะที่ <strong>การเล่นที่ไม่มีเป้าหมาย</strong> ก็เป็นสิ่งลวงในรูปแบบที่แนบเนียนกว่า</p>
+                        <h4>(ก) Proof of Reserves (PoR)</h4>
+                        <p>คูปองภายในต้องมี PoR ตรวจสอบได้ Real-time ป้องกันการพิมพ์เพิ่ม</p>
+                        <h4>(ข) Non-Convertible Bridge</h4>
+                        <p>ให้สิทธิ์เข้าถึงของจริงบางประเภท แต่ไม่ให้แลกเป็นเงิน/ที่ดินแบบ unlimited</p>
+                        <h4>(ค) Regional Settlement</h4>
+                        <p>สร้างท่อภูมิภาค (LCS, mBridge) ให้การค้าของจริงไม่ต้องผ่านดอลลาร์</p>
                     </div>
                 </details>
             </div>
@@ -517,7 +475,7 @@
             <div class="section-title"><span class="icon">🧪</span> Sandbox & บทเรียนจากจีน</div>
             <div class="card accent">
                 <p>ใช้ Physical AI ทดแทนแรงงานซ้ำซาก (เช่น ดูแลผู้สูงอายุ) เพื่อทดสอบว่า: <strong>"เสรีภาพ + ความมั่นคงพื้นฐาน ปลดปล่อยศักยภาพที่ซ่อนอยู่ได้จริงหรือไม่?"</strong></p>
-                
+
                 <details class="deep-dive">
                     <summary>อ่านเชิงลึก: กลไก Sandbox และมหภาคจีน (2025-2026)</summary>
                     <div class="deep-dive-content">
@@ -528,200 +486,18 @@
                         <h4>ข้อมูลชี้ชัด: จีนกับ "สกุลเงินแห่งห่วงโซ่อุปทาน"</h4>
                         <p><strong>1. M2 ที่ถูกยึดเหนี่ยวด้วยของจริง:</strong> จีนมี M2 ~50-52 ล้านล้านดอลลาร์ (>240% GDP) แต่ไม่เกิดเงินเฟ้อ เพราะดูดซับด้วย Real Sector (Supply-Side Deflation)</p>
                         <p><strong>2. พลังการผลิตคุณภาพใหม่:</strong> แผนพัฒนาฯ ฉบับที่ 15 ใช้ AI และ Dark Factories เพื่อสร้างคุณค่าจริง (Low Entropy) ไม่ใช่ฟองสบู่การเงิน</p>
-                        <p><strong>3. Supply Chain Currency:</strong> จีนบังคับคู่ค้าชำระค่าชิ้นส่วนเป็น "หยวน" ควบคุมเงินทุนให้ 95% หมุนเวียนในประเทศ นี่คือ Value Firewall ในระดับมหภาค</p>
+                        <p><strong>3. Supply Chain Currency:</strong> จีนขยายฐานการผลิตไปทั่วโลก แต่กำหนดให้คู่ค้าชำระค่าชิ้นส่วนเป็น "หยวน" ควบคุมเงินทุนให้เงินหยวนส่วนใหญ่หมุนเวียนในประเทศ นี่คือ Dream/Real Firewall ในระดับมหภาค</p>
                     </div>
                 </details>
             </div>
         </section>
-
-        <!-- 5.5 The Sufficiency Token (REPLACED) -->
-        <section id="token" class="section">
-            <div class="section-title"><span class="icon">🪙</span> 5.5 โมเดลรูปธรรม: The Sufficiency Token</div>
-            <div class="card token">
-                <h3>เศรษฐศาสตร์หมุนเวียนแห่งความดี (Regenerative Economics)</h3>
-                <p>เพื่อให้ภาพของ Sandbox ชัดเจนขึ้น เราได้ออกแบบระบบ <strong>"Merit Token"</strong> ที่ไม่ใช่คริปโตเก็งกำไร และไม่ใช่ Social Credit แบบสอดแนม แต่เป็น <strong>ระบบปิด (Closed-Loop)</strong> ที่สร้างแรงจูงใจให้คนทำดี:</p>
-                
-                <ul>
-                    <li><strong>Proof of Good Action:</strong> ทำความดี (แยกขยะ, ปลูกต้นไม้, ดูแลผู้สูงอายุ) → AI ตรวจสอบผ่าน ZKP (ไม่ละเมิดความเป็นส่วนตัว) → ออกโทเคน</li>
-                    <li><strong>Asset-Backed Reserve:</strong> รัฐมีกองทุนสำรองสินค้าจำเป็น (ข้าว, น้ำมัน) เพื่อรับประกันว่าโทเคนมีมูลค่าจริง ไม่ใช่ฟองสบู่</li>
-                    <li><strong>Utility & Demurrage:</strong> แลกได้กับสินค้าจำเป็น/ส่วนลดภาษี และมีวันหมดอายุเล็กน้อยเพื่อกระตุ้นให้เกิดการหมุนเวียน ไม่ใช่การสะสม</li>
-                </ul>
-
-                <div style="text-align: center; margin-top: 20px;">
-                                        <a href="concept-note.pdf" target="_blank" class="btn-pdf">
-                        📄 ดาวน์โหลด Concept Note (PDF)
-                    </a>
-                    <br>
-                    <a href="Real Value Balance.html" class="btn-pdf" style="background: var(--real);">
-                        🧩 อ่านพิมพ์เขียวกลไกเต็ม: Real Value Balance →
-                    </a>
-                </div>
-            </div>
-        </section>
-
-<!-- ============================================ -->
-<!-- ส่วนเพิ่มเติม: ศิลปะแห่งการจูน — สายพิณและบ่วง -->
-<!-- ============================================ -->
-<section id="tuning-art" class="content-section">
-  <h2>🎻 ศิลปะแห่งการจูน: สายพิณและบ่วง</h2>
-  <p class="lead">
-    <em>"สายพิณที่ต้องไม่ตึงไม่หย่อน เสียงจึงเพราะ — และเราบริโภคเนื้อได้ แต่ต้องไม่จมบ่วง"</em>
-  </p>
-
-  <p>
-    หาก "Value Firewall" คือกำแพงที่ต้องสร้าง ปัญหาที่แท้จริงคือ:
-    <strong>ความสนุก (นันทิ) ไม่ใช่ศัตรู แต่เป็นสิ่งที่ต้อง "จัดระเบียบ"</strong>
-    ด้วยหลักการสองชั้น — <strong>จูนภายใน</strong> และ <strong>กันบ่วงภายนอก</strong>
-  </p>
-
-  <h3>๑. สายพิณ: การจูนภายใน (Individual Tuning)</h3>
-  <p>
-    จากพุทธประวัติเรื่องพระโสณะ — พิณสายตึงเกินก็ขาด สายหย่อนเกินก็ไม่ดัง
-    เสียงที่เพราะเกิดจาก <strong>"มัชฌิมา"</strong> ที่ต้องจูนใหม่ทุกครั้งที่สภาพเปลี่ยน
-  </p>
-
-  <table class="tuning-table">
-    <thead>
-      <tr><th>สภาวะ</th><th>ลักษณะ</th><th>ผล</th></tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><strong>ตึงเกิน (ตัณหาเกิน)</strong></td>
-        <td>หมกมุ่นในความสนุกจนเสียสมดุล</td>
-        <td>ขาด — ชีวิตจริงพัง</td>
-      </tr>
-      <tr>
-        <td><strong>หย่อนเกิน (ตัณหาขาด)</strong></td>
-        <td>กดทับ/ปฏิเสธความสนุกโดยสิ้นเชิง</td>
-        <td>เกียจคร้าน — ขาดแรงขับ</td>
-      </tr>
-      <tr>
-        <td><strong>พอดี (มัชฌิมา)</strong></td>
-        <td>ความสนุกที่ <em>เสริม</em> การดำรงชีวิต</td>
-        <td>เสียงเพราะ — อยู่ได้ + มีความสุข</td>
-      </tr>
-    </tbody>
-  </table>
-
-  <div class="callout callout-info">
-    <strong>เกณฑ์จูนสายพิณ ๕ ข้อ</strong>
-    <ol>
-      <li><strong>วัดสัดส่วน:</strong> กิจกรรมนี้กินเวลากี่ส่วนของชีวิตที่ต้องดำรงอยู่?</li>
-      <li><strong>ถามทิศทาง:</strong> กิจกรรมนี้ "เสริม" หรือ "แทนที่" การผลิตของจริง?</li>
-      <li><strong>ฟังเสียง:</strong> หลังทำแล้ว รู้สึก " refreshed" หรือ "ถูกดูด"?</li>
-      <li><strong>จูนซ้ำ:</strong> สภาพเปลี่ยน → ปรับจุดสมดุลใหม่ (ไม่ใช่ค่าคงที่)</li>
-      <li><strong>รู้ราก:</strong> กิจกรรมนี้ทำให้รู้จักตัวเองชัดขึ้น หรือทำให้หลงตัวเอง?</li>
-    </ol>
-  </div>
-
-  <h3>๒. เนื้อและบ่วง: การกันการติด (Structural Safeguard)</h3>
-  <p>
-    จากบาลี <em>"มังสํ ภุญชิตุํ วฏฺฏติ, น จ พนฺธนํ คเหตุํ"</em> —
-    บริโภคเนื้อได้ แต่ไม่ควรจับบ่วง (เครื่องดักสัตว์)
-  </p>
-  <p>
-    <strong>"บ่วง"</strong> คือโครงสร้างที่ทำให้เรากลายเป็น <em>ส่วนหนึ่งของวงจร</em> ไม่ใช่ผู้ใช้:
-  </p>
-
-  <table class="tuning-table">
-    <thead>
-      <tr><th>บ่วง</th><th>ลักษณะ</th><th>กลไกที่ดูด</th></tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>บ่วงเงินตราเก็งกำไร</td>
-        <td>เข้าไปเป็นส่วนหนึ่งของวงจรปั๊ม-ดูด</td>
-        <td>สภาพคล่องถูกดึงออกจาก real sector</td>
-      </tr>
-      <tr>
-        <td>บ่วงตลาดหุ้น / exchange</td>
-        <td>เข้าไปเป็นส่วนหนึ่งของ "ความฝัน" ของคนอื่น</td>
-        <td>ราคาถูกปั่นเหนือมูลค่าจริง</td>
-      </tr>
-      <tr>
-        <td>บ่วงหน้าจอ</td>
-        <td>เข้าไปเป็นส่วนหนึ่งของอัลกอริทึมที่ออกแบบมาให้ติด</td>
-        <td>เวลา/ความสนใจถูกดูดเป็นทุน</td>
-      </tr>
-      <tr>
-        <td>บ่วงค่าเงิน</td>
-        <td>เข้าไปเป็นส่วนหนึ่งของการพนันค่าเงิน</td>
-        <td>ความเสี่ยงถูกโอนจากผู้ผลิตจริง</td>
-      </tr>
-    </tbody>
-  </table>
-
-  <div class="callout callout-warning">
-    <strong>เกณฑ์ตรวจบ่วง ๕ ข้อ</strong>
-    <ol>
-      <li><strong>ทดสอบ "ผู้ใช้ vs ถูกใช้":</strong> เราคุมกิจกรรม หรือกิจกรรมคุมเรา?</li>
-      <li><strong>มองเห็นต้นทุนจริง:</strong> รู้หรือไม่ว่าเสียเวลา/เงิน/โอกาสอะไรไป?</li>
-      <li><strong>มีทางออก:</strong> หยุดได้ทันทีโดยไม่เสียหายหรือไม่?</li>
-      <li><strong>ตรวจโครงสร้าง:</strong> กิจกรรมนี้ออกแบบมาเพื่อ "เรา" หรือ "ระบบ"?</li>
-      <li><strong>ถามกลับ:</strong> กิจกรรมนี้ "เสริม" การดำรงชีวิต หรือ "แทนที่" มัน?</li>
-    </ol>
-  </div>
-
-  <h3>๓. การจัดระเบียบที่ต้องทำซ้ำ</h3>
-  <p>
-    ทั้ง "สายพิณ" และ "เนื้อ/บ่วง" ชี้ไปที่หลักการเดียวกัน:
-    <strong>การจัดระเบียบไม่ใช่กฎตายตัว แต่คือ "ศิลปะที่ต้องฝึก"</strong>
-  </p>
-  <ul>
-    <li><strong>ระดับปัจเจก:</strong> ตั้งจุดสมดุลของตัวเอง + จูนซ้ำเมื่อสภาพเปลี่ยน</li>
-    <li><strong>ระดับสังคม:</strong> แยกกิจกรรม "ความสนุก" ออกจาก "โครงสร้างที่ดูด" + กำหนดเพดาน + ทำให้ "บ่วง" มองเห็นได้</li>
-    <li><strong>ระดับสถาบัน:</strong> สร้าง "หูที่ได้ยินเสียงพิณ" (กลไกตรวจสอบดุลยภาพ) และ "ตาที่มองเห็นบ่วง" (กลไกเปิดเผยต้นทุนจริง)</li>
-  </ul>
-
-  <div class="callout callout-success">
-    <strong>สรุป: จาก "กำแพง" สู่ "ส้อมเสียง"</strong>
-    <p>
-      Value Firewall ไม่ใช่กำแพงที่สร้างขึ้น แต่คือ
-      <strong>"กระจกที่ส่องดูตัวเอง"</strong> — การแยกคุณค่า/สิ่งลวง
-      จึงไม่ใช่การสร้างกำแพง แต่คือ <strong>"การรู้จักรากของตัวเอง"</strong>
-      ที่ต้องจูนใหม่ทุกครั้งที่ลมเปลี่ยนทิศ
-    </p>
-  </div>
-
-  <h3>๔. การเชื่อมกับ "คำถามเปิด ๗ ข้อ"</h3>
-  <table class="tuning-table">
-    <thead>
-      <tr><th>คำถามเปิด</th><th>คำตอบจากอุปมา</th></tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>เพดานการแลกเปลี่ยนควรยืดหยุ่นแค่ไหน?</td>
-        <td>สายพิณ — ไม่ตายตัว ต้องจูนตามกาละ</td>
-      </tr>
-      <tr>
-        <td>ใครกำหนดนิยามของจริง/ของฝัน?</td>
-        <td>ผู้ที่รู้จักเสียงพิณ — ผู้ที่จูนเป็น ไม่ใช่ผู้มีอำนาจ</td>
-      </tr>
-      <tr>
-        <td>จะป้องกันการเมืองแทรกแซง Sandbox อย่างไร?</td>
-        <td>กันบ่วง — โครงสร้างต้องไม่ให้ใครเป็นเจ้าของบ่วง</td>
-      </tr>
-      <tr>
-        <td>Hall of Fame ควรวัดคุณค่านามธรรมอย่างไร?</td>
-        <td>เสียงพิณที่เพราะ — วัดจากดุลยภาพที่ยั่งยืน ไม่ใช่การสะสม</td>
-      </tr>
-    </tbody>
-  </table>
-
-  <blockquote>
-    <p>
-      <em>"ไม้ไผ่ไม่หัก เพราะมันรู้ว่ารากของตัวเองอยู่ที่ไหน — การรู้ราก = การรู้เสียงพิณของตัวเอง"</em>
-    </p>
-    <footer>— หลักการสำนักไทย</footer>
-  </blockquote>
-</section>
 
         <!-- 6. Thai Context -->
         <section id="thai" class="section">
             <div class="section-title"><span class="icon">🇹🇭</span> บริบทไทย: โอกาสและความท้าทาย</div>
             <div class="card thai">
                 <p><strong>จุดแข็ง:</strong> ฐานการผลิตอาหาร (ครัวของโลก), PromptPay ที่ก้าวหน้า, วัฒนธรรมความพอเพียง</p>
-                <p><strong>ความท้าทาย:</strong> พึ่งพาการนำเข้าพลังงาน (~60%), หนี้ครัวเรือน (~90% GDP), ความเหลื่อมล้ำสูง</p>
+                <p><strong>ความท้าทาย:</strong> พึ่งพาการนำเข้าพลังงานสูง, หนี้ครัวเรือนสูง, ความเหลื่อมล้ำสูง</p>
                 <p><strong>ทางออก:</strong> เริ่มจาก <span class="highlight">"Sandbox ระดับจังหวัด"</span> ที่มีฐานการผลิตแข็งแรง (เช่น เชียงใหม่, ขอนแก่น) ผสานกับหลักเศรษฐกิจพอเพียง</p>
             </div>
         </section>
@@ -754,25 +530,25 @@
                         <ol>
                             <li><strong>1-3 ปี:</strong> Sandbox นำร่อง + PoR + Coalition</li>
                             <li><strong>3-7 ปี:</strong> ขยายผล + Regional Settlement (ASEAN)</li>
-                            <li><strong>7-15 ปี:</strong> Production Sovereignty + Value Firewall เต็มรูปแบบ</li>
+                            <li><strong>7-15 ปี:</strong> Production Sovereignty + Dream/Real Firewall เต็มรูปแบบ</li>
                         </ol>
                     </div>
                 </details>
             </div>
         </section>
 
-        <!-- 8. Questions (REPLACED) -->
+        <!-- 8. Questions -->
         <section id="questions" class="section">
-            <div class="section-title"><span class="icon">❓</span> คำถามเปิดเพื่อการอภิปราย 7 ข้อ</div>
+            <div class="section-title"><span class="icon">❓</span> คำถามเปิดเพื่อการอภิปราย (7 ข้อ)</div>
             <div class="card">
                 <p>เอกสารนี้ <strong>ไม่ตอบ</strong> คำถามเหล่านี้ — เพราะต้องอภิปรายร่วมกัน:</p>
                 <ol>
                     <li>กลไกจัดสรรสิทธิ์แลกเปลี่ยน "คูปอง" เป็น "เงินนอก" จะเป็นอย่างไร?</li>
-                    <li><strong>ใครเป็นผู้กำหนดว่า "จิต" แบบไหนคือ "ของคุณค่าที่แท้จริง" และกิจกรรมแบบไหนคือ "สิ่งลวง"?</strong> (ต้องเป็นกลไกที่โปร่งใสและมีส่วนร่วม ไม่ใช่การชี้นำจากรัฐ)</li>
+                    <li>ใครกำหนดนิยาม "ของจริง" vs "ของฝัน"?</li>
                     <li>เพดานการแลกเปลี่ยนควรยืดหยุ่นแค่ไหน?</li>
                     <li>จะป้องกันการเมืองแทรกแซง Sandbox อย่างไร?</li>
                     <li>ถ้า Sandbox สำเร็จ จะ Scale อย่างไรไม่ให้เป็น "เกาะสวรรค์"?</li>
-                    <li><strong>"Hall of Fame" ควรวัด "คุณค่านามธรรม" จาก "จิตที่สร้างสรรค์" อย่างไร?</strong> (เช่น วัดจากผลกระทบต่อสังคม, ความคิดสร้างสรรค์, หรือความยั่งยืน?)</li>
+                    <li>Hall of Fame ควรวัดคุณค่านามธรรมอย่างไร?</li>
                     <li>ถ้าประเทศหนึ่งทำสำเร็จ ประเทศอื่นไม่ทำ จะเกิดอะไรขึ้น?</li>
                 </ol>
             </div>
@@ -787,7 +563,7 @@
                     <li><strong>Provisioning:</strong> การจัดหา/การเข้าถึงปัจจัยที่จำเป็น</li>
                     <li><strong>Production Sovereignty:</strong> อธิปไตยทางการผลิต</li>
                     <li><strong>Unequal Exchange:</strong> การแลกเปลี่ยนที่ไม่เท่าเทียม</li>
-                    <li><strong>Value Firewall:</strong> กำแพงกั้นระหว่างคุณค่าที่แท้จริงและสิ่งลวง</li>
+                    <li><strong>Dream/Real Firewall:</strong> กำแพงกั้นระหว่างวงจรจริงและฝัน</li>
                     <li><strong>Non-convertible Rewards:</strong> รางวัลที่ไม่แปลงเป็นอำนาจ</li>
                     <li><strong>Anti-Stack:</strong> สถาปัตยกรรมทางเลือกที่ตรงข้ามกับ "American Stack"</li>
                 </ul>
@@ -813,17 +589,20 @@
                     <li>Schumacher, E.F. (1973). <em>Small Is Beautiful</em>.</li>
                     <li>BIS (2025-2026). <em>Reports on stablecoins and Digital Dollarization</em>.</li>
                 </ul>
+                <p style="font-size:0.85rem; color:var(--text-light); margin-top:12px;">
+                    <em>หมายเหตุ: ตัวเลขเชิงสถิติในเอกสารนี้รวบรวมจากแหล่งทุติยภูมิ (รายงานข่าว/บทวิเคราะห์) ควรตรวจสอบกับแหล่งปฐมภูมิ (BIS, Fed, PBOC, Tether attestation) ก่อนใช้อ้างอิงอย่างเป็นทางการ</em>
+                </p>
             </div>
         </section>
 
     </main>
 
     <footer class="footer">
-        <strong>เงินที่สมดุลย์ คือรากฐานของสังคมที่พอเพียง</strong>
+        <strong>เงินเป็นเพียงเครื่องมือ ไม่ใช่เจ้านาย</strong>
         เอกสารฉบับนี้จัดทำขึ้นเพื่อการอภิปรายและจุดประกายความคิด<br>
         สู่การออกแบบสังคมที่ยั่งยืนและเป็นธรรมสำหรับทุกคน
         <br><br>
-        <span style="font-size:0.8rem; opacity:0.7;">© 2026 | DeepSeek Masterpiece Edition v1.3</span>
+        <span style="font-size:0.8rem; opacity:0.7;">© 2026 | v1.1 — Collaborative Synthesis</span>
     </footer>
 
     <button class="btt" id="bttBtn" aria-label="กลับด้านบน">↑</button>
@@ -836,7 +615,7 @@
         const links = document.querySelectorAll('.drawer-links a');
 
         function toggleDrawer(show) {
-            if (show) { drawer.classList.add('active'); overlay.classList.add('active'); document.body.style.overflow = 'hidden'; } 
+            if (show) { drawer.classList.add('active'); overlay.classList.add('active'); document.body.style.overflow = 'hidden'; }
             else { drawer.classList.remove('active'); overlay.classList.remove('active'); document.body.style.overflow = ''; }
         }
 
