@@ -67,9 +67,45 @@
     .pillar-card { border: 1px solid #ccc; background: #f9f9f9 !important; }
     #theme-toggle, .back-link { display: none !important; }
   }
+
+  /* ===== แถบนำทาง + ตารางข้อมูล (เพิ่มใหม่ — รองรับโหมดมืดผ่านตัวแปร) ===== */
+  :root { --nav-bg: rgba(245, 230, 211, 0.96); }
+  body.dark-mode { --nav-bg: rgba(18, 18, 18, 0.96); }
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  body { padding-top: 54px; }
+  #read-progress { position: fixed; top: 0; left: 0; height: 3px; width: 0%; background: var(--gold); z-index: 1002; transition: width 0.1s linear; }
+  #top-nav { position: fixed; top: 0; left: 0; right: 0; height: 54px; display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 3px 14px 0; background: var(--nav-bg); border-bottom: 1px solid var(--gold); z-index: 1001; backdrop-filter: blur(4px); }
+  #top-nav a { color: var(--red-chinese); text-decoration: none; font-weight: 600; font-size: 0.95rem; white-space: nowrap; }
+  #top-nav a:hover { color: var(--gold); }
+  #section-jump { flex: 1; max-width: 360px; min-width: 0; font-family: 'Sarabun', serif; font-size: 16px; color: var(--ink); background: var(--parchment); border: 1px solid var(--gold); border-radius: 6px; padding: 6px 8px; cursor: pointer; }
+  .section { scroll-margin-top: 66px; }
+  .table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; margin: 18px 0; }
+  .data-table { width: 100%; border-collapse: collapse; font-size: 0.92rem; background: var(--parchment); box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+  .data-table th { background: var(--red-chinese); color: var(--gold); padding: 11px 10px; text-align: left; font-weight: 600; }
+  .data-table td { padding: 10px; border-bottom: 1px solid var(--gold); vertical-align: top; color: var(--ink); }
+  .data-table tr:nth-child(even) td { background: var(--dark-parchment); }
+  .data-table tr.hl td { background: rgba(139, 0, 0, 0.12); }
+  .rvb-note { font-size: 0.9rem; color: var(--light-ink); font-style: italic; }
+  @media (max-width: 600px) {
+    #top-nav { padding: 3px 10px 0; gap: 8px; }
+    #top-nav .nav-label { display: none; }
+    .data-table { font-size: 0.85rem; }
+  }
+  @media print {
+    #top-nav, #read-progress { display: none !important; }
+    body { padding-top: 0 !important; }
+    .data-table td, .data-table th { color: black !important; }
+  }
 </style>
 </head>
 <body>
+<div id="read-progress" aria-hidden="true"></div>
+<nav id="top-nav" aria-label="แถบนำทาง">
+  <a href="index.html" title="กลับหน้าหลัก">☯ <span class="nav-label">หน้าหลัก</span></a>
+  <select id="section-jump" aria-label="ไปยังหัวข้อ"></select>
+  <a href="moneybs.html" title="แม่บท: เงินสมดุลย์พอเพียง">📖 <span class="nav-label">แม่บท</span></a>
+</nav>
 
 <button id="theme-toggle" aria-label="Toggle Dark Mode">🌙</button>
 
@@ -81,14 +117,14 @@
     <p class="subtitle">The Sufficiency Blueprint: จากจินตนาการในยุทธภพ สู่โครงสร้างเศรษฐกิจแห่งความเป็นจริง</p>
   </div>
 
-  <div class="section">
+  <div class="section" id="philosophy">
     <h3>🎯 ปรัชญาพื้นฐาน: ดุลยภาพแห่งพิณ</h3>
     <p>ระบบนี้ไม่ได้มีเป้าหมายที่จะ "ทำลาย" หรือ "แยกขาด" โลกแห่งจินตนาการออกจากโลกแห่งความจริงโดยสิ้นเชิง เพราะเราตระหนักดีว่า ความบันเทิงและนวัตกรรมดิจิทัล ล้วนเป็น "เครื่องปรุง" ที่ทำให้ชีวิตมีรสชาติ</p>
     <p>อย่างไรก็ตาม ปัญหาเกิดขึ้นเมื่อ <strong>"เครื่องปรุง" กลายเป็น "อาหารหลัก"</strong> กล่าวคือ เมื่อสังคมหมกมุ่นอยู่กับกิจกรรมที่ไม่ก่อให้เกิดผลผลิตจริง (Real Output) ที่สามารถอุปโภคบริโภคได้</p>
     <p>ดังนั้น Sufficiency Sandbox จึงถูกออกแบบมาเพื่อสร้าง <strong>"ดุลยภาพ"</strong> โดยรับประกันว่า <strong>"รากฐานแห่งการดำรงชีพจริง"</strong> (อาหาร, พลังงาน, ที่อยู่อาศัย) จะต้องมั่นคงก่อนเป็นลำดับแรก จากนั้น "พื้นที่แห่งความฝัน" จึงจะงอกงามได้อย่างมีสุขภาพดี โดยไม่กลายเป็น "บ่วง" ที่ดูดกลืนทรัพยากร</p>
   </div>
 
-  <div class="section">
+  <div class="section" id="definition">
     <h3>⚖️ นิยามที่แท้จริง: "ของจริง" (Real Value) vs "ของลวง" (Illusion)</h3>
     <p>เราไม่อาจตัดสินคุณค่าของกิจกรรมจาก "เครื่องมือ" ที่ใช้ (เช่น หน้าจอ หรือ สิ่งของทางกายภาพ) แต่ต้องตัดสินจาก <strong>"ธรรมชาติของผลลัพธ์"</strong> ที่กิจกรรมนั้นสร้างขึ้น</p>
     <p>ปัญหาไม่ได้อยู่ที่เทคโนโลยีหรือความบันเทิง แต่อยู่ที่ <strong>"กับดักแห่งของลวง"</strong> ซึ่งคือกิจกรรมที่ไร้เป้าหมาย ไร้คุณค่า และไม่ก่อให้เกิดผลผลิตที่จับต้องได้ เปรียบเสมือนการเสพยาเสพติด หรือการหมกมุ่นกับการเก็งกำไรที่ไร้พื้นฐาน ซึ่งดูดกลืนเวลาและทรัพยากรไปโดยเปล่าประโยชน์</p>
@@ -110,7 +146,7 @@
     </div>
   </div>
 
-  <div class="section">
+  <div class="section" id="lessons">
     <h3>🌍 บทเรียนจากโลกจริง: ทำไมเราต้องการ "ดุลยภาพ" ในยุคนี้?</h3>
     <div class="pillar-grid">
       <div class="pillar-card">
@@ -132,7 +168,7 @@
     </div>
   </div>
 
-  <div class="section">
+  <div class="section" id="pillars">
     <h3>🏛️ ๔ เสาหลักแห่งความแข็งแกร่ง</h3>
     <div class="pillar-grid">
       <div class="pillar-card">
@@ -155,14 +191,81 @@
     </div>
   </div>
 
-  <div class="section">
+  <div class="section" id="tech">
     <h3>🛡️ โครงสร้างเทคโนโลยีและความเป็นส่วนตัว</h3>
     <div class="highlight-box">
       "หัวใจสำคัญคือการใช้ Zero-Knowledge Proofs (ZKP) เพื่อยืนยันการกระทำดีโดยไม่เปิดเผยตัวตน และใช้ AI as an Auditor ที่ตรวจสอบข้อเท็จจริงเท่านั้น โดยให้มนุษย์ในชุมชนเป็นผู้ตัดสินคุณค่า (Human-in-the-loop)"
     </div>
   </div>
 
-  <div class="section">
+  <div class="section" id="attacks">
+    <h3>🛡️ การโจมตีระบบและกลไกป้องกัน (Attack &amp; Defense)</h3>
+    <p>ระบบที่ "ดี" ย่อมถูกหาทางทำให้ "ไม่ดี" — ไม่ใช่เพราะคนชั่ว แต่เพราะ<strong>ตัณหา</strong>ในธรรมชาติมนุษย์ ตารางนี้คือ "การบ้านจากบท ๑๑" ที่พิมพ์เขียวต้องตอบก่อนขยายผลจริง</p>
+    <div class="table-wrap">
+    <table class="data-table">
+      <tr><th>การโจมตี</th><th>กลไก</th><th>กลไกป้องกัน</th></tr>
+      <tr class="hl"><td><strong>กักตุนของจริงเลี่ยง Demurrage</strong> (บท ๑๑)</td><td>แลกโทเคนเป็นข้าว/น้ำมันอัตราอุดหนุน แล้วกักตุนของจริงไว้สะสมมูลค่า</td><td>โควตาแลกต่อหัว/เดือนพอบริโภคจริง + สิทธิ์แลกเป็น "สิทธิ์บริโภค" ไม่ใช่สิทธิ์ซื้อไปขายต่อ + เปิดทางออมที่ถูกกฎหมาย (ชั้น Fiat/ทอง) + Hall of Fame รองรับแรงอยากสะสม</td></tr>
+      <tr><td>Sybil / ปั่นความดี</td><td>สร้างบัญชีปลอม/กระทำดีเทียมเพื่อฟาร์มโทเคน</td><td>ZKP ยืนยันตัวตนโดยไม่เปิดเผย + Human-in-the-loop + ชุมชนรับรอง + เดิมพันชื่อเสียง</td></tr>
+      <tr><td>ทุนสีเทายึด DAO</td><td>สะสมสิทธิ์โหวตแล้วครอบงำการกำหนดน้ำหนักความดี</td><td>หมุนเวียนตำแหน่ง + สุ่มคัดเลือก + Quadratic voting + กฎขั้นต่ำรัฐรับรอง + โปร่งใสตรวจได้</td></tr>
+      <tr><td>แห่ถอนของสำรอง (Reserve Run)</td><td>แห่แลกของจริงพร้อมกันจนกองทุนสำรองหมด</td><td>โควตา + ปรับราคาชั้นพื้นฐานเมื่อเกินโควตา + กันชนสำรอง + Demurrage ลดแรงจูงใจแห่ถอน</td></tr>
+      <tr><td>ฉวยส่วนต่างชั้นอุดหนุน</td><td>ซื้อของชั้นพื้นฐานถูก ไปขายราคาตลาดชั้นฟุ่มเฟือย</td><td>แยก Dual-Tier เด็ดขาด + สิทธิ์ชั้นพื้นฐานโอน/ขายต่อไม่ได้</td></tr>
+      <tr><td>ปลอมโทเคน / ใช้ซ้ำ</td><td>แก้บัญชี/ใช้โทเคนซ้ำ</td><td>บัญชีเข้ารหัสระดับ CBDC + ZKP + AI Auditor ตรวจ real-time</td></tr>
+      <tr><td>รัฐ/การเมืองยึดระบบ</td><td>ใช้ระบบเป็นเครื่องมือควบคุม/หาเสียง</td><td>Polycentric + Opt-in + ชุมชนเป็นเจ้าของ + หมุนเวียนอำนาจ + แยกจากงบการเมือง</td></tr>
+      <tr><td>เงินเฟ้อแห่งความดี</td><td>ออกโทเคนเกินของจริงรองรับ</td><td>สำรอง ≥100% + ออกโทเคนผูกกับผลผลิตจริงที่ตรวจสอบได้เท่านั้น</td></tr>
+    </table>
+    </div>
+    <div class="highlight-box">"ช่องโหว่ไม่ใช่บั๊กให้ปะ แต่คือตัณหาให้จูน — ตัดช่องว่างเก็งกำไร เปิดทางออกให้ความอยากมั่นคง แล้วจูนจิตสู่ความพอเพียง"</div>
+  </div>
+
+  <div class="section" id="comparison">
+    <h3>⚖️ ตารางเทียบ: Fiat / Stablecoin / Bitcoin / Merit Token</h3>
+    <div class="table-wrap">
+    <table class="data-table">
+      <tr><th>เกณฑ์</th><th>Fiat</th><th>Stablecoin</th><th>Bitcoin</th><th>Merit Token</th></tr>
+      <tr><td>สิ่งค้ำประกัน</td><td>เครดิต/หนี้รัฐ</td><td>USD/T-bills (98-99%)</td><td>ไม่มี (พลังงาน+ความหายาก)</td><td><strong>สินค้าจริงสำรอง</strong></td></tr>
+      <tr><td>ควบคุมอุปทาน</td><td>ยืดหยุ่นโดยธนาคารกลาง</td><td>โดยผู้ออก</td><td>คงที่ 21 ล้าน</td><td>ผูกผลผลิตจริงที่ตรวจสอบได้</td></tr>
+      <tr><td>หน้าที่หลัก</td><td>สื่อกลาง+สะสม</td><td>สื่อกลาง+สะสม</td><td>สะสม/เก็งกำไร</td><td><strong>สื่อกลางเท่านั้น (ไม่สะสม)</strong></td></tr>
+      <tr><td>การเก็งกำไร</td><td>สูง</td><td>ต่ออายุ USD Hegemony</td><td>สูงมาก</td><td><strong>ต่ำ (Demurrage)</strong></td></tr>
+      <tr><td>ความเป็นส่วนตัว</td><td>ถูกสอดส่อง</td><td>แล้วแต่ผู้ออก</td><td>นามแฝง</td><td><strong>ZKP ไม่เปิดเผยตัวตน</strong></td></tr>
+      <tr><td>ธรรมาภิบาล</td><td>ธนาคารกลาง</td><td>ผู้ออกเอกชน</td><td>กระจายแต่ยึดทุน</td><td><strong>Community DAO</strong></td></tr>
+      <tr><td>Demurrage</td><td>ไม่มี</td><td>ไม่มี</td><td>ไม่มี</td><td><strong>มี (กันกักตุน)</strong></td></tr>
+      <tr><td>สอดคล้องของจริง</td><td>ต่ำ</td><td>รับใช้ดอลลาร์</td><td>ไม่มีของจริงรองรับ</td><td><strong>สูง</strong></td></tr>
+    </table>
+    </div>
+    <p class="rvb-note">สอดคล้องจุดยืน: รับ CBDC ที่ค้ำด้วยของจริง — ปฏิเสธ Bitcoin/Stablecoin ที่เป็นของลวง/ต่ออายุอำนาจดอลลาร์ (ดูหลักฐาน Digital Dollarization ใน moneybs.html)</p>
+  </div>
+
+  <div class="section" id="parameters">
+    <h3>🎛️ พารามิเตอร์ตั้งต้น (Sandbox เฟส ๑ — จูนได้)</h3>
+    <p class="rvb-note">ค่าเหล่านี้คือ "จุดจูนสายพิณ" ตั้งต้น ไม่ใช่กฎตายตัว — ปรับตามกาละและผลทดลอง</p>
+    <div class="table-wrap">
+    <table class="data-table">
+      <tr><th>พารามิเตอร์</th><th>ค่าตั้งต้น</th><th>เหตุผล / การจูน</th></tr>
+      <tr><td>อัตรา Demurrage</td><td>0.5–1%/เดือน (หรือหมดอายุ 6–12 เดือน)</td><td>พอยับยั้งการกักตุน ไม่แรงจนลงโทษคนป่วย/สูงวัยที่ใช้จ่ายช้า</td></tr>
+      <tr><td>อัตราสำรองสินค้าจริง</td><td>≥100% + กันชน</td><td>กัน "เงินเฟ้อแห่งความดี" + รับ reserve run</td></tr>
+      <tr><td>โควตาชั้นพื้นฐาน</td><td>ต่อหัว/เดือน ตามความต้องการบริโภคจริง (ขนาดครัวเรือน)</td><td>ตัดการกักตุน/ฉวยส่วนต่าง — ชั้นนี้เพื่อ "บริโภค" ไม่ใช่ "สะสม"</td></tr>
+      <tr><td>เพดานถือครองโทเคน</td><td>X โทเคน/กระเป๋า (ส่วนเกิน→Hall of Fame หรือเร่ง Demurrage)</td><td>กันการสะสมเป็นทุนนิยมรูปแบบใหม่</td></tr>
+      <tr><td>การออกโทเคน</td><td>ผูกผลผลิต/ความดีที่ AI+ชุมชนตรวจสอบแล้ว</td><td>อุปทานโตตามของจริง ไม่ใช่ตามอำเภอใจ</td></tr>
+      <tr><td>หมุนเวียน DAO</td><td>วาระ + สุ่มคัดเลือกสัดส่วนหนึ่ง</td><td>กัน capture โดยทุนสีเทา/การเมือง</td></tr>
+    </table>
+    </div>
+  </div>
+
+  <div class="section" id="bridge">
+    <h3>🔗 แม่บท-ลูกบท: เชื่อมสู่วิทัศน์มหภาค</h3>
+    <p>พิมพ์เขียวฉบับนี้คือ <strong>กลไกระดับโทเคน (ลูกบท)</strong> ของวิทัศน์มหภาคใน <strong>moneybs.html (แม่บท)</strong> — Production Sovereignty, Value Firewall, Non-convertible Rewards, สังคมทรงมนุษย์ อ่านคู่กันเพื่อเห็นภาพเต็ม</p>
+    <div class="pillar-grid">
+      <div class="pillar-card"><h4>Production Sovereignty ↔ Real-Goods Backed</h4><p>ของจริงที่สำรองต้องผลิตได้เองในฐานทรัพยากรภายใน ไม่ใช่พึ่งการพิมพ์เงิน</p></div>
+      <div class="pillar-card"><h4>Value Firewall ↔ Dual-Tier + Demurrage</h4><p>แยกของจริง/ของลวง และรักษาให้มูลค่าหมุนเวียน ไม่ถูกดูดไปสะสม</p></div>
+      <div class="pillar-card"><h4>Non-convertible Rewards ↔ ชั้นกันการสะสม</h4><p>ผลักแรงอยากสะสมสู่ Hall of Fame (นามธรรม แปลงเป็นอำนาจไม่ได้)</p></div>
+      <div class="pillar-card"><h4>Community DAO ↔ ชั้นกำกับ</h4><p>ธรรมาภิบาลกระจายศูนย์ขวางทั้งแม่บทและลูกบท กัน capture</p></div>
+    </div>
+    <div style="text-align: center; margin-top: 20px;">
+      <a href="moneybs.html" class="back-link">📖 อ่านแม่บท: เงินสมดุลย์พอเพียง (moneybs.html) →</a>
+    </div>
+  </div>
+
+  <div class="section" id="roadmap">
     <h3>🚀 แผนการดำเนินการ (Implementation Roadmap)</h3>
     <ul class="roadmap">
       <li><strong>เฟส ๑ (Micro):</strong> ทดลองในพื้นที่จำกัด (Opt-in) ๖ เดือน, ๑,๐๐๐-๕,๐๐๐ คน ในระดับตำบลหรือมหาวิทยาลัย</li>
@@ -171,7 +274,7 @@
     </ul>
   </div>
 
-  <div class="section">
+  <div class="section" id="appendix">
     <h3>🧠 ภาคผนวก: แผนภาพ ๖ คำ (กระบวนการแห่งนันทิ)</h3>
     <p>ในทางพุทธปรัชญาและเศรษฐศาสตร์พฤติกรรม กระบวนการที่จิตและสังคมเข้าไปยึดเกาะ "ของลวง" มี ๖ มิติที่ซ้อนทับกัน:</p>
     <div class="pillar-grid">
@@ -201,14 +304,59 @@
 
 <script>
   document.addEventListener('DOMContentLoaded', () => {
+    /* --- โหมดมืด/สว่าง (ของเดิม) --- */
     const toggleBtn = document.getElementById('theme-toggle');
     const body = document.body;
     if (localStorage.getItem('theme') === 'dark') { body.classList.add('dark-mode'); toggleBtn.textContent = '☀️'; }
     toggleBtn.addEventListener('click', () => {
       body.classList.toggle('dark-mode');
-      if (body.classList.contains('dark-mode')) { localStorage.setItem('theme', 'dark'); toggleBtn.textContent = '☀️'; } 
+      if (body.classList.contains('dark-mode')) { localStorage.setItem('theme', 'dark'); toggleBtn.textContent = '☀️'; }
       else { localStorage.setItem('theme', 'light'); toggleBtn.textContent = '🌙'; }
     });
+
+    /* --- ทะเบียนหัวข้อ: เพิ่มหัวข้อใหม่ = ใส่ id ให้ section + เพิ่ม 1 บรรทัดที่นี่ --- */
+    const sections = [
+      { id: 'philosophy',   label: '🎯 ปรัชญาพื้นฐาน' },
+      { id: 'definition',   label: '⚖️ ของจริง vs ของลวง' },
+      { id: 'lessons',      label: '🌍 บทเรียนจากโลกจริง' },
+      { id: 'pillars',      label: '🏛️ ๔ เสาหลัก' },
+      { id: 'tech',         label: '🛡️ เทคโนโลยีและความเป็นส่วนตัว' },
+      { id: 'attacks',      label: '🛡️ การโจมตีและกลไกป้องกัน' },
+      { id: 'comparison',   label: '⚖️ ตารางเทียบสกุลเงิน' },
+      { id: 'parameters',   label: '🎛️ พารามิเตอร์ตั้งต้น' },
+      { id: 'bridge',       label: '🔗 แม่บท-ลูกบท' },
+      { id: 'roadmap',      label: '🚀 แผนการดำเนินการ' },
+      { id: 'appendix',     label: '🧠 ภาคผนวก ๖ คำ' }
+    ];
+    const jump = document.getElementById('section-jump');
+    sections.forEach(s => {
+      const opt = document.createElement('option');
+      opt.value = s.id; opt.textContent = s.label;
+      jump.appendChild(opt);
+    });
+    jump.addEventListener('change', () => {
+      const el = document.getElementById(jump.value);
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    });
+
+    /* --- แถบความคืบหน้า + จำหัวข้อปัจจุบัน --- */
+    const progress = document.getElementById('read-progress');
+    let ticking = false;
+    function update() {
+      ticking = false;
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      progress.style.width = (max > 0 ? (window.scrollY / max) * 100 : 0) + '%';
+      let current = sections[0].id;
+      for (const s of sections) {
+        const el = document.getElementById(s.id);
+        if (el && el.getBoundingClientRect().top <= 80) current = s.id;
+      }
+      if (jump.value !== current) jump.value = current;
+    }
+    window.addEventListener('scroll', () => {
+      if (!ticking) { ticking = true; requestAnimationFrame(update); }
+    }, { passive: true });
+    update();
   });
 </script>
 </body>
