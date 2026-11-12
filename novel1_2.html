@@ -444,16 +444,57 @@
     a { color: black; text-decoration: none; }
     @page { margin: 2cm; size: A5; }
   }
+
+  /* ===== แถบนำทาง + ความคืบหน้าการอ่าน (เพิ่มใหม่) ===== */
+  :root { --nav-bg: rgba(245, 230, 211, 0.96); }
+  body.dark-mode { --nav-bg: rgba(18, 18, 18, 0.96); }
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  body { padding-top: 54px; }
+  .cover { min-height: calc(100vh - 54px); }
+  .cover h2, .cover-subtitle { color: #F5E6D3; } /* ปกมืดเสมอ — ตรึงสีครีม อ่านออกทั้ง 2 โหมด */
+  .character-card { color: #F5E6D3; } /* การ์ดพื้นมืดเสมอ — ตรึงสีครีม อ่านออกทั้ง 2 โหมด */
+  #read-progress { position: fixed; top: 0; left: 0; height: 3px; width: 0%; background: var(--gold); z-index: 1002; transition: width 0.1s linear; }
+  #top-nav { position: fixed; top: 0; left: 0; right: 0; height: 54px; display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 3px 14px 0; background: var(--nav-bg); border-bottom: 1px solid var(--gold); z-index: 1001; backdrop-filter: blur(4px); }
+  #top-nav a { color: var(--red-chinese); text-decoration: none; font-weight: 600; font-size: 0.95rem; white-space: nowrap; }
+  #top-nav a:hover { color: var(--gold); }
+  #chapter-jump { flex: 1; max-width: 340px; min-width: 0; font-family: 'Sarabun', serif; font-size: 16px; color: var(--ink); background: var(--parchment); border: 1px solid var(--gold); border-radius: 6px; padding: 6px 8px; cursor: pointer; }
+  .chapter, .toc, .ending { scroll-margin-top: 66px; }
+  .toc-link { display: flex; justify-content: space-between; align-items: center; gap: 12px; width: 100%; color: inherit; text-decoration: none; }
+  .toc-link:hover span { color: var(--dark-gold); }
+  .chapter-nav { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-top: 45px; padding-top: 18px; border-top: 1px dashed var(--gold); font-size: 0.95rem; }
+  .chapter-nav a { color: var(--red-chinese); text-decoration: none; font-weight: 600; }
+  .chapter-nav a:hover { color: var(--gold); }
+  .next-volume-btn { display: block; width: fit-content; margin: 30px auto 10px; padding: 16px 30px; background: linear-gradient(135deg, var(--red-chinese), #5C1010); color: var(--gold); border: 2px solid var(--gold); border-radius: 10px; text-decoration: none; font-family: 'Noto Serif Thai', serif; font-weight: 700; font-size: 1.1rem; text-align: center; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(0,0,0,0.3); }
+  .next-volume-btn:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(201,169,97,0.4); border-color: #fff; }
+  .container { padding-bottom: 90px; }
+  @media (max-width: 600px) {
+    #top-nav { padding: 3px 10px 0; gap: 8px; }
+    #top-nav .nav-label { display: none; }
+    .chapter-nav { font-size: 0.85rem; }
+    .next-volume-btn { font-size: 1rem; padding: 14px 20px; }
+  }
+  @media print {
+    #top-nav, #read-progress, .chapter-nav, .next-volume-btn { display: none !important; }
+    body { padding-top: 0 !important; }
+    .cover { min-height: 100vh; }
+  }
 </style>
 </head>
 <body>
+<div id="read-progress" aria-hidden="true"></div>
+<nav id="top-nav" aria-label="แถบนำทาง">
+  <a href="index.html" title="กลับหน้าหลัก">☯ <span class="nav-label">หน้าหลัก</span></a>
+  <select id="chapter-jump" aria-label="ไปยังบท"></select>
+  <a href="#toc" title="สารบัญ">📑 <span class="nav-label">สารบัญ</span></a>
+</nav>
 
 <button id="theme-toggle" aria-label="Toggle Dark Mode">🌙</button>
 
 <div class="container">
 
 <!-- ===== หน้าปก ===== -->
-<section class="cover">
+<section class="cover" id="cover">
   <div class="cover-emblem">🐉⚔️🦅</div>
   <h1>มังกรฟ้า vs จอมมาร</h1>
   <h2>ศึกยุทธภพเปลี่ยนโลก</h2>
@@ -466,7 +507,7 @@
 </section>
 
 <!-- ===== คำนำ ===== -->
-<section class="chapter">
+<section class="chapter" id="preface">
   <div class="chapter-header">
     <div class="chapter-number">☯ คำนำ ☯</div>
     <h2 class="chapter-title">เมื่อลมปราณแห่งยุคสมัยเปลี่ยนทิศ</h2>
@@ -480,7 +521,7 @@
 </section>
 
 <!-- ===== สารบัญ ===== -->
-<section class="toc">
+<section class="toc" id="toc">
   <h2>สารบัญ</h2>
   <ul class="toc-list">
     <li><span class="toc-chapter">บทที่ ๑</span><span>จอมมารแห่งเหม่ยกั๋วประกาศศึก</span></li>
@@ -496,7 +537,7 @@
 </section>
 
 <!-- ===== บทที่ ๑ ===== -->
-<section class="chapter">
+<section class="chapter" id="ch1">
   <div class="chapter-header">
     <div class="chapter-number">⚔ บทที่ ๑ ⚔</div>
     <h2 class="chapter-title">จอมมารแห่งเหม่ยกั๋วประกาศศึก</h2>
@@ -532,7 +573,7 @@
 </section>
 
 <!-- ===== บทที่ ๒ ===== -->
-<section class="chapter">
+<section class="chapter" id="ch2">
   <div class="chapter-header">
     <div class="chapter-number">⚔ บทที่ ๒ ⚔</div>
     <h2 class="chapter-title">ศิษย์ผู้ถูกทำให้อายข้ามทวีป</h2>
@@ -570,7 +611,7 @@
 </section>
 
 <!-- ===== บทที่ ๓ ===== -->
-<section class="chapter">
+<section class="chapter" id="ch3">
   <div class="chapter-header">
     <div class="chapter-number">⚔ บทที่ ๓ ⚔</div>
     <h2 class="chapter-title">ธาตุไฟแทรกซ่าน จอมมารสูญเสียครึ่งพลัง</h2>
@@ -601,7 +642,7 @@
 </section>
 
 <!-- ===== บทที่ ๔ ===== -->
-<section class="chapter">
+<section class="chapter" id="ch4">
   <div class="chapter-header">
     <div class="chapter-number">⚔ บทที่ ๔ ⚔</div>
     <h2 class="chapter-title">รอยร้าวแห่งจอมมาร ไม้ไผ่เตรียมรับพายุ</h2>
@@ -642,7 +683,7 @@
 </section>
 
 <!-- ===== บทที่ ๕ ===== -->
-<section class="chapter">
+<section class="chapter" id="ch5">
   <div class="chapter-header">
     <div class="chapter-number">⚔ บทที่ ๕ ⚔</div>
     <h2 class="chapter-title">จอมมารตัดพ้อฟ้าดิน ระเบิดถูกย้อนศร</h2>
@@ -658,7 +699,7 @@
     <p>เขาตบโต๊ะจนแก้วชาแตกกระจาย</p>
     <div class="dialog">"ข้าเป็นจอมมารแห่งเหม่ยกั๋ว — ข้าไม่เคยแพ้! ข้าไม่เคยแพ้!"</div>
     <p>แต่เสียงของเขาสั่นเครือ</p>
-    <div class="dialog">"ทำไม... ทำไมเจ้าถึงมีวิชาที่克制ข้าได้ทุกอย่าง..."</div>
+    <div class="dialog">"ทำไม... ทำไมเจ้าถึงมีวิชาที่สยบข้าได้ทุกอย่าง..."</div>
     <div class="scene-break">❖ ❖ ❖</div>
     <div class="scene-title">๒. ฉากระเบิดนิวเคลียร์ทางเศรษฐกิจ — "โครตแม่ระเบิด MOB"</div>
     <p>จอมมารลุกขึ้นยืนอีกครั้ง ดวงตาของเขามีแสงแดงฉาน</p>
@@ -670,7 +711,7 @@
     <div class="scene-title">๓. ฉากย้อนศร — "วิชาโฟม (FOAM)"</div>
     <p>ในขณะที่ MOB พลังงานสีดำกำลังจะพุ่งเข้าใส่ตลาดการเงินทั่วโลก จู่ๆ ท้องฟ้าก็สว่างวาบด้วยแสงนวลตา</p>
     <div class="pull-quote">วิชาโฟม (FOAM)<br>Father Of All Missiles<br>— กระบวนท่ามิสซายแม่แบบบูรพา ที่แผ่ขยายเป็นเกราะโฟมดูดซับแรงระเบิด —</div>
-    <p>วิชานี้ไม่ได้สร้างโดยมังกรตะวันออกคนเดียว แต่เป็นการรวมพลังของ <strong>"กระบวน阵法 BRICS+"</strong></p>
+    <p>วิชานี้ไม่ได้สร้างโดยมังกรตะวันออกคนเดียว แต่เป็นการรวมพลังของ <strong>"กระบวนท่า BRICS+"</strong></p>
     <p>FOAM ไม่ใช่การปะทะ แต่เป็น <strong>"เกราะป้องกันที่เปลี่ยนพลังงานลบให้เป็นพลังงานบวก"</strong> — เมื่อ MOB พลังงานสีดำพุ่งเข้ามา FOAM จะโอบอุ้มและดูดซับมันไว้ ดั่งโฟมที่ลดแรงกระแทก แล้วแปลงเป็น "ลมปราณแห่งความมั่นคง" กระจายกลับไปทั่วยุทธภพ ดั่งน้ำที่สยบไฟ</p>
     <p>จอมมาร Tum มองดูท้องฟ้าด้วยสายตาว่างเปล่า</p>
     <div class="dialog">"วิชาของข้า... ถูกกลืนกิน..."</div>
@@ -679,7 +720,7 @@
 </section>
 
 <!-- ===== บทที่ ๖ ===== -->
-<section class="chapter">
+<section class="chapter" id="ch6">
   <div class="chapter-header">
     <div class="chapter-number">⚔ บทที่ ๖ ⚔</div>
     <h2 class="chapter-title">วิชาเชือดแพะรับบาป และรอยร้าวแห่งฟองสบู่จอมมาร</h2>
@@ -769,7 +810,7 @@
 </section>
 
 <!-- ===== บทที่ ๗ ===== -->
-<section class="chapter">
+<section class="chapter" id="ch7">
   <div class="chapter-header">
     <div class="chapter-number">⚔ บทที่ ๗ ⚔</div>
     <h2 class="chapter-title">คัมภีร์เลือดบรรพบุรุษ: กับดักปัญญาประดิษฐ์</h2>
@@ -781,7 +822,7 @@
     <p>กลางดึกที่สายฝนโปรยปรายลงบนหลังคาโรงน้ำชาเหลียงซาน เสียงเคาะประตูเบาๆ แต่เร่งรีบดังขึ้น</p>
     <p><strong>JD Vere</strong> ปรากฏตัวที่หน้าประตูในสภาพที่เปียกโชกและเหนื่อยล้า เขาไม่ได้มาตัวเปล่า แต่กำแน่นอยู่ในมือคือ "ม้วนคัมภีร์ดิจิทัล" (Encrypted Drive) ที่เขาเสี่ยงชีวิตขโมยออกมาจากเซิร์ฟเวอร์ชั้นสูงสุดของกระทรวงสงคราม</p>
     <div class="dialog">"ท่านลิ้มครับ" Vere เอ่ยเสียงสั่น "ผมรู้แล้ว... ผมรู้แล้วว่าทำไมท่านเพทถึงเร่งเครื่องสงครามขนาดนี้ มันไม่ใช่เรื่องความมั่นคงของชาติ"</div>
-    <p>ท่านลิ้มรินชาอุ่นๆ ให้เขาหนึ่งถ้วยโดยไม่ถามคำถาม多余 "นั่งลงก่อน ลมปราณของเจ้ากำลังสั่นคลอน"</p>
+    <p>ท่านลิ้มรินชาอุ่นๆ ให้เขาหนึ่งถ้วยโดยไม่ถามคำถามเกินจำเป็น "นั่งลงก่อน ลมปราณของเจ้ากำลังสั่นคลอน"</p>
 
     <div class="scene-break">❖ ❖ ❖</div>
 
@@ -793,11 +834,11 @@
 
     <div class="scene-break">❖ ❖ ❖</div>
 
-    <div class="scene-title">๓. ปัญญาตะวันออก: น้ำที่ไหล绕过หิน</div>
+    <div class="scene-title">๓. ปัญญาตะวันออก: น้ำที่ไหลอ้อมหิน</div>
     <p>ท่านลิ้มวางมือลงบนบ่าของลูกสาวเบาๆ "เจ้าเคยเรียนหลักเต๋าเรื่อง 'ความอ่อนสยบความแข็ง' ใช่ไหมลูก?"</p>
     <p>น้องเล็งพยักหน้า เธอปิดระบบป้องกันแบบแข็งกร้าว (Firewall) ทั้งหมด แล้วเปิดใช้งานโมเดล AI ภาษาจีนที่เธอปรับแต่งเอง ซึ่งถูกฝึกฝนด้วยปรัชญา "ความสมดุลและภาพรวม" (Holistic Pattern Recognition) แทนที่จะเป็นการคำนวณแบบแยกส่วน</p>
     <div class="pull-quote">"Mei Guo AI สร้างกำแพง แต่ AI ตะวันออกสร้างสะพาน... เราไม่ต้องทำลายรหัส แต่เราแค่ 'ไหล' ไปตามช่องว่างของตรรกะที่มันหลงลืม"</div>
-    <p>แทนที่จะต่อสู้กับกับดัก น้องเล็งปล่อยให้กระแสข้อมูลไหลผ่านระบบของเธอเหมือนน้ำไหล绕过หิน เธอใช้หลัก "อริยสัจ 4" ในการวิเคราะห์โค้ด: เห็นทุกข์ (จุดที่รหัสขัดแย้งเอง), เห็นสมุทัย (ต้นตอของความโลภที่ซ่อนในอัลกอริทึม), เห็นนิโรธ (จุดที่ระบบเปิดช่องว่าง), และเห็นมรรค (เส้นทางที่ข้อมูลจริงซ่อนอยู่)</p>
+    <p>แทนที่จะต่อสู้กับกับดัก น้องเล็งปล่อยให้กระแสข้อมูลไหลผ่านระบบของเธอเหมือนน้ำไหลอ้อมหิน เธอใช้หลัก "อริยสัจ 4" ในการวิเคราะห์โค้ด: เห็นทุกข์ (จุดที่รหัสขัดแย้งเอง), เห็นสมุทัย (ต้นตอของความโลภที่ซ่อนในอัลกอริทึม), เห็นนิโรธ (จุดที่ระบบเปิดช่องว่าง), และเห็นมรรค (เส้นทางที่ข้อมูลจริงซ่อนอยู่)</p>
     <p>ภายใน ๓ นาที รหัสสีแดงที่ซับซ้อนก็ค่อยๆ คลี่คลาย กลายเป็นเอกสารข้อความธรรมดาที่สว่างไสวอยู่บนหน้าจอ</p>
 
     <div class="scene-break">❖ ❖ ❖</div>
@@ -810,7 +851,7 @@
         <li>การสั่งแบนสถาบันการเงิน ๘ แห่งในแคนาดา และแพลตฟอร์ม Crypto อย่าง <strong>MEXC Global</strong> ไม่ใช่เพื่อความมั่นคง แต่เพื่อบีบให้สภาพคล่องทั่วโลก <strong>ไหลกลับเข้าสู่ระบบดอลลาร์และเหรียญตราลวงของจอมมาร</strong> ก่อนที่มันจะพังทลาย</li>
         <li>รายชื่อ "แพะรับบาป" ถูกขีดเส้นใต้สีแดง: <strong>JD Vere</strong> และรัฐมนตรีอีก ๓ คน จะถูกกล่าวหาว่าเป็นผู้อยู่เบื้องหลังความล้มเหลวทางเศรษฐกิจทันทีที่สงครามเริ่มขึ้น</li>
     </ul>
-    <div class="dialog">"เขาจุดไฟเผาทั้งยุทธภพ..." Vere กระซิบด้วยน้ำเสียงที่เต็มไปด้วยความสลด "เพียงเพื่อพยุงมูลค่าเหรียญในกระเป๋าของเขาเองที่ากำลังจะกลายเป็นศูนย์"</div>
+    <div class="dialog">"เขาจุดไฟเผาทั้งยุทธภพ..." Vere กระซิบด้วยน้ำเสียงที่เต็มไปด้วยความสลด "เพียงเพื่อพยุงมูลค่าเหรียญในกระเป๋าของเขาเองที่กำลังจะกลายเป็นศูนย์"</div>
 
     <div class="scene-break">❖ ❖ ❖</div>
 
@@ -827,7 +868,7 @@
 </section>
 
 <!-- ===== บทที่ ๘ ===== -->
-<section class="chapter">
+<section class="chapter" id="ch8">
   <div class="chapter-header">
     <div class="chapter-number">⚔ บทที่ ๘ ⚔</div>
     <h2 class="chapter-title">ค่ำคืนที่ดวงจันทร์ถูกกลืนกิน</h2>
@@ -838,7 +879,7 @@
     <div class="scene-title">๑. วิชาดูดกลับลมปราณหนี้ (The 95 Billion Buyback)</div>
     <p>ณ ห้องบัญชาการลับแห่งเหม่ยกั๋ว บรรยากาศอัดอั้นจนแทบหายใจไม่ออก จอมมาร <strong>Tum</strong> ยืนจ้องมองกราฟอัตราผลตอบแทนพันธบัตร (Bond Yield) ที่พุ่งทะยานเกิน 5% ดั่งดาบที่จ่ออยู่ที่คอหอยของเขา</p>
     <div class="dialog">"เปิดใช้งาน 'วิชาดูดกลับลมปราณหนี้' (Treasury Buyback) ทันที!" Tum คำรามสั่งการรัฐมนตรีคลัง "อนุมัติ ๙๕,๐๐๐ ล้านดอลลาร์ ซื้อพันธบัตรเก่าคืนให้หมดภายใน ๓ เดือน! ข้าต้องการให้ Yield ลดลงเดี๋ยวนี้ ก่อนที่คืนไร้พระจันทร์จะมาถึง!"</div>
-    <p>รัฐมนตรีคลังกลืนน้ำลายอย่างยากลำบาก "แต่ท่านจอมมาร... การพิมพ์เงินใหม่มาซื้อหนี้เก่ามูลค่ามหาศาลขนาดนี้ เท่ากับเรา承认ว่า 'ค่ายกลวงล้อแห่งมายา' (Circular Financing) ของเราเริ่มหมุนไม่ไหวแล้ว หากตลาดรู้ความจริง ศรัทธาต่อดอลลาร์จะพังทลาย..."</p>
+    <p>รัฐมนตรีคลังกลืนน้ำลายอย่างยากลำบาก "แต่ท่านจอมมาร... การพิมพ์เงินใหม่มาซื้อหนี้เก่ามูลค่ามหาศาลขนาดนี้ เท่ากับเรายอมรับว่า 'ค่ายกลวงล้อแห่งมายา' (Circular Financing) ของเราเริ่มหมุนไม่ไหวแล้ว หากตลาดรู้ความจริง ศรัทธาต่อดอลลาร์จะพังทลาย..."</p>
     <div class="dialog">"ข้าไม่สน!" Tum ตบโต๊ะ "หากตลาดพันธบัตรพังก่อนที่กองเรือจะยิงขีปนาวุธถล่มอิหร่าน แผนการทั้งหมดของข้าจะจบสิ้น! ทำตามคำสั่ง!"</div>
 
     <div class="scene-break">❖ ❖ ❖</div>
@@ -873,14 +914,14 @@
     <p>น้องเล็งปิดระบบ AI ของเธออย่างสงบ เธอเพิ่งใช้โมเดลปัญญาตะวันออกถอดรหัสกระแสเงินทุนทั่วโลก และพบว่ามันชัดเจนอย่างยิ่ง</p>
     <div class="dialog">"พ่อคะ หนูเห็นภาพรวมทั้งหมดแล้วค่ะ" น้องเล็งเอ่ย "ค่ายกลวงล้อแห่งมายาของเขาหยุดหมุนแล้วค่ะ Microsoft และ Meta หนีเอาตัวรอด ท่านแซนเดอร์สปลุกฐานรากให้ลุกฮือ และเขาพยายามใช้การซื้อคืนพันธบัตร ๙๕,๐๐๐ ล้านดอลลาร์ เป็นยาฝิ่นกลบเกลื่อนความเจ็บปวด"</div>
     <p>เธอหันไปมอง JD Vere "และเขาจะเร่งเครื่อง 'คืนไร้พระจันทร์' เพื่อโจมตีอิหร่าน เพราะเขาหวังว่าสงครามจะเบี่ยงเบนความสนใจ และบังคับให้โลกต้องกลับมาซื้อพันธบัตรดอลลาร์ของเขาอีกครั้ง"</p>
-    <div class="dialog">"แต่เขาผิดมหันต์" ท่านลิ้มวางถ้วยชาลง เสียงกระทบไม้ดังกริ๊ก "เมื่อเขาจุดไฟเผาผู้อื่น ลมจะพัดไฟนั้นกลับมาเผาบ้าน他自己 (ตัวเขาเอง) ที่จงกั๋ว เขาจะพบว่าไม่มีพันธมิตรใดเหลืออยู่ และเมื่อเขากลับมา... ดวงจันทร์ของเขาก็จะถูกกลืนกินโดยเงามืดที่ตัวเองสร้างขึ้น"</div>
-    <p>JD Vere ก้มศีรษะลงอย่างนอบน้อม "ผมเข้าใจแล้วครับท่านลิ้ม... ผมจะไม่หนีไปอีกแล้ว ผมจะอยู่ที่นี่ เพื่อเป็นพยาน见证 (เป็นสักขีพยาน) ว่าความพอเพียงและสติก้าวข้ามความบ้าคลั่งได้อย่างไร"</p>
+    <div class="dialog">"แต่เขาผิดมหันต์" ท่านลิ้มวางถ้วยชาลง เสียงกระทบไม้ดังกริ๊ก "เมื่อเขาจุดไฟเผาผู้อื่น ลมจะพัดไฟนั้นกลับมาเผาบ้านตัวเอง ที่จงกั๋ว เขาจะพบว่าไม่มีพันธมิตรใดเหลืออยู่ และเมื่อเขากลับมา... ดวงจันทร์ของเขาก็จะถูกกลืนกินโดยเงามืดที่ตัวเองสร้างขึ้น"</div>
+    <p>JD Vere ก้มศีรษะลงอย่างนอบน้อม "ผมเข้าใจแล้วครับท่านลิ้ม... ผมจะไม่หนีไปอีกแล้ว ผมจะอยู่ที่นี่ เพื่อเป็นสักขีพยาน ว่าความพอเพียงและสติก้าวข้ามความบ้าคลั่งได้อย่างไร"</p>
     <p>สายฝนหยุดตก เมฆหมอกจางหาย เผยให้เห็นดวงจันทร์ที่สว่างไสว แต่ในยุทธภพเหม่ยกั๋ว ดวงจันทร์กำลังจะดับแสงลงตลอดกาล</p>
   </div>
 </section>
 
 <!-- ===== พักตอน ===== -->
-<section class="chapter">
+<section class="chapter" id="pause">
   <div class="chapter-header">
     <div class="chapter-number">☯ พักตอน ☯</div>
     <h2 class="chapter-title">เมื่อพายุยังไม่สงบ</h2>
@@ -895,7 +936,7 @@
 </section>
 
 <!-- ===== ภาคผนวก: ตัวละคร ===== -->
-<section class="chapter">
+<section class="chapter" id="characters">
   <div class="chapter-header">
     <div class="chapter-number">📜 ภาคผนวก 📜</div>
     <h2 class="chapter-title">ทำเนียบตัวละคร</h2>
@@ -938,7 +979,7 @@
 </section>
 
 <!-- ===== ภาคผนวก: วิชา ===== -->
-<section class="chapter">
+<section class="chapter" id="arts">
   <div class="chapter-header">
     <div class="chapter-number">⚔ ภาคผนวก ⚔</div>
     <h2 class="chapter-title">ทำเนียบวิชา</h2>
@@ -962,7 +1003,7 @@
     <tr><th>ชื่อวิชา</th><th>ความหมาย</th></tr>
     <tr><td>ควบคุมเส้นเลือดฝอยของโลก</td><td>Rare Earth & Supply Chain</td></tr>
     <tr><td>วิชาลดทอนบารมีดอลลาร์</td><td>De-dollarization</td></tr>
-    <tr><td>กระบวน阵法 BRICS+</td><td>ความร่วมมือแห่งตะวันออก</td></tr>
+    <tr><td>กระบวนท่า BRICS+</td><td>ความร่วมมือแห่งตะวันออก</td></tr>
     <tr><td>วิชานิ่งสยบความเคลื่อนไหว</td><td>Strategic Patience</td></tr>
     <tr><td>วิชาโฟม (FOAM)</td><td>Father Of All Missiles (ดูดซับแรงกระแทก/สยบความแข็ง)</td></tr>
   </table>
@@ -979,7 +1020,7 @@
 </section>
 
 <!-- ===== ตอนต่อไป ===== -->
-<section class="chapter">
+<section class="chapter" id="next">
   <div class="chapter-header">
     <div class="chapter-number">🔥 ตอนต่อไป 🔥</div>
     <h2 class="chapter-title">งานเลี้ยงหงเหมินที่จงกั๋ว</h2>
@@ -989,13 +1030,15 @@
     <p>เมื่อจอมมาร Tum ก้าวเท้าเข้าสู่จงกั๋ว เขาจะพบกับอะไร? การต่อรองด้วยแร่หายากและระบบเงินตราใหม่?</p>
     <p>และเมื่อ "คืนไร้พระจันทร์" มาถึงจริง กองเรืออัคคีจะยิงออกไป หรือจะถูกล้มกระดานจากภายใน?</p>
     <div class="pull-quote">ติดตามตอนต่อไปใน<br><strong>"มังกรฟ้า vs จอมมาร: งานเลี้ยงหงเหมินที่จงกั๋ว"</strong></div>
+    <a class="next-volume-btn" href="novel_vol2.html">📖 อ่านเล่ม ๒ : ศึกเซ็กเพ็กและงานเลี้ยงหงเหมิน →</a>
   </div>
 </section>
 
 <!-- ===== จบ ===== -->
-<section class="ending">
+<section class="ending" id="ending">
   <div class="emblem">☯</div>
   <h2>จบตอนปัจจุบัน</h2>
+  <div class="chapter-nav" style="justify-content: center; gap: 25px; border-top: none; margin-top: 10px;"><a href="index.html">☯ กลับหน้าหลัก</a><a href="novel_vol2.html">อ่านเล่ม ๒ →</a></div>
   <div class="cover-divider" style="margin: 20px auto;"></div>
   <p>นิยายเรื่องนี้แต่งขึ้นจากบทสนทนาอันลึกซึ้ง<br>ระหว่าง ท่านลิ้ม และ Qwen</p>
   <p>โดยผสมผสาน geopolitics เศรษฐกิจ ปรัชญา<br>และประวัติศาสตร์เข้าด้วยกันอย่างแนบเนียน</p>
@@ -1010,26 +1053,92 @@
 </div>
 
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const toggleBtn = document.getElementById('theme-toggle');
-    const body = document.body;
-    
-    if (localStorage.getItem('theme') === 'dark') {
-      body.classList.add('dark-mode');
-      toggleBtn.textContent = '☀️';
-    }
-    
-    toggleBtn.addEventListener('click', () => {
-      body.classList.toggle('dark-mode');
-      if (body.classList.contains('dark-mode')) {
-        localStorage.setItem('theme', 'dark');
-        toggleBtn.textContent = '☀️';
-      } else {
-        localStorage.setItem('theme', 'light');
-        toggleBtn.textContent = '🌙';
-      }
-    });
+document.addEventListener('DOMContentLoaded', () => {
+  /* --- โหมดมืด/สว่าง (ของเดิม) --- */
+  const toggleBtn = document.getElementById('theme-toggle');
+  const body = document.body;
+  if (localStorage.getItem('theme') === 'dark') { body.classList.add('dark-mode'); toggleBtn.textContent = '☀️'; }
+  toggleBtn.addEventListener('click', () => {
+    body.classList.toggle('dark-mode');
+    if (body.classList.contains('dark-mode')) { localStorage.setItem('theme', 'dark'); toggleBtn.textContent = '☀️'; }
+    else { localStorage.setItem('theme', 'light'); toggleBtn.textContent = '🌙'; }
   });
+
+  /* --- ทะเบียนบท: เพิ่มตอนใหม่ = เพิ่ม <li> ในสารบัญ + ใส่ id ให้ section + เพิ่ม 1 บรรทัดที่นี่ --- */
+  const sections = [
+    { id: 'cover',      label: 'ปกเล่ม ๑' },
+    { id: 'preface',    label: 'คำนำ', reading: true },
+    { id: 'toc',        label: 'สารบัญ' },
+    { id: 'ch1',        label: 'บทที่ ๑ · จอมมารแห่งเหม่ยกั๋วประกาศศึก', reading: true, toc: true },
+    { id: 'ch2',        label: 'บทที่ ๒ · ศิษย์ผู้ถูกทำให้อายข้ามทวีป', reading: true, toc: true },
+    { id: 'ch3',        label: 'บทที่ ๓ · ธาตุไฟแทรกซ่าน จอมมารสูญเสียครึ่งพลัง', reading: true, toc: true },
+    { id: 'ch4',        label: 'บทที่ ๔ · รอยร้าวแห่งจอมมาร ไม้ไผ่เตรียมรับพายุ', reading: true, toc: true },
+    { id: 'ch5',        label: 'บทที่ ๕ · จอมมารตัดพ้อฟ้าดิน ระเบิดถูกย้อนศร', reading: true, toc: true },
+    { id: 'ch6',        label: 'บทที่ ๖ · วิชาเชือดแพะรับบาป และรอยร้าวแห่งฟองสบู่', reading: true, toc: true },
+    { id: 'ch7',        label: 'บทที่ ๗ · คัมภีร์เลือดบรรพบุรุษ: กับดักปัญญาประดิษฐ์', reading: true, toc: true },
+    { id: 'ch8',        label: 'บทที่ ๘ · ค่ำคืนที่ดวงจันทร์ถูกกลืนกิน', reading: true, toc: true },
+    { id: 'pause',      label: 'พักตอน · เมื่อพายุยังไม่สงบ', reading: true },
+    { id: 'characters', label: 'ภาคผนวก · ทำเนียบตัวละคร', reading: true, toc: true },
+    { id: 'arts',       label: 'ภาคผนวก · ทำเนียบวิชา', reading: true },
+    { id: 'next',       label: 'ตอนต่อไป · งานเลี้ยงหงเหมินที่จงกั๋ว', reading: true },
+    { id: 'ending',     label: 'จบตอนปัจจุบัน' }
+  ];
+
+  /* --- เมนูกระโดดบท --- */
+  const jump = document.getElementById('chapter-jump');
+  sections.forEach(s => {
+    const opt = document.createElement('option');
+    opt.value = s.id; opt.textContent = s.label;
+    jump.appendChild(opt);
+  });
+  jump.addEventListener('change', () => {
+    const el = document.getElementById(jump.value);
+    if (el) el.scrollIntoView({ behavior: 'smooth' });
+  });
+
+  /* --- สารบัญคลิกได้ (จับคู่ตามธง toc) --- */
+  const tocItems = document.querySelectorAll('.toc-list li');
+  const tocTargets = sections.filter(s => s.toc);
+  tocItems.forEach((li, i) => {
+    if (tocTargets[i]) li.innerHTML = '<a class="toc-link" href="#' + tocTargets[i].id + '">' + li.innerHTML + '</a>';
+  });
+
+  /* --- ป้ายนำทางท้ายบท (สร้างอัตโนมัติ) --- */
+  const reading = sections.filter(s => s.reading);
+  reading.forEach((s, i) => {
+    const sec = document.getElementById(s.id);
+    if (!sec) return;
+    const nav = document.createElement('div');
+    nav.className = 'chapter-nav';
+    const prev = i === 0
+      ? '<a href="index.html">☯ หน้าหลัก</a>'
+      : '<a href="#' + reading[i-1].id + '">← ก่อนหน้า</a>';
+    const next = i === reading.length - 1
+      ? '<a href="#ending">จบตอน →</a>'
+      : '<a href="#' + reading[i+1].id + '">ถัดไป →</a>';
+    nav.innerHTML = prev + '<a href="#toc">☰ สารบัญ</a>' + next;
+    sec.appendChild(nav);
+  });
+
+  /* --- แถบความคืบหน้า + จำบทปัจจุบัน --- */
+  const progress = document.getElementById('read-progress');
+  let ticking = false;
+  function update() {
+    ticking = false;
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    progress.style.width = (max > 0 ? (window.scrollY / max) * 100 : 0) + '%';
+    let current = sections[0].id;
+    for (const s of sections) {
+      const el = document.getElementById(s.id);
+      if (el && el.getBoundingClientRect().top <= 80) current = s.id;
+    }
+    if (jump.value !== current) jump.value = current;
+  }
+  window.addEventListener('scroll', () => {
+    if (!ticking) { ticking = true; requestAnimationFrame(update); }
+  }, { passive: true });
+  update();
+});
 </script>
 
 </body>
