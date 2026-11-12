@@ -3,271 +3,202 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>แผนที่ยุทธภพ & คู่มือผู้อ่าน</title>
+<meta name="description" content="แผนที่ยุทธภพ: ขั้วอำนาจทั้งสาม เส้นทางยุทธศาสตร์ ศัพท์ยุทธภพ และปรัชญาหลักของเรื่อง">
+<title>แผนที่ยุทธภพ &amp; คู่มือผู้อ่าน</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Thai:wght@400;600;700;900&family=Sarabun:wght@300;400;600&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --red-chinese: #8B0000;
-    --gold: #C9A961;
-    --dark-gold: #8B6914;
-    --parchment: #F5E6D3;
-    --dark-parchment: #E8D5B7;
-    --ink: #2C1810;
-    --light-ink: #5C4033;
-    --bg-texture: url('https://www.transparenttextures.com/patterns/cream-paper.png');
-  }
-  body.dark-mode {
-    --red-chinese: #A52A2A;
-    --gold: #D4AF37;
-    --dark-gold: #B8860B;
-    --parchment: #121212;
-    --dark-parchment: #1E1E1E;
-    --ink: #E0D0B0;
-    --light-ink: #B0A090;
-    --bg-texture: url('https://www.transparenttextures.com/patterns/dark-matter.png');
-  }
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { font-family: 'Sarabun', 'Noto Serif Thai', serif; background-color: var(--parchment); background-image: var(--bg-texture); background-attachment: fixed; color: var(--ink); line-height: 1.8; padding: 0; transition: background-color 0.4s ease, color 0.4s ease; }
-  .container { max-width: 900px; margin: 0 auto; padding: 40px 20px; }
-  
-  .header { text-align: center; margin-bottom: 50px; border-bottom: 3px double var(--red-chinese); padding-bottom: 30px; }
-  .header h1 { font-family: 'Noto Serif Thai', serif; font-size: 2.5rem; color: var(--red-chinese); margin-bottom: 10px; }
-  .header h2 { font-size: 1.2rem; color: var(--gold); font-weight: 600; letter-spacing: 2px; }
-  
-  .section { margin-bottom: 40px; }
-  .section h3 { font-family: 'Noto Serif Thai', serif; color: var(--red-chinese); font-size: 1.5rem; margin-bottom: 20px; border-left: 5px solid var(--gold); padding-left: 15px; }
-  
-  .faction-grid { display: grid; grid-template-columns: 1fr; gap: 20px; margin-top: 20px; }
-  .faction-card { background: var(--dark-parchment); padding: 20px; border-radius: 8px; border-left: 5px solid var(--gold); }
-  .faction-card h4 { color: var(--red-chinese); font-size: 1.2rem; margin-bottom: 10px; font-weight: 700; }
-  .faction-card ul { margin-left: 20px; font-size: 0.95rem; }
-  .faction-card li { margin-bottom: 5px; }
-  .faction-card .weakness { color: var(--red-chinese); font-weight: 600; }
-  .faction-card .strength { color: #1e8449; font-weight: 600; }
-  
-  .route-box { background: linear-gradient(135deg, var(--dark-parchment), var(--parchment)); padding: 20px; border-radius: 8px; margin-top: 20px; border: 1px solid var(--gold); }
-  .route-box h4 { color: var(--red-chinese); margin-bottom: 10px; }
-  .route-box p { margin-bottom: 8px; font-size: 0.95rem; }
-  
-  .glossary-table { width: 100%; border-collapse: collapse; margin-top: 20px; font-size: 0.95rem; }
-  .glossary-table th { background: var(--red-chinese); color: var(--gold); padding: 12px 10px; text-align: left; font-family: 'Noto Serif Thai', serif; }
-  .glossary-table td { padding: 10px; border-bottom: 1px solid var(--gold); }
-  .glossary-table tr:nth-child(even) { background: rgba(201, 169, 97, 0.1); }
-  
-  .tip-box { background: #eef5fb; border-left: 4px solid #3a8fd4; padding: 15px; margin-top: 20px; border-radius: 8px; font-size: 0.9rem; }
-  
-  .back-link { display: inline-block; margin-top: 40px; padding: 12px 25px; background: var(--red-chinese); color: var(--gold); text-decoration: none; border-radius: 5px; font-weight: 600; transition: all 0.3s ease; border: 1px solid var(--gold); }
-  .back-link:hover { background: var(--gold); color: var(--red-chinese); }
-  
-  #theme-toggle { position: fixed; bottom: 25px; right: 25px; width: 55px; height: 55px; border-radius: 50%; background: var(--red-chinese); color: var(--gold); border: 2px solid var(--gold); font-size: 1.6rem; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.4); z-index: 1000; transition: all 0.3s ease; display: flex; align-items: center; justify-content: center; }
-  #theme-toggle:hover { transform: scale(1.1); }
-  
-  @media (max-width: 768px) {
-    .header h1 { font-size: 2rem; }
-    .section h3 { font-size: 1.3rem; }
-  }
-  @media print {
-    body { background: white !important; color: black !important; }
-    .header h1, .header h2, .section h3, .faction-card h4, .glossary-table th { color: black !important; }
-    .faction-card { border: 1px solid #ccc; background: #f9f9f9 !important; }
-    #theme-toggle, .back-link { display: none !important; }
-  }
-
-  /* ===== แถบนำทาง (เพิ่มใหม่ — รองรับโหมดมืดผ่านตัวแปร) ===== */
-  :root { --nav-bg: rgba(245, 230, 211, 0.96); }
-  body.dark-mode { --nav-bg: rgba(18, 18, 18, 0.96); }
-  html { scroll-behavior: smooth; }
-  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
-  body { padding-top: 54px; }
-  #read-progress { position: fixed; top: 0; left: 0; height: 3px; width: 0%; background: var(--gold); z-index: 1002; transition: width 0.1s linear; }
-  #top-nav { position: fixed; top: 0; left: 0; right: 0; height: 54px; display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 3px 14px 0; background: var(--nav-bg); border-bottom: 1px solid var(--gold); z-index: 1001; backdrop-filter: blur(4px); }
-  #top-nav a { color: var(--red-chinese); text-decoration: none; font-weight: 600; font-size: 0.95rem; white-space: nowrap; }
-  #top-nav a:hover { color: var(--gold); }
-  #section-jump { flex: 1; max-width: 360px; min-width: 0; font-family: 'Sarabun', serif; font-size: 16px; color: var(--ink); background: var(--parchment); border: 1px solid var(--gold); border-radius: 6px; padding: 6px 8px; cursor: pointer; }
-  .section { scroll-margin-top: 66px; }
-  @media (max-width: 600px) {
-    #top-nav { padding: 3px 10px 0; gap: 8px; }
-    #top-nav .nav-label { display: none; }
-  }
-  @media print {
-    #top-nav, #read-progress { display: none !important; }
-    body { padding-top: 0 !important; }
-  }
+:root{--red:#8B0000;--gold:#C9A961;--dgold:#8B6914;--parch:#F5E6D3;--dparch:#E8D5B7;--ink:#2C1810;--link:#5C4033;--nav:rgba(245,230,211,.96);--tex:url('https://www.transparenttextures.com/patterns/cream-paper.png')}
+body.dark-mode{--red:#A52A2A;--gold:#D4AF37;--dgold:#B8860B;--parch:#121212;--dparch:#1E1E1E;--ink:#E0D0B0;--link:#B0A090;--nav:rgba(18,18,18,.96);--tex:url('https://www.transparenttextures.com/patterns/dark-matter.png')}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Sarabun','Noto Serif Thai',serif;background-color:var(--parch);background-image:var(--tex);background-attachment:fixed;color:var(--ink);line-height:1.8;padding-top:54px;transition:background-color .4s,color .4s}
+.wrap{max-width:900px;margin:0 auto;padding:36px 20px 60px}
+#top-nav{position:fixed;top:0;left:0;right:0;height:54px;display:flex;align-items:center;justify-content:space-between;gap:8px;padding:0 14px;background:var(--nav);border-bottom:1px solid var(--gold);z-index:1001;backdrop-filter:blur(4px)}
+#top-nav a{color:var(--red);text-decoration:none;font-weight:600;font-size:.92rem;white-space:nowrap}
+body.dark-mode #top-nav a{color:var(--gold)}
+#top-nav a:hover{opacity:.7}
+#jump{flex:1;max-width:300px;min-width:0;font-family:'Sarabun',serif;font-size:16px;color:var(--ink);background:var(--parch);border:1px solid var(--gold);border-radius:6px;padding:6px 8px;cursor:pointer}
+.hero{text-align:center;margin-bottom:34px;border-bottom:3px double var(--red);padding-bottom:24px}
+.hero h1{font-family:'Noto Serif Thai',serif;font-size:2.1rem;color:var(--red);margin-bottom:8px;line-height:1.3}
+.hero .sub{font-style:italic;color:var(--link)}
+.sec{margin-bottom:38px;scroll-margin-top:66px}
+.sec h2{font-family:'Noto Serif Thai',serif;font-size:1.45rem;color:var(--red);border-left:5px solid var(--gold);padding-left:14px;margin-bottom:16px}
+body.dark-mode .sec h2{color:var(--gold)}
+.grid{display:grid;grid-template-columns:1fr;gap:18px}
+.pow{background:var(--dparch);border:1px solid var(--gold);border-left-width:6px;border-radius:10px;padding:20px}
+.pow h3{font-family:'Noto Serif Thai',serif;font-size:1.2rem;margin-bottom:12px;color:var(--red)}
+body.dark-mode .pow h3{color:var(--gold)}
+.pow ul{list-style:none;margin:0}
+.pow li{margin-bottom:8px;font-size:.95rem}
+.pow li b{color:var(--dgold)}
+body.dark-mode .pow li b{color:var(--gold)}
+.p-west{border-left-color:#8B0000}
+.p-east{border-left-color:#B8860B}
+.p-thai{border-left-color:#2E7D32}
+body.dark-mode .p-thai{border-left-color:#66BB6A}
+.warn{color:#b71c1c;font-weight:600}
+.good{color:#2e7d32;font-weight:600}
+body.dark-mode .warn{color:#E57373}
+body.dark-mode .good{color:#81C784}
+.route{background:var(--dparch);border:1px dashed var(--gold);border-radius:10px;padding:18px;margin-bottom:12px}
+.route b{color:var(--red)}
+body.dark-mode .route b{color:var(--gold)}
+.tw{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:16px 0}
+table{width:100%;min-width:460px;border-collapse:collapse;font-size:.93rem;background:var(--parch);box-shadow:0 2px 10px rgba(0,0,0,.1)}
+th{background:var(--red);color:var(--gold);padding:11px 12px;text-align:left;font-weight:600}
+td{padding:10px 12px;border-bottom:1px solid var(--gold);vertical-align:top;color:var(--ink)}
+tr:nth-child(even) td{background:var(--dparch)}
+tr.new td{background:rgba(201,169,97,.22)}
+.tip{background:var(--dparch);border-left:5px solid var(--gold);border-radius:0 8px 8px 0;padding:16px 20px;margin:18px 0;font-size:.95rem}
+.tip a{color:var(--red);font-weight:700}
+body.dark-mode .tip a{color:var(--gold)}
+.phi{background:var(--dparch);border:1px solid var(--gold);border-radius:10px;padding:18px;margin-bottom:12px}
+.phi b{color:var(--red)}
+body.dark-mode .phi b{color:var(--gold)}
+.btn{display:inline-block;margin:8px 6px 0;padding:12px 24px;background:var(--red);color:var(--gold);text-decoration:none;border-radius:6px;font-weight:600;border:1px solid var(--gold);transition:.3s}
+.btn:hover{background:var(--gold);color:var(--red)}
+.foot{text-align:center;margin-top:44px;padding-top:22px;border-top:1px solid var(--gold);font-size:.9rem;color:var(--link)}
+#theme-toggle{position:fixed;bottom:24px;right:24px;width:54px;height:54px;border-radius:50%;background:var(--red);color:var(--gold);border:2px solid var(--gold);font-size:1.5rem;cursor:pointer;box-shadow:0 4px 15px rgba(0,0,0,.4);z-index:1000;display:flex;align-items:center;justify-content:center;transition:transform .3s}
+#theme-toggle:hover{transform:scale(1.1)}
+@media(max-width:600px){#top-nav{padding:0 10px}#top-nav .lb{display:none}.hero h1{font-size:1.7rem}table{font-size:.86rem}}
+@media print{body{background:#fff!important;color:#000!important;padding-top:0!important}.hero h1,.sec h2,.pow h3,th,td,.phi b,.route b{color:#000!important}.pow,.phi,.route{border:1px solid #ccc;background:#f9f9f9!important}#top-nav,#theme-toggle,.btn{display:none!important}}
 </style>
 </head>
 <body>
-<div id="read-progress" aria-hidden="true"></div>
+
 <nav id="top-nav" aria-label="แถบนำทาง">
-  <a href="index.html" title="กลับหน้าหลัก">☯ <span class="nav-label">หน้าหลัก</span></a>
-  <select id="section-jump" aria-label="ไปยังหัวข้อ"></select>
-  <a href="moneybs.html" title="แม่บท: เงินสมดุลย์พอเพียง">📖 <span class="nav-label">แม่บท</span></a>
+  <a href="index.html" title="หน้าหลัก">☯ <span class="lb">หน้าหลัก</span></a>
+  <select id="jump" aria-label="ไปยังหัวข้อ"></select>
+  <a href="moneybs.html" title="แม่บท">📕 <span class="lb">แม่บท</span></a>
+  <a href="rvb.html" title="ลูกบท">🧩 <span class="lb">ลูกบท</span></a>
 </nav>
 
-<button id="theme-toggle" aria-label="Toggle Dark Mode">🌙</button>
+<button id="theme-toggle" aria-label="สลับโหมดมืด/สว่าง">🌙</button>
 
-<div class="container">
-  
-  <div class="header">
-    <h1>🗺️ แผนที่ยุทธภพ & คู่มือผู้อ่าน</h1>
-    <h2>ก่อนก้าวเข้าสู่โลกแห่งมังกรฟ้า vs จอมมาร</h2>
-  </div>
+<div class="wrap">
 
-  <!-- แผนที่ยุทธภพ -->
-  <div class="section" id="factions">
-    <h3>ขั้วอำนาจทั้งสามในยุทธภพ</h3>
-    <div class="faction-grid">
-      
-      <div class="faction-card">
-        <h4>🦅 เหม่ยกั๋ว (ตะวันตก)</h4>
-        <ul>
-          <li><strong>จอมมาร:</strong> Tum (ทรัมป์)</li>
-          <li><strong>ป้อมปราการ:</strong> Wall Street, Big Tech, สำนักเฟด</li>
-          <li><strong>วิชาเอก:</strong> ฝ่ามือกำแพงภาษี, บารมีดอลลาร์, โครตแม่ระเบิด (MOB), วิชาดูดกลับลมปราณหนี้</li>
-          <li><strong>ศิษย์เอก:</strong> JD Vere (JD Vance — ภายหลังตื่นรู้ ลี้ภัยมาสำนักไทย), Leon Must (Elon Musk), ศิษย์เอก เพท (รัฐมนตรีกลาโหม)</li>
-          <li><strong>จอมยุทธ์เจนเซ่น หวง (Jensen Huang):</strong> เจ้าสำนัก NVIDIA ผู้สร้างหัวใจ AI ให้เหม่ยกั๋ว — ถูกเล่นงานข้อหาความมั่นคง (เชือดไก่ให้ลิงดู)</li>
-          <li><strong>ท่านแซนเดอร์ส (Bernie Sanders):</strong> ประมุขสำนักประชาชน กู่ร้อง ๓ ข้อตัดแขนค่ายกลจอมมาร — แรงระเบิดจากภายใน</li>
-          <li class="weakness">⚠️ จุดอ่อน: วงจรอุบาทว์ภายใน, ฟองสบู่ AI, การพึ่งพาดอลลาร์</li>
-        </ul>
-      </div>
-      
-      <div class="faction-card">
-        <h4>🐉 มังกรตะวันออก (บูรพา)</h4>
-        <ul>
-          <li><strong>เจ้าสำนัก:</strong> มังกรฟ้า (ไม่ปรากฏนาม)</li>
-          <li><strong>พันธมิตร:</strong> BRICS+, ยูเรเซีย (หมีขาว), ตะวันออกกลาง</li>
-          <li><strong>วิชาเอก:</strong> นิ่งสยบความเคลื่อนไหว, วิชาโฟม (FOAM), ควบคุมเส้นเลือดฝอยของโลก</li>
-          <li><strong>จุดแข็ง:</strong> แร่หายาก, ห่วงโซ่อุปทาน, สกุลเงินจริง (หยวน), พลังงาน</li>
-          <li class="strength">✅ ยุทธวิธี: ยืนนิ่งรอให้จอมมารเผาตัวเอง</li>
-        </ul>
-      </div>
-      
-      <div class="faction-card">
-        <h4>🎋 สำนักไทย (จุดกลาง)</h4>
-        <ul>
-          <li><strong>ผู้นำ:</strong> ท่านลิ้ม (ผู้เฝ้าสมดุลแห่งไม้ไผ่)</li>
-          <li><strong>ยอดยุทธ์รุ่นใหม่:</strong> น้องเล็ง (ลูกสาวผู้เก่ง AI + หลักพุทธ)</li>
-          <li><strong>ยุทธ์:</strong> ไม่เลือกข้าง, เป็นสะพาน, ไม้ไผ่ลู่ลม</li>
-          <li><strong>วิชาเอก:</strong> วิชารากฐานสามประการ (สาธารณูปโภค+พลังงาน+อาหาร), วิชาทองคำกายภาพ, AI+ธรรมะ</li>
-          <li class="weakness">⚠️ จุดเสี่ยง: ถูก Capture, ถูกบีบให้เลือกข้าง, การกลายเป็นผู้มีอำนาจเสียเอง</li>
-        </ul>
-      </div>
-      
+<div class="hero">
+  <h1>🗺️ แผนที่ยุทธภพ &amp; คู่มือผู้อ่าน</h1>
+  <p class="sub">ก่อนก้าวเข้าสู่โลกแห่งมังกรฟ้า</p>
+</div>
+
+<div class="sec" id="powers">
+  <h2>ขั้วอำนาจทั้งสามในยุทธภพ</h2>
+  <div class="grid">
+    <div class="pow p-west">
+      <h3>🦅 เหม่ยกั๋ว (ตะวันตก)</h3>
+      <ul>
+        <li><b>จอมมาร:</b> Tum (ทรัมป์)</li>
+        <li><b>ป้อมปราการ:</b> Wall Street, Big Tech, สำนักเฟด</li>
+        <li><b>วิชาเอก:</b> ฝ่ามือกำแพงภาษี, บารมีดอลลาร์, โครตแม่ระเบิด (MOB), วิชาดูดกลับลมปราณหนี้</li>
+        <li><b>ศิษย์เอก:</b> JD Vere (JD Vance), Leon Must (Elon Musk), ศิษย์เอก เพท (รัฐมนตรีกลาโหม)</li>
+        <li class="warn">⚠️ จุดอ่อน: วงจรอุบาทว์ภายใน, ฟองสบู่ AI, การพึ่งพาดอลลาร์</li>
+      </ul>
     </div>
-    
-    <div class="route-box">
-      <h4>🛤️ เส้นทางยุทธศาสตร์หลัก</h4>
-      <p>🔥 <strong>คืนไร้พระจันทร์:</strong> เหม่ยกั๋ว → ตะวันออกกลาง (อิหร่าน) — ๓ กองเรือบรรทุกเครื่องบิน</p>
-      <p>🏯 <strong>งานเลี้ยงหงเหมิน:</strong> เหม่ยกั๋ว → จงกั๋ว — การเจรจาที่ซ่อนกับดัก</p>
-      <p>🌐 <strong>สะพานลับ:</strong> สำนักไทย ← → ทุกฝ่าย — เป็น "สะพานแต่ไม่ใช่จุดหมาย" สอนให้ทุกฝ่ายพึ่งตัวเองได้ (บท ๑๑)</p>
+    <div class="pow p-east">
+      <h3>🐉 มังกรตะวันออก (บูรพา)</h3>
+      <ul>
+        <li><b>เจ้าสำนัก:</b> มังกรฟ้า (ไม่ปรากฏนาม)</li>
+        <li><b>พันธมิตร:</b> BRICS+, ยูเรเซีย (หมีขาว), ตะวันออกกลาง</li>
+        <li><b>วิชาเอก:</b> นิ่งสยบความเคลื่อนไหว, วิชาโฟม (FOAM), ควบคุมเส้นเลือดฝอยของโลก</li>
+        <li><b>จุดแข็ง:</b> แร่หายาก, ห่วงโซ่อุปทาน, สกุลเงินจริง (หยวน), พลังงาน</li>
+        <li class="good">✅ ยุทธวิธี: ยืนนิ่งรอให้จอมมารเผาตัวเอง</li>
+      </ul>
+    </div>
+    <div class="pow p-thai">
+      <h3>🎋 สำนักไทย (จุดกลาง)</h3>
+      <ul>
+        <li><b>ผู้นำ:</b> ท่านลิ้ม (ผู้เฝ้าสมดุลแห่งไม้ไผ่)</li>
+        <li><b>ยอดยุทธ์รุ่นใหม่:</b> น้องเล็ง (ลูกสาวผู้เก่ง AI + หลักพุทธ)</li>
+        <li><b>ยุทธ์:</b> ไม่เลือกข้าง, เป็นสะพาน, ไม้ไผ่ลู่ลม</li>
+        <li><b>วิชาเอก:</b> วิชารากฐานสามประการ (สาธารณูปโภค + พลังงาน + อาหาร), วิชาทองคำกายภาพ, AI + ธรรมะ</li>
+        <li class="warn">⚠️ จุดเสี่ยง: ถูก Capture, ถูกบีบให้เลือกข้าง, การกลายเป็นผู้มีอำนาจเสียเอง</li>
+      </ul>
     </div>
   </div>
+</div>
 
-  <!-- คู่มือผู้อ่าน -->
-  <div class="section" id="glossary">
-    <h3>📖 ศัพท์ยุทธภพ (Glossary)</h3>
-    <table class="glossary-table">
-      <thead>
-        <tr>
-          <th>ศัพท์ในนิยาย</th>
-          <th>ความหมายจริง</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr><td><strong>ลมปราณ</strong></td><td>อำนาจทางเศรษฐกิจ / สภาพคล่อง / พลังงาน</td></tr>
-        <tr><td><strong>สำนัก</strong></td><td>รัฐชาติ / บล็อกอำนาจ / องค์กร</td></tr>
-        <tr><td><strong>วิชา</strong></td><td>นโยบาย / มาตรการ / กลยุทธ์</td></tr>
-        <tr><td><strong>ยุทธภพ</strong></td><td>ระเบียบโลก / ระบบระหว่างประเทศ</td></tr>
-        <tr><td><strong>ของจริง</strong></td><td>ทรัพยากรจริง (อาหาร, พลังงาน, แร่หายาก)</td></tr>
-        <tr><td><strong>ของฝัน / ลมปราณเทียม</strong></td><td>สินทรัพย์ดิจิทัล / การเก็งกำไร / ฟองสบู่</td></tr>
-        <tr><td><strong>นันทิ</strong></td><td>ความเพลิน/ความยึดติด (พุทธปรัชญา)</td></tr>
-        <tr><td><strong>บ่วง</strong></td><td>โครงสร้างที่ดูดเราเข้าไปเป็นส่วนหนึ่ง (เช่น อัลกอริทึม, ระบบเก็งกำไร)</td></tr>
-        <tr><td><strong>ค่ายกล</strong></td><td>ระบบ / โครงสร้าง / กับดัก</td></tr>
-        <tr><td><strong>สภาเฒ่า / สภาดองเกรส</strong></td><td>สภาคองเกรส สหรัฐอเมริกา</td></tr>
-        <tr><td><strong>พรรคเดโม</strong></td><td>พรรคเดโมแครต</td></tr>
-        <tr><td><strong>ลมปราณแห่งคุณความดี (Merit Token)</strong></td><td>โทเคนรางวัลความดี ค้ำด้วยสินค้าจริง มีวันหมดอายุ แลกปัจจัยพื้นฐานได้ — ไม่ใช่คริปโตเก็งกำไร</td></tr>
-        <tr><td><strong>การเสื่อมค่าตามเวลา (Demurrage)</strong></td><td>กลไกให้โทเคนลดค่า/หมดอายุ กระตุ้นการหมุนเวียน กันการกักตุน</td></tr>
-        <tr><td><strong>แซนด์บ็อกซ์แห่งความพอเพียง (Sufficiency Sandbox)</strong></td><td>ระบบทดลองชุมชนพึ่งพาตนเอง ใช้ AI + Merit Token จัดระเบียบอย่างโปร่งใส</td></tr>
-        <tr><td><strong>งานเลี้ยงหงเหมิน</strong></td><td>การเจรจาที่ซ่อนกับดัก/อันตราย (อุปมาจากประวัติศาสตร์จีน)</td></tr>
-        <tr><td><strong>ศึกเซ็กเพ็ก</strong></td><td>ศึกที่ฝ่ายเหนือกว่าเชิงปริมาณแพ้เพราะถูกผูกติดกัน/ประมาท (อุปมาจากสามก๊ก)</td></tr>
-      </tbody>
-    </table>
-    
-    <div class="tip-box">
-      💡 <strong>เคล็ดลับการอ่าน:</strong> อ่านเพื่อความสนุกก่อน — รายละเอียดเชิงลึกมีอยู่ใน <a href="Real Value Balance.html" style="color:#3a8fd4; font-weight:600;">"Real Value Balance" (ลูกบท: กลไกโทเคน)</a> และ <a href="moneybs.html" style="color:#3a8fd4; font-weight:600;">"เงินสมดุลย์พอเพียง" (แม่บท: วิทัศน์มหภาค)</a>
-    </div>
-  </div>
+<div class="sec" id="routes">
+  <h2>🛤️ เส้นทางยุทธศาสตร์หลัก</h2>
+  <div class="route">🔥 <b>คืนไร้พระจันทร์:</b> เหม่ยกั๋ว → ตะวันออกกลาง (อิหร่าน) — ๓ กองเรือบรรทุกเครื่องบิน</div>
+  <div class="route">🏯 <b>งานเลี้ยงหงเหมิน:</b> เหม่ยกั๋ว → จงกั๋ว — การเจรจาที่ซ่อนกับดัก</div>
+  <div class="route">🌐 <b>สะพานลับ:</b> สำนักไทย ←→ ทุกฝ่าย — จุดกลางที่ทุกขั้วต้องผ่าน</div>
+</div>
 
-  <!-- ปรัชญาหลัก -->
-  <div class="section" id="philosophy">
-    <h3>☯️ ปรัชญาหลักของเรื่อง</h3>
-    <div class="route-box">
-      <p><strong>๑. สายพิณไม่ตึงไม่หย่อน:</strong> ความสนุกไม่ใช่ศัตรู แต่ต้อง "จูน" ให้พอดี — ไม่ใช่ค่าคงที่ แต่ปรับตามกาละ</p>
-      <p><strong>๒. บริโภคเนื้อได้ แต่ไม่จมบ่วง:</strong> ใช้ความสนุกเป็นเครื่องมือดำรงชีวิตได้ แต่อย่าตกเป็นเครื่องมือของโครงสร้าง</p>
-      <p><strong>๓. ไม้ไผ่ไม่หัก เพราะรู้ว่ารากอยู่ที่ไหน:</strong> การรู้ราก = การรู้เสียงพิณของตัวเอง = การแยกของจริง/ของฝันได้</p>
-      <p><strong>๔. ของจริงชนะเงินกระดาษ:</strong> ทรัพยากรจริง (อาหาร, พลังงาน) มีค่ากว่าตัวเลขในหน้าจอ</p>
-      <p><strong>๕. สติชนะความบ้าคลั่ง:</strong> การไม่เลือกข้าง + การเตรียมรากฐาน = ทางรอดในยุคพายุ</p>
-    </div>
+<div class="sec" id="glossary">
+  <h2>📖 ศัพท์ยุทธภพ (Glossary)</h2>
+  <div class="tw">
+  <table>
+    <thead><tr><th>ศัพท์ในนิยาย</th><th>ความหมายจริง</th></tr></thead>
+    <tbody>
+      <tr><td><b>ลมปราณ</b></td><td>อำนาจทางเศรษฐกิจ / สภาพคล่อง / พลังงาน</td></tr>
+      <tr><td><b>สำนัก</b></td><td>รัฐชาติ / บล็อกอำนาจ / องค์กร</td></tr>
+      <tr><td><b>วิชา</b></td><td>นโยบาย / มาตรการ / กลยุทธ์</td></tr>
+      <tr><td><b>ยุทธภพ</b></td><td>ระเบียบโลก / ระบบระหว่างประเทศ</td></tr>
+      <tr><td><b>ของจริง</b></td><td>ทรัพยากรจริง (อาหาร พลังงาน แร่หายาก)</td></tr>
+      <tr><td><b>ของฝัน / ลมปราณเทียม</b></td><td>สินทรัพย์ดิจิทัล / การเก็งกำไร / ฟองสบู่</td></tr>
+      <tr><td><b>นันทิ</b></td><td>ความเพลิน / ความยึดติด (พุทธปรัชญา)</td></tr>
+      <tr><td><b>บ่วง</b></td><td>โครงสร้างที่ดูดเราเข้าไปเป็นส่วนหนึ่ง (อัลกอริทึม ระบบเก็งกำไร)</td></tr>
+      <tr><td><b>ค่ายกล</b></td><td>ระบบ / โครงสร้าง / กับดัก</td></tr>
+      <tr><td><b>สภาเฒ่า / สภาดองเกรส</b></td><td>สภาคองเกรส สหรัฐอเมริกา</td></tr>
+      <tr><td><b>พรรคเดโม</b></td><td>พรรคเดโมแครต</td></tr>
+      <tr class="new"><td><b>รากฐานสามประการ</b></td><td>อธิปไตยทางการผลิต (Production Sovereignty) — อาหาร พลังงาน สาธารณูปโภค ที่ผลิตได้เองจริง</td></tr>
+      <tr class="new"><td><b>กำแพงกั้นคุณค่า</b></td><td>Value Firewall — แยกกิจกรรมที่เสริมชีวิต ออกจากสิ่งลวงที่ดูดพลังงานชีวิต</td></tr>
+      <tr class="new"><td><b>เหรียญบุญ / Merit Token</b></td><td>โทเคนในระบบปิด ค้ำด้วยสินค้าจริง ใช้แลกเปลี่ยนไม่ใช่สะสม</td></tr>
+      <tr class="new"><td><b>วิชาเสื่อมค่าตามเวลา</b></td><td>Demurrage — กลไกให้โทเคนลดค่า/หมดอายุ เพื่อกันการกักตุน</td></tr>
+      <tr class="new"><td><b>ลานทดลอง</b></td><td>Sufficiency Sandbox — พื้นที่นำร่องแบบสมัครใจ ทดสอบกลไกก่อนขยายผล</td></tr>
+      <tr class="new"><td><b>สภาชุมชน</b></td><td>Community DAO — ธรรมาภิบาลกระจายศูนย์ ชุมชนกำหนดน้ำหนักความดีเอง</td></tr>
+      <tr class="new"><td><b>วิชาพิสูจน์โดยไม่เปิดเผย</b></td><td>Zero-Knowledge Proof (ZKP) — ยืนยันการกระทำดีได้โดยไม่ต้องเปิดเผยตัวตน</td></tr>
+      <tr class="new"><td><b>หอเกียรติยศ</b></td><td>Hall of Fame — รางวัลนามธรรมที่แปลงเป็นอำนาจครอบงำผู้อื่นไม่ได้</td></tr>
+      <tr class="new"><td><b>ตลาดสองชั้น</b></td><td>Dual-Tier — ชั้นปัจจัยพื้นฐาน (อุดหนุน) แยกจากชั้นฟุ่มเฟือย (ตลาดปกติ)</td></tr>
+      <tr class="new"><td><b>วิชาแลกเปลี่ยนไม่เท่าเทียม</b></td><td>Unequal Exchange — กลไกที่ส่วนเกินถูกโอนจากภาคผลิตจริงไปภาคการเงิน</td></tr>
+    </tbody>
+  </table>
   </div>
+  <div class="tip">
+    💡 <b>เคล็ดลับการอ่าน:</b> อ่านเพื่อความสนุกก่อน — รายละเอียดเชิงลึกอยู่ในเอกสาร
+    <a href="moneybs.html">📕 แม่บท: เงินสมดุลย์พอเพียง</a> (วิทัศน์มหภาค) และ
+    <a href="rvb.html">🧩 ลูกบท: Real Value Balance</a> (กลไกที่ทดลองได้)
+    <br><span style="font-size:.88rem;color:var(--link);">แถวสีทองในตารางคือศัพท์ที่เพิ่มจากเอกสารวิชาการ — ไม่ปรากฏในนิยายโดยตรง แต่ช่วยให้เข้าใจโครงสร้างเบื้องหลัง</span>
+  </div>
+</div>
 
-  <div style="text-align: center;">
-    <a href="index.html" class="back-link">← กลับสู่หน้าหลัก (Main Portal)</a>
-  </div>
+<div class="sec" id="philosophy">
+  <h2>☯️ ปรัชญาหลักของเรื่อง</h2>
+  <div class="phi"><b>๑. สายพิณไม่ตึงไม่หย่อน:</b> ความสนุกไม่ใช่ศัตรู แต่ต้อง "จูน" ให้พอดี — ไม่ใช่ค่าคงที่ แต่ปรับตามกาละ</div>
+  <div class="phi"><b>๒. บริโภคเนื้อได้ แต่ไม่จมบ่วง:</b> ใช้ความสนุกเป็นเครื่องมือดำรงชีวิตได้ แต่อย่าตกเป็นเครื่องมือของโครงสร้าง</div>
+  <div class="phi"><b>๓. ไม้ไผ่ไม่หัก เพราะรู้ว่ารากอยู่ที่ไหน:</b> การรู้ราก = การรู้เสียงพิณของตัวเอง = การแยกของจริง/ของฝันได้</div>
+  <div class="phi"><b>๔. ของจริงชนะเงินกระดาษ:</b> ทรัพยากรจริง (อาหาร พลังงาน) มีค่ากว่าตัวเลขในหน้าจอ</div>
+  <div class="phi"><b>๕. สติชนะความบ้าคลั่ง:</b> การไม่เลือกข้าง + การเตรียมรากฐาน = ทางรอดในยุคพายุ</div>
+</div>
 
-  <div style="text-align: center; margin-top: 50px; font-size: 0.9rem; color: var(--light-ink); border-top: 1px solid var(--gold); padding-top: 20px;">
-    <p>พัฒนาโดย ท่านลิ้ม & Qwen | พฤศจิกายน ๒๕๖๙</p>
-    <p>🍵 น้อมคารวะจอมยุทธ์ผู้รู้เท่าทันยุคสมัย 🍵</p>
-  </div>
+<div style="text-align:center;">
+  <a href="index.html" class="btn">← กลับสู่หน้าหลัก</a>
+  <a href="moneybs.html" class="btn">📕 อ่านแม่บท →</a>
+  <a href="rvb.html" class="btn">🧩 อ่านลูกบท →</a>
+</div>
+
+<div class="foot">
+  <p>เรียบเรียงโดย ท่านลิ้ม | พฤศจิกายน ๒๕๖๙</p>
+  <p>🍵 น้อมคารวะจอมยุทธ์ผู้รู้เท่าทันยุคสมัย 🍵</p>
+</div>
 
 </div>
 
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    /* --- โหมดมืด/สว่าง (ของเดิม) --- */
-    const toggleBtn = document.getElementById('theme-toggle');
-    const body = document.body;
-    if (localStorage.getItem('theme') === 'dark') { body.classList.add('dark-mode'); toggleBtn.textContent = '☀️'; }
-    toggleBtn.addEventListener('click', () => {
-      body.classList.toggle('dark-mode');
-      if (body.classList.contains('dark-mode')) { localStorage.setItem('theme', 'dark'); toggleBtn.textContent = '☀️'; }
-      else { localStorage.setItem('theme', 'light'); toggleBtn.textContent = '🌙'; }
-    });
-
-    /* --- ทะเบียนหัวข้อ --- */
-    const sections = [
-      { id: 'factions',   label: '🗺️ ขั้วอำนาจทั้งสาม' },
-      { id: 'glossary',   label: '📖 ศัพท์ยุทธภพ' },
-      { id: 'philosophy', label: '☯️ ปรัชญาหลัก' }
-    ];
-    const jump = document.getElementById('section-jump');
-    sections.forEach(s => {
-      const opt = document.createElement('option');
-      opt.value = s.id; opt.textContent = s.label;
-      jump.appendChild(opt);
-    });
-    jump.addEventListener('change', () => {
-      const el = document.getElementById(jump.value);
-      if (el) el.scrollIntoView({ behavior: 'smooth' });
-    });
-
-    /* --- แถบความคืบหน้า + จำหัวข้อปัจจุบัน --- */
-    const progress = document.getElementById('read-progress');
-    let ticking = false;
-    function update() {
-      ticking = false;
-      const max = document.documentElement.scrollHeight - window.innerHeight;
-      progress.style.width = (max > 0 ? (window.scrollY / max) * 100 : 0) + '%';
-      let current = sections[0].id;
-      for (const s of sections) {
-        const el = document.getElementById(s.id);
-        if (el && el.getBoundingClientRect().top <= 80) current = s.id;
-      }
-      if (jump.value !== current) jump.value = current;
-    }
-    window.addEventListener('scroll', () => {
-      if (!ticking) { ticking = true; requestAnimationFrame(update); }
-    }, { passive: true });
-    update();
+(function(){
+  var b=document.getElementById('theme-toggle'),body=document.body;
+  if(localStorage.getItem('theme')==='dark'){body.classList.add('dark-mode');b.textContent='☀️';}
+  b.addEventListener('click',function(){
+    body.classList.toggle('dark-mode');
+    if(body.classList.contains('dark-mode')){localStorage.setItem('theme','dark');b.textContent='☀️';}
+    else{localStorage.setItem('theme','light');b.textContent='🌙';}
   });
+  var secs=[{id:'powers',label:'⚔️ ขั้วอำนาจทั้งสาม'},{id:'routes',label:'🛤️ เส้นทางยุทธศาสตร์'},{id:'glossary',label:'📖 ศัพท์ยุทธภพ'},{id:'philosophy',label:'☯️ ปรัชญาหลัก'}];
+  var j=document.getElementById('jump');
+  secs.forEach(function(s){var o=document.createElement('option');o.value=s.id;o.textContent=s.label;j.appendChild(o);});
+  j.addEventListener('change',function(){var e=document.getElementById(j.value);if(e)e.scrollIntoView({behavior:'smooth'});});
+})();
 </script>
 </body>
 </html>
