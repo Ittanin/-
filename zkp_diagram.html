@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZKP Mechanism Diagram</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Sarabun:wght@400;600;700&display=swap');
+        body {
+            font-family: 'Sarabun', sans-serif;
+            background-color: #F9F7F4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            background: #fff;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+        h2 { text-align: center; color: #1A4A4A; margin-bottom: 10px; }
+        p.subtitle { text-align: center; color: #636E72; margin-bottom: 40px; font-size: 0.95rem; }
+
+        .flow-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+        .step-box {
+            width: 100%;
+            max-width: 600px;
+            background: #F0F4F4;
+            border-left: 5px solid #C89F65;
+            padding: 20px;
+            border-radius: 8px;
+            position: relative;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        .step-box h4 { color: #1A4A4A; margin: 0 0 8px 0; font-size: 1.1rem; display: flex; align-items: center; gap: 10px; }
+        .step-box p { margin: 0; color: #2D3436; font-size: 0.95rem; line-height: 1.6; }
+        
+        .step-box.highlight { background: #E8F5E9; border-left-color: #27AE60; }
+        .step-box.private { background: #FFF3E0; border-left-color: #E65100; }
+
+        .arrow {
+            font-size: 1.5rem;
+            color: #C89F65;
+            line-height: 1;
+        }
+
+        .tech-note {
+            margin-top: 30px;
+            padding: 15px;
+            background: #1A4A4A;
+            color: #fff;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+        .tech-note strong { color: #C89F65; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>กลไก Zero-Knowledge Proof (ZKP)</h2>
+    <p class="subtitle">ยืนยันว่า "ทำดีจริง" โดยไม่ต้องเปิดเผยว่า "คุณคือใคร"</p>
+
+    <div class="flow-container">
+        
+        <!-- Step 1 -->
+        <div class="step-box">
+            <h4>👤 1. ผู้ใช้ทำความดี (User Action)</h4>
+            <p>คุณนำขยะไปทิ้งที่ถังขยะอัจฉริยะ (Smart Bin) หรือสแกนเข้าระบบดูแลผู้สูงอายุ</p>
+        </div>
+        
+        <div class="arrow">↓</div>
+
+        <!-- Step 2 -->
+        <div class="step-box">
+            <h4>📡 2. อุปกรณ์ตรวจสอบ (IoT & AI Auditor)</h4>
+            <p>เซนเซอร์และ AI ตรวจสอบข้อมูลทางกายภาพ (เช่น น้ำหนักขยะ, เวลาที่ใช้) เพื่อยืนยันว่าเกิดกิจกรรมจริง</p>
+        </div>
+
+        <div class="arrow">↓</div>
+
+        <!-- Step 3 (The Core ZKP) -->
+        <div class="step-box private">
+            <h4>🔐 3. การสร้างหลักฐาน (ZKP Circuit)</h4>
+            <p><strong>จุดสำคัญ:</strong> ระบบจะแปลงข้อมูลว่า <em>"มีคนทำดีจริง"</em> ให้กลายเป็น <strong>"รหัสคณิตศาสตร์" (Cryptographic Proof)</strong> โดยที่ <u>ไม่ต้องส่งข้อมูลส่วนตัว</u> (ชื่อ, บัตรประชาชน, พิกัดบ้าน) เข้าไปในระบบเลย</p>
+        </div>
+
+        <div class="arrow">↓</div>
+
+        <!-- Step 4 -->
+        <div class="step-box highlight">
+            <h4>🪙 4. Smart Contract ออกโทเคน (Mint)</h4>
+            <p>ระบบตรวจสอบรหัสคณิตศาสตร์แล้วพบว่าถูกต้อง จึงทำการ Mint Merit Token เข้ากระเป๋าเงินดิจิทัลของคุณ โดยไม่รู้ว่าคุณเป็นใคร</p>
+        </div>
+
+    </div>
+
+    <div class="tech-note">
+        <strong>ทำไมสิ่งนี้ถึงสำคัญ?</strong><br>
+        เพราะมันเปลี่ยนระบบ "Social Credit" ที่น่ากลัว (ที่รัฐส่องคุณ) ให้กลายเป็นระบบ "Merit Token" ที่ปลอดภัย (ที่รัฐรู้แค่ว่ามีคนทำดี แต่ไม่รู้ว่าคุณคือใคร)
+    </div>
+</div>
+
+</body>
+</html>
