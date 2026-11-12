@@ -72,9 +72,36 @@
     .faction-card { border: 1px solid #ccc; background: #f9f9f9 !important; }
     #theme-toggle, .back-link { display: none !important; }
   }
+
+  /* ===== แถบนำทาง (เพิ่มใหม่ — รองรับโหมดมืดผ่านตัวแปร) ===== */
+  :root { --nav-bg: rgba(245, 230, 211, 0.96); }
+  body.dark-mode { --nav-bg: rgba(18, 18, 18, 0.96); }
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  body { padding-top: 54px; }
+  #read-progress { position: fixed; top: 0; left: 0; height: 3px; width: 0%; background: var(--gold); z-index: 1002; transition: width 0.1s linear; }
+  #top-nav { position: fixed; top: 0; left: 0; right: 0; height: 54px; display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 3px 14px 0; background: var(--nav-bg); border-bottom: 1px solid var(--gold); z-index: 1001; backdrop-filter: blur(4px); }
+  #top-nav a { color: var(--red-chinese); text-decoration: none; font-weight: 600; font-size: 0.95rem; white-space: nowrap; }
+  #top-nav a:hover { color: var(--gold); }
+  #section-jump { flex: 1; max-width: 360px; min-width: 0; font-family: 'Sarabun', serif; font-size: 16px; color: var(--ink); background: var(--parchment); border: 1px solid var(--gold); border-radius: 6px; padding: 6px 8px; cursor: pointer; }
+  .section { scroll-margin-top: 66px; }
+  @media (max-width: 600px) {
+    #top-nav { padding: 3px 10px 0; gap: 8px; }
+    #top-nav .nav-label { display: none; }
+  }
+  @media print {
+    #top-nav, #read-progress { display: none !important; }
+    body { padding-top: 0 !important; }
+  }
 </style>
 </head>
 <body>
+<div id="read-progress" aria-hidden="true"></div>
+<nav id="top-nav" aria-label="แถบนำทาง">
+  <a href="index.html" title="กลับหน้าหลัก">☯ <span class="nav-label">หน้าหลัก</span></a>
+  <select id="section-jump" aria-label="ไปยังหัวข้อ"></select>
+  <a href="moneybs.html" title="แม่บท: เงินสมดุลย์พอเพียง">📖 <span class="nav-label">แม่บท</span></a>
+</nav>
 
 <button id="theme-toggle" aria-label="Toggle Dark Mode">🌙</button>
 
@@ -86,7 +113,7 @@
   </div>
 
   <!-- แผนที่ยุทธภพ -->
-  <div class="section">
+  <div class="section" id="factions">
     <h3>ขั้วอำนาจทั้งสามในยุทธภพ</h3>
     <div class="faction-grid">
       
@@ -96,7 +123,9 @@
           <li><strong>จอมมาร:</strong> Tum (ทรัมป์)</li>
           <li><strong>ป้อมปราการ:</strong> Wall Street, Big Tech, สำนักเฟด</li>
           <li><strong>วิชาเอก:</strong> ฝ่ามือกำแพงภาษี, บารมีดอลลาร์, โครตแม่ระเบิด (MOB), วิชาดูดกลับลมปราณหนี้</li>
-          <li><strong>ศิษย์เอก:</strong> JD Vere (JD Vance), Leon Must (Elon Musk), ศิษย์เอก เพท (รัฐมนตรีกลาโหม)</li>
+          <li><strong>ศิษย์เอก:</strong> JD Vere (JD Vance — ภายหลังตื่นรู้ ลี้ภัยมาสำนักไทย), Leon Must (Elon Musk), ศิษย์เอก เพท (รัฐมนตรีกลาโหม)</li>
+          <li><strong>จอมยุทธ์เจนเซ่น หวง (Jensen Huang):</strong> เจ้าสำนัก NVIDIA ผู้สร้างหัวใจ AI ให้เหม่ยกั๋ว — ถูกเล่นงานข้อหาความมั่นคง (เชือดไก่ให้ลิงดู)</li>
+          <li><strong>ท่านแซนเดอร์ส (Bernie Sanders):</strong> ประมุขสำนักประชาชน กู่ร้อง ๓ ข้อตัดแขนค่ายกลจอมมาร — แรงระเบิดจากภายใน</li>
           <li class="weakness">⚠️ จุดอ่อน: วงจรอุบาทว์ภายใน, ฟองสบู่ AI, การพึ่งพาดอลลาร์</li>
         </ul>
       </div>
@@ -129,12 +158,12 @@
       <h4>🛤️ เส้นทางยุทธศาสตร์หลัก</h4>
       <p>🔥 <strong>คืนไร้พระจันทร์:</strong> เหม่ยกั๋ว → ตะวันออกกลาง (อิหร่าน) — ๓ กองเรือบรรทุกเครื่องบิน</p>
       <p>🏯 <strong>งานเลี้ยงหงเหมิน:</strong> เหม่ยกั๋ว → จงกั๋ว — การเจรจาที่ซ่อนกับดัก</p>
-      <p>🌐 <strong>สะพานลับ:</strong> สำนักไทย ← → ทุกฝ่าย — จุดกลางที่ทุกขั้วต้องผ่าน</p>
+      <p>🌐 <strong>สะพานลับ:</strong> สำนักไทย ← → ทุกฝ่าย — เป็น "สะพานแต่ไม่ใช่จุดหมาย" สอนให้ทุกฝ่ายพึ่งตัวเองได้ (บท ๑๑)</p>
     </div>
   </div>
 
   <!-- คู่มือผู้อ่าน -->
-  <div class="section">
+  <div class="section" id="glossary">
     <h3>📖 ศัพท์ยุทธภพ (Glossary)</h3>
     <table class="glossary-table">
       <thead>
@@ -155,16 +184,21 @@
         <tr><td><strong>ค่ายกล</strong></td><td>ระบบ / โครงสร้าง / กับดัก</td></tr>
         <tr><td><strong>สภาเฒ่า / สภาดองเกรส</strong></td><td>สภาคองเกรส สหรัฐอเมริกา</td></tr>
         <tr><td><strong>พรรคเดโม</strong></td><td>พรรคเดโมแครต</td></tr>
+        <tr><td><strong>ลมปราณแห่งคุณความดี (Merit Token)</strong></td><td>โทเคนรางวัลความดี ค้ำด้วยสินค้าจริง มีวันหมดอายุ แลกปัจจัยพื้นฐานได้ — ไม่ใช่คริปโตเก็งกำไร</td></tr>
+        <tr><td><strong>การเสื่อมค่าตามเวลา (Demurrage)</strong></td><td>กลไกให้โทเคนลดค่า/หมดอายุ กระตุ้นการหมุนเวียน กันการกักตุน</td></tr>
+        <tr><td><strong>แซนด์บ็อกซ์แห่งความพอเพียง (Sufficiency Sandbox)</strong></td><td>ระบบทดลองชุมชนพึ่งพาตนเอง ใช้ AI + Merit Token จัดระเบียบอย่างโปร่งใส</td></tr>
+        <tr><td><strong>งานเลี้ยงหงเหมิน</strong></td><td>การเจรจาที่ซ่อนกับดัก/อันตราย (อุปมาจากประวัติศาสตร์จีน)</td></tr>
+        <tr><td><strong>ศึกเซ็กเพ็ก</strong></td><td>ศึกที่ฝ่ายเหนือกว่าเชิงปริมาณแพ้เพราะถูกผูกติดกัน/ประมาท (อุปมาจากสามก๊ก)</td></tr>
       </tbody>
     </table>
     
     <div class="tip-box">
-      💡 <strong>เคล็ดลับการอ่าน:</strong> อ่านเพื่อความสนุกก่อน — รายละเอียดเชิงลึกมีอยู่ในเอกสาร <a href="Real Value Balance.html" style="color:#3a8fd4; font-weight:600;">"Real Value Balance: ดุลยภาพแห่งคุณค่าจริง"</a>
+      💡 <strong>เคล็ดลับการอ่าน:</strong> อ่านเพื่อความสนุกก่อน — รายละเอียดเชิงลึกมีอยู่ใน <a href="Real Value Balance.html" style="color:#3a8fd4; font-weight:600;">"Real Value Balance" (ลูกบท: กลไกโทเคน)</a> และ <a href="moneybs.html" style="color:#3a8fd4; font-weight:600;">"เงินสมดุลย์พอเพียง" (แม่บท: วิทัศน์มหภาค)</a>
     </div>
   </div>
 
   <!-- ปรัชญาหลัก -->
-  <div class="section">
+  <div class="section" id="philosophy">
     <h3>☯️ ปรัชญาหลักของเรื่อง</h3>
     <div class="route-box">
       <p><strong>๑. สายพิณไม่ตึงไม่หย่อน:</strong> ความสนุกไม่ใช่ศัตรู แต่ต้อง "จูน" ให้พอดี — ไม่ใช่ค่าคงที่ แต่ปรับตามกาละ</p>
@@ -188,14 +222,51 @@
 
 <script>
   document.addEventListener('DOMContentLoaded', () => {
+    /* --- โหมดมืด/สว่าง (ของเดิม) --- */
     const toggleBtn = document.getElementById('theme-toggle');
     const body = document.body;
     if (localStorage.getItem('theme') === 'dark') { body.classList.add('dark-mode'); toggleBtn.textContent = '☀️'; }
     toggleBtn.addEventListener('click', () => {
       body.classList.toggle('dark-mode');
-      if (body.classList.contains('dark-mode')) { localStorage.setItem('theme', 'dark'); toggleBtn.textContent = '☀️'; } 
+      if (body.classList.contains('dark-mode')) { localStorage.setItem('theme', 'dark'); toggleBtn.textContent = '☀️'; }
       else { localStorage.setItem('theme', 'light'); toggleBtn.textContent = '🌙'; }
     });
+
+    /* --- ทะเบียนหัวข้อ --- */
+    const sections = [
+      { id: 'factions',   label: '🗺️ ขั้วอำนาจทั้งสาม' },
+      { id: 'glossary',   label: '📖 ศัพท์ยุทธภพ' },
+      { id: 'philosophy', label: '☯️ ปรัชญาหลัก' }
+    ];
+    const jump = document.getElementById('section-jump');
+    sections.forEach(s => {
+      const opt = document.createElement('option');
+      opt.value = s.id; opt.textContent = s.label;
+      jump.appendChild(opt);
+    });
+    jump.addEventListener('change', () => {
+      const el = document.getElementById(jump.value);
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    });
+
+    /* --- แถบความคืบหน้า + จำหัวข้อปัจจุบัน --- */
+    const progress = document.getElementById('read-progress');
+    let ticking = false;
+    function update() {
+      ticking = false;
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      progress.style.width = (max > 0 ? (window.scrollY / max) * 100 : 0) + '%';
+      let current = sections[0].id;
+      for (const s of sections) {
+        const el = document.getElementById(s.id);
+        if (el && el.getBoundingClientRect().top <= 80) current = s.id;
+      }
+      if (jump.value !== current) jump.value = current;
+    }
+    window.addEventListener('scroll', () => {
+      if (!ticking) { ticking = true; requestAnimationFrame(update); }
+    }, { passive: true });
+    update();
   });
 </script>
 </body>
