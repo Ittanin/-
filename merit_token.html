@@ -5,100 +5,171 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Merit Sandbox App Mockup</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700&display=swap');
+
         :root {
             --primary: #1A4A4A;
+            --primary-light: #2C7070;
             --accent: #C89F65;
             --bg: #F9F7F4;
             --text: #2D3436;
+            --text-light: #636E72;
             --real: #27AE60;
             --card: #FFFFFF;
         }
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Sarabun', sans-serif; }
-        body { background: #e0e0e0; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+        body { 
+            background: #e0e0e0; 
+            display: flex; 
+            flex-direction: column;
+            align-items: center; 
+            min-height: 100vh; 
+            padding: 20px;
+        }
         
         /* Mobile Frame */
         .phone {
             width: 375px; height: 812px; background: var(--bg);
             border-radius: 40px; box-shadow: 0 20px 50px rgba(0,0,0,0.2);
-            position: relative; overflow: hidden; border: 8px solid #333;
+            position: relative; overflow-y: auto; overflow-x: hidden; 
+            border: 8px solid #333;
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
         }
+        .phone::-webkit-scrollbar { display: none; }
         
         /* Header */
         .header {
             background: var(--primary); color: white; padding: 40px 20px 20px;
             border-radius: 0 0 20px 20px; text-align: center;
         }
-        .header h2 { font-size: 1.2rem; font-weight: 600; }
-        .header p { font-size: 0.8rem; opacity: 0.8; }
+        .header h2 { font-size: 1.2rem; font-weight: 700; letter-spacing: 0.5px; }
+        .header p { font-size: 0.75rem; opacity: 0.9; margin-top: 4px; }
+        .header .context { font-size: 0.7rem; background: rgba(255,255,255,0.15); display: inline-block; padding: 2px 10px; border-radius: 10px; margin-top: 8px; }
         
         /* Balance Card */
         .balance-card {
-            background: linear-gradient(135deg, var(--primary) 0%, #2C7070 100%);
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
             color: white; margin: -15px 20px 20px; padding: 20px;
             border-radius: 16px; box-shadow: 0 8px 20px rgba(26,74,74,0.3);
-            display: flex; justify-content: space-between; align-items: center;
+            position: relative;
         }
         .balance-card h3 { font-size: 0.8rem; font-weight: 400; opacity: 0.9; }
-        .balance-card .amount { font-size: 2rem; font-weight: 700; margin-top: 5px; color: var(--accent); }
-        .balance-card .badge { background: rgba(255,255,255,0.2); padding: 4px 8px; border-radius: 12px; font-size: 0.7rem; }
+        .balance-card .amount { font-size: 2.2rem; font-weight: 700; margin-top: 5px; color: var(--accent); }
+        .balance-card .amount span { font-size: 1rem; color: #fff; font-weight: 400; }
+        .balance-card .badge { position: absolute; top: 20px; right: 20px; background: rgba(255,255,255,0.2); padding: 4px 8px; border-radius: 12px; font-size: 0.7rem; display: flex; align-items: center; gap: 4px; }
+        .balance-card .expire { font-size: 0.7rem; color: #FFD54F; margin-top: 8px; display: flex; align-items: center; gap: 4px; }
         
+        /* Privacy Note */
+        .privacy-note {
+            margin: -10px 20px 20px; font-size: 0.75rem; color: var(--text-light);
+            background: #E8F5E9; padding: 10px 12px; border-radius: 8px;
+            border-left: 3px solid var(--real); display: flex; gap: 8px; align-items: center;
+        }
+
         /* Content Area */
-        .content { padding: 0 20px; }
-        .section-title { font-size: 1rem; font-weight: 600; color: var(--primary); margin-bottom: 12px; display: flex; justify-content: space-between; }
+        .content { padding: 0 20px 30px; }
+        .section-title { font-size: 1rem; font-weight: 700; color: var(--primary); margin-bottom: 4px; display: flex; justify-content: space-between; align-items: flex-end; }
+        .section-subtitle { font-size: 0.75rem; color: var(--text-light); margin-bottom: 12px; }
         
         /* Action Card */
         .action-card {
             background: var(--card); padding: 16px; border-radius: 12px; margin-bottom: 12px;
-            display: flex; align-items: center; gap: 15px; box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            display: flex; align-items: center; gap: 15px; box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+            border: 1px solid rgba(0,0,0,0.02);
         }
-        .action-icon { width: 45px; height: 45px; background: #E8F5E9; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 1.5rem; }
+        .action-icon { width: 45px; height: 45px; background: #E8F5E9; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 1.5rem; flex-shrink: 0; }
         .action-text h4 { font-size: 0.9rem; color: var(--text); }
-        .action-text p { font-size: 0.75rem; color: #888; }
-        .action-reward { margin-left: auto; color: var(--real); font-weight: 700; font-size: 0.9rem; }
-        
+        .action-text p { font-size: 0.7rem; color: var(--text-light); margin-top: 2px; }
+        .action-reward { margin-left: auto; color: var(--real); font-weight: 700; font-size: 0.95rem; background: #E8F5E9; padding: 4px 8px; border-radius: 8px; }
+
+        /* Scan Button */
+        .btn-scan {
+            width: 100%; background: var(--primary); color: white; border: none;
+            padding: 14px; border-radius: 12px; font-size: 0.95rem; font-weight: 600;
+            display: flex; justify-content: center; align-items: center; gap: 8px;
+            margin-bottom: 24px; cursor: pointer; box-shadow: 0 4px 10px rgba(26,74,74,0.2);
+        }
+        .btn-scan:hover { background: var(--primary-light); }
+
+        /* Hall of Fame */
+        .fame-box {
+            background: linear-gradient(to right, #FFF8E1, #FFECB3);
+            border-radius: 12px; padding: 14px; margin-bottom: 24px;
+            display: flex; align-items: center; gap: 12px; border: 1px solid #FFE082;
+        }
+        .fame-icon { font-size: 1.8rem; }
+        .fame-text h4 { font-size: 0.85rem; color: #8D6E63; }
+        .fame-text p { font-size: 0.85rem; font-weight: 600; color: #E65100; margin-top: 2px; }
+
         /* Redemption Grid */
         .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-        .redeem-item { background: var(--card); padding: 15px; border-radius: 12px; text-align: center; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+        .redeem-item { 
+            background: var(--card); padding: 15px; border-radius: 12px; text-align: center; 
+            box-shadow: 0 2px 10px rgba(0,0,0,0.04); border: 1px solid rgba(0,0,0,0.02); 
+        }
         .redeem-item .icon { font-size: 2rem; margin-bottom: 8px; }
         .redeem-item h4 { font-size: 0.85rem; color: var(--text); margin-bottom: 4px; }
-        .redeem-item p { font-size: 0.75rem; color: var(--primary); font-weight: 600; }
+        .redeem-item p { font-size: 0.75rem; color: var(--primary); font-weight: 700; background: #E0F2F1; padding: 2px 6px; border-radius: 6px; display: inline-block; }
+
+        /* Link to main doc */
+        .doc-link {
+            text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px dashed #ddd;
+        }
+        .doc-link a {
+            color: var(--primary); text-decoration: none; font-size: 0.85rem;
+            display: inline-flex; align-items: center; gap: 6px; font-weight: 600;
+        }
+        .doc-link a:hover { text-decoration: underline; }
 
         /* Bottom Nav */
         .nav {
-            position: absolute; bottom: 0; width: 100%; background: var(--card);
+            position: sticky; bottom: 0; width: 100%; background: var(--card);
             display: flex; justify-content: space-around; padding: 15px 0 25px;
-            border-top: 1px solid #eee;
+            border-top: 1px solid #eee; z-index: 10;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
         }
-        .nav-item { text-align: center; color: #aaa; font-size: 0.7rem; }
-        .nav-item.active { color: var(--primary); font-weight: 600; }
+        .nav-item { text-align: center; color: #aaa; font-size: 0.7rem; cursor: pointer; }
+        .nav-item.active { color: var(--primary); font-weight: 700; }
         .nav-item .icon { font-size: 1.2rem; margin-bottom: 4px; }
     </style>
 </head>
 <body>
+
+    <div style="margin-bottom: 20px; text-align: center; color: #555;">
+        <h2>Merit Sandbox - UI Mockup</h2>
+        <p style="font-size: 0.9rem;">จำลองหน้าจอการใช้งานระบบ Merit Token สำหรับประชาชน</p>
+    </div>
+
     <div class="phone">
         <div class="header">
             <h2>Merit Sandbox</h2>
             <p>Zero-Knowledge Verified Citizen</p>
+            <div class="context">เศรษฐศาสตร์หมุนเวียนแห่งความดี (Regenerative Economics)</div>
         </div>
         
         <div class="balance-card">
-            <div>
-                <h3>ยอดโทเคนคงเหลือ</h3>
-                <div class="amount">1,250 <span style="font-size:1rem; color:#fff;">MT</span></div>
-            </div>
-            <div class="badge">🔒 PoR Verified</div>
+            <div class="badge">🔒 ZKP Verified</div>
+            <h3>ยอดโทเคนคงเหลือ</h3>
+            <div class="amount">1,250 <span>MT</span></div>
+            <div class="expire">⏳ หมดอายุใน 180 วัน (เพื่อกระตุ้นการหมุนเวียน)</div>
+        </div>
+
+        <div class="privacy-note">
+            🛡️ <div><strong>Privacy by Design:</strong> ระบบยืนยันการทำดีผ่าน ZKP โดยไม่เปิดเผยตัวตนหรือข้อมูลส่วนตัวของคุณ</div>
         </div>
         
         <div class="content">
             <div class="section-title">
                 <span>ทำความดี (Proof of Good Action)</span>
             </div>
+            <div class="section-subtitle">ทำดี ➡️ ได้โทเคน ➡️ แลกของจริง</div>
             
             <div class="action-card">
                 <div class="action-icon">♻️</div>
                 <div class="action-text">
                     <h4>แยกขยะรีไซเคิล</h4>
-                    <p>ยืนยันโดย Smart Bin + ZKP</p>
+                    <p>ยืนยันโดย Smart Bin</p>
                 </div>
                 <div class="action-reward">+50 MT</div>
             </div>
@@ -107,15 +178,31 @@
                 <div class="action-icon">👵</div>
                 <div class="action-text">
                     <h4>ดูแลผู้สูงอายุชุมชน</h4>
-                    <p>ตรวจสอบโดย AI และเพื่อนบ้าน</p>
+                    <p>ตรวจสอบโดย AI และชุมชน</p>
                 </div>
                 <div class="action-reward">+150 MT</div>
+            </div>
+
+            <button class="btn-scan">
+                📷 สแกนเพื่อยืนยันการทำความดี
+            </button>
+
+            <div class="section-title" style="margin-top: 10px;">
+                <span>เกียรติยศและคุณค่า (Hall of Fame)</span>
+            </div>
+            <div class="section-subtitle">รางวัลที่ไม่สามารถแปลงเป็นอำนาจได้</div>
+            <div class="fame-box">
+                <div class="fame-icon">🏆</div>
+                <div class="fame-text">
+                    <h4>ยอดนักทำดีประจำเดือน</h4>
+                    <p>ลุงสมชาย (ดูแลผู้สูงอายุ 500 ชม.)</p>
+                </div>
             </div>
             
             <div class="section-title" style="margin-top: 20px;">
                 <span>แลกเปลี่ยน (Closed-Loop)</span>
             </div>
-            
+            <div class="section-subtitle">แลกได้เฉพาะในระบบ ไม่สามารถเก็งกำไรภายนอกได้</div>
             <div class="grid">
                 <div class="redeem-item">
                     <div class="icon">🍚</div>
@@ -127,6 +214,10 @@
                     <h4>ตั๋วรถเมล์ฟรี</h4>
                     <p>20 MT / เที่ยว</p>
                 </div>
+            </div>
+
+            <div class="doc-link">
+                <a href="moneybs.html">📄 อ่านเอกสารข้อเสนอฉบับเต็ม (Money Balance Sufficient)</a>
             </div>
         </div>
         
