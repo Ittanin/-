@@ -74,14 +74,52 @@
   #theme-toggle:hover { transform: scale(1.1); box-shadow: 0 6px 20px rgba(0,0,0,0.5); }
   @media (max-width: 600px) { .container { padding: 15px; } .cover h1 { font-size: 1.8rem; } .cover h2 { font-size: 1rem; } .cover-emblem { font-size: 60px; } .chapter-title { font-size: 1.4rem; } .content { font-size: 1rem; } .pull-quote { font-size: 1.05rem; padding: 15px; margin: 20px 5px; } .content p:first-of-type::first-letter { font-size: 2.8rem; } #theme-toggle { width: 50px; height: 50px; font-size: 1.4rem; bottom: 20px; right: 20px; } }
   @media print { body { background: white !important; background-image: none !important; color: black !important; font-size: 11pt; } .container { max-width: 100%; padding: 0; } .cover { min-height: 100vh; page-break-after: always; background: white !important; color: black !important; } .cover h1, .cover h2, .cover-author { color: black !important; text-shadow: none !important; } .cover::before, .cover::after { border-color: black !important; } .chapter { page-break-before: always; } .chapter:first-of-type { page-break-before: avoid; } .pull-quote, .emblem { page-break-inside: avoid; } h1, h2, h3 { page-break-after: avoid; } #theme-toggle { display: none !important; } a { color: black; text-decoration: none; } @page { margin: 2cm; size: A5; } }
+
+  /* ===== แถบนำทาง + ความคืบหน้าการอ่าน (เพิ่มใหม่) ===== */
+  :root { --nav-bg: rgba(245, 230, 211, 0.96); }
+  body.dark-mode { --nav-bg: rgba(18, 18, 18, 0.96); }
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  body { padding-top: 54px; }
+  .cover { min-height: calc(100vh - 54px); }
+  .cover h2, .cover-subtitle { color: #F5E6D3; } /* ปกมืดเสมอ — ตรึงสีครีม อ่านออกทั้ง 2 โหมด */
+  #read-progress { position: fixed; top: 0; left: 0; height: 3px; width: 0%; background: var(--gold); z-index: 1002; transition: width 0.1s linear; }
+  #top-nav { position: fixed; top: 0; left: 0; right: 0; height: 54px; display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 3px 14px 0; background: var(--nav-bg); border-bottom: 1px solid var(--gold); z-index: 1001; backdrop-filter: blur(4px); }
+  #top-nav a { color: var(--red-chinese); text-decoration: none; font-weight: 600; font-size: 0.95rem; white-space: nowrap; }
+  #top-nav a:hover { color: var(--gold); }
+  #chapter-jump { flex: 1; max-width: 340px; min-width: 0; font-family: 'Sarabun', serif; font-size: 16px; color: var(--ink); background: var(--parchment); border: 1px solid var(--gold); border-radius: 6px; padding: 6px 8px; cursor: pointer; }
+  .chapter, .toc, .ending { scroll-margin-top: 66px; }
+  .toc-link { display: flex; justify-content: space-between; align-items: center; gap: 12px; width: 100%; color: inherit; text-decoration: none; }
+  .toc-link:hover span { color: var(--dark-gold); }
+  .chapter-nav { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-top: 45px; padding-top: 18px; border-top: 1px dashed var(--gold); font-size: 0.95rem; }
+  .chapter-nav a { color: var(--red-chinese); text-decoration: none; font-weight: 600; }
+  .chapter-nav a:hover { color: var(--gold); }
+  .status-note { font-style: italic; color: var(--light-ink); font-size: 0.95rem; max-width: 520px; margin: 10px auto 0; }
+  .container { padding-bottom: 90px; }
+  @media (max-width: 600px) {
+    #top-nav { padding: 3px 10px 0; gap: 8px; }
+    #top-nav .nav-label { display: none; }
+    .chapter-nav { font-size: 0.85rem; }
+  }
+  @media print {
+    #top-nav, #read-progress, .chapter-nav { display: none !important; }
+    body { padding-top: 0 !important; }
+    .cover { min-height: 100vh; }
+  }
 </style>
 </head>
 <body>
+<div id="read-progress" aria-hidden="true"></div>
+<nav id="top-nav" aria-label="แถบนำทาง">
+  <a href="index.html" title="กลับหน้าหลัก">☯ <span class="nav-label">หน้าหลัก</span></a>
+  <select id="chapter-jump" aria-label="ไปยังบท"></select>
+  <a href="#toc" title="สารบัญ">📑 <span class="nav-label">สารบัญ</span></a>
+</nav>
 <button id="theme-toggle" aria-label="Toggle Dark Mode">🌙</button>
 <div class="container">
 
 <!-- ===== หน้าปกเล่ม ๒ ===== -->
-<section class="cover">
+<section class="cover" id="cover">
   <div class="cover-emblem">🏯🔥🐉</div>
   <h1>มังกรฟ้า vs จอมมาร</h1>
   <h2>เล่ม ๒ : ศึกเซ็กเพ็กและงานเลี้ยงหงเหมิน</h2>
@@ -94,7 +132,7 @@
 </section>
 
 <!-- ===== สารบัญ ===== -->
-<section class="toc">
+<section class="toc" id="toc">
   <h2>สารบัญ เล่ม ๒</h2>
   <ul class="toc-list">
     <li><span class="toc-chapter">บทเท้าความ</span><span>ปฐมบทแห่งลมปราณที่เปลี่ยนทิศ</span></li>
@@ -108,7 +146,7 @@
 </section>
 
 <!-- ===== บทเท้าความ ===== -->
-<section class="chapter">
+<section class="chapter" id="recap">
   <div class="chapter-header">
     <div class="chapter-number">📜 บทเท้าความ 📜</div>
     <h2 class="chapter-title">ปฐมบทแห่งลมปราณที่เปลี่ยนทิศ</h2>
@@ -122,7 +160,7 @@
 </section>
 
 <!-- ===== บทที่ ๙ ===== -->
-<section class="chapter">
+<section class="chapter" id="ch9">
   <div class="chapter-header">
     <div class="chapter-number">⚔ บทที่ ๙ ⚔</div>
     <h2 class="chapter-title">ศึกเซ็กเพ็กแห่งยุคดิจิทัล</h2>
@@ -149,7 +187,7 @@
     <p>แทนที่จะยอมจำนน ผู้นำสูงสุดของสำนักกลับประกาศก้องผ่านสื่อยุทธภพ: <strong>"เราปลดล็อกข้อจำกัดเรื่องระยะยิงและพื้นที่โจมตีทั้งหมดแล้ว"</strong></p>
     <p>ณ โรงน้ำชาเหลียงซาน น้องเล็งกำลังวิเคราะห์ข้อมูลนี้ผ่านหน้าจอ AI ของเธอ</p>
     <div class="dialog">"พ่อคะ หนูเห็นรูปแบบการเคลื่อนที่ของกองเรือทั้ง ๓ แล้วค่ะ" น้องเล็งชี้ไปที่แผนที่ดิจิทัล "พวกเขาเคลื่อนที่ตามรูปแบบที่คาดการณ์ได้ เชื่อมโยงกันด้วยระบบข้อมูลส่วนกลางที่เทอะทะ เหมือนกับ... กองเรือของโจโฉในศึกเซ็กเพ็กค่ะ"</div>
-    <p>ท่านลิ้มจิบชาอย่างสงบ "เมื่อเรือถูกผูกติดกันด้วยคำสั่งที่แข็งทื่อและทิฐิที่มืดบอด มันก็ไม่ใช่กองเรืออีกต่อไป... แต่มันคือ 'ฟืนกองใหญ่' ที่รอวันติดไฟ"</div>
+    <p>ท่านลิ้มจิบชาอย่างสงบ "เมื่อเรือถูกผูกติดกันด้วยคำสั่งที่แข็งทื่อและทิฐิที่มืดบอด มันก็ไม่ใช่กองเรืออีกต่อไป... แต่มันคือ 'ฟืนกองใหญ่' ที่รอวันติดไฟ"</p>
 
     <div class="scene-break">❖ ❖ ❖</div>
 
@@ -170,7 +208,7 @@
 </section>
 
 <!-- ===== บทแทรก: ชงชาสองแก้ว ===== -->
-<section class="chapter">
+<section class="chapter" id="tea">
   <div class="chapter-header">
     <div class="chapter-number">🍵 บทแทรก 🍵</div>
     <h2 class="chapter-title">ชงชาสองแก้ว</h2>
@@ -203,7 +241,7 @@
     <div class="dialog">"พ่อ... เคยติดอะไรคะ"</div>
     <div class="dialog">"ตอนข้าอายุเท่าเจ้า ข้าติดการอ่านตำรา" ท่านลิ้มยิ้ม "ไม่ใช่เพราะอยากรู้ — แต่เพราะข้าชอบความรู้สึกที่ได้รู้มากกว่าคนอื่น จนลืมกินลืมนอน ลืมมองฟ้า ลืมสัมผัสลม"</div>
     <div class="dialog">"แล้วพ่อหยุดได้ยังไงคะ"</div>
-    <div class="dialog">"มีวันหนึ่ง ข้านั่งอ่านตำราจนแม่ของข้าเดินเข้ามาแล้วถามว่า <em>'เจ้าอ่านเพื่ออะไร'</em> ข้าตอบไม่ได้" ท่านลิ้มจิบชา "วันนั้นข้าถึงรู้ว่า — ที่ข้าอ่าน ไม่ใช่เพื่อความจริง แต่เพื่อ <strong>ความเพลินในการเป็นผู้รู้</strong> ซึ่งนั่นคือกับดักที่ร้ายกาจที่สุด"</div>
+    <div class="dialog">"มีวันหนึ่ง ข้านั่งอ่านตำราจนแม่ของข้าเดินเข้ามาแล้วถามว่า <em>'เจ้าอ่านเพื่ออะไร'</em> ข้าตอบไม่ได้" ท่านลิ้มจิบชา "วันวันนั้นข้าถึงรู้ว่า — ที่ข้าอ่าน ไม่ใช่เพื่อความจริง แต่เพื่อ <strong>ความเพลินในการเป็นผู้รู้</strong> ซึ่งนั่นคือกับดักที่ร้ายกาจที่สุด"</div>
     <p>น้องเล็งนิ่งไปนาน</p>
     <div class="dialog">"พ่อคะ... แล้วเราจะรู้ได้ยังไงว่าตอนไหนเราจุดไฟ ตอนไหนไฟจุดเรา"</div>
     <p>ท่านลิ้มหันไปมองหน้าต่าง</p>
@@ -224,7 +262,7 @@
 </section>
 
 <!-- ===== บทที่ ๑๐ ===== -->
-<section class="chapter">
+<section class="chapter" id="ch10">
   <div class="chapter-header">
     <div class="chapter-number">⚔ บทที่ ๑๐ ⚔</div>
     <h2 class="chapter-title">แซนด์บ็อกซ์แห่งความพอเพียง</h2>
@@ -266,7 +304,7 @@
 </section>
 
 <!-- ===== บทที่ ๑๑ ===== -->
-<section class="chapter">
+<section class="chapter" id="ch11">
   <div class="chapter-header">
     <div class="chapter-number">⚔ บทที่ ๑๑ ⚔</div>
     <h2 class="chapter-title">เมื่อสะพานกลายเป็นจุดหมาย</h2>
@@ -316,7 +354,7 @@
     <div class="dialog">"เจ้าเห็นแล้วใช่ไหม — นี่คือ <strong>ความเสี่ยงแรก</strong> ของระบบเรา"</div>
     <div class="dialog">"ความเสี่ยงอะไรคะ"</div>
     <div class="dialog">"เมื่อเจ้าสร้างระบบที่ 'ดี' คนจะหาวิธีทำให้มัน 'ไม่ดี' — ไม่ใช่เพราะพวกเขาชั่วร้าย แต่เพราะ <strong>ตัณหา</strong> ในธรรมชาติของมนุษย์ เมื่อตัณหาฝังลึก มันจะกลายเป็น <strong>อุปาทาน</strong> — ความยึดมั่นว่า 'ของนี้เป็นของข้า' และเมื่อยึดมั่นแล้ว เขาจะไม่ยอมปล่อย แม้จะรู้ว่ามันทำลายส่วนรวม"</div>
-    <p>น้องเล็งนิ่ง去思考</p>
+    <p>น้องเล็งนิ่งไปครู่หนึ่ง</p>
     <div class="dialog">"แล้วเราควรทำอย่างไรคะ"</div>
     <div class="dialog">"เราต้อง <strong>จูนระบบใหม่</strong> — เหมือนสายพิณที่ต้องจูนทุกวัน"</div>
 
@@ -361,7 +399,7 @@
 </section>
 
 <!-- ===== บทที่ ๑๒ ===== -->
-<section class="chapter">
+<section class="chapter" id="ch12">
   <div class="chapter-header">
     <div class="chapter-number">⚔ บทที่ ๑๒ ⚔</div>
     <h2 class="chapter-title">อุปายะแห่งจงกั๋วและเงาที่มองไม่เห็น</h2>
@@ -408,7 +446,7 @@
 </section>
 
 <!-- ===== ภาคผนวก ค: แผนภาพ ๖ คำ ===== -->
-<section class="chapter">
+<section class="chapter" id="appendix">
   <div class="chapter-header">
     <div class="chapter-number">📜 ภาคผนวก ค 📜</div>
     <h2 class="chapter-title">แผนภาพ ๖ คำ: กระบวนการแห่งนันทิ (ฉบับย่อ)</h2>
@@ -437,9 +475,11 @@
 </section>
 
 <!-- ===== จบ ===== -->
-<section class="ending">
+<section class="ending" id="ending">
   <div class="emblem">☯</div>
   <h2>จบเล่ม ๒ (ชั่วคราว)</h2>
+  <!-- งาน ๓: เมื่อมีหน้าเฝ้าสัญญาณหงเหมิน ให้เปลี่ยน status-note เป็นลิงก์ไปหน้านั้น -->
+  <p class="status-note">⏸ สถานะเรื่อง: พักที่บท ๑๒ — เฝ้าสัญญาณ "งานเลี้ยงหงเหมิน" จากโลกจริง แล้วค่อยแต่งต่อ</p>
   <div class="cover-divider" style="margin: 20px auto;"></div>
   <p>JD Vere ตัดสินใจหักหลังจอมมารอย่างเป็นทางการ</p>
   <p>กองเรือ ๓ กองกำลังแล่นเข้าสู่ปากมังกร</p>
@@ -455,16 +495,85 @@
 </div>
 
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const toggleBtn = document.getElementById('theme-toggle');
-    const body = document.body;
-    if (localStorage.getItem('theme') === 'dark') { body.classList.add('dark-mode'); toggleBtn.textContent = '☀️'; }
-    toggleBtn.addEventListener('click', () => {
-      body.classList.toggle('dark-mode');
-      if (body.classList.contains('dark-mode')) { localStorage.setItem('theme', 'dark'); toggleBtn.textContent = '☀️'; } 
-      else { localStorage.setItem('theme', 'light'); toggleBtn.textContent = '🌙'; }
-    });
+document.addEventListener('DOMContentLoaded', () => {
+  /* --- โหมดมืด/สว่าง (ของเดิม) --- */
+  const toggleBtn = document.getElementById('theme-toggle');
+  const body = document.body;
+  if (localStorage.getItem('theme') === 'dark') { body.classList.add('dark-mode'); toggleBtn.textContent = '☀️'; }
+  toggleBtn.addEventListener('click', () => {
+    body.classList.toggle('dark-mode');
+    if (body.classList.contains('dark-mode')) { localStorage.setItem('theme', 'dark'); toggleBtn.textContent = '☀️'; }
+    else { localStorage.setItem('theme', 'light'); toggleBtn.textContent = '🌙'; }
   });
+
+  /* --- ทะเบียนบท: บท ๑๓ ในอนาคต = เพิ่ม <li> ในสารบัญ + ใส่ id ให้ section + เพิ่ม 1 บรรทัดที่นี่ --- */
+  const sections = [
+    { id: 'cover',    label: 'ปกเล่ม ๒' },
+    { id: 'toc',      label: 'สารบัญ' },
+    { id: 'recap',    label: 'บทเท้าความ', reading: true },
+    { id: 'ch9',      label: 'บทที่ ๙ · ศึกเซ็กเพ็กแห่งยุคดิจิทัล', reading: true },
+    { id: 'tea',      label: 'บทแทรก · ชงชาสองแก้ว', reading: true },
+    { id: 'ch10',     label: 'บทที่ ๑๐ · แซนด์บ็อกซ์แห่งความพอเพียง', reading: true },
+    { id: 'ch11',     label: 'บทที่ ๑๑ · เมื่อสะพานกลายเป็นจุดหมาย', reading: true },
+    { id: 'ch12',     label: 'บทที่ ๑๒ · อุปายะแห่งจงกั๋วและเงาที่มองไม่เห็น', reading: true },
+    { id: 'appendix', label: 'ภาคผนวก ค · แผนภาพ ๖ คำ', reading: true },
+    { id: 'ending',   label: 'จบเล่ม (ชั่วคราว)' }
+  ];
+
+  /* --- เมนูกระโดดบท --- */
+  const jump = document.getElementById('chapter-jump');
+  sections.forEach(s => {
+    const opt = document.createElement('option');
+    opt.value = s.id; opt.textContent = s.label;
+    jump.appendChild(opt);
+  });
+  jump.addEventListener('change', () => {
+    const el = document.getElementById(jump.value);
+    if (el) el.scrollIntoView({ behavior: 'smooth' });
+  });
+
+  /* --- สารบัญคลิกได้ --- */
+  const tocItems = document.querySelectorAll('.toc-list li');
+  const reading = sections.filter(s => s.reading);
+  tocItems.forEach((li, i) => {
+    if (reading[i]) li.innerHTML = '<a class="toc-link" href="#' + reading[i].id + '">' + li.innerHTML + '</a>';
+  });
+
+  /* --- ป้ายนำทางท้ายบท (สร้างอัตโนมัติ — เพิ่มบทใหม่ไม่ต้องเขียนเอง) --- */
+  reading.forEach((s, i) => {
+    const sec = document.getElementById(s.id);
+    if (!sec) return;
+    const nav = document.createElement('div');
+    nav.className = 'chapter-nav';
+    const prev = i === 0
+      ? '<a href="novel1_2.html">← เล่ม ๑</a>'
+      : '<a href="#' + reading[i-1].id + '">← ก่อนหน้า</a>';
+    const next = i === reading.length - 1
+      ? '<a href="#ending">จบเล่ม →</a>'
+      : '<a href="#' + reading[i+1].id + '">ถัดไป →</a>';
+    nav.innerHTML = prev + '<a href="#toc">☰ สารบัญ</a>' + next;
+    sec.appendChild(nav);
+  });
+
+  /* --- แถบความคืบหน้า + จำบทปัจจุบัน --- */
+  const progress = document.getElementById('read-progress');
+  let ticking = false;
+  function update() {
+    ticking = false;
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    progress.style.width = (max > 0 ? (window.scrollY / max) * 100 : 0) + '%';
+    let current = sections[0].id;
+    for (const s of sections) {
+      const el = document.getElementById(s.id);
+      if (el && el.getBoundingClientRect().top <= 80) current = s.id;
+    }
+    if (jump.value !== current) jump.value = current;
+  }
+  window.addEventListener('scroll', () => {
+    if (!ticking) { ticking = true; requestAnimationFrame(update); }
+  }, { passive: true });
+  update();
+});
 </script>
 </body>
 </html>
